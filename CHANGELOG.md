@@ -13,6 +13,10 @@
 - Worked example: the chain figure marks each step as D, O-calc or O-theory, and Appendix A has the open-link table;
   solutions now 25 pages.
 - `check_booklets.py` reports "O-calc" and "O-theory" in the question paper as research notes.
+- Worked example, Appendix B fixes: four notes that sat under the following question now stand under their own
+  question (1.B.1, 1.D.1, 2.C.2, 3.C.1); 2.B.1 has its own scope notes; the "three separate statements" list is
+  restored; stale references (a removed background section, "Part B describes its motion") and mentions of a proof
+  that the public excerpt does not contain are removed; an unused frame-legend macro is deleted.
 
 ## 1.0.0 (2026-10-17)
 

@@ -56,16 +56,6 @@
 \newcommand{\nextpage}{\clearpage}
 \newcommand{\smallheading}[1]{\par\Needspace{6\baselineskip}\medskip\textbf{#1}\par}
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
-\newcommand{\legend}{%
-\begin{greenbox}{How to read green frames}
-A green frame has a named source: \textbf{MFP [1]} and \textbf{H2 [2]} are published papers; \textbf{MB1 PROOF} or \textbf{PROVED FOR THIS MODEL [7,8]} marks the project proof and its independent check; \textbf{C1/R2a REPORT} or \textbf{GIVEN DATA} marks reported numerical evidence; \textbf{MB1 NOTE} or \textbf{GIVEN TOOL [3,5]} marks exact identities. Green never extends a result beyond its stated object and scope.
-\end{greenbox}
-\begin{redbox}{How to read red frames}
-\textbf{ADDED MODEL} identifies a teaching simplification. \textbf{GIVEN BOUND} identifies an assumption supplied for an exercise. \textbf{OPEN} identifies a missing result for the full MFP model. A red-framed toy problem can have an exact solution; red does not mean that its algebra is wrong.
-\end{redbox}
-\begin{tcolorbox}[figstyle,title={\strut How to read blue frames}]
-In this solution booklet a blue \textbf{PICTURE} frame illustrates an answer. Numerical curves use the stated illustrative parameters; they are not MB1 results.
-\end{tcolorbox}}
 \newcommand{\sourceentries}{%
 \begin{enumerate}[label={[\arabic*]},leftmargin=9mm,itemsep=5pt,topsep=2pt]
 \item M. J\"urgensen, J. Steiner, G. Refael, and M. C. Rechtsman, \emph{Multi-band fractional Thouless pumps}, arXiv:2504.09338v2 (2025). \href{https://arxiv.org/abs/2504.09338}{\texttt{arXiv:2504.09338}}.
@@ -850,7 +840,7 @@ Green frames name the source of a result and its scope; red frames mark teaching
 The reference evolution and its local error are not yet controlled over the full drive. In particular, $\mathcal K_{\rm ret}\to\sigma'_X\to\widehat Q$ is not supplied by the composite-band geometry.
 \end{redbox}
 \begin{greenbox}{MFP [1] --- a candidate two-cycle branch}
-The two Wannier flavors may exchange after one period. In the source argument, a continuously followed flavor returns after two periods with a one-cell displacement (Background~\S5, Figure 1.3 of the question paper). The argument assumes that the occupations continue to follow that branch.
+The two Wannier flavors may exchange after one period. In the source argument, a continuously followed flavor returns after two periods with a one-cell displacement (introduction of Problem 1 and Figure 1.3 of the question paper). The argument assumes that the occupations continue to follow that branch.
 \end{greenbox}
 \begin{redbox}{ADDED IDEAL-FOLLOWING CONDITION}
 For 1.A.1, stipulate that the actual occupied orbitals follow the branch exactly. This is not a large-system finite-speed stability result.
@@ -871,12 +861,12 @@ The argument has assumed actual following. It has not bounded excitation, intern
 \begin{greenbox}{MFP [1], Eq.~(1)--(2) --- source model and motivation}
 In the source mechanism, mixing the lowest two bands permits more localized Wannier orbitals, and finite-range repulsion can favor occupation of one flavor (introduction of Problem 1).
 \end{greenbox}
-{\small\textbf{Connection to the next step:} The physical output is a defined composite-band projector. Part B describes its motion. 1.D.1 then asks how to identify a flavor inside it.}\par
-{\small\textbf{Connection to the next step:} Before extracting geometry, name the projector, its ambient space, and the physical reason for using it. Do not identify $p_{12}$ with a many-body low-energy pair.}\par
-\par\medskip\textbf{1.B.2}\par
 \begin{redbox}{OPEN --- a reference choice is not a dynamical truncation}
 The two-band $N$-particle sector is not a two-state system. Restricting the full interacting model to this sector requires control of the terms that leave it.
 \end{redbox}
+{\small\textbf{Connection to the next step:} The physical output is a defined composite-band projector. 1.B.2 and 1.C.1 describe its motion. 1.D.1 then asks how to identify a flavor inside it.}\par
+{\small\textbf{Connection to the next step:} Before extracting geometry, name the projector, its ambient space, and the physical reason for using it. Do not identify $p_{12}$ with a many-body low-energy pair.}\par
+\par\medskip\textbf{1.B.2}\par
 \begin{greenbox}{H2 [2] --- projector kinematics}
 A projector represents a subspace without choosing a basis inside it. Its derivative describes the change of that subspace. In 1.B.2, derive the corresponding horizontal generator. This is a kinematic statement, not a lifetime prediction.
 
@@ -908,7 +898,10 @@ Use $\ket{\psi(0)}=\ket{\uparrow}$, where $\sigma_z\ket{\uparrow}=\ket{\uparrow}
 {\footnotesize\textbf{Source / scope:} 1.B.2 uses H2. 1.C.1 is a teaching construction. Its exact solution does not prove a regime of the original pump.}\par
 \par\medskip\textbf{1.D.1}\par
 \begin{redbox}{OPEN --- flavor and correlated-frame conditions}
-The proof constructs $p_{12}$, not a selected flavor projector. It does not fix the internal unitary of the two-band group. Analyticity of this composite projector also does not provide a full interacting reference state.
+$p_{12}$ is a composite projector, not a selected flavor projector. It does not fix the internal unitary of the two-band group, and its smoothness does not provide a full interacting reference state.
+\end{redbox}
+\begin{redbox}{ADDED COUNTEREXAMPLE --- not computed MFP matrices}
+In a physically labelled two-dimensional space, compare $\mathscr T_0=\id_2$ with $\mathscr T_1=i\sigma_x$. Both act inside the same plane. No real-space displacement is specified. These are illustrative internal maps, not the original pump's Wilson or evolution matrices.
 \end{redbox}
 \begin{greenbox}{MFP [1], Eq.~(2); H2 [2] --- two linked objects}
 The source chooses localized Wannier flavors inside the composite bands. H2 describes the composite projector without an arbitrary internal basis. A physical flavor requires a localization rule and continuous tracking, not just the endpoint statement $p_{12}(T)=p_{12}(0)$.
@@ -917,7 +910,7 @@ The source chooses localized Wannier flavors inside the composite bands. H2 desc
 MFP supplies a physical composite-band and Wannier construction. H2 organizes subspace motion and its internal-basis freedom. The bridge makes their objects explicit; it does not invent a new dynamical law.
 \end{greenbox}
 \begin{redbox}{OPEN --- not an automatic rank-one upgrade}
-The composite gap and locality proof does not certify the selected flavor's full internal rotation or seam. Nor does it prove that an interacting state occupies that branch over the drive. These are unchanged research conditions.
+A gap and locality bounds for the composite bands would not certify the selected flavor's full internal rotation or seam. Nor would they prove that an interacting state occupies that branch over the drive. These are unchanged research conditions.
 \end{redbox}
 {\small\textbf{Connection to the next step:} Keep the full interactions when using the geometric frame. 2.C.1 explains this step exactly.}\par
 \par\medskip\textbf{2.A.1}\par
@@ -936,8 +929,11 @@ Let $A$ mean $\sigma^z=-1$ and $B$ mean $\sigma^z=+1$. Set $g=0$. Start with all
 This exact answer belongs to the teaching spin model. Deriving the domain variables, couplings, and driven transitions from MFP is a separate task.
 \end{redbox}
 \par\medskip\textbf{2.B.1}\par
-\begin{redbox}{ADDED COUNTEREXAMPLE --- not computed MFP matrices}
-In a physically labelled two-dimensional space, compare $\mathscr T_0=\id_2$ with $\mathscr T_1=i\sigma_x$. Both act inside the same plane. No real-space displacement is specified. These are illustrative internal maps, not the original pump's Wilson or evolution matrices.
+\begin{redbox}{ADDED MODEL --- one double-excitation channel}
+For 2.B.1, retain only a bare two-cell reference $\ket{0}=\ket{o,o}$ (both particles in the reference orbital $o$) and one double excitation $\ket d$. A real local calculation has many more channels; one denominator cannot replace that spectrum without a separate approximation.
+\end{redbox}
+\begin{redbox}{ADDED MODEL --- one channel is not the full local spectrum}
+The exact two-channel solution is not a fit of the full local response. A controlled reduction would need the actual channel energies, matrix elements, retained processes, and errors. The gap $\Delta$ here is a teaching parameter.
 \end{redbox}
 \par\medskip\textbf{2.B.2}\par
 {\footnotesize\textbf{Source / scope:} Use $[\sigma_z,\sigma_x]=2i\sigma_y$. Operators on different spins commute.}\par
@@ -946,6 +942,12 @@ A static correction at one phase does not provide a smooth full-cycle correction
 \end{redbox}
 \smallheading{Teacher's distinction}
 There are three separate statements:
+\begin{enumerate}[leftmargin=7mm,itemsep=5pt]
+\item A particular pair has a more accurate correlated reference.
+\item The pair corrections can be combined into a controlled chain description.
+\item That description predicts the physical current during the full drive.
+\end{enumerate}
+A calculation on isolated pairs can support the first statement. The second and third need separate arguments; 2.B.2 shows the first obstacle to the second.
 
 \par\medskip\textbf{2.C.1}\par
 {\small\textbf{Connection to the next step:} 2.C.2 tests whether the kept part actually preserves the desired reference.}\par
@@ -953,14 +955,14 @@ There are three separate statements:
 One must still choose and solve $\mathcal K_{\rm ret}$, control the omitted terms and observables, and retain any physical mixing that changes the current. A small model error does not imply a perfectly quantized reference pump.
 \end{redbox}
 \par\medskip\textbf{2.C.2}\par
+\begin{redbox}{ADDED MODEL --- reuse 2.A.1, do not infer an MB1 mapping}
+The spin chain in (b) is still the teaching analogy, not the full MFP Hamiltonian. Use a ring of $N$ spins. Set $E_A=\bra{A_0}H_{\rm d}\ket{A_0}$. Let $\ket{j}$ denote the orthonormal configuration with only spin $j$ flipped. You may use $e^{-iHt}=\id-iHt+O(t^2)$.
+\end{redbox}
 \begin{redbox}{ADDED MODEL --- what the exact answer does not establish}
 The spin example is only a counterexample to the claim that zero omitted remainder implies no physical evolution. Its $g^2$ coefficient cannot be inserted into 3.B.1 as an MB1 error-growth bound.
 \end{redbox}
 {\small\textbf{Connection to the next step:} Predict $\ket\Xi$ or its relevant local reduced states. Do not first impose ideal charge on a reference whose retained dynamics has not been solved.}\par
 \par\medskip\textbf{2.D.1}\par
-\begin{redbox}{ADDED MODEL --- reuse 2.A.1, do not infer an MB1 mapping}
-The spin chain in (b) is still the teaching analogy, not the full MFP Hamiltonian. Use a ring of $N$ spins. Set $E_A=\bra{A_0}H_{\rm d}\ket{A_0}$. Let $\ket{j}$ denote the orthonormal configuration with only spin $j$ flipped. You may use $e^{-iHt}=\id-iHt+O(t^2)$.
-\end{redbox}
 \begin{redbox}{ADDED MODEL --- a current-connected pair of states}
 For 2.D.1, $\ket0$ and $\ket e$ are any orthogonal states connected by the stated current. Do not identify $\ket e$ with 2.B.1's pure double excitation without checking the current matrix element. A one-body hopping current does not directly connect Slater determinants differing by two occupied orbitals.
 
@@ -1021,7 +1023,7 @@ $|\Qbar_{\rm ref}(t)-Q_*|\leq\delta_0$.
 These remain supplied assumptions for the full correlated MB1 frame. In particular, the bound at $s=0$ requires $D_X(0)=0$. Initial mismatch must be controlled separately; do not silently replace the physical initial state by its projection. Here $\alpha$, $I_0$, and $\eta$ have units of inverse time; $\delta_0$ and charge are dimensionless.
 \end{redbox}
 \begin{redbox}{ILLUSTRATIVE ONLY --- no MB1 lifetime has been computed}
-The value $200T$ follows from illustrative classroom inputs. The complete correlated-frame bounds, their common time interval, and the required initial matching have not been established for MB1. The new composite-band proof does not change this arithmetic or its conditional status.
+The value $200T$ follows from illustrative classroom inputs. The complete correlated-frame bounds, their common time interval, and the required initial matching have not been established for MB1.
 \end{redbox}
 \smallheading{Connection to 2.C.2}
 The product-reference form of 3.A.2 uses $\sigma'_X=\ket{A_{0,X}}\bra{A_{0,X}}$ at every time $s$ in the window. This is consistent only if the kept dynamics leaves the reference direction invariant, which is the 2.C.2(a) condition
@@ -1032,13 +1034,9 @@ together with the frame-velocity term if the reference direction moves. 2.C.2(b)
 
 \par\medskip\textbf{3.C.1}\par
 {\small\textbf{Connection to the next step:} 3.B.1 certifies an interval once special growth bounds are supplied. 3.C.1 permits a reference that itself changes or fails. Both require model-derived inputs before either gives an MB1 prediction.}\par
-\begin{greenbox}{V3 LOGIC --- preserve the final research goal}
+\begin{greenbox}{RESEARCH LOGIC --- preserve the final research goal}
 A useful reference predicts $\widehat Q(t)$; it need not remain ideal forever. Error control can then certify a stable interval or an actual failed window. Predicting first failure and its physical mechanism requires control of the preceding dynamics as well.
 \end{greenbox}
-\begin{redbox}{ADDED DATA --- no lifetime result}
-These decisions follow from supplied numerical error budgets. They are not evidence that an MFP simulation passed or failed at these times. The $200T$ example in 3.B.1 remains an independent classroom calculation.
-\end{redbox}
-\par\medskip\textbf{3.C.2}\par
 \begin{redbox}{GIVEN FUNCTIONS AND NUMBERS --- teaching inputs only}
 The functions above are not established MB1 bounds. For the arithmetic test take $Q_*=-0.5$ and $\delta=0.005$:
 \begin{center}\begin{tabular}{@{}lrr@{}}\toprule
@@ -1049,11 +1047,15 @@ Ordered sample window&$\widehat Q$&$E$\\\midrule
 \end{tabular}\end{center}
 These are invented classification examples, not new trajectories. Use one-window exceedance; no persistence rule is imposed in this small exercise.
 \end{redbox}
+\begin{redbox}{ADDED DATA --- no lifetime result}
+These decisions follow from supplied numerical error budgets. They are not evidence that an MFP simulation passed or failed at these times. The $200T$ example in 3.B.1 remains an independent classroom calculation.
+\end{redbox}
+\par\medskip\textbf{3.C.2}\par
 \begin{redbox}{OPEN --- the research task}
 Starting from $H_{\rm MFP}(t)$ and a specified physical initial state, construct a correlated reference evolution and a computable error estimate over complete drive cycles. The result must remain useful as the system size increases. Do not import 3.B.1's long-time assumptions as facts.
 \end{redbox}
 \begin{redbox}{The main scientific gap}
-The composite-band proof does not supply a controlled full-cycle correlated reference, its physical current, or a quantitative large-system lifetime. Red frames mark those missing links.
+The composite-band geometry does not supply a controlled full-cycle correlated reference, its physical current, or a quantitative large-system lifetime. Red frames mark those missing links.
 \end{redbox}
 \begin{redbox}{OPEN --- no standard numerical answer is claimed}
 The scored exercise supplied several assumptions. The paper must derive suitable replacements from the microscopic MFP model and a specified physical initial state. The final task is not another substitution into the classroom formula.
