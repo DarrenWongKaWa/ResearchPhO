@@ -1,0 +1,9 @@
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.stdout
+__pycache__/
+.DS_Store
+sheets/

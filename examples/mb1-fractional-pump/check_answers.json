@@ -1,0 +1,70 @@
+{
+  "pictures": {
+    "band1_shift_per_period_cells": 2.0,
+    "flavor_shift_first_period_cells": -0.5817,
+    "flavor_shift_second_period_cells": -0.4183,
+    "flavor_shift_two_periods_cells": -1.0,
+    "min_outer_gap_on_grid": 1.9253
+  },
+  "picture_band1_winding": {
+    "max_abs_error": 0.0,
+    "tolerance": 0.001,
+    "passed": true
+  },
+  "picture_flavor_two_cycle_return": {
+    "max_abs_error": 0.0,
+    "tolerance": 0.001,
+    "passed": true
+  },
+  "M1_Fourier_matrix": {
+    "max_abs_error": 1.1102230246251565e-15,
+    "tolerance": 1e-10,
+    "passed": true
+  },
+  "M1_dimensions_N4": [
+    4845,
+    70,
+    16
+  ],
+  "B4_gauge_covariance": {
+    "max_abs_error": 5.551178188985928e-16,
+    "tolerance": 1e-10,
+    "passed": true
+  },
+  "B4_determinant_counterexample": {
+    "max_abs_error": 0.0,
+    "tolerance": 1e-10,
+    "passed": true
+  },
+  "C3_product_frame": {
+    "max_abs_error": 1.4895204919483639e-15,
+    "tolerance": 1e-10,
+    "passed": true
+  },
+  "C4_source_norm": {
+    "max_abs_error": 0.0,
+    "tolerance": 1e-10,
+    "passed": true
+  },
+  "C4_local_initial_coefficient": {
+    "max_abs_error": 4.92066110080458e-12,
+    "tolerance": 1e-08,
+    "passed": true
+  },
+  "E3_local_and_difference_equations": {
+    "max_abs_error": 3.3306690738754696e-16,
+    "tolerance": 1e-10,
+    "passed": true
+  },
+  "F1_t_cert_over_T": {
+    "max_abs_error": 2.842170943040401e-14,
+    "tolerance": 1e-09,
+    "passed": true
+  },
+  "F3_added_data_classification": [
+    "inside",
+    "undetermined",
+    "outside"
+  ],
+  "scope": "Single-particle picture data and finite-matrix teaching algebra. Not a pump simulation or a physical lifetime."
+}
