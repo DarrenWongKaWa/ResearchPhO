@@ -1,5 +1,36 @@
 # Question design
 
+## 0. What does each paper answer, and in which language?
+
+Start with two short documents; both go to Appendix A of the solutions.
+
+**The question each paper answers.** One sentence for the question and one for the answer, in plain physics.
+Worked example: paper 1 asks "can repulsion turn an integer Thouless pump into one that carries half a particle per
+period at integer filling, and how?" and answers "yes, at strong repulsion in small systems: the particles occupy one
+of two localized two-band orbital types, which exchange every period, so each particle moves one cell in two periods;
+in large systems this should last only for a finite (prethermal) time". Paper 2 asks "how
+can one describe a moving group of bands without choosing a basis inside it?" and answers "with the band projector,
+its derivative and the generator built from them". Each problem's introduction ends with such a question; its last
+part reaches the paper's answer or the closest derivable form.
+
+**The language map.** For every term of the paper: its meaning in standard physics, and where a physicist from
+another field met the idea before. Many "new" words name familiar physics:
+
+| Paper term | Standard physics | Where the reader met it |
+| --- | --- | --- |
+| Thouless pump | slow periodic modulation that moves charge; adiabatic transport | Berry phase, adiabatic theorem |
+| Chern number of a band | integer winding of the Berry phase over (k, t) | Berry phase; quantum Hall effect |
+| Wannier orbital, centre | localized orbital built from Bloch states; its mean position | tight binding; Fourier series |
+| flavor A/B | the two localized orbital types built from bands 1 and 2 together | basis choice inside a degenerate subspace |
+| composite bands, Gr(2,5) | a group of bands treated together; the set of planes in C^5 | degenerate perturbation theory; projectors |
+| horizontal generator | the generator that moves a subspace without rotating inside it | adiabatic (Kato) generator, rotating frames |
+| Wilson loop | ordered product of band-overlap matrices around the Brillouin zone | Berry phase on a closed path, discretized |
+| prethermal lifetime | time during which a driven system stays in a long-lived non-equilibrium state | metastable states, false-vacuum decay |
+| dressing e^S | a unitary change of basis that builds correlations into a reference state | Schrieffer-Wolff transformation |
+
+In the question paper use the standard word and put the paper's term in parentheses at first use. The cold read
+(section 3) checks that no term is left untranslated.
+
 ## 1. The chain of objects
 
 Write the target as one sentence, then the chain of objects that leads to it. The chain is the skeleton of the
@@ -38,6 +69,7 @@ assumption makes this step work?" - each assumption is a candidate counterexampl
 
 | Archetype | Purpose | Example in the public worked example | Answer type |
 | --- | --- | --- | --- |
+| Modelling | the reader sets up the model or picks the relevant physics | 1.B.1(a) derive the Bloch matrix from the lattice; 2.A.1 energy bookkeeping of a domain; 2.C.1(c) where does the approximation enter? | model + reason |
 | Bookkeeping | fix definitions and units | 1.A.1 charge from centre displacements; 1.B.1(c) Hilbert-space dimensions 4845, 70, 16 | number |
 | Exact identity | the reader derives the paper's formula | 1.B.2 projector generator; 2.C.1 generator after W e^S; 2.D.2 current after a change of frame; 3.A.3 reduced-state equation | formula |
 | Solvable toy model | isolate one mechanism with an exact answer | 2.A.1 domain energy; 1.C.1 spin in a turning field; 2.B.1 two-level dressing; 2.C.2 transverse-field chain | formula + number |
@@ -51,7 +83,9 @@ Rules for every question:
 
 - One verb per sentence: Find, Prove, Show, Evaluate, Explain, State. Avoid "discuss".
 - The answer is checkable: a number, a formula, a classification, or a list with fixed items.
-- 0.2-1.5 points. Algebra-heavy steps get few points (IPhO syllabus); the physical judgement gets the rest.
+- 0.2-2.5 points. Algebra-heavy steps get few points (IPhO syllabus); the physical judgement gets the rest.
+- Every problem has at least one modelling question (standard S2): the reader builds or chooses the model, not
+  only manipulates a given formula.
 - Add "Does this establish X?" only when X is a real temptation, and never answer it in a nearby box.
 - State toy models plainly ("Consider the spin chain ..."). Their scope note (what they are not) goes to
   Appendix B. Never identify a toy model's parameters with the real model's unless a reduction is derived.
@@ -72,8 +106,27 @@ happens inside each problem, never on separate pages:
 4. **One symbol, one meaning**: calligraphic letters for generators, blackboard 1 for the identity; rename before
    writing the solutions.
 
-**Cold read.** Give one problem alone to a fresh agent: "List every term, symbol, number or assumption you cannot
-interpret from this text alone. Do not solve the problem." Repeat until the list is empty.
+**Cold read.** Give one problem alone to a fresh agent: "Do not solve the problem. List (a) every term, symbol,
+number or assumption you cannot interpret from this text alone; (b) every step that needs mathematics not provided
+in the text; (c) in your own words, the question this problem says the paper answers." Repeat until (a) and (b) are
+empty and (c) matches the sentence written in section 0.
+
+## 3b. Mathematics budget (standard S3)
+
+The olympiad rule is that mathematics must not be the obstacle: standard mathematics, no extensive numerical
+calculation, a small share of marks for manipulation, partial credit for approximate routes. In ResearchPhO:
+
+- "Standard" means mathematics the chosen reader already has (default: university physics mathematics: linear
+  algebra, calculus, Fourier series, complex numbers, basic probability).
+- Any other tool (contour integrals of resolvents, trace norms, partial traces, Lie-algebra identities) is stated in
+  one line under "Useful information", in a form that can be used without proof.
+- No step requires a computer; numbers are chosen so that a calculator suffices.
+- When a derivation is long, split it into questions and give the intermediate result as a target ("Show that ...").
+- Marking: at most about one third of a question's points for pure algebra; give partial credit for a correct
+  approximate argument.
+
+The cold read reports every step "blocked by mathematics that is not provided"; fix each one by adding a line to
+"Useful information", a target result, or a hint.
 
 ## 4. Points
 

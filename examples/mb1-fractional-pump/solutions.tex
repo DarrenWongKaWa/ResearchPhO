@@ -774,6 +774,24 @@ Neither implication, by itself, locates the first failure. Earlier windows, any 
 These appendices are for teachers and for readers who want the research picture behind the exam; they are not needed to solve or mark any question. Labels have the form problem.part.number.
 
 \pagetitle{Appendix A. Research map}
+\smallheading{What each paper answers}
+\begin{itemize}[leftmargin=6mm,itemsep=2pt]
+\item \textbf{Paper [1].} Question: can repulsion turn an integer Thouless pump into one that carries half a particle per period at integer filling, and how? Answer: yes, at strong repulsion in small systems: the particles occupy one of two localized two-band orbital types, which exchange every period, so each particle moves one cell in two periods. In large systems this should last only for a finite (prethermal) time, which the paper leaves open. Problems 1 and 2 lead to this mechanism; Problem 3 is built on the open question.
+\item \textbf{Paper [2].} Question: how can a moving group of bands be described without choosing a basis inside it? Answer: by the band projector, its derivative (a tangent vector) and the generator built from them; metric, curvature, holonomy and topology follow from these objects. Problem 1, Parts B--D use this language.
+\end{itemize}
+\smallheading{Language map: paper term, standard physics, where the reader met it}
+{\small\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{30mm}Y>{\raggedright\arraybackslash}p{42mm}@{}}\toprule
+Paper term&Standard physics&Met before in\\\midrule
+Thouless pump&slow periodic modulation that moves charge&adiabatic theorem, Berry phase\\
+Chern number of a band&integer winding of the Berry phase over $(k,t)$&quantum Hall effect\\
+Wannier orbital, centre&localized orbital built from Bloch states; its mean position&tight binding, Fourier series\\
+flavor $A/B$&the two localized orbital types built from bands 1 and 2 together&basis choice in a degenerate subspace\\
+composite bands, $\operatorname{Gr}(2,5)$&a group of bands treated together; the set of planes in $\mathbb C^5$&projectors, degenerate perturbation theory\\
+horizontal generator&generator that moves a subspace without rotating inside it&adiabatic (Kato) generator, rotating frames\\
+Wilson loop&ordered product of band-overlap matrices around the Brillouin zone&Berry phase on a closed path\\
+prethermal lifetime&time during which a driven system stays in a long-lived non-equilibrium state&metastable states, false-vacuum decay\\
+dressing $e^S$&unitary change of basis that builds correlations into a reference&Schrieffer--Wolff transformation\\\bottomrule
+\end{tabularx}}
 \textbf{Research target:} predict when the original interacting pump leaves a chosen charge tolerance, and identify the process that controls that change. A guaranteed interval is useful, but is not automatically the actual first-failure time.
 \begin{figpanel}{The chain of objects behind the three problems}\label{fig:map}
 \begin{tikzpicture}[x=1mm,y=1mm]

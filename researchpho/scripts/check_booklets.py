@@ -127,6 +127,27 @@ def leak_checks(questions: str, sol: str) -> list[str]:
     return sorted(set(notes))
 
 
+def problem_structure(body: str) -> list[str]:
+    """Standards S3/S4: each problem has an introduction that asks the paper's question and a Useful information list."""
+    notes = []
+    starts = [(m.start(), m.group(1)) for m in re.finditer(r"\\problem\{([^}]*)\}", body)]
+    for index, (start, number) in enumerate(starts):
+        stop = starts[index + 1][0] if index + 1 < len(starts) else len(body)
+        chunk = body[start:stop]
+        first_part = chunk.find("\\parttitle")
+        intro = chunk[:first_part if first_part > 0 else len(chunk)]
+        prose = re.sub(r"\$[^$]*\$|\\\[.*?\\\]|\\[a-zA-Z]+|[{}]", " ", intro, flags=re.S)
+        if len(prose.split()) < 60:
+            notes.append(f"WARN  problem {number}: introduction shorter than 60 words before Part A")
+        if "?" not in prose:
+            notes.append(f"WARN  problem {number}: introduction states no question (end it with the question the paper answers)")
+        if "Useful information" not in chunk:
+            notes.append(f"WARN  problem {number}: no 'Useful information' list")
+        if re.search(r"\\figtext\{[^}]*\basks\b", chunk):
+            notes.append(f"WARN  problem {number}: a figure caption explains what is asked; keep captions descriptive")
+    return notes
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("questions", type=Path)
@@ -175,6 +196,7 @@ def main() -> int:
         for key in sorted(set(q_points) ^ labels):
             notes.append(f"ERROR {key}: question and answer sheet do not match")
 
+    notes += problem_structure(q_body)
     notes += marking_sums(s_body, s_items)
     notes += leak_checks(q_body, s_body)
     for phrase in list(DEFAULT_FORBIDDEN) + args.forbid:

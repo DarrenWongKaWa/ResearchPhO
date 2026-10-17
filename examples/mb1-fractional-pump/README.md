@@ -6,7 +6,7 @@ A ResearchPhO theory exam built from two arXiv papers with the `researchpho` ski
 | --- | --- |
 | [questions.pdf](questions.pdf) | 14 pages: general instructions; three independent problems of 10 points (18 questions, 30 points); introductions, 13 figures, given data, "Useful information". No answers, no research notes. |
 | [answersheets.pdf](answersheets.pdf) | 7 pages: one box per subquestion and sub-part. |
-| [solutions.pdf](solutions.pdf) | 23 pages: answers, marking scheme, 8 answer figures; Appendix A research map, Appendix B source/scope/open notes per question, Appendix C teacher notes. |
+| [solutions.pdf](solutions.pdf) | 24 pages: answers, marking scheme, 8 answer figures; Appendix A paper map (what each paper answers, language map, research map), Appendix B source/scope/open notes per question, Appendix C teacher notes. |
 
 ## Sources
 

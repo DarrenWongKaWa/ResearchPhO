@@ -197,6 +197,8 @@ where $c_j$ removes a fermion from site $j$ and $U_r>0$ is the repulsion between
 
 Without interactions, translation by one cell lets one write the one-particle problem as a $5\times5$ matrix $h(k,\phi)$ for each quasi-momentum $k$; its five eigenvalues are the bands (Fig.~\ref{fig:bands}). From all the Bloch states of one band, or of a group of bands, one can build orbitals that are localized in space, one per cell for each band (\emph{Wannier orbitals}). The expectation value of the position in such an orbital is its \emph{centre}. If every orbital of a set is occupied and every centre moves by $\Delta x$, the transported charge per cell is $\Delta x/a$, where $a$ is the cell length. Orbitals built from band 1 alone move by $+2$ cells per period (Fig.~\ref{fig:conveyor}a). Mixing bands 1 and 2 gives two localized orbitals per cell, called flavor $A$ and flavor $B$ (Fig.~\ref{fig:conveyor}b). A strong finite-range repulsion can make the particles occupy one flavor only.
 
+The papers behind this problem ask two questions. Can repulsion turn this integer pump into one that carries a fraction of a particle per period, although there is one particle per cell? And how can a moving group of bands be described without choosing a basis inside it (a ``projector'' description)?
+
 \begin{figpanel}{Single-particle bands at $K/J=-3/2$}\label{fig:bands}
 \begin{tikzpicture}
 \begin{axis}[mbaxis,width=6.9cm,height=6.4cm,xmin=-1,xmax=1,ymin=-3,ymax=3,
@@ -398,7 +400,7 @@ This problem uses the driven chain of Problem 1 but can be solved on its own. Sp
 \[
 H_{\rm MFP}(t)=-\sum_j\big[J_j(t)c_{j+1}^\dagger c_j+\hc\big]+\sum_{j}\sum_{r=1}^{3}U_r n_jn_{j+r}.
 \]
-In the ideal ``fractional'' regime every particle occupies one of two localized orbital types (flavors $A$ or $B$) and follows it, which transports $-1/2$ particle per period. In a long chain, regions of the other flavor (\emph{domains}) can appear. A practical description therefore starts from a simple \emph{reference state}, transforms the Hamiltonian to frames in which that reference is simple, keeps part of the transformed generator, and bounds the rest. This problem examines that strategy with exactly solvable models and exact identities.
+In the ideal ``fractional'' regime every particle occupies one of two localized orbital types (flavors $A$ or $B$) and follows it, which transports $-1/2$ particle per period. In a long chain, regions of the other flavor (\emph{domains}) can appear. A practical description therefore starts from a simple \emph{reference state}, transforms the Hamiltonian to frames in which that reference is simple, keeps part of the transformed generator, and bounds the rest. This problem examines that strategy with exactly solvable models and exact identities. Its question is: when a reference state is dressed by correlations and followed in a moving frame, which steps are exact, where does the first approximation enter, and how is the physical current obtained?
 
 \smallheading{Useful information}
 \begin{itemize}[leftmargin=6mm,itemsep=2pt,topsep=2pt]
@@ -574,7 +576,7 @@ For a state satisfying $i\partial_t\ket\Xi=\mathcal K\ket\Xi$, derive the integr
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \problem{3}{How long can the conveyor operate?}{10.0}
 
-The ideal fractional pump of Problems 1 and 2 transports $Q_*=-1/2$ particle per drive period $T$ (transport to the right is positive). In a real, large, interacting chain the transported charge slowly drifts away from $Q_*$. This problem builds a method that certifies, window by window, that the charge stays within a tolerance $\delta$, and it asks how far such a certificate can be trusted. It can be solved on its own.
+The ideal fractional pump of Problems 1 and 2 transports $Q_*=-1/2$ particle per drive period $T$ (transport to the right is positive). In a real, large, interacting chain the transported charge slowly drifts away from $Q_*$. This problem builds a method that certifies, window by window, that the charge stays within a tolerance $\delta$. Its question is the open question of the first paper: for how long can one guarantee that the transported charge stays within $\delta$ of $Q_*$, and what would be needed to predict when it fails? It can be solved on its own.
 
 Throughout, $\rho'$ denotes the exact state written in some moving frame, $\sigma'$ a simpler reference state in the same frame, and $I'$ the physical current operator written in that frame. A region $X$ is a group of cells around the bond where the current is measured (Fig.~\ref{fig:local}); $\bar X$ is the rest of the chain.
 

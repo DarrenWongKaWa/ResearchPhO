@@ -1,116 +1,125 @@
 ---
 name: researchpho
-description: ResearchPhO - turn research papers, the literature of a new field, or a research proposal into a research-based physics-olympiad theory exam written strictly in the IPhO/APhO format (three independent problems of 10 points, boxed subquestions, answer sheets) plus solutions with marking scheme and research appendices, so that people learn a field by solving it. Use when someone wants to learn a new field or paper quickly, write olympiad-style (IPhO, APhO, PanPhO comprehensive-test style) problems from papers, turn a proposal into an exam with an available/missing register, or audit such an exam for answer leaks, research notes in the question paper, undefined terms, notation clashes, point totals and layout. Triggers include ResearchPhO, 用论文出题, 出一套 APhO/IPhO 风格的题, 奥赛风格, 快速入门新领域, 读文献出题, proposal 拆成题目, paper to problems.
+description: ResearchPhO - learn research papers from outside your field by turning them into a physics-olympiad theory exam written to IPhO/APhO/PanPhO standards. The exam makes the reader model and solve each paper's key steps without being blocked by unfamiliar mathematics or by underspecified text; it translates the field's language into standard physics and shows what question each paper answers. Output: three independent 10-point problems with boxed subquestions, answer sheets, and solutions with marking scheme and research appendices. Use when someone wants to understand papers outside their field, enter a new field quickly, write olympiad-style (IPhO, APhO, PanPhO) problems from papers, turn a proposal into an exam with an available/missing register, or audit such an exam. Triggers include ResearchPhO, learn this paper by solving problems, papers outside my field, olympiad-style problems from papers, 用论文出题, 奥赛风格, 快速入门新领域.
 ---
 
-# ResearchPhO: learn a field by writing its olympiad exam
+# ResearchPhO: learn papers from outside your field by solving them
 
-A physics-olympiad theory problem introduces an unfamiliar topic in a few paragraphs, then breaks it into small
-steps, each with points, given data and a checkable answer. IPhO rules require that any concept outside the syllabus
-be "explained in terms of topics in the Syllabus". ResearchPhO applies this format, strictly, to research papers and
-proposals.
+Papers from another field are hard to read mostly because of their language, not their physics. A term such as
+"flavor", "horizontal generator" or "prethermal" often names something the reader already knows under another name.
+Physics-olympiad problems are written for exactly this situation. An IPhO/APhO/PanPhO problem expects the student
+to model and solve a new situation independently, but it must not let mathematics or an underspecified sentence block
+the student. ResearchPhO converts the papers themselves into such an exam. Solving it shows what question each paper
+answers, how the answer is obtained, and what is still open.
 
 Three booklets are produced:
 
 - **Questions**: exactly an IPhO/APhO theory paper. General instructions; three independent problems of 10 points
-  (30 points, 5 hours); each problem has an introduction, figures, given data, "Useful information", and parts
-  A, B, ... with boxed subquestions A.1, A.2, ... and their points. Nothing else.
+  (30 points, 5 hours); each problem has an introduction that ends with the question the paper answers, figures,
+  given data, "Useful information", and parts A, B, ... with boxed subquestions and their points. Nothing else.
 - **Answer Sheets**: one box per subquestion and sub-part (`scripts/make_answer_sheets.py`).
-- **Solutions**: answers and marking scheme per problem, answer figures, then Appendices with all research
-  context: research map, source/scope/open notes per question, register of available and missing results, teacher
-  notes.
+- **Solutions**: answers and marking scheme per problem, answer figures, then Appendices: A paper map (question each
+  paper answers, language map, chain of objects), B source/scope/open notes per question, C register of available
+  and missing results, D teacher notes.
 
 Worked example: `examples/mb1-fractional-pump/` (two arXiv papers on fractional Thouless pumps and projector geometry).
 
-## The two rules that matter most
+## Olympiad standards built into ResearchPhO
 
-1. **The question paper contains only what a solver uses.** No coloured status frames, no "source" boxes, no
-   "this does not establish ..." notes, no research map, no glossary page, no hand-offs between questions.
-   Olympiad papers have none of these, and they distract the solver. Put all of it in the solution appendices.
-2. **Every problem is self-contained.** Its introduction states the model, explains every non-syllabus concept in
-   plain physics, and defines each term where it is first used; "Useful information" lists the facts the problem
-   needs. Problems do not depend on each other; restate the model in each.
+Each standard comes from the IPhO/APhO statutes and syllabus, the official exam booklets and marking schemes, or the
+PanPhO comprehensive test. Each one is a rule here, with the step that enforces it.
 
-## When to use
+| # | Olympiad standard (source) | ResearchPhO rule | Enforced by |
+| --- | --- | --- | --- |
+| S1 | Theory exam: three problems, 30 marks in total, 5 hours (IPhO and APhO statutes) | three independent problems of 10 points, 3-5 parts each; a quick version has one 10-point problem | template; `check_booklets.py --problem-total 10` |
+| S2 | Problems test creativity and understanding of physics, not mathematical virtuosity or speed (IPhO syllabus) | every problem contains modelling questions: set up the model, choose the relevant physics, build or use a toy model; most marks go to physical steps | question plan (workflow step 5); marking review |
+| S3 | Solvable with standard mathematics, without extensive numerical calculation (statutes); small share of marks for mathematical manipulation; approximate solutions earn partial credit (IPhO syllabus) | the mathematics budget: only mathematics the reader already has; any other tool is stated in one line under "Useful information"; algebra gets few marks; approximate routes get partial credit | cold read; marking lines |
+| S4 | Concepts outside the syllabus may appear only if the text explains them "in terms of topics in the Syllabus"; problem texts are concise (IPhO syllabus) | the paper's language is translated: standard physics words first, the paper's term in parentheses at first use; every term defined where it first appears | language map; cold read |
+| S5 | Context and given data before each question; boxed subquestions with points; separate answer sheets; itemized marking scheme (IPhO/APhO booklets) | `\problem`, `\parttitle`, `\question`; answer sheets; `\marking` lines that add up to the points | templates; `make_answer_sheets.py`; `check_booklets.py` |
+| S6 | Research topics in olympiad problems (PanPhO comprehensive test syllabus: "科研最新进展"; IPhO 2016 problem on the LHC) | the papers are the problem source, at IPhO-like difficulty for the chosen reader | workflow steps 1-4 |
+| S7 | Problems are independent; one English master text translated by team leaders (APhO statutes) | each problem restates its model; symbols and labels stay identical in translations | cold read per problem |
+| S8 | Problems are moderated by an international board before the exam (IPhO/APhO) | no board exists here: scripts, a cold read by a fresh agent, independent recomputation and sign checks, and a review by an expert of the field when the exam matters | workflow steps 6 and 10 |
 
-- Someone must enter a new field from a few papers, or a group must learn the core of a paper.
-- A proposal must be checked: which steps can be derived now, which inputs are missing (proposal mode).
-- An existing exam must be audited for leaks, research notes in the question paper, jargon, symbols, points, layout.
+Details and sources: [olympiad formats](references/olympiad_formats.md).
 
-Not for: summarizing a paper in prose, or writing official olympiad papers.
+## Two things every problem must make visible
+
+1. **The question the paper answers.** The introduction ends with that question in plain words ("Can repulsion
+   make this pump carry half a particle per period at integer filling, and why?"). The last part of the problem
+   reaches the paper's answer, or the closest form that can be derived in an exam.
+2. **The paper's language in standard physics.** Use the standard word and put the paper's term in parentheses at
+   first use: "localized orbitals built from the Bloch states (Wannier orbitals)". The reader then recognizes the
+   term when reading the paper. The full language map goes to Appendix A.
 
 ## Decide first (ask only what you cannot infer)
 
 | Choice | Default |
 | --- | --- |
-| Size | full exam: 3 problems x 10 points, 3-5 parts each, 5 hours; quick version: 1 problem, 10 points |
-| Reader | advanced undergraduate in olympiad format; for a true olympiad, high-school mathematics only |
+| Reader | a scientist from another field: knows university physics and mathematics, not the field's language |
+| Size | full exam: 3 problems x 10 points, 5 hours; quick version: 1 problem, 10 points |
 | Language | the user's language; keep symbols and labels identical across translations |
 | Sources | list them; anything unpublished stays out of public outputs |
 
 ## Workflow (each stage has an exit check)
 
-1. **Map the field as a chain of objects** from the model to the measured quantity. Label each arrow: stated in a
-   source, project result, derivable here, or open. Exit: every arrow labelled. This chain is Appendix A.
-   See [question design](references/question_design.md).
-2. **Split the chain into three independent problems** (e.g. model and geometry; mechanism and dynamics;
-   observable and time). Give each 10 points and 3-5 parts. Exit: a table problem -> part -> question -> arrow ->
-   archetype -> points.
-3. **Write each question** with one verb (Find, Prove, Show, Evaluate, Explain), a checkable answer, and 0.2-2.5
-   points. Archetypes: bookkeeping, exact identity, solvable toy model, counterexample, bound chain, data
-   interpretation, decision rule, synthesis.
-4. **Write the introductions and "Useful information"** so that each problem stands alone. Exit: a **cold read**:
-   give one problem to a fresh agent and ask it to list every term, symbol, number or assumption it cannot
-   interpret. Repeat until the list is empty.
-5. **Draw figures that show the set-up, never the answer**: numbered "Figure 1.3" with a plain caption. Compute
-   physical figures from the model and state their scope. Answer curves go to the solutions.
-6. **Write solutions and marking.** Box final answers; each marking line sums exactly to the points; answer
-   figures. Move every scope note, open condition, source remark and research-plan item into Appendices A-D.
-7. **Make the answer sheets** with `scripts/make_answer_sheets.py questions.tex answersheets.tex`.
-8. **Verify.** `scripts/check_booklets.py questions.tex solutions.tex --answers answersheets.tex --total 30
-   --problem-total 10` (labels, points per problem, marking sums, answer leaks, research material in the
-   question paper, internal paths). Check every derivable answer with a script; re-derive sign conventions
-   independently; compile twice with zero overfull boxes; render every page with `scripts/render_sheets.py`.
-   See [verification](references/verification.md).
-9. **Publish cleanly.** No unpublished data, internal paths or "supplied in this conversation" in public versions.
-   Keep earlier revisions; log label maps between revisions.
+1. **State what each paper answers.** One sentence for the question, one for the answer. Exit: both sentences per paper.
+2. **Make the language map**: each term of the paper -> its meaning in standard physics -> where the reader met it
+   before (e.g. "Wilson loop" -> ordered product of band-overlap matrices; its eigenphases are Wannier centres).
+   Exit: every term that a cold reader flags is in the map. See [question design](references/question_design.md).
+3. **Map the field as a chain of objects** from the model to the measured quantity; label each arrow stated in a
+   source, project result, derivable here, or open. The chain, the questions and the language map form Appendix A.
+4. **Split the chain into three independent problems** of 10 points and 3-5 parts each.
+5. **Write the questions.** One verb each (Find, Prove, Show, Evaluate, Explain), a checkable answer, 0.2-2.5 points.
+   Archetypes: modelling, bookkeeping, exact identity, solvable toy model, counterexample, bound chain, data
+   interpretation, decision rule, synthesis. Every problem has at least one modelling question (S2). Check the
+   mathematics budget (S3).
+6. **Write each introduction and its "Useful information"**, ending with the question the paper answers. Exit: a
+   **cold read**: a fresh agent reads one problem and lists (a) every term, symbol or number it cannot interpret,
+   (b) every step blocked by mathematics that is not provided, (c) the question the paper answers, in its own words.
+   Repeat until (a) and (b) are empty and (c) matches step 1.
+7. **Draw figures that show the set-up, never the answer**, numbered "Figure 1.3" with a plain caption; compute
+   physical figures from the model and state their scope.
+8. **Write solutions and marking**; box final answers; marking lines add up to the points. Move every scope note,
+   open condition, source remark and research-plan item into Appendices A-D.
+9. **Make the answer sheets**: `scripts/make_answer_sheets.py questions.tex answersheets.tex`.
+10. **Verify**: `scripts/check_booklets.py questions.tex solutions.tex --answers answersheets.tex --total 30
+    --problem-total 10`; a script for every derivable answer; independent sign checks; two compiles with zero
+    overfull boxes; `scripts/render_sheets.py` and a look at every page. See [verification](references/verification.md).
+11. **Publish cleanly**: no unpublished data, internal paths or "supplied in this conversation" in public versions.
 
 ## Top pitfalls (details in [case study](references/case_study_mb1.md))
 
-1. Research-status frames in the question paper (green "available", red "not established", blue picture frames,
-   "source/scope" lines). They are not olympiad style and distract the solver. Move them to solution appendices.
-2. A note next to a question that states its answer ("does not establish X" when the question asks whether it
-   does). The appendix is the only place for such notes.
-3. A title or caption with a numerical answer ("ILLUSTRATIVE 200T").
-4. One symbol, several meanings (K = amplitude and generator; F = three objects; J = four objects).
-5. Report jargon without definition ("external weight", "defect", "rotation"); define it in the problem text and
-   flag your definition for the author.
-6. Problems that depend on each other; restate the model and the needed result instead.
-7. A figure that plots the answer the question asks for.
-8. After regrouping questions, marks and cross-references drift: relabel with a map, rescale marking lines, and
-   check prompts against the previous revision with a script.
-9. `pdflatex ... > name.out` overwrites hyperref's bookmark file; redirect to another name.
-10. A source paper's printed formula can disagree in sign with its own figure; check every sign independently.
+1. Research-status frames or notes in the question paper ("available", "not established", "source/scope"). They are
+   not olympiad style and distract the solver; they belong in the solution appendices.
+2. The paper's jargon copied into the problem without translation; the reader is then blocked by language (S4).
+3. A step that needs mathematics the reader does not have, without a one-line statement in "Useful information" (S3).
+4. Problems that only check algebra and never ask the reader to model (S2).
+5. An introduction that never says what question the paper answers.
+6. A note, title or caption that states an answer ("ILLUSTRATIVE 200T").
+7. One symbol, several meanings; problems that depend on each other.
+8. After regrouping questions: drifting marks and cross-references; relabel with a map and check by script.
+9. `pdflatex ... > name.out` overwrites hyperref's bookmark file.
+10. A paper's printed formula can disagree in sign with its own figure; check every sign independently.
 
 ## Proposal mode
 
 The last part of problem 3 becomes the synthesis question ("list the inputs that must still be derived; why do
-window-by-window certificates not locate the first failure?"). The available/missing register goes to Appendix C.
+window-by-window certificates not locate the first failure?"); the available/missing register goes to Appendix C.
 See [proposal mode](references/proposal_mode.md).
 
 ## Files
 
 ```
-SKILL.md                         this file
-references/olympiad_formats.md   IPhO, APhO, PanPhO comprehensive test: rules and what ResearchPhO copies
-references/question_design.md    chain of objects, splitting into problems, archetypes, points, cold read
+SKILL.md                         this file: standards S1-S8, workflow, pitfalls
+references/olympiad_formats.md   IPhO, APhO, PanPhO comprehensive test: rules, sources, what ResearchPhO copies
+references/question_design.md    what the paper answers, language map, chain, problems, archetypes, maths budget
 references/booklet_layout.md     question paper, answer sheets, solutions and appendices; macros; page codes
-references/verification.md       checker, answer scripts, sign checks, rendering, leak review
+references/verification.md       checker, answer scripts, sign checks, cold read, rendering, leak review
 references/proposal_mode.md      proposal -> chain -> register -> synthesis question
 references/case_study_mb1.md     how the worked example was built, revision by revision
 assets/questions_template.tex    strict IPhO/APhO question paper (3 problems x 10 points)
 assets/solutions_template.tex    solutions, marking scheme, Appendices A-D
-scripts/check_booklets.py        labels, points per problem, marking sums, leaks, research material in questions
-scripts/make_answer_sheets.py    answer-sheet booklet from the question paper
+scripts/check_booklets.py        labels, points per problem, marking sums, leaks, problem structure, research notes
+scripts/make_answer_sheets.py    answer sheets from the question paper
 scripts/render_sheets.py         PDF pages -> contact sheets for visual inspection
 ```

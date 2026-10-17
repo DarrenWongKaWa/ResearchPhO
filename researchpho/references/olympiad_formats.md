@@ -1,5 +1,7 @@
 # Olympiad formats: what to copy
 
+The rules below appear in `SKILL.md` as standards S1-S8, each with the step that enforces it.
+
 Researched October 2026. Rules change; check the current official documents before relying on a detail.
 
 ## IPhO (International Physics Olympiad)

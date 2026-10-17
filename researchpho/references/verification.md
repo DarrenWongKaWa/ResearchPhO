@@ -24,6 +24,14 @@ It reports:
 - **forbidden text**: internal paths (`/Users/`, `C:\`), "this conversation", `.md` file names, TODO, and your
   `--forbid` phrases (errors).
 
+## 1b. Cold read (standards S3, S4)
+
+Give one problem at a time to a fresh agent that has not seen the papers: "Do not solve the problem. List (a)
+every term, symbol, number or assumption you cannot interpret from this text alone; (b) every step that needs
+mathematics not provided in the text; (c) in your own words, the question this problem says the paper answers."
+Fix (a) with the language map and definitions at first use, (b) with "Useful information", target results or
+hints, and (c) by rewriting the end of the introduction. Record the final cold-read output with the booklets.
+
 ## 2. Answer scripts
 
 Write one script that recomputes every derivable answer and saves JSON:
