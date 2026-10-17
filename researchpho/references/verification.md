@@ -5,19 +5,22 @@ A booklet is finished only when four kinds of check pass. Record their output ne
 ## 1. Document checker
 
 ```bash
-python3 scripts/check_booklets.py questions.tex solutions.tex --total 10.0 \
-    --forbid "200T" --forbid "internal note"
+python3 scripts/check_booklets.py questions.tex solutions.tex --answers answersheets.tex \
+    --total 30 --problem-total 10 --forbid "200T"
 ```
 
 It reports:
 
-- **labels and points**: every scored label appears once in each booklet with the same points; the sum equals
+- **labels and points**: every scored label (problem.part.number) appears once in each booklet and on the answer
+  sheets with the same points; every problem adds up to its title and to `--problem-total`; the sum equals
   `--total` (errors);
 - **marking sums**: decimals outside math in each `\marking{}` add up to the question's points (warnings; a line
   such as "each link: 0.1" needs a manual look);
 - **answer leaks**: boxed answers from the solutions (`\boxed{...}`) that appear verbatim in the question
   booklet, and numbers with three or more significant digits from boxed answers (warnings: given data can look
   like an answer, and a statement the reader is asked to prove appears in both booklets by design);
+- **research material in the question paper**: green/red frames, `\origin`, `\handoff`, "NOT ESTABLISHED",
+  "AVAILABLE ---", "OPEN ---", "ADDED MODEL", "GIVEN BOUND", "PICTURE" (errors; move them to the appendices);
 - **forbidden text**: internal paths (`/Users/`, `C:\`), "this conversation", `.md` file names, TODO, and your
   `--forbid` phrases (errors).
 
@@ -30,8 +33,8 @@ Write one script that recomputes every derivable answer and saves JSON:
 - toy-model dynamics: matrix exponentials at small time for short-time coefficients;
 - arithmetic answers (certificate times, classifications).
 
-The worked example's `verify` script also compares the new prompts with the previous revision after a notation map,
-so that a "notation-only" change is proved to be notation-only.
+When a revision regroups or renames questions, compare the new prompts with the previous revision after applying
+the label map and the listed edits, so that a "relabel-only" change is proved to be relabel-only.
 
 ## 3. Independent physics checks
 
@@ -57,7 +60,7 @@ pictures, text running into margins. Then open single pages at 80-100 dpi for pi
 The checker cannot read meaning. Before release, read every frame that follows a question and every caption and
 title with one question in mind: "does this sentence answer something the reader is asked?" Typical leaks:
 
-- "OPEN: the result does not select a flavor" right after "Does it establish a selected flavor?";
-- a hand-off paragraph that summarizes the conclusion of the previous question;
+- any scope or status remark in the question paper (it belongs to Appendix B);
+- a sentence in an introduction that summarizes the conclusion of a question;
 - a box title or caption with the final number;
 - a research-status table that lists exactly the missing inputs a synthesis question asks for.

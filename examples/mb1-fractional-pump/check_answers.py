@@ -2,7 +2,7 @@
 
 No many-body time simulation is performed. Run beside the TeX files:
     python3 check_answers.py
-Requires numpy and scipy. Document checks: ../../paper-to-olympiad/scripts/check_booklets.py
+Requires numpy and scipy. Document checks: ../../researchpho/scripts/check_booklets.py
 """
 from __future__ import annotations
 

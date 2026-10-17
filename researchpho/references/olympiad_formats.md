@@ -37,11 +37,9 @@ Researched October 2026. Rules change; check the current official documents befo
 
 - Organised by the Department of Physics, HKUST (sponsored by HKUST IAS); papers set and marked by HKUST.
   Participants: students from Hong Kong, Macau and invited mainland schools.
-- Two tests. **Basic test (基础试)**: mechanics only, for junior and first-year senior students; the 2025 paper had
-  16 multiple-choice and 2 short-answer questions for 100 marks, as reported by a secondary source; the official
-  2026 notice gives 9:30-11:30.
-  **Comprehensive test (综合试)**: all senior students; in 2026 two sessions, 9:30-11:00 and 13:30-17:00. Its
-  problems are described as close to IPhO level and touching recent developments.
+- This skill uses only the **Comprehensive test (综合试)**, open to all senior-secondary students. In 2026 it ran in
+  two sessions, 9:30-11:00 and 13:30-17:00. Its problems are described as close to IPhO level and touching recent
+  developments in physics.
 - The PanPhO outline combines the mainland syllabus with the IPhO syllabus and lists, under applications,
   "近代和现代重大成果，科研最新进展" (major modern achievements and latest research progress).
 - Past papers and reference answers are on the official site.
@@ -50,12 +48,12 @@ Researched October 2026. Rules change; check the current official documents befo
 
 | Feature | From | Use |
 | --- | --- | --- |
-| 10 points per problem, 3-5 parts, boxed subquestions with points | IPhO/APhO | default size and layout |
-| Out-of-syllabus concepts explained in syllabus terms | IPhO syllabus | Background, Toolkit, Glossary; the cold read |
-| Small share of marks for algebra; partial credit for approximations | IPhO syllabus | marking breakdowns |
-| Context paragraph and given data before each question | APhO/IPhO | green "AVAILABLE" frames |
-| Frontier topics in a comprehensive paper | PanPhO, IPhO | research papers as the problem source |
-| Short multiple-choice checks | PanPhO basic test | Lite mode vocabulary checks |
+| 3 theory problems, 10 points each, 5 hours | IPhO/APhO statutes | default exam size (30 points) |
+| Problem = introduction, figures, given data, parts A, B, ..., boxed subquestions A.1, A.2, ... with points | IPhO/APhO booklets | the only content of the question booklet |
+| Out-of-syllabus concepts explained in syllabus terms | IPhO syllabus | introductions and "useful information" inside each problem |
+| Small share of marks for algebra; partial credit for approximations | IPhO syllabus | marking schemes |
+| Separate answer sheets with one box per subquestion | IPhO/APhO | answer-sheet booklet |
+| Frontier research as problem topic | PanPhO comprehensive test, IPhO | research papers as the problem source |
 | English master text, translated by leaders | APhO | write once; keep symbols identical in translations |
 
 ## Sources

@@ -12,7 +12,7 @@
 \usepackage[most]{tcolorbox}
 \usepackage{fancyhdr,lastpage,xcolor}
 \usepackage[hidelinks,pdfencoding=auto,psdextra]{hyperref}
-\hypersetup{pdfauthor={MB1 research teaching edition},pdftitle={A Two-Cycle Quantum Conveyor - Solutions (public example)},pdfsubject={APhO-style guided research exercise; not an official APhO examination},pdfkeywords={fractional Thouless pump, geometry, local error, questions, solutions}}
+\hypersetup{pdfauthor={ResearchPhO example},pdftitle={ResearchPhO example: A Two-Cycle Quantum Conveyor - Solutions},pdfsubject={APhO-style guided research exercise; not an official APhO examination},pdfkeywords={fractional Thouless pump, geometry, local error, questions, solutions}}
 \definecolor{ink}{HTML}{172A3A}
 \definecolor{sourcegreen}{HTML}{1B6B4B}
 \definecolor{sourcewash}{HTML}{F4FAF6}
@@ -29,11 +29,11 @@
 \raggedbottom
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\begin{minipage}[b]{0.73\textwidth}\textbf{\large Solutions and Marking Notes}\\[-1pt]{\small APhO-style research exercise \enspace|\enspace public example}\\[-1pt]{\footnotesize English --- public example}\end{minipage}}
-\fancyhead[R]{\fontsize{29}{31}\selectfont\bfseries S1-\thepage}
+\fancyhead[L]{\begin{minipage}[b]{0.73\textwidth}\textbf{\large Solutions and Marking Notes}\\[-1pt]{\small ResearchPhO \enspace|\enspace Solutions}\\[-1pt]{\footnotesize English --- public example}\end{minipage}}
+\fancyhead[R]{\fontsize{29}{31}\selectfont\bfseries \thepage}
 \renewcommand{\headrulewidth}{0.9pt}
-\fancyfoot[L]{\footnotesize Not an official APhO paper \enspace\textbullet\enspace Advanced undergraduate level}
-\fancyfoot[R]{\footnotesize \thepage/\pageref*{LastPage}}
+\fancyfoot[L]{\footnotesize ResearchPhO --- a research-based exam in IPhO/APhO format; not an official olympiad paper}
+
 \renewcommand{\footrulewidth}{0pt}
 \newcommand{\ket}[1]{\lvert #1\rangle}
 \newcommand{\bra}[1]{\langle #1\rvert}
@@ -57,7 +57,7 @@
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 \newcommand{\legend}{%
 \begin{greenbox}{How to read green frames}
-A green frame has a named source: \textbf{MFP [1]} and \textbf{H2 [2]} are published papers; other green frames state exact identities derived in the booklet. Green never extends a result beyond its stated object and scope.
+A green frame has a named source: \textbf{MFP [1]} and \textbf{H2 [2]} are published papers; \textbf{MB1 PROOF} or \textbf{PROVED FOR THIS MODEL [7,8]} marks the project proof and its independent check; \textbf{C1/R2a REPORT} or \textbf{GIVEN DATA} marks reported numerical evidence; \textbf{MB1 NOTE} or \textbf{GIVEN TOOL [3,5]} marks exact identities. Green never extends a result beyond its stated object and scope.
 \end{greenbox}
 \begin{redbox}{How to read red frames}
 \textbf{ADDED MODEL} identifies a teaching simplification. \textbf{GIVEN BOUND} identifies an assumption supplied for an exercise. \textbf{OPEN} identifies a missing result for the full MFP model. A red-framed toy problem can have an exact solution; red does not mean that its algebra is wrong.
@@ -67,11 +67,10 @@ In this solution booklet a blue \textbf{PICTURE} frame illustrates an answer. Nu
 \end{tcolorbox}}
 \newcommand{\sourceentries}{%
 \begin{enumerate}[label={[\arabic*]},leftmargin=9mm,itemsep=5pt,topsep=2pt]
-\item M. J\"urgensen, J. Steiner, G. Refael, and M. C. Rechtsman, \emph{Multi-band fractional Thouless pumps}, arXiv:2504.09338v2 (2025). The original model and the flavor-following mechanism (``MFP''). \href{https://arxiv.org/abs/2504.09338}{\texttt{arXiv:2504.09338}}.
-\item S.-M. Huang, \emph{Quantum-State Projectors on Grassmannian: Geometry, Holonomy, and Topology}, arXiv:2608.06777v1 (2026). Projectors and their generators (``H2''). \href{https://arxiv.org/abs/2608.06777}{\texttt{arXiv:2608.06777}}.
-\item APhO 2025 theoretical question booklet, used as a layout reference only. No exam text is reproduced.
-\end{enumerate}
-This public example uses only these sources and teaching models.}
+\item M. J\"urgensen, J. Steiner, G. Refael, and M. C. Rechtsman, \emph{Multi-band fractional Thouless pumps}, arXiv:2504.09338v2 (2025). \href{https://arxiv.org/abs/2504.09338}{\texttt{arXiv:2504.09338}}.
+\item S.-M. Huang, \emph{Quantum-State Projectors on Grassmannian: Geometry, Holonomy, and Topology}, arXiv:2608.06777v1 (2026). \href{https://arxiv.org/abs/2608.06777}{\texttt{arXiv:2608.06777}}.
+\item APhO 2025 theoretical question booklet, used as a layout reference only.
+\end{enumerate}}
 
 \newcommand{\extsol}[3]{\par\Needspace{4\baselineskip}\phantomsection\label{task:#1}{\bfseries\color{ink}#1\quad #3}\hfill{\small\bfseries #2 pt}\par}
 
@@ -79,7 +78,7 @@ This public example uses only these sources and teaching models.}
 \newcommand{\bridgesol}[3]{\par\Needspace{4\baselineskip}\phantomsection\label{task:#1}{\bfseries\color{ink}#1\quad #3}\hfill{\small\bfseries #2 pt}\par}
 \newcommand{\handoff}[1]{\par\medskip{\small\textbf{Connection to the next step:} #1}\par}
 
-% ---- Revision 4: notation helpers and pictures ----
+% ---- Revision 5: strict olympiad layout (no status frames) ----
 \usepackage{dsfont}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,decorations.pathreplacing,decorations.pathmorphing,calc,positioning}
@@ -90,10 +89,13 @@ This public example uses only these sources and teaching models.}
 \definecolor{figwash}{HTML}{F3F7FB}
 \definecolor{colA}{HTML}{D9822B}
 \definecolor{colB}{HTML}{3C78B4}
+\newcounter{problemno}
 \newcounter{figc}
-\tcbset{figstyle/.style={enhanced,breakable=false,colback=white,colframe=figblue,boxrule=0.8pt,arc=0pt,left=8pt,right=8pt,top=6pt,bottom=6pt,before skip=8pt,after skip=9pt,colbacktitle=figwash,coltitle=figblue,fonttitle=\bfseries\small,titlerule=0pt}}
-\newenvironment{figpanel}[1]{\refstepcounter{figc}\begin{tcolorbox}[figstyle,title={\strut PICTURE \thefigc\ --- #1}]\centering}{\end{tcolorbox}}
-\newcommand{\figtext}[1]{\par\smallskip{\raggedright\small #1\par}}
+\renewcommand{\thefigc}{\ifnum\value{problemno}=0 A\else\arabic{problemno}\fi.\arabic{figc}}
+\newcommand{\pagecode}{G}
+\renewcommand{\thepage}{\pagecode-\arabic{page}}
+\newenvironment{figpanel}[1]{\refstepcounter{figc}\gdef\figtitle{#1}\par\medskip\noindent\begin{minipage}{\linewidth}\centering}{\end{minipage}\par\medskip}
+\newcommand{\figtext}[1]{\par\smallskip{\raggedright\small\textbf{Figure \thefigc.} \figtitle. #1\par}}
 \newcommand{\ftag}[1]{{\scriptsize\bfseries\color{figblue}#1}}
 \tikzset{
   >={Stealth[length=2.2mm]},
@@ -143,68 +145,26 @@ This public example uses only these sources and teaching models.}
 \addplot[highfill] coordinates {(0.000,2.5794) (0.033,2.5759) (0.067,2.5659) (0.100,2.5513) (0.133,2.5365) (0.167,2.5481) (0.200,2.5522) (0.233,2.5481) (0.267,2.5365) (0.300,2.5513) (0.333,2.5659) (0.367,2.5759) (0.400,2.5794) (0.433,2.5759) (0.467,2.5659) (0.500,2.5513) (0.533,2.5365) (0.567,2.5481) (0.600,2.5522) (0.633,2.5481) (0.667,2.5365) (0.700,2.5513) (0.733,2.5659) (0.767,2.5759) (0.800,2.5794) (0.833,2.5759) (0.867,2.5659) (0.900,2.5513) (0.933,2.5365) (0.967,2.5481) (1.000,2.5522) (1.033,2.5481) (1.067,2.5365) (1.100,2.5513) (1.133,2.5659) (1.167,2.5759) (1.200,2.5794) (1.233,2.5759) (1.267,2.5659) (1.300,2.5513) (1.333,2.5365) (1.367,2.5481) (1.400,2.5522) (1.433,2.5481) (1.467,2.5365) (1.500,2.5513) (1.533,2.5659) (1.567,2.5759) (1.600,2.5794) (1.633,2.5759) (1.667,2.5659) (1.700,2.5513) (1.733,2.5365) (1.767,2.5481) (1.800,2.5522) (1.833,2.5481) (1.867,2.5365) (1.900,2.5513) (1.933,2.5659) (1.967,2.5759) (2.000,2.5794) (2.000,2.4776) (1.967,2.4839) (1.933,2.4998) (1.900,2.5192) (1.867,2.5355) (1.833,2.5229) (1.800,2.5181) (1.767,2.5229) (1.733,2.5355) (1.700,2.5192) (1.667,2.4998) (1.633,2.4839) (1.600,2.4776) (1.567,2.4839) (1.533,2.4998) (1.500,2.5192) (1.467,2.5355) (1.433,2.5229) (1.400,2.5181) (1.367,2.5229) (1.333,2.5355) (1.300,2.5192) (1.267,2.4998) (1.233,2.4839) (1.200,2.4776) (1.167,2.4839) (1.133,2.4998) (1.100,2.5192) (1.067,2.5355) (1.033,2.5229) (1.000,2.5181) (0.967,2.5229) (0.933,2.5355) (0.900,2.5192) (0.867,2.4998) (0.833,2.4839) (0.800,2.4776) (0.767,2.4839) (0.733,2.4998) (0.700,2.5192) (0.667,2.5355) (0.633,2.5229) (0.600,2.5181) (0.567,2.5229) (0.533,2.5355) (0.500,2.5192) (0.467,2.4998) (0.433,2.4839) (0.400,2.4776) (0.367,2.4839) (0.333,2.4998) (0.300,2.5192) (0.267,2.5355) (0.233,2.5229) (0.200,2.5181) (0.167,2.5229) (0.133,2.5355) (0.100,2.5192) (0.067,2.4998) (0.033,2.4839) (0.000,2.4776)} -- cycle;
 }
 % ==== END GENERATED FIGURE DATA ====
+\newcommand{\problemsol}[3]{\clearpage\setcounter{problemno}{#1}\renewcommand{\pagecode}{S#1}\setcounter{page}{1}\setcounter{figc}{0}{\LARGE\bfseries\color{ink}Problem #1: #2}\hfill{\large\bfseries(#3 points)}\par\medskip}
+\newcommand{\appendixstart}{\clearpage\renewcommand{\pagecode}{SA}\setcounter{page}{1}\setcounter{problemno}{0}\setcounter{figc}{0}}
 \begin{document}
-
-{\LARGE\bfseries\color{ink}How long can a two-cycle\\[3pt]quantum conveyor operate?}\par
-{\large Solutions and marking notes \hfill \textbf{15.0 points}}
-
-\smallheading{Read this before marking}
-This booklet contains worked answers and marking notes for the 18 questions of the public example (15.0 points). It is an excerpt of a larger guided problem: questions that relied on unpublished project data were removed, so labels are not consecutive. No new MFP lifetime result is claimed.
-
-\legend
-
-\begin{redbox}{OPEN --- do not turn a classroom premise into a result}
-The rotating spin, two-channel correlation model, prescribed product state, and F.1's long-time bounds are supplied teaching inputs. Solving them does not prove those inputs for MB1. The original model still requires a controlled correlated evolution and physical-current prediction.
-\end{redbox}
-
+\renewcommand{\pagecode}{S0}
+{\LARGE\bfseries\color{ink}How long can a two-cycle quantum conveyor operate?}\par
+{\large ResearchPhO --- Solutions and marking scheme \hfill \textbf{30 points}}
+\smallheading{How to use this booklet}
+Each answer is followed by its marking scheme; the numbers in a marking line add up to the points of the question. Award method marks for a consistent derivation, partial credit for correct approximate reasoning, and no credit for a claimed pump lifetime when only a toy-model oscillation, a source norm or a short-time coefficient has been obtained. Appendices A--C at the end contain the research context that does not belong in the question paper: the research map, the source and scope notes of every question, and teacher notes.
 \smallheading{Mark allocation}
-{\small\begin{tabularx}{\textwidth}{@{}p{9mm}Y r@{}}\toprule
-Part&Questions&Points\\\midrule
-A&A.1 (0.6), A.2 (0.9)&1.5\\
-M&M.1 (1.0)&1.0\\
-B&B.1 (0.5), B.2 (0.9), B.4 (0.8)&2.2\\
-C&C.1 (1.2), C.2 (0.6), C.3 (1.2), C.4 (0.9)&3.9\\
-D&D.1 (0.6), D.2 (1.4)&2.0\\
-E&E.1 (0.5), E.2 (1.0), E.3 (0.9)&2.4\\
-F&F.1 (0.7), F.3 (0.8)&1.5\\
-X&X.1 (0.5)&0.5\\\midrule
-&&\textbf{15.0}\\\bottomrule
+{\small \begin{tabularx}{\textwidth}{@{}p{18mm}Y r@{}}\toprule
+Problem&Questions&Points\\\midrule
+1&A.1 (1.5), B.1 (2.7), B.2 (1.4), C.1 (2.3), D.1 (2.1)&10.0\\
+2&A.1 (1.3), B.1 (1.8), B.2 (0.8), C.1 (1.8), C.2 (1.3), D.1 (0.9), D.2 (2.1)&10.0\\
+3&A.1 (1.1), A.2 (2.2), A.3 (2.0), B.1 (1.6), C.1 (1.7), C.2 (1.4)&10.0\\
+\midrule&&\textbf{30.0}\\\bottomrule
 \end{tabularx}}
 
-\smallheading{Marking principle}
-Award method credit for a consistent derivation. Do not award a claim of a pump lifetime when only a toy-model oscillation, a source norm, or a short-time coefficient has been obtained. X.1 is marked on the listed inputs and on the first-failure argument; no numerical lifetime is expected.
-
-
-\nextpage
-\pagetitle{Solution map. The research chain is not yet closed}
-\label{route-map}
-\textbf{The modelling bridges answer why each next object is introduced.} They do not assert a new many-body approximation.
-
-\begin{center}\small
-\begin{tabularx}{\textwidth}{@{}p{16mm}Y Y@{}}\toprule
-Question&What the student derives&What the research must still establish\\\midrule
-M.1&The Bloch matrix; the composite projector; distinct Hilbert-space counts.&Any truncation of the interacting Hilbert space must be justified.\\
-B.4&Gauge invariance; the distinction between composite space, flavor, and internal maps.&A controlled flavor choice, internal transport, and two-cycle seam.\\
-C.3&The exact generator after $We^S$; the initial-state transformation.&Actual full-cycle correlated $S$, locality, and a useful retained model.\\
-C.4&Why retained terms can change a reference even with no omitted remainder.&The retained physical processes and their effect on charge.\\
-E.3&The local reduced-state equation and exact state-difference equation.&The boundary correlations or a controlled approximation to them.\\
-F.3&Charge intervals and the distinction between pass, fail, and undetermined.&Model-derived error budgets over every relevant window.\\\bottomrule
-\end{tabularx}
-\end{center}
-
-\smallheading{Where geometry is used}
-M.1 selects the physical single-particle object. B.1 organizes its motion. B.4 explains why its internal flavor must be treated separately. These steps do not solve the retained many-body dynamics in C.3--E.3.
-
-\smallheading{Where the main new physics would enter}
-A useful $\mathcal K_{\rm ret}$ must preserve the relevant correlations, phases, and domain processes while enabling a physical-current prediction. The general current and local-error formulas then evaluate that prediction. They do not generate its missing dynamical input.
-
-\begin{redbox}{OPEN --- the research outcome}
-Neither a full-cycle correlated reference charge nor a useful large-system time-error budget is established by this revision. The problem is not missing a general state space; it needs a controlled, locally useful description of the actual interacting dynamics.
-\end{redbox}
-
-\nextpage
-\parttitle{A}{Fractional transport and domain energy}{1.5}
-\soltitle{A.1}{0.6}{Two-cycle particle counting}
+\problemsol{1}{A two-cycle quantum conveyor: bands, projectors and flavors}{10.0}
+\parttitle{A}{Fractional transport}{1.5}
+\soltitle{A.1}{1.5}{Two-cycle particle counting}
 From the supplied displacement rule,
 \[
 Q(0,2T)=\frac{1}{Na}\sum_{j=1}^{N}(-a)=-1,
@@ -215,7 +175,7 @@ Only the sum of the two single-period charges is fixed. For example,
 Q_1=q,\qquad Q_2=-1-q
 \]
 is consistent for any allowed $q$. The result is an expectation-value transport statement. It does not require a fractional particle in a single measurement.
-\marking{Two-period charge: 0.3. Average: 0.2. Unequal single-period values and interpretation: 0.1.}
+\marking{Two-period charge: 0.75. Average: 0.45. Unequal single-period values and interpretation: 0.3.}
 \begin{figpanel}{A.1 --- only the two-period sum is fixed}
 \begin{tikzpicture}
 \begin{axis}[mbaxis,width=9.5cm,height=6cm,xmin=0,xmax=2,ymin=-2.45,ymax=1.65,clip=false,
@@ -229,54 +189,12 @@ is consistent for any allowed $q$. The result is an expectation-value transport 
 \node[font=\scriptsize,anchor=south,fill=white,inner sep=1pt] at (axis cs:1.5,1.1) {second period: $-0.42$ cell};
 \end{axis}
 \end{tikzpicture}
-\figtext{The followed orbital of Picture 2(b) in the question booklet (single-particle geometry at $K/J=-3/2$). Its first period moves it by about $-0.58$ cell and its second by about $-0.42$ cell. Only the sum, $-1$, is fixed by the two-cycle return, so $Q(0,T)$ and $Q(T,2T)$ need not each equal $-1/2$.}
+\figtext{The followed orbital of Figure 1.3(b) of the question paper (single-particle geometry at $K/J=-3/2$). Its first period moves it by about $-0.58$ cell and its second by about $-0.42$ cell. Only the sum, $-1$, is fixed by the two-cycle return, so $Q(0,T)$ and $Q(T,2T)$ need not each equal $-1/2$.}
 \end{figpanel}
 
 
-\begin{greenbox}{MFP [1] --- what the source supplies}
-The source's branch-following argument connects two-period flavor winding to fractional average transport. A.1 isolates this counting step.
-\end{greenbox}
-\begin{redbox}{OPEN --- tracking was stipulated}
-The argument has assumed actual following. It has not bounded excitation, internal mixing, or long-time transport error in a large interacting system.
-\end{redbox}
-
-\soltitle{A.2}{0.9}{A favorable domain need not form}
-Each of the two interfaces changes one bond energy from $-J_z$ to $+J_z$. The interface cost is $4J_z$. Each of the $\ell$ flipped spins gains field energy $2h$:
-\[
-\boxed{\Delta E(\ell)=4J_z-2h\ell.}
-\]
-Strict negativity requires $\ell>2J_z/h$. Thus
-\[
-\boxed{\ell_{\min}=\left\lfloor\frac{2J_z}{h}\right\rfloor+1,}
-\]
-provided $\ell_{\min}\leq N-1$. If no such interior segment fits, this two-interface question has no allowed negative-energy segment.
-
-At $g=0$, the Hamiltonian is diagonal in the $\sigma^z$ basis. The all-$A$ state is an eigenstate and acquires only a phase. It does not form a domain even when another configuration has lower energy.
-\[
-\boxed{\text{Energy preference is not a transition amplitude or a rate.}}
-\]
-\marking{Energy change: 0.3. Integer threshold and fit condition: 0.2. Stationary eigenstate and distinction from a rate: 0.4.}
-\begin{figpanel}{A.2 --- domain energy (illustrative $J_z=1$, $h=0.45$)}
-\begin{tikzpicture}
-\begin{axis}[mbaxis,width=9.5cm,height=5.4cm,xmin=0.5,xmax=10.5,ymin=-5.5,ymax=3.6,xlabel={segment length $\ell$},ylabel={$\Delta E(\ell)/J_z$},xtick={1,...,10}]
-\addplot[dashed,black!40,domain=0.5:10.5,forget plot] {0};
-\addplot[only marks,mark=*,mark size=2pt,colB] coordinates {(1,3.1)(2,2.2)(3,1.3)(4,0.4)};
-\addplot[only marks,mark=*,mark size=2.6pt,colA] coordinates {(5,-0.5)};
-\addplot[only marks,mark=*,mark size=2pt,colB!50] coordinates {(6,-1.4)(7,-2.3)(8,-3.2)(9,-4.1)(10,-5.0)};
-\node[font=\scriptsize,text=colA!80!black,anchor=west] at (axis cs:5.2,-0.2) {$\ell_{\min}=\lfloor 2J_z/h\rfloor+1=5$};
-\end{axis}
-\end{tikzpicture}
-\figtext{$\Delta E(\ell)=4J_z-2h\ell$ decreases linearly; here $2J_z/h\approx4.44$. A negative $\Delta E$ only says the domain is lower in energy. With $g=0$ nothing in $H_{\rm d}$ can flip a spin, so the all-$A$ state stays where it is.}
-\end{figpanel}
-
-\begin{redbox}{ADDED MODEL --- scope of the answer}
-This exact answer belongs to the teaching spin model. Deriving the domain variables, couplings, and driven transitions from MFP is a separate task.
-\end{redbox}
-
-
-\nextpage
-\parttitle{M}{From the lattice to the geometric object}{1.0}
-\bridgesol{M.1}{1.0}{Fourier transformation does not solve the interactions}
+\parttitle{B}{From the lattice to a projector}{4.1}
+\soltitle{B.1}{2.7}{Fourier transformation does not solve the interactions}
 \textbf{(a)} The seam term becomes
 \[
 \sum_R c_{R+1,0}^\dagger c_{R,4}=\sum_k e^{-ik}c_{k,0}^\dagger c_{k,4}.
@@ -311,15 +229,10 @@ Two flavor orbitals per cell; exactly one occupied in every cell&$2^4=16$\\\bott
 \end{center}
 Translation-sector restrictions can reduce a dimension further; they are not included in this table. The single-particle Fourier transform leaves the physical interaction as a many-body operator. It does not make the full dynamics a $5\times5$ problem.
 
-\marking{(a) Matrix with both seam entries and Hermiticity: 0.4. (b) Rank two in $\mathbb C^5$ and physical motivation: 0.3. (c) Three counts with their restrictions: 0.2; Fourier transformation leaves the interaction many-body: 0.1.}
-\begin{greenbox}{DERIVATION --- exact change of representation}
-The Fourier matrix and the dimension counts follow from the stated model and restrictions. They add a teaching connection, not a new MFP stability result.
-\end{greenbox}
-\handoff{Before extracting geometry, name the projector, its ambient space, and the physical reason for using it. Do not identify $p_{12}$ with a many-body low-energy pair.}
+\marking{(a) Matrix with both seam entries and Hermiticity: 1.05. (b) Rank two in $\mathbb C^5$ and physical motivation: 0.75. (c) Three counts with their restrictions: 0.6; Fourier transformation leaves the interaction many-body: 0.3.}
 
-\nextpage
-\parttitle{B}{Geometry and actual motion}{2.2}
-\soltitle{B.1}{0.5}{The projector generator}
+
+\soltitle{B.2}{1.4}{The projector generator}
 Differentiate $p^2=p$:
 \[
 \dot p\,p+p\dot p=\dot p.
@@ -341,12 +254,11 @@ Therefore $g_t=i[\dot p,p]$ obeys
 \boxed{[g_t,p]=i\dot p.}
 \]
 Since $[\dot p,p]$ is anti-Hermitian, $g_t$ is Hermitian. It is one generator of the prescribed subspace motion. It does not assert that the physical Hamiltonian produces the same tracking or internal occupation.
-\marking{Differentiate and obtain $p\dot p\,p=0$: 0.2. Generator identity and interpretation: 0.3.}
-\begin{greenbox}{H2 [2] --- exact kinematics}
-The horizontal-generator construction applies to the given smooth projector. It does not supply the missing many-body dynamics or a transition rate.
-\end{greenbox}
+\marking{Differentiate and obtain $p\dot p\,p=0$: 0.6. Generator identity and interpretation: 0.8.}
 
-\soltitle{B.2}{0.9}{An exactly solvable moving frame}
+
+\parttitle{C}{Following a moving projector}{2.3}
+\soltitle{C.1}{2.3}{An exactly solvable moving frame}
 The rotation gives
 \[
 W^\dagger HW=-\frac{\Delta}{2}\sigma_z,
@@ -368,8 +280,8 @@ The instantaneous excited state is $W(t)\ket\downarrow$, so
 \sin^2\!\left(\frac{\sqrt{\Delta^2+\nu^2}\,t}{2}\right).}
 \]
 The path $p(t)$ has no $\Delta$ dependence, but the probability does. For $\Delta\gg\nu$ its maximum is small. The frame transformation has not removed the dynamics; it has made that dynamics explicit.
-\marking{Moving-frame Hamiltonian: 0.35. Exact probability: 0.40. Same path, different tracking: 0.15.}
-\begin{figpanel}{B.2 --- same projector path, different following}
+\marking{Moving-frame Hamiltonian: 0.85. Exact probability: 1.05. Same path, different tracking: 0.4.}
+\begin{figpanel}{C.1 --- same projector path, different following}
 \begin{tikzpicture}
 \begin{axis}[mbaxis,width=10cm,height=5.4cm,xmin=0,xmax=12.566,ymin=0,ymax=0.55,xlabel={$\nu t$},ylabel={$P_{\rm ex}(t)$},
   xtick={0,3.1416,6.2832,9.4248,12.566},xticklabels={$0$,$\pi$,$2\pi$,$3\pi$,$4\pi$},legend pos=north east]
@@ -382,9 +294,8 @@ The path $p(t)$ has no $\Delta$ dependence, but the probability does. For $\Delt
 \end{figpanel}
 
 
-\nextpage
-\pagetitle{B.4 solution. Resolve the internal object}
-\bridgesol{B.4}{0.8}{A gauge change is not a physical change of flavor}
+\parttitle{D}{A plane is not yet a flavor}{2.1}
+\soltitle{D.1}{2.1}{A gauge change is not a physical change of flavor}
 \textbf{(a)} Since $\Lambda\Lambda^\dagger=\id_2$,
 \[
 (Y\Lambda)(Y\Lambda)^\dagger=YY^\dagger=p_{12}.
@@ -406,18 +317,44 @@ A Wilson loop around $k$ at fixed $\phi$ organizes Wannier centers. A geometric 
 \]
 But $\id_2$ keeps $A$ fixed, whereas $i\sigma_x\ket A=i\ket B$. Their determinant phases do not distinguish this action. Neither map includes a spatial displacement, so neither calculation alone proves a nonzero transported charge. A.1 required a separate center winding and actual following.
 
-\marking{(a) Both invariances and the effect of an uncompensated choice: 0.3. (b) Required data; Wilson loop at fixed $\phi$ versus evolution in time: 0.3. (c) Equal determinants, different action, no displacement: 0.2.}
-\begin{greenbox}{SOURCE CONNECTION --- where H2 enters}
-MFP supplies a physical composite-band and Wannier construction. H2 organizes subspace motion and its internal-basis freedom. The bridge makes their objects explicit; it does not invent a new dynamical law.
-\end{greenbox}
-\begin{redbox}{OPEN --- not an automatic rank-one upgrade}
-A closed composite projector does not certify the selected flavor's full internal rotation or seam. Nor does it prove that an interacting state occupies that branch over the drive. These are unchanged research conditions.
-\end{redbox}
-\handoff{Keep the full interactions when using the geometric frame. C.3 explains this step exactly.}
+\marking{(a) Both invariances and the effect of an uncompensated choice: 0.75. (b) Required data; Wilson loop at fixed $\phi$ versus evolution in time: 0.75. (c) Equal determinants, different action, no displacement: 0.6.}
 
-\nextpage
-\parttitle{C}{Correlation in a single cluster}{3.9}
-\soltitle{C.1}{1.2}{A two-channel correlated state}
+
+
+\problemsol{2}{Correlations and the physical current}{10.0}
+\parttitle{A}{Domains in a spin chain}{1.3}
+\soltitle{A.1}{1.3}{A favorable domain need not form}
+Each of the two interfaces changes one bond energy from $-J_z$ to $+J_z$. The interface cost is $4J_z$. Each of the $\ell$ flipped spins gains field energy $2h$:
+\[
+\boxed{\Delta E(\ell)=4J_z-2h\ell.}
+\]
+Strict negativity requires $\ell>2J_z/h$. Thus
+\[
+\boxed{\ell_{\min}=\left\lfloor\frac{2J_z}{h}\right\rfloor+1,}
+\]
+provided $\ell_{\min}\leq N-1$. If no such interior segment fits, this two-interface question has no allowed negative-energy segment.
+
+At $g=0$, the Hamiltonian is diagonal in the $\sigma^z$ basis. The all-$A$ state is an eigenstate and acquires only a phase. It does not form a domain even when another configuration has lower energy.
+\[
+\boxed{\text{Energy preference is not a transition amplitude or a rate.}}
+\]
+\marking{Energy change: 0.45. Integer threshold and fit condition: 0.3. Stationary eigenstate and distinction from a rate: 0.55.}
+\begin{figpanel}{A.1 --- domain energy (illustrative $J_z=1$, $h=0.45$)}
+\begin{tikzpicture}
+\begin{axis}[mbaxis,width=9.5cm,height=5.4cm,xmin=0.5,xmax=10.5,ymin=-5.5,ymax=3.6,xlabel={segment length $\ell$},ylabel={$\Delta E(\ell)/J_z$},xtick={1,...,10}]
+\addplot[dashed,black!40,domain=0.5:10.5,forget plot] {0};
+\addplot[only marks,mark=*,mark size=2pt,colB] coordinates {(1,3.1)(2,2.2)(3,1.3)(4,0.4)};
+\addplot[only marks,mark=*,mark size=2.6pt,colA] coordinates {(5,-0.5)};
+\addplot[only marks,mark=*,mark size=2pt,colB!50] coordinates {(6,-1.4)(7,-2.3)(8,-3.2)(9,-4.1)(10,-5.0)};
+\node[font=\scriptsize,text=colA!80!black,anchor=west] at (axis cs:5.2,-0.2) {$\ell_{\min}=\lfloor 2J_z/h\rfloor+1=5$};
+\end{axis}
+\end{tikzpicture}
+\figtext{$\Delta E(\ell)=4J_z-2h\ell$ decreases linearly; here $2J_z/h\approx4.44$. A negative $\Delta E$ only says the domain is lower in energy. With $g=0$ nothing in $H_{\rm d}$ can flip a spin, so the all-$A$ state stays where it is.}
+\end{figpanel}
+
+
+\parttitle{B}{Dressing a reference state}{2.6}
+\soltitle{B.1}{1.8}{A two-channel correlated state}
 The characteristic equation is $E^2-\Delta E-v^2=0$. The lower eigenvalue is
 \[
 \boxed{E_- =\frac{\Delta-\sqrt{\Delta^2+4v^2}}{2}.}
@@ -452,8 +389,8 @@ Therefore
 P_d(t)=v^2t^2+O(t^4).
 \]
 The exact probability oscillates and can return to zero. The initial curvature $v^2$ is not an irreversible decay rate.
-\marking{Eigenvalue and state: 0.40. Weak-mixing forms: 0.25. Exact probability: 0.40. Rate distinction: 0.15.}
-\begin{figpanel}{C.1 --- oscillation, not decay (illustrative $v/\Delta=0.3$)}
+\marking{Eigenvalue and state: 0.65. Weak-mixing forms: 0.35. Exact probability: 0.6. Rate distinction: 0.2.}
+\begin{figpanel}{B.1 --- oscillation, not decay (illustrative $v/\Delta=0.3$)}
 \begin{tikzpicture}
 \begin{axis}[mbaxis,width=10cm,height=5.4cm,xmin=0,xmax=14,ymin=0,ymax=0.34,xlabel={$\Delta\, t$},ylabel={$P_d(t)$},legend pos=north east,legend style={fill=white,fill opacity=0.8,text opacity=1}]
 \addplot[colB,thick,domain=0:14,samples=220] {0.36/1.36*sin(deg(sqrt(1.36)*x/2))^2};
@@ -465,16 +402,7 @@ The exact probability oscillates and can return to zero. The initial curvature $
 \end{figpanel}
 
 
-\begin{greenbox}{GIVEN TOOL --- available source structure}
-A two-body Hamiltonian acting on a Slater determinant produces single and double excitations. A one-body change of orbitals only supplies tangent single-excitation directions. Source strengths and rates are different quantities.
-\end{greenbox}
-\begin{redbox}{ADDED MODEL --- one channel is not a full spectrum}
-The exact two-channel solution is not a fit of the full local response. A controlled reduction would need the actual channel energies, matrix elements, retained processes, and errors. The gap $\Delta$ in this page is a teaching parameter.
-\end{redbox}
-
-\nextpage
-\parttitle{C}{Assembling neighboring corrections --- continued}{3.9}
-\soltitle{C.2}{0.6}{Local improvement and new cross terms}
+\soltitle{B.2}{0.8}{Local improvement and new cross terms}
 For the overlap diagnostic, commute only the operators on spin 2:
 \[
 \begin{aligned}
@@ -486,25 +414,11 @@ For the overlap diagnostic, commute only the operators on spin 2:
 This term acts on three sites. It was not present in the isolated 12-pair calculation. In fact, for real $\gamma,\epsilon$ its operator norm is $2|\gamma\epsilon|$.
 
 A chain transformation combines overlapping corrections. Its transformed Hamiltonian contains cross commutators as well as the residual of each isolated cluster. It may also retain terms that change the reference configuration. Neither contribution can be discarded because the single-cluster residual decreased.
-\marking{Commutator: 0.4. Why single-cluster success does not certify the chain: 0.2.}
-
-\begin{redbox}{OPEN --- compatibility along the chain and drive}
-A static correction at one phase does not provide a smooth full-cycle correction, its time derivative, or its two-cycle seam. Smaller isolated-cluster norms do not certify a small global or local interaction remainder after assembly.
-\end{redbox}
-
-\smallheading{Teacher's distinction}
-There are three separate statements:
-\begin{enumerate}[leftmargin=7mm,itemsep=5pt]
-\item A particular pair has a more accurate correlated reference.
-\item The pair corrections can be combined into a controlled chain description.
-\item That description predicts the physical current during the full drive.
-\end{enumerate}
-A local calculation can supply the first statement; the second and third need separate work.
+\marking{Commutator: 0.55. Why single-cluster success does not certify the chain: 0.25.}
 
 
-\nextpage
-\pagetitle{C.3 solution. Exact rewriting versus approximation}
-\bridgesol{C.3}{1.2}{Keep the Hamiltonian, the frame velocity, and the initial state}
+\parttitle{C}{Exact frames and kept dynamics}{3.1}
+\soltitle{C.1}{1.8}{Keep the Hamiltonian, the frame velocity, and the initial state}
 \textbf{(a)} Differentiate $\ket\zeta=\mathcal U^\dagger\ket\Psi$ and use unitarity:
 \[
 i\partial_t\ket\zeta=\mathcal K_{\rm corr}\ket\zeta,\qquad
@@ -534,17 +448,10 @@ Choosing a projected or simpler reference state instead adds an initial-state er
 
 \textbf{(d)} A one-particle rotation replaces each $c_j$ by a linear combination of modes. A quartic interaction remains a sum of quartic terms, generally with more orbital indices. No high band has been removed by this operation. The displayed $e^S$ specifies the form of a possible many-body dressing, not its values or its spatial decay.
 
-\marking{(a) Exact generator: 0.4. (b) First-order terms and the role of $\dot S$: 0.3. (c) Where the approximation enters, transformed initial state, need for a bound: 0.3. (d) Interaction stays two-body; $e^S$ unspecified: 0.2.}
-\begin{greenbox}{DERIVATION}
-The exact product-frame formula and the explicit initial-state transformation connect the existing geometric and current identities. Their algebra is not a new MB1 lifetime computation.
-\end{greenbox}
-\begin{redbox}{OPEN --- a useful retained model}
-One must still choose and solve $\mathcal K_{\rm ret}$, control the omitted terms and observables, and retain any physical mixing that changes the current. A small model error does not imply a perfectly quantized reference pump.
-\end{redbox}
+\marking{(a) Exact generator: 0.6. (b) First-order terms and the role of $\dot S$: 0.5. (c) Where the approximation enters, transformed initial state, need for a bound: 0.4. (d) Interaction stays two-body; $e^S$ unspecified: 0.3.}
 
-\nextpage
-\pagetitle{C.4 solution. A remainder is not the whole story}
-\bridgesol{C.4}{0.9}{The retained dynamics can change the state}
+
+\soltitle{C.2}{1.3}{The retained dynamics can change the state}
 \textbf{(a)} The fixed direction is preserved up to a phase if and only if, for every time in the interval,
 \[
 \boxed{(1-\Pi_A)\mathcal K_{\rm ret}(t)\ket{A_0}=0.}
@@ -567,15 +474,11 @@ The global source norm grows with $N$, while this local initial coefficient does
 
 \textbf{(c)} By construction, $\mathcal K_{\rm ret}$ is the exact Hamiltonian of this teaching example and $\mathcal R=0$. There is no truncation error, yet the retained dynamics changes the reference direction. Model accuracy and reference-pump stability are different questions. No physical MFP current has been specified or evaluated here, so there is no MFP lifetime result.
 
-\marking{(a) Invariance condition: 0.2. (b) Source vector 0.2, norm $Ng^2$ 0.1, $\langle q_j\rangle=g^2t^2$ 0.2. (c) The three distinctions: 0.2.}
-\begin{redbox}{ADDED MODEL --- what the exact answer does not establish}
-The spin example is only a counterexample to the claim that zero omitted remainder implies no physical evolution. Its $g^2$ coefficient cannot be inserted into F.1 as an MB1 error-growth bound.
-\end{redbox}
-\handoff{Predict $\ket\Xi$ or its relevant local reduced states. Do not first impose ideal charge on a reference whose retained dynamics has not been solved.}
+\marking{(a) Invariance condition: 0.3. (b) Source vector 0.3, norm $Ng^2$ 0.15, $\langle q_j\rangle=g^2t^2$ 0.3. (c) The three distinctions: 0.25.}
 
-\nextpage
-\parttitle{D}{Current and phase}{2.0}
-\soltitle{D.1}{0.6}{The same probability can give opposite currents}
+
+\parttitle{D}{The physical current}{3.0}
+\soltitle{D.1}{0.9}{The same probability can give opposite currents}
 Let $a=\sqrt{1-p}$ and $b=e^{i\beta}\sqrt p$. Then
 \[
 \begin{aligned}
@@ -592,7 +495,7 @@ Thus the three requested phases give
 \end{array}
 \]
 For small $p$ and a fixed nonzero $\sin\beta$, the leading magnitude is proportional to $\sqrt p$. A probability contains no information about the relative phase $\beta$ and does not determine the current.
-\marking{Expectation value: 0.35. Phase comparison and scaling: 0.15. Probability alone is insufficient: 0.10.}
+\marking{Expectation value: 0.55. Phase comparison and scaling: 0.2. Probability alone is insufficient: 0.15.}
 \begin{figpanel}{D.1 --- the current follows the phase}
 \begin{tikzpicture}
 \begin{axis}[mbaxis,width=10cm,height=5.2cm,xmin=-1,xmax=1,ymin=-1.15,ymax=1.15,xlabel={$\beta/\pi$},ylabel={$\langle I\rangle\big/\big(2\lambda\sqrt{p(1-p)}\big)$},xtick={-1,-0.5,0,0.5,1}]
@@ -605,27 +508,7 @@ For small $p$ and a fixed nonzero $\sin\beta$, the leading magnitude is proporti
 \end{figpanel}
 
 
-\smallheading{Why the current-connected state is not automatically a double excitation}
-A hopping current has the one-body form
-\[
-I=\sum_{ab}I_{ab}d_a^\dagger d_b.
-\]
-It changes at most one occupied orbital of a Slater determinant. If $\ket{\Phi_{ij}^{ab}}$ differs from $\ket\Phi$ by two occupied orbitals, then
-\[
-\bra{\Phi_{ij}^{ab}}I\ket\Phi=0.
-\]
-A double-excitation source can still influence later dynamics and the current of a correlated state. The vanishing direct matrix element only forbids identifying every source norm with the two-state current amplitude $\lambda$.
-
-\begin{redbox}{ADDED MODEL --- the current matrix is part of the question}
-D.1 assumes a current-connected pair. The example isolates interference. It does not specify how the physical MFP evolution generates that pair or its phase.
-\end{redbox}
-\begin{greenbox}{INTERPRETATION --- a useful distinction}
-A static correlation correction and a dynamical phase correction have different roles. The physical current must be evaluated with the actual operators and state. An external-state probability or a domain count cannot replace it.
-\end{greenbox}
-
-\nextpage
-\parttitle{D}{The exact physical-current transformation --- continued}{2.0}
-\soltitle{D.2}{1.4}{A frame-dependent Hamiltonian derivative is incomplete}
+\soltitle{D.2}{2.1}{A frame-dependent Hamiltonian derivative is incomplete}
 Write $H'=\mathcal U^\dagger H\mathcal U$. From unitarity,
 \[
 \partial_\theta H'
@@ -662,18 +545,14 @@ Q(t_1,t_2)
 All expectation values here use the same transformed physical state. If more than one gauge patch is used, patch seams must be included consistently.
 
 A closed projector path fixes a subspace, not a unique frame or its holonomy. It does not imply that the endpoint term vanishes. The two terms are frame-dependent; their sum is the physical charge. In particular, the endpoint term alone is not automatically a Chern charge.
-\marking{Differentiate $H'$ and obtain the operator identity: 0.8. Integrate using the equation of motion: 0.4. Endpoint and gauge interpretation: 0.2.}
+\marking{Differentiate $H'$ and obtain the operator identity: 1.2. Integrate using the equation of motion: 0.6. Endpoint and gauge interpretation: 0.3.}
 
-\begin{greenbox}{EXACT IDENTITY}
-This result is an exact change of representation. It does not require weak interactions, a small residual, or a short drive period. It can therefore be used to check a proposed reduction without changing the original physical current.
-\end{greenbox}
-\begin{redbox}{OPEN --- solving the expectation values}
-The full research problem still needs the driven correlated state, the physical current in that state, and the correct reference charge. Rewriting the current is not yet predicting it.
-\end{redbox}
 
-\nextpage
-\parttitle{E}{A local observable does not require global fidelity}{2.4}
-\soltitle{E.1}{0.5}{A product-state diagnostic}
+
+
+\problemsol{3}{How long can the conveyor operate?}{10.0}
+\parttitle{A}{Local accuracy in a large system}{5.3}
+\soltitle{A.1}{1.1}{A product-state diagnostic}
 The global overlap amplitude is $(\sqrt{1-p})^N$, so
 \[
 \boxed{\mathcal F_N=(1-p)^N.}
@@ -683,8 +562,8 @@ The reduced state of $m$ cells is still the prescribed product state:
 \boxed{\mathcal F_m=(1-p)^m.}
 \]
 For fixed $p>0$, $\mathcal F_N\to0$ as $N\to\infty$, but $\mathcal F_m$ is independent of the rest of the chain. Poor global overlap alone cannot diagnose a large error in a fixed local observable. It also does not prove local transport stability.
-\marking{Global fidelity: 0.2. Local fidelity: 0.2. Correct interpretation: 0.1.}
-\begin{figpanel}{E.1 --- global versus local fidelity (illustrative $p=0.05$, $m=3$)}
+\marking{Global fidelity: 0.45. Local fidelity: 0.4. Correct interpretation: 0.25.}
+\begin{figpanel}{A.1 --- global versus local fidelity (illustrative $p=0.05$, $m=3$)}
 \begin{tikzpicture}
 \begin{axis}[mbaxis,width=10cm,height=5.4cm,ymode=log,xmin=1,xmax=200,ymin=1e-5,ymax=2,xlabel={number of cells $N$},ylabel={fidelity},legend pos=south west,legend style={fill=white,fill opacity=0.8,text opacity=1}]
 \addplot[colB,thick,domain=1:200,samples=120] {0.95^x};
@@ -696,7 +575,7 @@ For fixed $p>0$, $\mathcal F_N\to0$ as $N\to\infty$, but $\mathcal F_m$ is indep
 \end{figpanel}
 
 
-\soltitle{E.2}{1.0}{A trace-distance bound for the current}
+\soltitle{A.2}{2.2}{A trace-distance bound for the current}
 Write
 \[
 \Delta I=\Tr[(\rho'-\sigma')I_X]+
@@ -719,18 +598,10 @@ Hence
 \boxed{|\Delta I|\leq2\norm{I_X}\min(1,\sqrt{D_X})+2\eta_X.}
 \]
 For a general correlated reference, use the first trace-distance bound. Do not impose the product-reference expression for $D_X$ without a justified frame and factorization.
-\marking{General current bound: 0.5. Product-reference bound: 0.4. Scope and interpretation: 0.1.}
+\marking{General current bound: 1.1. Product-reference bound: 0.85. Scope and interpretation: 0.25.}
 
-\begin{greenbox}{CONDITIONAL ERROR CONTROL}
-The observable bound does not contain a factor proportional to the total number of cells. Its usefulness depends on the local trace distance, current norm, and spatial-tail estimate.
-\end{greenbox}
-\begin{redbox}{OPEN --- the unknown dynamical input}
-The inequality does not predict $\rho'_X-\sigma'_X$. Nor does it prove that $D_X$ is a domain density or a decay rate. Establishing a useful full-cycle bound on these quantities remains part of the research.
-\end{redbox}
 
-\nextpage
-\pagetitle{E.3 solution. Locality does not close the state equation}
-\bridgesol{E.3}{0.9}{The boundary correlations carry dynamical information}
+\soltitle{A.3}{2.0}{The boundary correlations carry dynamical information}
 \textbf{(a)} Take the partial trace of the reference equation. Since $\mathcal K_X$ acts inside $X$,
 \[
 \Tr_{\bar X}[\mathcal K_X,\sigma']=[\mathcal K_X,\sigma'_X].
@@ -758,19 +629,12 @@ Its initial value is
 \]
 The first term propagates existing differences. The second contains the effect of omitted dynamics on the actual state. The identity is exact, but $\rho'$ is not thereby known. Taking a partial trace does not remove the need for correlation information or a controlled estimate of this term.
 
-\marking{(a) Local equation, with the exterior term vanishing: 0.35. (b) Boundary correlations needed; the band gap does not supply them: 0.25. (c) Difference equation, initial value, not yet a bound: 0.3.}
-\begin{greenbox}{DERIVATION --- where the missing input belongs}
-The local state equation and difference equation follow from the two specified dynamical equations. They locate the input needed by E.2. They are not a solved local closure for MFP.
-\end{greenbox}
-\begin{redbox}{OPEN --- preserve the initial state and the model}
-A nonzero initial difference cannot be set to zero by renormalizing a projected state. An assumed bath or factorization changes the approximation and needs its own justification. A local norm estimate must remain useful over the time interval and as the chain grows.
-\end{redbox}
-\handoff{The project must compute a physical reference charge and a usable error, not only a geometric trajectory. F.3 gives the conditional decision rule without assigning an ideal charge to the reference.}
+\marking{(a) Local equation, with the exterior term vanishing: 0.75. (b) Boundary correlations needed; the band gap does not supply them: 0.55. (c) Difference equation, initial value, not yet a bound: 0.7.}
 
-\nextpage
-\parttitle{F}{A certificate, not an exact lifetime}{1.5}
-\soltitle{F.1}{0.7}{Integrating the supplied local bounds}
-The given inequality includes $s=0$, hence requires $D_X(0)=0$. This is a classroom premise. Under the full stated hypothesis, $\min(1,\sqrt{D_X(s)})\leq\alpha s$ for $s\geq0$, and E.2 gives
+
+\parttitle{B}{A conditional operating-time certificate}{1.6}
+\soltitle{B.1}{1.6}{Integrating the supplied local bounds}
+The given inequality includes $s=0$, hence requires $D_X(0)=0$. This is a classroom premise. Under the full stated hypothesis, $\min(1,\sqrt{D_X(s)})\leq\alpha s$ for $s\geq0$, and A.2 gives
 \[
 |\Delta I(s)|\leq2I_0\alpha s+2\eta.
 \]
@@ -803,8 +667,8 @@ For the numerical exercise, express time in $\tau_0=T$. Then
 =\boxed{200}.
 \]
 The assumptions were stipulated to hold until $201T$. Thus all stated windows ending from $2T$ through $200T$ are certified. The next period need not fail: the bound has merely stopped certifying it.
-\marking{Integrated bound: 0.25. Endpoint and conditions: 0.20. Numerical value: 0.15. Lower-bound interpretation: 0.10.}
-\begin{figpanel}{F.1 --- where the certificate ends}
+\marking{Integrated bound: 0.55. Endpoint and conditions: 0.45. Numerical value: 0.35. Lower-bound interpretation: 0.25.}
+\begin{figpanel}{B.1 --- where the certificate ends}
 \begin{tikzpicture}
 \begin{axis}[mbaxis,width=10.5cm,height=5.6cm,xmin=0,xmax=215,ymin=0,ymax=6,xlabel={window end $t/T$},ylabel={bound on $|\Qbar-Q_*|$ ($10^{-3}$)},clip=false]
 \addplot[colB,thick,domain=2:215,samples=2] {1.02+0.02*(x-1)};
@@ -818,20 +682,9 @@ The assumptions were stipulated to hold until $201T$. Thus all stated windows en
 \figtext{The bound $\delta_0+2T\eta+2I_0\alpha T(t-T)$ grows linearly and reaches $\delta$ at $t=200T$. After that the bound no longer certifies anything; it does not predict a failure.}
 \end{figpanel}
 
-\begin{redbox}{ILLUSTRATIVE ONLY --- no MB1 lifetime has been computed}
-The value $200T$ follows from illustrative classroom inputs. The complete correlated-frame bounds, their common time interval, and the required initial matching have not been established for MB1.
-\end{redbox}
 
-\smallheading{Connection to C.4}
-The product-reference form of E.2 uses $\sigma'_X=\ket{A_{0,X}}\bra{A_{0,X}}$ at every time $s$ in the window. This is consistent only if the kept dynamics leaves the reference direction invariant, which is the C.4(a) condition
-\[
-(1-\Pi_A)\,\mathcal K_{\rm ret}(s)\ket{A_0}=0\qquad(0\le s\le t_{\max}),
-\]
-together with the frame-velocity term if the reference direction moves. C.4(b) gives a counterexample with $\mathcal R=0$: the source $-g\sum_j\ket j$ moves the reference at order $t$. When the condition fails, $D_X$ measured against a fixed $\ket{A_{0,X}}$ no longer measures $\rho'_X-\sigma'_X$. Use the general bound $\norm{I_X}\norm{\rho'_X-\sigma'_X}_1+2\eta_X$ with the evolving reference, and compute $\Qbar_{\rm ref}$ from that reference as in F.3. A student who notes this restriction in F.1 deserves credit under ``conditions''.
-
-\nextpage
-\pagetitle{F.3 solution. A reference can itself fail}
-\bridgesol{F.3}{0.8}{Use intervals, not an unqualified platform label}
+\parttitle{C}{Prediction, error and first failure}{3.1}
+\soltitle{C.1}{1.7}{Use intervals, not an unqualified platform label}
 \textbf{(a)} Integration gives the computable candidate budget
 \[
 \boxed{E(t)=\frac12\int_{t-2T}^{t}
@@ -859,7 +712,7 @@ Window&$|\widehat Q-Q_*|+E$&$|\widehat Q-Q_*|-E$&Decision\\\midrule
 \end{center}
 The first failed window among these three samples may be 2 or 3. The data do not decide which. Windows at unlisted start times are uncontrolled, so the first continuous-start failure is not determined. A different persistence rule would require additional consecutive-window information.
 
-\begin{figpanel}{F.3 --- three sample windows}
+\begin{figpanel}{D.1 --- three sample windows}
 \begin{tikzpicture}[x=8.5mm,y=8mm]
 \fill[black!8] (2,-0.4) rectangle (12,3.5);
 \draw[->,rulegray] (-1,-0.4)--(16.5,-0.4) node[right,font=\scriptsize]{$\widehat Q$, $\Qbar$};
@@ -879,21 +732,10 @@ The first failed window among these three samples may be 2 or 3. The data do not
 \figtext{Each bar is $\widehat Q\pm E$. Window 1 lies wholly inside the band, window 3 wholly outside, and window 2 straddles the edge, so it is undetermined. Whether window 2 or 3 is the first failure cannot be decided from these data.}
 \end{figpanel}
 
-\marking{(a) $E(t)$ and where the initial mismatch enters: 0.3. (b) Both tests and the undetermined case: 0.3. (c) Classification and undetermined first failure: 0.2.}
-\begin{redbox}{ADDED DATA --- no lifetime result}
-These decisions follow from supplied numerical error budgets. They are not evidence that an MFP simulation passed or failed at these times. The $200T$ example in F.1 remains an independent classroom calculation.
-\end{redbox}
-\begin{greenbox}{LOGIC --- preserve the final research goal}
-A useful reference predicts $\widehat Q(t)$; it need not remain ideal forever. Error control can then certify a stable interval or an actual failed window. Predicting first failure and its physical mechanism requires control of the preceding dynamics as well.
-\end{greenbox}
+\marking{(a) $E(t)$ and where the initial mismatch enters: 0.65. (b) Both tests and the undetermined case: 0.6. (c) Classification and undetermined first failure: 0.45.}
 
-\nextpage
-\parttitle{X}{Synthesis: what would a prediction need?}{0.5}
-\soltitle{X.1}{0.5}{The missing inputs are the research}
-\begin{redbox}{OPEN --- no standard numerical answer is claimed}
-The scored exercise supplied several assumptions. The paper must derive suitable replacements from the microscopic MFP model and a specified physical initial state. The final task is not another substitution into the classroom formula.
-\end{redbox}
 
+\soltitle{C.2}{1.4}{The missing inputs are the research}
 A candidate description has the structure
 \[
 \ket{\Psi_{\rm ref}(t)}=W(t)e^{S(t)}\ket{\Xi(t)}.
@@ -923,27 +765,272 @@ then the triangle inequality and reverse triangle inequality give
 \]
 Neither implication, by itself, locates the first failure. Earlier windows, any persistence rule, and gaps between sampled start times need control.
 
-\marking{Reference with controlled seams: 0.1. Kept dynamics and omitted effects: 0.1. Physical-current prediction: 0.1. Useful local error over full cycles: 0.1. First failure needs earlier windows, any persistence rule and gaps between starts: 0.1.}
-\begin{greenbox}{SUMMARY --- what has been reduced to precise statements}
-The source mechanism and projector identity are supplemented by exact frame, current and local-error identities. The full-cycle correlated reference, its actual current, and a useful time-uniform local-error estimate are still not established.
+\marking{Reference with controlled seams: 0.25. Kept dynamics and omitted effects: 0.25. Physical-current prediction: 0.25. Useful local error over full cycles: 0.2. First failure needs earlier windows, any persistence rule and gaps between starts: 0.45.}
+
+
+
+\appendixstart
+{\LARGE\bfseries\color{ink}Appendices: research context}\par\medskip
+These appendices are for teachers and for readers who want the research picture behind the exam; they are not needed to solve or mark any question. Labels have the form problem.part.number.
+
+\pagetitle{Appendix A. Research map}
+\textbf{Research target:} predict when the original interacting pump leaves a chosen charge tolerance, and identify the process that controls that change. A guaranteed interval is useful, but is not automatically the actual first-failure time.
+\begin{figpanel}{The chain of objects behind the three problems}\label{fig:map}
+\begin{tikzpicture}[x=1mm,y=1mm]
+\node[obj] (n1) at (0,0) {$H_{\rm MFP}(t)$\\[-1pt]{\scriptsize the real interacting chain}\\[-1pt]\ftag{given}};
+\node[obj] (n2) at (38,0) {$h(k,\phi)$\\[-1pt]{\scriptsize one-particle $5\times5$ matrix}\\[-1pt]\ftag{1.B.1}};
+\node[obj] (n3) at (76,0) {$p_{12}(k,\phi)$\\[-1pt]{\scriptsize moving plane of bands 1 and 2}\\[-1pt]\ftag{1.B.2, 1.C.1}};
+\node[obj] (n4) at (114,0) {flavor $A/B$, frame $W(t)$\\[-1pt]{\scriptsize one direction in the plane}\\[-1pt]\ftag{1.D.1}};
+\node[obj] (n5) at (114,-27) {$\mathcal U=We^{S}$, $\mathcal K_{\rm ret}$\\[-1pt]{\scriptsize dressed frame; what is kept}\\[-1pt]\ftag{2.B.1--2.C.2}};
+\node[obj] (n6) at (76,-27) {$\sigma'_X(t)$, $I'(t)$\\[-1pt]{\scriptsize local state; physical current}\\[-1pt]\ftag{2.D.1--2.D.2, 3.A.3}};
+\node[obj] (n7) at (38,-27) {$\widehat Q(t)\pm E(t)$\\[-1pt]{\scriptsize charge prediction with error}\\[-1pt]\ftag{3.A.1--3.A.2, 3.B.1, 3.C.1}};
+\node[obj,dashed,draw=rulegray] (n8) at (0,-27) {goal: first window with\\[-1pt]$|\Qbar-Q_*|>\delta$\\[-1pt]\ftag{3.C.2}};
+\draw[okarrow] (n1)--(n2);
+\draw[okarrow] (n2)--(n3);
+\draw[okarrow] (n3)--(n4);
+\draw[okarrow] (n4)--(n5);
+\draw[openarrow] (n5)--(n6);
+\draw[openarrow] (n6)--(n7);
+\draw[openarrow] (n7)--(n8);
+\end{tikzpicture}
+\figtext{Each box is a mathematical object; the blue labels give the questions (problem.part.number) that work with it. Black arrows are steps derived in the exam; red dashed arrows are links not yet established for the original pump.}
+\end{figpanel}
+
+
+\begin{redbox}{OPEN --- the central dynamical link}
+The reference evolution and its local error are not yet controlled over the full drive.
+\end{redbox}
+
+\clearpage
+\pagetitle{Appendix B. Source, scope and open conditions for each question}
+Green frames name the source of a result and its scope; red frames mark teaching models, assumed bounds and open conditions. These notes were removed from the question paper so that they do not interfere with solving.
+\smallheading{Problem 1: A two-cycle quantum conveyor: bands, projectors and flavors}
+\par\medskip\textbf{1.A.1}\par
+\begin{redbox}{OPEN --- the central dynamical link}
+The reference evolution and its local error are not yet controlled over the full drive. In particular, $\mathcal K_{\rm ret}\to\sigma'_X\to\widehat Q$ is not supplied by the composite-band geometry.
+\end{redbox}
+\begin{greenbox}{MFP [1] --- a candidate two-cycle branch}
+The two Wannier flavors may exchange after one period. In the source argument, a continuously followed flavor returns after two periods with a one-cell displacement (Background~\S5, Figure 1.3 of the question paper). The argument assumes that the occupations continue to follow that branch.
 \end{greenbox}
+\begin{redbox}{ADDED IDEAL-FOLLOWING CONDITION}
+For 1.A.1, stipulate that the actual occupied orbitals follow the branch exactly. This is not a large-system finite-speed stability result.
+
+An $N$-cell ring has cell length $a$ and contains $N$ particles. After $2T$, each occupied orbital has an unwrapped center displacement $\Delta x_j=-a$. Define the spatially averaged transported particle number by
+\[
+Q(0,2T)=\frac{1}{Na}\sum_{j=1}^{N}\Delta x_j.
+\]
+The single-period values $Q(0,T)$ and $Q(T,2T)$ are defined in the same way from the displacements during each period.
+\end{redbox}
+\begin{greenbox}{MFP [1] --- what the source supplies}
+The source's branch-following argument connects two-period flavor winding to fractional average transport. 1.A.1 isolates this counting step.
+\end{greenbox}
+\begin{redbox}{OPEN --- tracking was stipulated}
+The argument has assumed actual following. It has not bounded excitation, internal mixing, or long-time transport error in a large interacting system.
+\end{redbox}
+\par\medskip\textbf{1.B.1}\par
+\begin{greenbox}{MFP [1], Eq.~(1)--(2) --- source model and motivation}
+In the source mechanism, mixing the lowest two bands permits more localized Wannier orbitals, and finite-range repulsion can favor occupation of one flavor (introduction of Problem 1).
+\end{greenbox}
+{\small\textbf{Connection to the next step:} The physical output is a defined composite-band projector. Part B describes its motion. 1.D.1 then asks how to identify a flavor inside it.}\par
+{\small\textbf{Connection to the next step:} Before extracting geometry, name the projector, its ambient space, and the physical reason for using it. Do not identify $p_{12}$ with a many-body low-energy pair.}\par
+\par\medskip\textbf{1.B.2}\par
+\begin{redbox}{OPEN --- a reference choice is not a dynamical truncation}
+The two-band $N$-particle sector is not a two-state system. Restricting the full interacting model to this sector requires control of the terms that leave it.
+\end{redbox}
+\begin{greenbox}{H2 [2] --- projector kinematics}
+A projector represents a subspace without choosing a basis inside it. Its derivative describes the change of that subspace. In 1.B.2, derive the corresponding horizontal generator. This is a kinematic statement, not a lifetime prediction.
+
+Let $p(t)$ be a smooth orthogonal projector, so $p^2=p=p^\dagger$.
+\end{greenbox}
+\begin{greenbox}{H2 [2] --- exact kinematics}
+The horizontal-generator construction applies to the given smooth projector. It does not supply the missing many-body dynamics or a transition rate.
+\end{greenbox}
+\par\medskip\textbf{1.C.1}\par
+\begin{redbox}{ADDED MODEL --- an exactly solvable rotating spin}
+For 1.C.1, study one spin. This is a test of moving-frame dynamics, not the complete interacting pump.
+
+\[
+H(t)=-\frac{\Delta}{2}
+\big[\sin(\nu t)\sigma_x+\cos(\nu t)\sigma_z\big],
+\qquad \Delta,\nu>0.
+\]
+Its instantaneous ground-state projector and a rotating frame are
+\[
+\begin{split}
+p(t)&=\tfrac12\big[\id+\sin(\nu t)\sigma_x+\cos(\nu t)\sigma_z\big],\\
+W(t)&=e^{-i\nu t\sigma_y/2},\qquad
+\ket{\Xi(t)}=W^\dagger(t)\ket{\psi(t)}.
+\end{split}
+\]
+Use $\ket{\psi(0)}=\ket{\uparrow}$, where $\sigma_z\ket{\uparrow}=\ket{\uparrow}$.
+
+\end{redbox}
+{\footnotesize\textbf{Source / scope:} 1.B.2 uses H2. 1.C.1 is a teaching construction. Its exact solution does not prove a regime of the original pump.}\par
+\par\medskip\textbf{1.D.1}\par
+\begin{redbox}{OPEN --- flavor and correlated-frame conditions}
+The proof constructs $p_{12}$, not a selected flavor projector. It does not fix the internal unitary of the two-band group. Analyticity of this composite projector also does not provide a full interacting reference state.
+\end{redbox}
+\begin{greenbox}{MFP [1], Eq.~(2); H2 [2] --- two linked objects}
+The source chooses localized Wannier flavors inside the composite bands. H2 describes the composite projector without an arbitrary internal basis. A physical flavor requires a localization rule and continuous tracking, not just the endpoint statement $p_{12}(T)=p_{12}(0)$.
+\end{greenbox}
+\begin{greenbox}{SOURCE CONNECTION --- where H2 enters}
+MFP supplies a physical composite-band and Wannier construction. H2 organizes subspace motion and its internal-basis freedom. The bridge makes their objects explicit; it does not invent a new dynamical law.
+\end{greenbox}
+\begin{redbox}{OPEN --- not an automatic rank-one upgrade}
+The composite gap and locality proof does not certify the selected flavor's full internal rotation or seam. Nor does it prove that an interacting state occupies that branch over the drive. These are unchanged research conditions.
+\end{redbox}
+{\small\textbf{Connection to the next step:} Keep the full interactions when using the geometric frame. 2.C.1 explains this step exactly.}\par
+\par\medskip\textbf{2.A.1}\par
+\begin{redbox}{ADDED MODEL --- a spin-chain analogy}
+For 2.A.1 only, replace the pump by the model below. Its parameters are not identified with $K$ or $U_r$. This model explains an energy competition; it is not a controlled reduction of MFP.
+
+\[
+H_{\rm d}=-J_z\sum_j\sigma_j^z\sigma_{j+1}^z
+-h\sum_j\sigma_j^z-g\sum_j\sigma_j^x,
+\qquad J_z,h>0.
+\]
+Let $A$ mean $\sigma^z=-1$ and $B$ mean $\sigma^z=+1$. Set $g=0$. Start with all spins in $A$. Flip a consecutive segment of $\ell$ spins to $B$, with $1\leq\ell<N$. There are two interfaces between the segment and its surroundings.
+
+\end{redbox}
+\begin{redbox}{ADDED MODEL --- scope of the answer}
+This exact answer belongs to the teaching spin model. Deriving the domain variables, couplings, and driven transitions from MFP is a separate task.
+\end{redbox}
+\par\medskip\textbf{2.B.1}\par
+\begin{redbox}{ADDED COUNTEREXAMPLE --- not computed MFP matrices}
+In a physically labelled two-dimensional space, compare $\mathscr T_0=\id_2$ with $\mathscr T_1=i\sigma_x$. Both act inside the same plane. No real-space displacement is specified. These are illustrative internal maps, not the original pump's Wilson or evolution matrices.
+\end{redbox}
+\par\medskip\textbf{2.B.2}\par
+{\footnotesize\textbf{Source / scope:} Use $[\sigma_z,\sigma_x]=2i\sigma_y$. Operators on different spins commute.}\par
+\begin{redbox}{OPEN --- compatibility along the chain and drive}
+A static correction at one phase does not provide a smooth full-cycle correction, its time derivative, or its two-cycle seam. Smaller isolated-cluster norms do not certify a small global or local interaction remainder after assembly.
+\end{redbox}
+\smallheading{Teacher's distinction}
+There are three separate statements:
+
+\par\medskip\textbf{2.C.1}\par
+{\small\textbf{Connection to the next step:} 2.C.2 tests whether the kept part actually preserves the desired reference.}\par
+\begin{redbox}{OPEN --- a useful retained model}
+One must still choose and solve $\mathcal K_{\rm ret}$, control the omitted terms and observables, and retain any physical mixing that changes the current. A small model error does not imply a perfectly quantized reference pump.
+\end{redbox}
+\par\medskip\textbf{2.C.2}\par
+\begin{redbox}{ADDED MODEL --- what the exact answer does not establish}
+The spin example is only a counterexample to the claim that zero omitted remainder implies no physical evolution. Its $g^2$ coefficient cannot be inserted into 3.B.1 as an MB1 error-growth bound.
+\end{redbox}
+{\small\textbf{Connection to the next step:} Predict $\ket\Xi$ or its relevant local reduced states. Do not first impose ideal charge on a reference whose retained dynamics has not been solved.}\par
+\par\medskip\textbf{2.D.1}\par
+\begin{redbox}{ADDED MODEL --- reuse 2.A.1, do not infer an MB1 mapping}
+The spin chain in (b) is still the teaching analogy, not the full MFP Hamiltonian. Use a ring of $N$ spins. Set $E_A=\bra{A_0}H_{\rm d}\ket{A_0}$. Let $\ket{j}$ denote the orthonormal configuration with only spin $j$ flipped. You may use $e^{-iHt}=\id-iHt+O(t^2)$.
+\end{redbox}
+\begin{redbox}{ADDED MODEL --- a current-connected pair of states}
+For 2.D.1, $\ket0$ and $\ket e$ are any orthogonal states connected by the stated current. Do not identify $\ket e$ with 2.B.1's pure double excitation without checking the current matrix element. A one-body hopping current does not directly connect Slater determinants differing by two occupied orbitals.
+
+\[
+I=\lambda\begin{pmatrix}0&-i\\i&0\end{pmatrix},\qquad
+\ket\psi=\sqrt{1-p}\ket0+e^{i\beta}\sqrt p\ket e,
+\quad \lambda\in\mathbb R,\quad0\leq p\leq1.
+\]
+\end{redbox}
+\begin{redbox}{ADDED MODEL --- the current matrix is part of the question}
+2.D.1 assumes a current-connected pair. The example isolates interference. It does not specify how the physical MFP evolution generates that pair or its phase.
+\end{redbox}
+\smallheading{Why the current-connected state is not automatically a double excitation}
+A hopping current has the one-body form
+\[
+I=\sum_{ab}I_{ab}d_a^\dagger d_b.
+\]
+It changes at most one occupied orbital of a Slater determinant. If $\ket{\Phi_{ij}^{ab}}$ differs from $\ket\Phi$ by two occupied orbitals, then
+\[
+\bra{\Phi_{ij}^{ab}}I\ket\Phi=0.
+\]
+A double-excitation source can still influence later dynamics and the current of a correlated state. The vanishing direct matrix element only forbids identifying every source norm with the two-state current amplitude $\lambda$.
+
+\par\medskip\textbf{2.D.2}\par
+\begin{redbox}{OPEN --- solving the expectation values}
+The full research problem still needs the driven correlated state, the physical current in that state, and the correct reference charge. Rewriting the current is not yet predicting it.
+\end{redbox}
+\par\medskip\textbf{3.A.1}\par
+\begin{redbox}{ADDED STATE --- a diagnostic product family}
+For 3.A.1 only, prescribe the state below. It is not asserted to be a solution of the interacting pump. The scalar $p$ is independent of $N$. Use the squared-fidelity convention $\mathcal F(\rho,\ket a)=\bra a\rho\ket a$.
+
+\[
+\ket{\psi_N}=\bigotimes_{j=1}^N
+\big[\sqrt{1-p}\ket A_j+\sqrt p\ket B_j\big],
+\qquad0<p<1,\quad\braket A B=0.
+\]
+\end{redbox}
+\par\medskip\textbf{3.A.2}\par
+{\footnotesize\textbf{Source / scope:} Here $\norm{\cdot}$ is the operator norm and $\norm{\cdot}_1$ is the trace norm. The local $q_x$ are reference-deviation operators, not automatically physical domain counters.}\par
+\begin{redbox}{OPEN --- the unknown dynamical input}
+The inequality does not predict $\rho'_X-\sigma'_X$. Nor does it prove that $D_X$ is a domain density or a decay rate. Establishing a useful full-cycle bound on these quantities remains part of the research.
+\end{redbox}
+\par\medskip\textbf{3.A.3}\par
+{\small\textbf{Connection to the next step:} 2.D.2 supplies the correct current operator. 3.A.2 converts a local-state error into a current error. 3.A.3 identifies the missing dynamics between these two tools.}\par
+\begin{redbox}{OPEN --- preserve the initial state and the model}
+A nonzero initial difference cannot be set to zero by renormalizing a projected state. An assumed bath or factorization changes the approximation and needs its own justification. A local norm estimate must remain useful over the time interval and as the chain grows.
+\end{redbox}
+{\small\textbf{Connection to the next step:} The project must compute a physical reference charge and a usable error, not only a geometric trajectory. 3.C.1 gives the conditional decision rule without assigning an ideal charge to the reference.}\par
+\par\medskip\textbf{3.B.1}\par
+\begin{redbox}{GIVEN BOUNDS --- the missing long-time inputs}
+Let $\alpha,I_0>0$ and $\eta,\delta_0\geq0$. Assume that, for every $0\leq s\leq t_{\max}$,
+\[
+D_X(s)\leq\alpha^2s^2,\qquad
+\norm{I_X(s)}\leq I_0,\qquad\eta_X(s)\leq\eta.
+\]
+Also assume that every relevant two-period reference window satisfies
+$|\Qbar_{\rm ref}(t)-Q_*|\leq\delta_0$.
+These remain supplied assumptions for the full correlated MB1 frame. In particular, the bound at $s=0$ requires $D_X(0)=0$. Initial mismatch must be controlled separately; do not silently replace the physical initial state by its projection. Here $\alpha$, $I_0$, and $\eta$ have units of inverse time; $\delta_0$ and charge are dimensionless.
+\end{redbox}
+\begin{redbox}{ILLUSTRATIVE ONLY --- no MB1 lifetime has been computed}
+The value $200T$ follows from illustrative classroom inputs. The complete correlated-frame bounds, their common time interval, and the required initial matching have not been established for MB1. The new composite-band proof does not change this arithmetic or its conditional status.
+\end{redbox}
+\smallheading{Connection to 2.C.2}
+The product-reference form of 3.A.2 uses $\sigma'_X=\ket{A_{0,X}}\bra{A_{0,X}}$ at every time $s$ in the window. This is consistent only if the kept dynamics leaves the reference direction invariant, which is the 2.C.2(a) condition
+\[
+(1-\Pi_A)\,\mathcal K_{\rm ret}(s)\ket{A_0}=0\qquad(0\le s\le t_{\max}),
+\]
+together with the frame-velocity term if the reference direction moves. 2.C.2(b) gives a counterexample with $\mathcal R=0$: the source $-g\sum_j\ket j$ moves the reference at order $t$. When the condition fails, $D_X$ measured against a fixed $\ket{A_{0,X}}$ no longer measures $\rho'_X-\sigma'_X$. Use the general bound $\norm{I_X}\norm{\rho'_X-\sigma'_X}_1+2\eta_X$ with the evolving reference, and compute $\Qbar_{\rm ref}$ from that reference as in 3.C.1. A student who notes this restriction in 3.B.1 deserves credit under ``conditions''.
+
+\par\medskip\textbf{3.C.1}\par
+{\small\textbf{Connection to the next step:} 3.B.1 certifies an interval once special growth bounds are supplied. 3.C.1 permits a reference that itself changes or fails. Both require model-derived inputs before either gives an MB1 prediction.}\par
+\begin{greenbox}{V3 LOGIC --- preserve the final research goal}
+A useful reference predicts $\widehat Q(t)$; it need not remain ideal forever. Error control can then certify a stable interval or an actual failed window. Predicting first failure and its physical mechanism requires control of the preceding dynamics as well.
+\end{greenbox}
+\begin{redbox}{ADDED DATA --- no lifetime result}
+These decisions follow from supplied numerical error budgets. They are not evidence that an MFP simulation passed or failed at these times. The $200T$ example in 3.B.1 remains an independent classroom calculation.
+\end{redbox}
+\par\medskip\textbf{3.C.2}\par
+\begin{redbox}{GIVEN FUNCTIONS AND NUMBERS --- teaching inputs only}
+The functions above are not established MB1 bounds. For the arithmetic test take $Q_*=-0.5$ and $\delta=0.005$:
+\begin{center}\begin{tabular}{@{}lrr@{}}\toprule
+Ordered sample window&$\widehat Q$&$E$\\\midrule
+1&$-0.4970$&$0.0010$\\
+2&$-0.4940$&$0.0015$\\
+3&$-0.4940$&$0.0005$\\\bottomrule
+\end{tabular}\end{center}
+These are invented classification examples, not new trajectories. Use one-window exceedance; no persistence rule is imposed in this small exercise.
+\end{redbox}
+\begin{redbox}{OPEN --- the research task}
+Starting from $H_{\rm MFP}(t)$ and a specified physical initial state, construct a correlated reference evolution and a computable error estimate over complete drive cycles. The result must remain useful as the system size increases. Do not import 3.B.1's long-time assumptions as facts.
+\end{redbox}
+\begin{redbox}{The main scientific gap}
+The composite-band proof does not supply a controlled full-cycle correlated reference, its physical current, or a quantitative large-system lifetime. Red frames mark those missing links.
+\end{redbox}
+\begin{redbox}{OPEN --- no standard numerical answer is claimed}
+The scored exercise supplied several assumptions. The paper must derive suitable replacements from the microscopic MFP model and a specified physical initial state. The final task is not another substitution into the classroom formula.
+\end{redbox}
 \begin{redbox}{OPEN --- lower bounds versus actual failure}
 A guaranteed operating interval and a prediction of actual first failure are different outputs. A small static source, a source norm, or a single favorable domain energy is not sufficient for either one without the missing dynamics and current analysis.
 \end{redbox}
 
-\nextpage
-\pagetitle{Teacher notes for the public example}
+\clearpage
+\pagetitle{Appendix C. Teacher notes}
 \smallheading{What this example is}
-A public excerpt of a 26-question, 20-point guided problem (Revision 4). The questions that used unpublished project calculations or proofs (B.3, B.G1, B.G2, R.1, R.2, E.G1, E.G2, F.2) were removed; the other 18 questions and their marks are unchanged except C.2 (the part on reported data was removed, 0.6 pt) and X.1 (0.5 pt). Labels were kept, so they are not consecutive.
-
-\smallheading{Notation}
-$K$ is only the modulation amplitude; generators are calligraphic ($\mathcal K$). $Y$ is the eigenvector matrix, $\Lambda$ a $2\times2$ unitary, $\mathcal F$ a fidelity, $\gamma$ the coupling in $h_{23}$, $\lambda$ the current matrix element, $I_X$ the local current, $\id$ the identity.
+A public excerpt of a 26-question ResearchPhO paper. Questions that used unpublished calculations or proofs of the underlying research project were removed; the remaining 18 questions were relabelled within each problem and their points rescaled to 10 per problem, with every marking line rescaled in 0.05 steps.
 
 \smallheading{The computed pictures and a sign observation}
-\texttt{figures.py} computes the band pictures from $h(k,\phi)$ and the Wannier centres from the projected position operator $Pe^{2\pi ix/L}P$ on a 24-cell ring at $K/J=-3/2$. With the Hamiltonian exactly as printed in [1], orbitals of band 1 move by $+2$ cells per period, and the followed composite flavor moves by $-1$ cell in two periods. An explicit time evolution of the filled band 1 on a 12-cell ring ($T=400/J$) gives a rightward charge of $+2.00$ per period through every bond. These signs agree with the values $Q=+2$ and $Q=-1/2$ in Fig.~4 of [1] if $Q$ is counted rightward-positive, as in this problem. For this Hamiltonian, the current expression printed in [1], $i\langle J_jc_j^\dagger c_{j+1}-J_jc_{j+1}^\dagger c_j\rangle$, is minus the rightward bond current, so [1] presumably uses a convention not stated there.
+\texttt{figures.py} computes the band pictures from $h(k,\phi)$ and the Wannier centres from the projected position operator $Pe^{2\pi ix/L}P$ on a 24-cell ring at $K/J=-3/2$. With the Hamiltonian exactly as printed in [1], orbitals of band 1 move by $+2$ cells per period, and the followed composite flavor moves by $-1$ cell in two periods. An explicit time evolution of the filled band 1 on a 12-cell ring ($T=400/J$) gives a rightward charge of $+2.00$ per period through every bond. These signs agree with the values $Q=+2$ and $Q=-1/2$ in Fig.~4 of [1] if $Q$ is counted rightward-positive, as in this exam. For this Hamiltonian, the current expression printed in [1], $i\langle J_jc_j^\dagger c_{j+1}-J_jc_{j+1}^\dagger c_j\rangle$, is minus the rightward bond current, so [1] presumably uses a convention not stated there.
 
-\nextpage
-\pagetitle{Sources}
+\smallheading{Sources}
 \sourceentries
 \vfill
 \begin{center}\textbf{End of solution booklet}\end{center}

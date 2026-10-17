@@ -21,8 +21,9 @@ two papers and from teaching models.
 | 2 | unscored supplements with project proofs and data | supplements without points get skipped; data without definitions cannot be used |
 | 3 | six "modelling bridges" between objects (M.1, B.4, C.3, C.4, E.3, F.3) | the bridges carried most of the learning: why the next object is needed |
 | 4 | everything scored (20 points); Background, Toolkit, Glossary; 16 set-up pictures; notation unified; answer leaks removed; teacher notes | a reader who had not read the papers could not start revision 3; a cold read finds this at once |
+| 5 (ResearchPhO) | strict IPhO/APhO format: three independent problems of 10 points, boxed subquestions, answer sheets; every coloured frame, scope note and research-plan item moved to solution Appendices A-D; background and toolkit moved into each problem's introduction and "Useful information" | status frames are not olympiad style and distract the solver; the research context belongs at the end of the solutions |
 
-## Reader feedback that drove revision 4
+## Reader feedback that drove revisions 4 and 5
 
 - "I do not know what the questions ask." -> pictures that show the set-up and say "X asks: ..." in plain words.
 - "I want to solve it myself." -> remove every answer from the question booklet, including a box title with the
@@ -30,6 +31,9 @@ two papers and from teaching models.
 - "The booklet should give enough to think with, without the papers." -> Background, Toolkit, Glossary, plain
   definitions of report quantities, and a cold read.
 - "Everything should be scored." -> keep the old marks, add marks to the rest, re-total, and check with a script.
+- "These frames do not exist in APhO and are not for solving; they are research-plan information." -> strict
+  format; three problems of 10 points; all research context in the solution appendices.
+- "Call it ResearchPhO."
 
 ## Audit findings on revision 3 (before the rewrite)
 
@@ -49,10 +53,10 @@ These agree with the paper's figure values (+2 integer, -1/2 fractional) in a ri
 the current expression printed in the paper is minus the rightward current for the printed Hamiltonian. Always
 re-derive a sign before you set a target value in a problem.
 
-## Reusable pieces
+## Reusable pieces (labels of the public example)
 
-- The chain-of-objects picture (reading map) with red dashed arrows for open links.
-- A two-level "dressing" model (C.1) to show that short-time growth v^2 t^2 is not a decay rate.
-- The counterexample det(i sigma_x) = det(1) (B.4) against reading internal exchange from a determinant.
-- Global versus local fidelity for a product state (E.1).
-- The certificate (F.1) and the pass/fail/undetermined rule (F.3) for any "how long does it last" proposal.
+- The chain-of-objects picture (Appendix A) with red dashed arrows for open links.
+- A two-level "dressing" model (2.B.1) to show that short-time growth v^2 t^2 is not a decay rate.
+- The counterexample det(i sigma_x) = det(1) (1.D.1) against reading internal exchange from a determinant.
+- Global versus local fidelity for a product state (3.A.1).
+- The certificate (3.B.1) and the pass/fail/undetermined rule (3.C.1) for any "how long does it last" proposal.
