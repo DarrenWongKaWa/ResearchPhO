@@ -13,23 +13,35 @@ can one describe a moving group of bands without choosing a basis inside it?" an
 its derivative and the generator built from them". Each problem's introduction ends with such a question; its last
 part reaches the paper's answer or the closest derivable form.
 
-**The language map.** For every term of the paper: its meaning in standard physics, and where a physicist from
-another field met the idea before. Many "new" words name familiar physics:
+**The language map.** A term from another field blocks an outsider for one of three reasons, and the map answers
+each of them:
 
-| Paper term | Standard physics | Where the reader met it |
-| --- | --- | --- |
-| Thouless pump | slow periodic modulation that moves charge; adiabatic transport | Berry phase, adiabatic theorem |
-| Chern number of a band | integer winding of the Berry phase over (k, t) | Berry phase; quantum Hall effect |
-| Wannier orbital, centre | localized orbital built from Bloch states; its mean position | tight binding; Fourier series |
-| flavor A/B | the two localized orbital types built from bands 1 and 2 together | basis choice inside a degenerate subspace |
-| composite bands, Gr(2,5) | a group of bands treated together; the set of planes in C^5 | degenerate perturbation theory; projectors |
-| horizontal generator | the generator that moves a subspace without rotating inside it | adiabatic (Kato) generator, rotating frames |
-| Wilson loop | ordered product of band-overlap matrices around the Brillouin zone | Berry phase on a closed path, discretized |
-| prethermal lifetime | time during which a driven system stays in a long-lived non-equilibrium state | metastable states, false-vacuum decay |
-| dressing e^S | a unitary change of basis that builds correlations into a reference state | Schrieffer-Wolff transformation |
+1. **Physical process or picture**: what actually happens, or what the object is. "Prethermal lifetime": the
+   driven system stays in a long-lived non-equilibrium state until domains of the other flavor appear and destroy
+   the order.
+2. **Familiar equivalent**: the same thing under the name the reader already knows. "Dressing e^S" is a
+   Schrieffer-Wolff transformation; "horizontal generator" is Kato's adiabatic generator.
+3. **How it is computed or measured**: an operational definition. "Wannier centre" is <w|x|w>.
 
-In the question paper use the standard word and put the paper's term in parentheses at first use. The cold read
-(section 3) checks that no term is left untranslated.
+Fill all three columns when possible. When no familiar equivalent exists, the term is a genuinely **new concept**:
+write "new" and name the question that teaches it. These are the places where the exam must do real teaching.
+
+| Paper term | Physical process or picture | Familiar equivalent | How it is computed or measured |
+| --- | --- | --- | --- |
+| Thouless pump | a slow periodic change of the lattice that carries particles along it, cycle after cycle | adiabatic transport; Berry phase | charge through one bond per period: time integral of the bond current |
+| Chern number of a band | the integer number of cells the charge of a filled band moves per period | quantized Hall conductance | winding of the Wannier centres over one period |
+| Wannier orbital, centre | a localized orbital built from the Bloch states of a band; where it sits | tight-binding orbital; Fourier series | centre = <w\|x\|w>; eigenphases of the projected position operator |
+| flavor A/B | two localized orbital types per cell built from bands 1 and 2; a particle occupies one and rides with it | basis choice inside a degenerate subspace | eigenvectors of the position operator projected onto bands 1 and 2 |
+| two-cycle flavor exchange | an A orbital slides into a B position each period and is back on A only after two periods | new | taught by 1.A.1 and 1.D.1 of the worked example; Figure 1.3 |
+| composite bands; Gr(2,5) | bands 1 and 2 treated as one unit; the plane they span at each (k, phi) | projector onto a degenerate subspace | p12 = sum over n = 1, 2 of \|u_n><u_n\| |
+| horizontal generator | the rotation that carries the plane along its path without spinning it inside | Kato's adiabatic generator; rotating frame | g = i[dp/dt, p] |
+| Wilson loop | going once around the Brillouin zone while carrying the band basis along | Berry phase on a closed path | ordered product of band-overlap matrices; eigenphases give the centres |
+| dressing e^S | building the main correlations into the reference state by a change of basis | Schrieffer-Wolff transformation | S anti-Hermitian; e^{-S} H e^{S} expanded in commutators |
+| prethermal lifetime | how long a driven system stays in a long-lived non-equilibrium state before domains destroy the order | metastable state; false-vacuum decay | first time the transport leaves a tolerance (open in paper 1) |
+
+In the question paper use the standard word or the physical description, and put the paper's term in parentheses at
+first use. The cold read (section 3) checks that no term is left untranslated: every term the cold reader flags must
+appear in the map.
 
 ## 1. The chain of objects
 

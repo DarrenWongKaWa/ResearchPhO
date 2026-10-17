@@ -1,5 +1,7 @@
 # ResearchPhO: learn papers from outside your field by solving them
 
+**Version 1.0.0** (17 October 2026). See the [changelog](CHANGELOG.md).
+
 A [Claude Code](https://claude.com/claude-code) skill. Give it a few papers from a field that is not yours. It turns
 the papers themselves into a physics-olympiad theory exam written to the standards of the International Physics
 Olympiad (IPhO), the Asian Physics Olympiad (APhO) and the Pan Pearl River Delta Physics Olympiad (PanPhO): a question
@@ -46,7 +48,9 @@ A quick version has one problem of 10 points.
 ## How the agent works
 
 1. Writes, for each paper, the question it answers and its answer, in one sentence each.
-2. Makes a language map: paper term, standard physics, where the reader met the idea before.
+2. Makes a language map: for each term of the paper, the physical process it names, the familiar equivalent the
+   reader already knows, and how it is computed or measured. Terms with no familiar equivalent are marked as new
+   concepts, and a question teaches each of them.
 3. Maps the papers as a chain of objects from the model to the measured quantity, and splits it into three problems.
 4. Writes questions of nine types: modelling, bookkeeping, exact identity, solvable toy model, counterexample, bound
    chain, data interpretation, decision rule, synthesis.

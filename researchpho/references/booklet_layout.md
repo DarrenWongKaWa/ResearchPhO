@@ -28,7 +28,8 @@ Generate them after the question paper is final: `python3 make_answer_sheets.py 
 1. Cover (S0-1): how to mark, mark allocation per problem.
 2. Per problem (S1-, S2-, S3-): parts and answers in question order, each followed by `\marking{...}`; answer
    figures.
-3. `\appendixstart` (SA-): Appendix A research map (chain of objects, open arrows, research target); Appendix B
+3. `\appendixstart` (SA-): Appendix A paper map (what each paper answers, the language map, the chain of objects
+   with open arrows); Appendix B
    source, scope and open conditions per question (green/red frames are allowed here); Appendix C register of
    available and missing results; Appendix D teacher notes (provenance, interpretations to confirm, label maps
    between revisions, independent checks, sources).

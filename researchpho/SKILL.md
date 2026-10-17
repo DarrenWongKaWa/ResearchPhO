@@ -5,6 +5,8 @@ description: ResearchPhO - learn research papers from outside your field by turn
 
 # ResearchPhO: learn papers from outside your field by solving them
 
+Version 1.0.0.
+
 Papers from another field are hard to read mostly because of their language, not their physics. A term such as
 "flavor", "horizontal generator" or "prethermal" often names something the reader already knows under another name.
 Physics-olympiad problems are written for exactly this situation. An IPhO/APhO/PanPhO problem expects the student
@@ -63,9 +65,10 @@ Details and sources: [olympiad formats](references/olympiad_formats.md).
 ## Workflow (each stage has an exit check)
 
 1. **State what each paper answers.** One sentence for the question, one for the answer. Exit: both sentences per paper.
-2. **Make the language map**: each term of the paper -> its meaning in standard physics -> where the reader met it
-   before (e.g. "Wilson loop" -> ordered product of band-overlap matrices; its eigenphases are Wannier centres).
-   Exit: every term that a cold reader flags is in the map. See [question design](references/question_design.md).
+2. **Make the language map**: for each term of the paper, (i) the physical process or picture it names, (ii) the
+   familiar equivalent the reader already knows, (iii) how it is computed or measured. A term with no familiar
+   equivalent is a new concept: mark it and make sure a question teaches it. Exit: every term that a cold reader
+   flags is in the map. See [question design](references/question_design.md).
 3. **Map the field as a chain of objects** from the model to the measured quantity; label each arrow stated in a
    source, project result, derivable here, or open. The chain, the questions and the language map form Appendix A.
 4. **Split the chain into three independent problems** of 10 points and 3-5 parts each.

@@ -773,25 +773,13 @@ Neither implication, by itself, locates the first failure. Earlier windows, any 
 {\LARGE\bfseries\color{ink}Appendices: research context}\par\medskip
 These appendices are for teachers and for readers who want the research picture behind the exam; they are not needed to solve or mark any question. Labels have the form problem.part.number.
 
-\pagetitle{Appendix A. Research map}
+\pagetitle{Appendix A. Paper map}
 \smallheading{What each paper answers}
 \begin{itemize}[leftmargin=6mm,itemsep=2pt]
 \item \textbf{Paper [1].} Question: can repulsion turn an integer Thouless pump into one that carries half a particle per period at integer filling, and how? Answer: yes, at strong repulsion in small systems: the particles occupy one of two localized two-band orbital types, which exchange every period, so each particle moves one cell in two periods. In large systems this should last only for a finite (prethermal) time, which the paper leaves open. Problems 1 and 2 lead to this mechanism; Problem 3 is built on the open question.
 \item \textbf{Paper [2].} Question: how can a moving group of bands be described without choosing a basis inside it? Answer: by the band projector, its derivative (a tangent vector) and the generator built from them; metric, curvature, holonomy and topology follow from these objects. Problem 1, Parts B--D use this language.
 \end{itemize}
-\smallheading{Language map: paper term, standard physics, where the reader met it}
-{\small\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{30mm}Y>{\raggedright\arraybackslash}p{42mm}@{}}\toprule
-Paper term&Standard physics&Met before in\\\midrule
-Thouless pump&slow periodic modulation that moves charge&adiabatic theorem, Berry phase\\
-Chern number of a band&integer winding of the Berry phase over $(k,t)$&quantum Hall effect\\
-Wannier orbital, centre&localized orbital built from Bloch states; its mean position&tight binding, Fourier series\\
-flavor $A/B$&the two localized orbital types built from bands 1 and 2 together&basis choice in a degenerate subspace\\
-composite bands, $\operatorname{Gr}(2,5)$&a group of bands treated together; the set of planes in $\mathbb C^5$&projectors, degenerate perturbation theory\\
-horizontal generator&generator that moves a subspace without rotating inside it&adiabatic (Kato) generator, rotating frames\\
-Wilson loop&ordered product of band-overlap matrices around the Brillouin zone&Berry phase on a closed path\\
-prethermal lifetime&time during which a driven system stays in a long-lived non-equilibrium state&metastable states, false-vacuum decay\\
-dressing $e^S$&unitary change of basis that builds correlations into a reference&Schrieffer--Wolff transformation\\\bottomrule
-\end{tabularx}}
+
 \textbf{Research target:} predict when the original interacting pump leaves a chosen charge tolerance, and identify the process that controls that change. A guaranteed interval is useful, but is not automatically the actual first-failure time.
 \begin{figpanel}{The chain of objects behind the three problems}\label{fig:map}
 \begin{tikzpicture}[x=1mm,y=1mm]
@@ -813,6 +801,25 @@ dressing $e^S$&unitary change of basis that builds correlations into a reference
 \end{tikzpicture}
 \figtext{Each box is a mathematical object; the blue labels give the questions (problem.part.number) that work with it. Black arrows are steps derived in the exam; red dashed arrows are links not yet established for the original pump.}
 \end{figpanel}
+
+\par\Needspace{30\baselineskip}
+\smallheading{Language map}
+Each term of the papers in three forms: the physical process or picture it names, the familiar equivalent a physicist from another field already knows, and how it is computed or measured. ``New'' marks a concept with no familiar equivalent; the listed questions teach it.
+
+{\small\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{24mm}YYY@{}}\toprule
+Paper term&Physical process or picture&Familiar equivalent&How it is computed or measured\\\midrule
+Thouless pump&a slow periodic change of the lattice that carries particles along it, cycle after cycle&adiabatic transport; Berry phase&charge through one bond per period: time integral of the bond current\\
+Chern number of a band&the integer number of cells the charge of a filled band moves per period&quantized Hall conductance&winding of the Wannier centres over one period (Fig.~1.3a)\\
+Wannier orbital, centre&a localized orbital built from the Bloch states of a band; where it sits&tight-binding orbital; Fourier series&$\langle w|x|w\rangle$; eigenphases of the projected position operator\\
+flavor $A/B$&two localized orbital types per cell built from bands 1 and 2; a particle occupies one and rides with it&basis choice inside a degenerate subspace&eigenvectors of the position operator projected onto bands 1 and 2\\
+two-cycle flavor exchange&an $A$ orbital slides into a $B$ position each period and is back on $A$ only after two periods&new&taught by 1.A.1 and 1.D.1; Fig.~1.3b\\
+composite bands, $\operatorname{Gr}(2,5)$&bands 1 and 2 treated as one unit; the plane they span at each $(k,\phi)$&projector onto a degenerate subspace&$p_{12}=\sum_{n=1,2}\ket{u_n}\bra{u_n}$ (1.B.1)\\
+horizontal generator&the rotation that carries the plane along its path without spinning it inside&Kato's adiabatic generator; rotating frame&$g_t=i[\dot p,p]$ (1.B.2, 1.C.1)\\
+Wilson loop&going once around the Brillouin zone while carrying the band basis along&Berry phase on a closed path&ordered product of band-overlap matrices; eigenphases give the centres (1.D.1)\\
+dressing $e^S$&building the main correlations into the reference state by a change of basis&Schrieffer--Wolff transformation&$e^{-S}He^{S}$ expanded in commutators (2.B.1, 2.C.1)\\
+prethermal lifetime&how long a driven system stays in a long-lived non-equilibrium state before domains destroy the order&metastable state; false-vacuum decay&first time the transport leaves a tolerance; open in [1] (Problem 3)\\\bottomrule
+\end{tabularx}}
+
 
 
 \begin{redbox}{OPEN --- the central dynamical link}
