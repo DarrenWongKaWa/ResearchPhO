@@ -23,7 +23,7 @@ from pathlib import Path
 DEFAULT_FORBIDDEN = ("this conversation", "/Users/", "C:\\", "TODO", "FIXME")
 # research-status material belongs in the solution appendices, not in the question paper
 STATUS_MARKERS = ("\\begin{greenbox}", "\\begin{redbox}", "\\origin{", "\\handoff{", "NOT ESTABLISHED",
-                  "AVAILABLE ---", "OPEN ---", "ADDED MODEL", "GIVEN BOUND", "PICTURE ")
+                  "AVAILABLE ---", "OPEN ---", "ADDED MODEL", "GIVEN BOUND", "PICTURE ", "O-calc", "O-theory")
 NUMBER = re.compile(r"(?<![\w.])(\d+\.\d+)(?![\w])")
 
 

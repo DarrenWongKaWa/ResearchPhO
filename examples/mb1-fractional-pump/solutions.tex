@@ -18,6 +18,7 @@
 \definecolor{sourcewash}{HTML}{F4FAF6}
 \definecolor{openred}{HTML}{A42B32}
 \definecolor{openwash}{HTML}{FFF6F6}
+\definecolor{calcamber}{HTML}{A8650A}
 \definecolor{rulegray}{HTML}{5E6670}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{5.4pt}
@@ -97,12 +98,14 @@ In this solution booklet a blue \textbf{PICTURE} frame illustrates an answer. Nu
 \newenvironment{figpanel}[1]{\refstepcounter{figc}\gdef\figtitle{#1}\par\medskip\noindent\begin{minipage}{\linewidth}\centering}{\end{minipage}\par\medskip}
 \newcommand{\figtext}[1]{\par\smallskip{\raggedright\small\textbf{Figure \thefigc.} \figtitle. #1\par}}
 \newcommand{\ftag}[1]{{\scriptsize\bfseries\color{figblue}#1}}
+\newcommand{\ktag}[2]{{\scriptsize\bfseries\color{#1}#2}}
 \tikzset{
   >={Stealth[length=2.2mm]},
   site/.style={circle,draw=ink,fill=white,inner sep=0pt,minimum size=5.4mm,font=\scriptsize},
   faint/.style={draw=black!30,text=black!40},
   obj/.style={draw=ink,rounded corners=2pt,align=center,font=\small,inner sep=4pt,text width=31mm,fill=white},
   openarrow/.style={->,draw=openred,dashed,line width=0.9pt},
+  calcarrow/.style={->,draw=calcamber,dash pattern=on 1.2pt off 1.2pt,line width=0.9pt},
   okarrow/.style={->,draw=ink,line width=0.9pt},
 }
 \pgfplotsset{
@@ -784,22 +787,22 @@ These appendices are for teachers and for readers who want the research picture 
 \begin{figpanel}{The chain of objects behind the three problems}\label{fig:map}
 \begin{tikzpicture}[x=1mm,y=1mm]
 \node[obj] (n1) at (0,0) {$H_{\rm MFP}(t)$\\[-1pt]{\scriptsize the real interacting chain}\\[-1pt]\ftag{given}};
-\node[obj] (n2) at (38,0) {$h(k,\phi)$\\[-1pt]{\scriptsize one-particle $5\times5$ matrix}\\[-1pt]\ftag{1.B.1}};
-\node[obj] (n3) at (76,0) {$p_{12}(k,\phi)$\\[-1pt]{\scriptsize moving plane of bands 1 and 2}\\[-1pt]\ftag{1.B.2, 1.C.1}};
-\node[obj] (n4) at (114,0) {flavor $A/B$, frame $W(t)$\\[-1pt]{\scriptsize one direction in the plane}\\[-1pt]\ftag{1.D.1}};
-\node[obj] (n5) at (114,-27) {$\mathcal U=We^{S}$, $\mathcal K_{\rm ret}$\\[-1pt]{\scriptsize dressed frame; what is kept}\\[-1pt]\ftag{2.B.1--2.C.2}};
-\node[obj] (n6) at (76,-27) {$\sigma'_X(t)$, $I'(t)$\\[-1pt]{\scriptsize local state; physical current}\\[-1pt]\ftag{2.D.1--2.D.2, 3.A.3}};
-\node[obj] (n7) at (38,-27) {$\widehat Q(t)\pm E(t)$\\[-1pt]{\scriptsize charge prediction with error}\\[-1pt]\ftag{3.A.1--3.A.2, 3.B.1, 3.C.1}};
-\node[obj,dashed,draw=rulegray] (n8) at (0,-27) {goal: first window with\\[-1pt]$|\Qbar-Q_*|>\delta$\\[-1pt]\ftag{3.C.2}};
+\node[obj] (n2) at (38,0) {$h(k,\phi)$\\[-1pt]{\scriptsize one-particle $5\times5$ matrix}\\[-1pt]\ftag{1.B.1}\\[-1pt]\ktag{ink}{D}};
+\node[obj] (n3) at (76,0) {$p_{12}(k,\phi)$\\[-1pt]{\scriptsize moving plane of bands 1 and 2}\\[-1pt]\ftag{1.B.2, 1.C.1}\\[-1pt]\ktag{ink}{D}};
+\node[obj] (n4) at (114,0) {flavor $A/B$, frame $W(t)$\\[-1pt]{\scriptsize one direction in the plane}\\[-1pt]\ftag{1.D.1}\\[-1pt]\ktag{openred}{D/O-theory}};
+\node[obj] (n5) at (114,-29) {$\mathcal U=We^{S}$, $\mathcal K_{\rm ret}$\\[-1pt]{\scriptsize dressed frame; what is kept}\\[-1pt]\ftag{2.B.1--2.C.2}\\[-1pt]\ktag{openred}{D/O-theory}};
+\node[obj] (n6) at (76,-29) {$\sigma'_X(t)$, $I'(t)$\\[-1pt]{\scriptsize local state; physical current}\\[-1pt]\ftag{2.D.1--2.D.2, 3.A.3}\\[-1pt]\ktag{openred}{D/O-theory}};
+\node[obj] (n7) at (38,-29) {$\widehat Q(t)\pm E(t)$\\[-1pt]{\scriptsize charge prediction with error}\\[-1pt]\ftag{3.A.1--3.A.2, 3.B.1, 3.C.1}\\[-1pt]\ktag{calcamber}{D/O-calc}};
+\node[obj,dashed,draw=rulegray] (n8) at (0,-29) {goal: first window with\\[-1pt]$|\Qbar-Q_*|>\delta$\\[-1pt]\ftag{3.C.2}\\[-1pt]\ktag{openred}{O-theory}};
 \draw[okarrow] (n1)--(n2);
 \draw[okarrow] (n2)--(n3);
-\draw[okarrow] (n3)--(n4);
-\draw[okarrow] (n4)--(n5);
+\draw[openarrow] (n3)--(n4);
+\draw[openarrow] (n4)--(n5);
 \draw[openarrow] (n5)--(n6);
-\draw[openarrow] (n6)--(n7);
+\draw[calcarrow] (n6)--(n7);
 \draw[openarrow] (n7)--(n8);
 \end{tikzpicture}
-\figtext{Each box is a mathematical object; the blue labels give the questions (problem.part.number) that work with it. Black arrows are steps derived in the exam; red dashed arrows are links not yet established for the original pump.}
+\figtext{Each box is a mathematical object; the blue labels give the questions (problem.part.number) that work with it, and the last line gives the kind of the step that leads to it. Black arrows (D): derived in the exam, nothing open. Amber dotted arrows (O-calc): open, but existing theory is enough and a calculation is missing. Red dashed arrows (O-theory): open, because the closest existing theory needs a hypothesis that fails here. D/O: the identity is derived in the exam; its inputs for the original pump are open.}
 \end{figpanel}
 
 \par\Needspace{30\baselineskip}
@@ -820,10 +823,22 @@ dressing $e^S$&building the main correlations into the reference state by a chan
 prethermal lifetime&how long a driven system stays in a long-lived non-equilibrium state before domains destroy the order&metastable state; false-vacuum decay&first time the transport leaves a tolerance; open in [1] (Problem 3)\\\bottomrule
 \end{tabularx}}
 
+\par\Needspace{24\baselineskip}
+\smallheading{Open links: a calculation or a new theory?}
+An open link is O-calc when a procedure with existing methods would close it and the hypotheses of those methods hold for the original pump. It is O-theory when the closest existing theory needs a hypothesis that fails here. The label says whether a method exists, not how much work remains.
 
+{\small\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{30mm}>{\raggedright\arraybackslash}p{19mm}YY@{}}\toprule
+Open link (questions)&Kind&Closest existing theory&Hypothesis that fails, or the calculation that closes it\\\midrule
+the particles keep following one flavor (1.A.1, 1.D.1)&D/O-theory&many-body adiabatic theorem; many-body Chern number (Niu--Thouless--Wu)&a gap above the two flavor configurations, uniform in system size and over the cycle; the composite gap protects only the plane, not the direction in it\\
+local dressing assembled along the chain and the cycle (2.B.1, 2.B.2)&O-calc&Schrieffer--Wolff expansion; locality (cluster) estimates&build the corrections at every phase, join them smoothly, bound the overlap terms\\
+the kept dynamics $\mathcal K_{\rm ret}$ (2.C.1, 2.C.2)&D/O-theory&quasi-adiabatic continuation (Hastings); adiabatic theorems for extended systems (Bachmann--De Roeck--Fraas; Monaco--Teufel)&a spectral gap uniform in system size\\
+the local state over the full drive (3.A.3)&D/O-theory&Lieb--Robinson and local perturbation bounds&the bounds grow with time; the boundary correlations do not close at the times of interest\\
+the certificate inputs $\alpha,I_0,\eta,\delta_0,t_{\max}$ (3.B.1)&D/O-calc&trace-distance and locality bounds&evaluate them in one frame for one initial state, once the local state is controlled\\
+the first failed window (3.C.2)&O-theory&rigorous prethermalization (Abanin--De Roeck--Ho--Huveneers; Else--Bauer--Nayak)&a fast drive or a large gap; here the drive is slow\\\bottomrule
+\end{tabularx}}
 
-\begin{redbox}{OPEN --- the central dynamical link}
-The reference evolution and its local error are not yet controlled over the full drive.
+\begin{redbox}{OPEN --- the shared gap}
+The O-theory links fail on the same point: no existing theory controls a slowly driven, strongly correlated chain over long times when its order is not protected by a uniform gap. A first controlled result is a limit in which the failing hypothesis holds, for example a gap that protects the whole group of flavor configurations rather than one of them.
 \end{redbox}
 
 \clearpage

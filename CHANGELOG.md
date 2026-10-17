@@ -1,5 +1,19 @@
 # Changelog
 
+## Unreleased
+
+- **Two kinds of open link.** The open label O is split into **O-calc** (existing theory is enough; a calculation
+  is missing) and **O-theory** (the closest existing theory needs a hypothesis that fails here). A new section 1a
+  of the question-design reference gives the classification test, and asks for each O-theory link the limit in which
+  the failing hypothesis would hold. When several O-theory links fail on the same point, that shared gap is stated in
+  one sentence.
+- Appendix A of the solutions template has an open-link table (link, kind, closest existing theory, hypothesis that
+  fails or closing calculation, shared gap). Appendices B and C record the kind of each open item. The same applies to
+  the proposal-review summary.
+- Worked example: the chain figure marks each step as D, O-calc or O-theory, and Appendix A has the open-link table;
+  solutions now 25 pages.
+- `check_booklets.py` reports "O-calc" and "O-theory" in the question paper as research notes.
+
 ## 1.0.0 (2026-10-17)
 
 First stable release of ResearchPhO: learn papers from outside your field by solving them as a physics-olympiad

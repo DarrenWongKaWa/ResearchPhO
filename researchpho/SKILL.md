@@ -70,7 +70,11 @@ Details and sources: [olympiad formats](references/olympiad_formats.md).
    equivalent is a new concept: mark it and make sure a question teaches it. Exit: every term that a cold reader
    flags is in the map. See [question design](references/question_design.md).
 3. **Map the field as a chain of objects** from the model to the measured quantity; label each arrow stated in a
-   source, project result, derivable here, or open. The chain, the questions and the language map form Appendix A.
+   source, project result, derivable here, or open. Split the open arrows into **O-calc** (existing theory is
+   enough; a calculation is missing) and **O-theory** (the closest existing theory needs a hypothesis that fails
+   here, or no method exists); for O-theory, record that theory and the failing hypothesis. Exit: every open arrow
+   has a kind, and the shared gap of the O-theory arrows is stated in one sentence. The chain, the open-link table,
+   the questions and the language map form Appendix A.
 4. **Split the chain into three independent problems** of 10 points and 3-5 parts each.
 5. **Write the questions.** One verb each (Find, Prove, Show, Evaluate, Explain), a checkable answer, 0.2-2.5 points.
    Archetypes: modelling, bookkeeping, exact identity, solvable toy model, counterexample, bound chain, data

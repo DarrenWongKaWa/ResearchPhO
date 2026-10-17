@@ -20,7 +20,8 @@ It reports:
   booklet, and numbers with three or more significant digits from boxed answers (warnings: given data can look
   like an answer, and a statement the reader is asked to prove appears in both booklets by design);
 - **research material in the question paper**: green/red frames, `\origin`, `\handoff`, "NOT ESTABLISHED",
-  "AVAILABLE ---", "OPEN ---", "ADDED MODEL", "GIVEN BOUND", "PICTURE" (errors; move them to the appendices);
+  "AVAILABLE ---", "OPEN ---", "ADDED MODEL", "GIVEN BOUND", "PICTURE", "O-calc", "O-theory" (errors; move them
+  to the appendices);
 - **forbidden text**: internal paths (`/Users/`, `C:\`), "this conversation", `.md` file names, TODO, and your
   `--forbid` phrases (errors).
 

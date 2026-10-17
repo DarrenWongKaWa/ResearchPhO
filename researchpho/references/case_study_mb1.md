@@ -55,7 +55,8 @@ re-derive a sign before you set a target value in a problem.
 
 ## Reusable pieces (labels of the public example)
 
-- The chain-of-objects picture (Appendix A) with red dashed arrows for open links.
+- The chain-of-objects picture (Appendix A): black arrows derived, amber dashed arrows O-calc, red dashed arrows
+  O-theory; and the open-link table with the closest existing theory and the hypothesis that fails.
 - A two-level "dressing" model (2.B.1) to show that short-time growth v^2 t^2 is not a decay rate.
 - The counterexample det(i sigma_x) = det(1) (1.D.1) against reading internal exchange from a determinant.
 - Global versus local fidelity for a product state (3.A.1).

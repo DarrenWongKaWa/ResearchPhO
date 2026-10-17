@@ -29,10 +29,11 @@ Generate them after the question paper is final: `python3 make_answer_sheets.py 
 2. Per problem (S1-, S2-, S3-): parts and answers in question order, each followed by `\marking{...}`; answer
    figures.
 3. `\appendixstart` (SA-): Appendix A paper map (what each paper answers, the language map, the chain of objects
-   with open arrows); Appendix B
+   with each arrow labelled D, O-calc or O-theory, and the open-link table: link, kind, closest existing theory,
+   failing hypothesis or closing calculation, shared gap); Appendix B
    source, scope and open conditions per question (green/red frames are allowed here); Appendix C register of
-   available and missing results; Appendix D teacher notes (provenance, interpretations to confirm, label maps
-   between revisions, independent checks, sources).
+   available and missing results, with the kind of each missing item; Appendix D teacher notes (provenance,
+   interpretations to confirm, label maps between revisions, independent checks, sources).
 
 ## Macros
 

@@ -51,20 +51,63 @@ problem; each arrow becomes 1-3 questions.
 Worked example (fractional Thouless pump, `examples/mb1-fractional-pump`; labels problem.part.number):
 
 ```
-H_MFP(t)                         the real interacting chain                        S  [paper 1]
- -> h(k, phi)                    5x5 one-particle Bloch matrix                     D  1.B.1
- -> p12(k, phi)                  projector onto bands 1+2 (a moving plane)         D  1.B.2, 1.C.1
- -> flavor A/B, frame W(t)       one direction in the plane; following frame       D/O 1.D.1
- -> U = W e^S, K_ret             dressed frame; what is kept                       D/O 2.B.1-2.C.2
- -> sigma'_X(t), I'(t)           local state; physical current                     D  2.D.1, 2.D.2, 3.A.1-3.A.3
- -> Qhat(t) +- E(t)              charge prediction with error bar                  D/O 3.B.1, 3.C.1
- -> first failed window          the research goal                                 O  3.C.2
+H_MFP(t)                         the real interacting chain                   S           [paper 1]
+ -> h(k, phi)                    5x5 one-particle Bloch matrix                D           1.B.1
+ -> p12(k, phi)                  projector onto bands 1+2 (a moving plane)    D           1.B.2, 1.C.1
+ -> flavor A/B, frame W(t)       one direction in the plane; following frame  D/O-theory  1.D.1
+ -> U = W e^S, K_ret             dressed frame; what is kept                  D/O-theory  2.B.1-2.C.2
+ -> sigma'_X(t), I'(t)           local state; physical current                D/O-theory  2.D.1, 2.D.2, 3.A.1-3.A.3
+ -> Qhat(t) +- E(t)              charge prediction with error bar             D/O-calc    3.B.1, 3.C.1
+ -> first failed window          the research goal                            O-theory    3.C.2
 ```
 
-Labels: **S** stated in a source, **P** project result, **D** derivable exactly in the booklet, **O** open.
-D/O means: the identity is derivable, its inputs for the real system are open. The chain, with its labels, becomes
-Appendix A of the solutions; the O arrows are listed in Appendix C and feed the synthesis question. None of this
-appears in the question paper.
+Labels: **S** stated in a source, **P** project result, **D** derivable exactly in the booklet, and two kinds of
+open link:
+
+- **O-calc**: existing theory is enough; a calculation is missing. You can write the procedure that would close the
+  link (what to compute, by which method, for which system), and the hypotheses of every method hold for the real
+  system.
+- **O-theory**: no existing framework closes the link. The closest existing theory needs a hypothesis that fails
+  here, or there is no method at all. These are the places where a larger theory has to enter.
+
+D/O-calc and D/O-theory mean: the identity is derivable in the booklet; its inputs for the real system are open, of
+that kind. When one object involves open links of both kinds, label it by O-theory and list both links in the table
+of section 1a. The chain, with its labels, becomes Appendix A of the solutions; the open links are listed in
+Appendix C with their kind and feed the synthesis question. None of this appears in the question paper.
+
+## 1a. Open by calculation, or open for want of theory?
+
+Classify every open link before writing the synthesis question:
+
+1. Write, in at most three lines, the procedure that would close the link.
+2. For each step, name the method and check its hypotheses against the real system: gap, small parameter, time
+   range, system size, locality.
+3. If every step has a method whose hypotheses hold, the link is **O-calc**; record the calculation. If some step
+   has no method, or its closest method needs a hypothesis that fails, the link is **O-theory**; record the closest
+   theory and the hypothesis that fails.
+4. If you cannot name the closest theory, the link is not yet classified. Say so in Appendix C; do not guess.
+5. For each O-theory link, ask in which limit the failing hypothesis would hold. Example: no gap protects one
+   flavor configuration, but a gap may protect the whole group of flavor configurations, and the theorems then
+   apply to that group. That limit is usually the first controlled result and the place where the research starts.
+
+The label says whether a method exists, not how much work remains: an O-calc link can be months of simulation, and
+an O-theory link can be one missing lemma. When several O-theory links fail on the same hypothesis, state that
+shared gap in one sentence. It is the research problem that the papers leave open, and the synthesis question should
+lead the reader to it.
+
+Worked example (labels of the public example):
+
+| Open link | Kind | Closest existing theory | Hypothesis that fails, or calculation that closes it |
+| --- | --- | --- | --- |
+| the particles keep following one flavor (1.A.1, 1.D.1) | D/O-theory | many-body adiabatic theorem; many-body Chern number (Niu-Thouless-Wu) | a gap above the two flavor configurations, uniform in system size and over the cycle; the composite gap protects only the plane, not the direction in it |
+| local dressing assembled along the chain and the cycle (2.B.1, 2.B.2) | O-calc | Schrieffer-Wolff expansion; locality (cluster) estimates | build the corrections at every phase, join them smoothly, bound the overlap terms |
+| the kept dynamics K_ret (2.C.1, 2.C.2) | D/O-theory | quasi-adiabatic continuation (Hastings); adiabatic theorems for extended systems (Bachmann-De Roeck-Fraas; Monaco-Teufel) | a spectral gap uniform in system size |
+| the local state over the full drive (3.A.3) | D/O-theory | Lieb-Robinson and local perturbation bounds | the bounds grow with time; the boundary correlations do not close at the times of interest |
+| the certificate inputs alpha, I_0, eta, delta_0, t_max (3.B.1) | D/O-calc | trace-distance and locality bounds | evaluate them in one frame for one initial state, once the local state is controlled |
+| the first failed window (3.C.2) | O-theory | rigorous prethermalization (Abanin-De Roeck-Ho-Huveneers; Else-Bauer-Nayak) | a fast drive or a large gap; here the drive is slow |
+
+Shared gap: a long-time theory of slowly driven, strongly correlated systems whose order is not protected by a
+uniform gap.
 
 ## 1b. Split into three independent problems
 
@@ -76,6 +119,7 @@ another, state it as given. Each problem gets 3-5 parts and its own introduction
 How to find the chain in a paper: start from the quantity in the abstract or the main figure (here: charge per
 period), ask "computed from what?", and repeat until you reach the model. Then ask, for each arrow, "which
 assumption makes this step work?" - each assumption is a candidate counterexample question.
+For an open arrow, the same assumption usually decides its kind (section 1a).
 
 ## 2. Question archetypes
 
@@ -89,7 +133,7 @@ assumption makes this step work?" - each assumption is a candidate counterexampl
 | Bound chain | turn small errors into a guaranteed statement | 3.A.2 trace-distance current bound; 3.B.1 certificate time | inequality + number |
 | Data interpretation | read a table honestly | which claim does a reported table support? (full version) | yes/no + reason |
 | Decision rule | pass / fail / undetermined with error bars | 3.C.1 three windows | classification |
-| Synthesis | list what is still missing | 3.C.2 inputs before a lifetime can be predicted | list |
+| Synthesis | list what is still missing, and which items need a calculation or a new theory | 3.C.2 inputs before a lifetime can be predicted | list |
 
 Rules for every question:
 

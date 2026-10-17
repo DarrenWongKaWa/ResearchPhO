@@ -7,7 +7,9 @@ learn what the proposal needs and to see, question by question, which steps can 
 
 1. **Target.** Rewrite the proposal's goal as one measurable sentence. Example: "predict when the original
    interacting pump leaves a charge tolerance of 0.005 per period, and the process that controls it".
-2. **Chain of objects** with S/P/D/O labels (see question design). The O arrows are the research.
+2. **Chain of objects** with S/P/D/O-calc/O-theory labels (see question design, sections 1 and 1a). The open
+   arrows are the research: O-calc arrows need a calculation with existing methods; O-theory arrows need a larger
+   theory.
 3. **Tools that exist now.** For each D arrow, one exact question (identity, toy model, bound). These teach the
    methods the proposal will use.
 4. **Conditional result.** One question that shows how the final answer would follow *if* the open inputs were
@@ -18,13 +20,16 @@ learn what the proposal needs and to see, question by question, which steps can 
 6. **Synthesis question** (last part of problem 3). "List the inputs that must be derived from the model and a specified initial state
    before the tests can be applied. Why does certifying individual windows not, by itself, locate the first
    failure?" Mark it on fixed items.
-7. **Register** (Appendix C of the solutions): a table "item - available now - still missing". Keep it out of the
-   question paper: it answers the synthesis question.
+7. **Register** (Appendix C of the solutions): a table "item - available now - still missing - kind (O-calc or
+   O-theory)". Keep it out of the question paper: it answers the synthesis question.
 
 ## Output for a proposal review
 
 Besides the booklets, give the author a one-page summary: the chain with labels, the open arrows ranked by how much
-of the target depends on them, and for each open arrow the smallest calculation that would close it.
+of the target depends on them, for each O-calc arrow the smallest calculation that would close it, and for each
+O-theory arrow the closest existing theory, the hypothesis that fails, and the limit in which it would hold. End with
+the shared gap of the O-theory arrows: it tells the author where the proposal needs new theory rather than more
+computing.
 
 ## Guardrails
 

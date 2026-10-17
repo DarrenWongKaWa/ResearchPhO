@@ -52,6 +52,8 @@ A quick version has one problem of 10 points.
    reader already knows, and how it is computed or measured. Terms with no familiar equivalent are marked as new
    concepts, and a question teaches each of them.
 3. Maps the papers as a chain of objects from the model to the measured quantity, and splits it into three problems.
+   Each open link is labelled O-calc (existing theory is enough; a calculation is missing) or O-theory (the closest
+   existing theory needs a hypothesis that fails here). The O-theory links show where a larger theory has to enter.
 4. Writes questions of nine types: modelling, bookkeeping, exact identity, solvable toy model, counterexample, bound
    chain, data interpretation, decision rule, synthesis.
 5. Writes each introduction and its "Useful information", and runs a cold read: a fresh agent lists undefined terms,
@@ -91,7 +93,7 @@ In Claude Code, attach or name the papers and ask, for example:
 [`examples/mb1-fractional-pump`](examples/mb1-fractional-pump/): *How long can a two-cycle quantum conveyor operate?*
 Built from [arXiv:2504.09338](https://arxiv.org/abs/2504.09338) (multi-band fractional Thouless pumps) and
 [arXiv:2608.06777](https://arxiv.org/abs/2608.06777) (projectors on the Grassmannian). Three problems, 18 questions,
-30 points; question paper 14 pages, answer sheets 7 pages, solutions 24 pages including the language map.
+30 points; question paper 14 pages, answer sheets 7 pages, solutions 25 pages including the language map and the open-link table.
 
 ## Limits
 
