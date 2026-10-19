@@ -44,10 +44,11 @@ python3 ../../researchpho/scripts/check_booklets.py questions.tex solutions.tex 
     --total 30 --problem-total 10 --guide study_guide.json
 ```
 
-The checker reports the modelling share of the tagged marks: 45% in Problem 1, 34% in Problem 2 and 40% in
-Problem 3, each with a warning, because it is below one half (standards S2, S3). The tags show where the marks sit
-today: the solvable models (1.C.1, 2.B.1), the current identity (2.D.2) and the bound chain (3.A.2, 3.B.1) give
-most of their points to algebra.
+The checker reports the modelling share of the tagged marks: 56% in Problem 1, 53% in Problem 2 and 52% in
+Problem 3, above the one-half target (standards S2, S3). The first tagging gave 45%, 34% and 40%: the solvable
+models (1.C.1, 2.B.1), the current identity (2.D.2) and the bound chain (3.A.2, 3.B.1) gave most of their points
+to algebra. The marking lines were then rebalanced within each question, with every question's total unchanged:
+algebra pieces lost weight, and the interpretation each solution already states gained it.
 A later revision can move marks to the interpretation steps or add modelling sub-questions.
 
 `figures.py` and `check_answers.py` need numpy and scipy. The figures are single-particle geometry at K/J = -3/2

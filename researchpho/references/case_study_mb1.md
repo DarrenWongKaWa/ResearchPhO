@@ -22,7 +22,7 @@ two papers and from teaching models.
 | 3 | six "modelling bridges" between objects (M.1, B.4, C.3, C.4, E.3, F.3) | the bridges carried most of the learning: why the next object is needed |
 | 4 | everything scored (20 points); Background, Toolkit, Glossary; 16 set-up pictures; notation unified; answer leaks removed; teacher notes | a reader who had not read the papers could not start revision 3; a cold read finds this at once |
 | 5 (ResearchPhO) | strict IPhO/APhO format: three independent problems of 10 points, boxed subquestions, answer sheets; every coloured frame, scope note and research-plan item moved to solution Appendices A-D; background and toolkit moved into each problem's introduction and "Useful information" | status frames are not olympiad style and distract the solver; the research context belongs at the end of the solutions |
-| 6 (ResearchPhO 1.1.0) | marking lines tagged (M)/(C); toolbox appendix; study guide; the field direction of 1.C.1 defined in the text and the Bloch vector introduced before Figure 1.5 | the tags measure S2 instead of asserting it: 45%, 34% and 40% modelling, below the one-half target |
+| 6 (ResearchPhO 1.1.0) | marking lines tagged (M)/(C); toolbox appendix; study guide; the field direction of 1.C.1 defined in the text and the Bloch vector introduced before Figure 1.5 | the tags measure S2 instead of asserting it: the first tagging gave 45%, 34% and 40% modelling; rebalancing within each question, totals unchanged, gave 56%, 53% and 52% |
 
 ## Reader feedback that drove revisions 4 and 5
 

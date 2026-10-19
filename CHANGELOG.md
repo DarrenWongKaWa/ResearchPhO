@@ -39,7 +39,7 @@ tags that measure the modelling share.
 - **Worked example.** New study guide (`study_guide.json`, `study_guide.html`: 18 questions, 11 computation tools,
   18 modelling ideas) and research checklist (`research_checklist.json`, `research_checklist.html`: 7 objects,
   2 O-calc and 4 O-theory links, from the open-link table of Appendix A). All 18 marking lines are tagged; pieces that mixed both kinds were split, keeping every
-  question's points. The checker reports modelling shares of 45%, 34% and 40% and warns for each problem. New
+  question's points. The first tagging gave modelling shares of 45%, 34% and 40%, below one half. The marking lines were rebalanced within each question, every total unchanged, to 56%, 53% and 52%. New
   Appendix D toolbox (solutions now 28 pages), recomputed in `check_answers.py`. In 1.C.1 the field direction
   n(t) is now defined in the text, not only in the caption of Figure 1.5, the Bloch vector is introduced before the
   figure, and "Useful information" uses d for a generic unit vector.
