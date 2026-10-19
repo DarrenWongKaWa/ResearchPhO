@@ -1,6 +1,6 @@
 # ResearchPhO: learn papers from outside your field by solving them
 
-**Version 1.2.0** (19 October 2026). See the [changelog](CHANGELOG.md).
+**Version 1.2.1** (20 October 2026). See the [changelog](CHANGELOG.md).
 
 A [Claude Code](https://claude.com/claude-code) skill. Give it a few papers from a field that is not yours. It turns
 the papers themselves into a physics-olympiad theory exam written to the standards of the International Physics
@@ -96,14 +96,23 @@ In Claude Code, attach or name the papers and ask, for example:
 - "Turn my proposal into a ResearchPhO exam and give me the available/missing register."
 - "Audit this exam against the ResearchPhO standards."
 
-## Worked example
+## Worked examples
 
-[`examples/MultiBandFractionalThoulessPumps_RPhO`](examples/MultiBandFractionalThoulessPumps_RPhO/): *How long can a
-two-cycle quantum conveyor operate?* Built from [arXiv:2504.09338](https://arxiv.org/abs/2504.09338) (multi-band
-fractional Thouless pumps) and [arXiv:2608.06777](https://arxiv.org/abs/2608.06777) (projectors on the
-Grassmannian). Three problems, 18 questions, 30 points; questions 14 pages, solutions 28 pages; a checklist with
-11 computation tools, 18 modelling ideas, 2 O-calc and 4 O-theory links. Its sources are in
-[`examples/mb1-fractional-pump`](examples/mb1-fractional-pump/).
+1. [`examples/MultiBandFractionalThoulessPumps_RPhO`](examples/MultiBandFractionalThoulessPumps_RPhO/): *How long can
+   a two-cycle quantum conveyor operate?* Built from [arXiv:2504.09338](https://arxiv.org/abs/2504.09338)
+   (multi-band fractional Thouless pumps) and [arXiv:2608.06777](https://arxiv.org/abs/2608.06777) (projectors on
+   the Grassmannian). Three problems, 18 questions, 30 points; questions 14 pages, solutions 28 pages; a checklist
+   with 11 computation tools, 18 modelling ideas, 2 O-calc and 4 O-theory links. Its sources are in
+   [`examples/mb1-fractional-pump`](examples/mb1-fractional-pump/).
+2. [`examples/DisorderInducedNonlinearHallEffect_RPhO`](examples/DisorderInducedNonlinearHallEffect_RPhO/): *How
+   does disorder enter a model, a Hall current and a pump?* Built from the anomalous-Hall review
+   ([Rev. Mod. Phys. 82, 1539](https://doi.org/10.1103/RevModPhys.82.1539)), disorder-induced nonlinear Hall
+   transport ([Nat. Commun. 10, 3047](https://doi.org/10.1038/s41467-019-10941-3)), average-symmetry topology in
+   disordered quantum simulators ([Nat. Phys. 22, 1534](https://www.nature.com/articles/s41567-026-03459-1)) and
+   the fractional pump with the Niu–Thouless invariant ([arXiv:2504.09338](https://arxiv.org/abs/2504.09338)).
+   Three problems, 33 questions, 30 points; questions 18 pages, solutions 24 pages; a checklist with 15 computation
+   tools, 31 modelling ideas, 4 O-calc and 5 O-theory links. Its sources are in
+   [`examples/disorder-hall-pump`](examples/disorder-hall-pump/).
 
 ## Limits
 
@@ -132,10 +141,12 @@ researchpho/                        the skill (link or copy this folder to ~/.cl
   scripts/check_booklets.py         consistency, structure, modelling-share and leak checks
   scripts/make_checklist.py         checklist JSON -> HTML page
   scripts/render_sheets.py          PDF pages -> contact sheets
-examples/MultiBandFractionalThoulessPumps_RPhO/   the deliverables of the worked example (3 files)
+examples/MultiBandFractionalThoulessPumps_RPhO/   the deliverables of worked example 1 (3 files)
 examples/mb1-fractional-pump/       its sources: LaTeX, checklist data, figure and answer scripts
+examples/DisorderInducedNonlinearHallEffect_RPhO/ the deliverables of worked example 2 (3 files)
+examples/disorder-hall-pump/        its sources: LaTeX, checklist data and builder, answer script
 ```
 
 ## License
 
-MIT. The example booklets cite the two arXiv papers; no text from them or from any exam is reproduced.
+MIT. The example booklets cite their source papers; no text from them or from any exam is reproduced.

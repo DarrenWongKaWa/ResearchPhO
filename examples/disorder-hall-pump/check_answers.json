@@ -1,0 +1,191 @@
+{
+ "problem1": {
+  "A1_site_bond_over_onsite": 0.000335463,
+  "A1_site_neighbour_onsite_over_onsite": 1.12535e-07,
+  "A1_mid_bond_over_onsite": 1.0,
+  "A2_Delta_over_W_c0.1": 0.96225,
+  "A2_kappa3_over_W3_c0.1": 0.06415,
+  "B1_var": 0.0200413,
+  "B1_cov1": -0.0100917,
+  "B1_cov2": 0.000125532,
+  "B2_meanshift_J_2nd": 0.0108,
+  "B2_meanshift_V_2nd": 0.0378,
+  "B2_meanshift_J_mc": 0.0108829,
+  "B2_meanshift_V_mc": 0.0389258,
+  "B2_rms_dJ_over_J": 0.127279,
+  "B2_rms_dV_over_V": 0.254558,
+  "C1_tau": 10.3923,
+  "C1_Gamma_over_J": 0.0481125,
+  "C1_ell_over_a": 18.0,
+  "C1_xi_over_a": 72.0,
+  "C1_xi_over_ell": 4.0,
+  "C1_exp_minus_2L_over_xi_L1000": 8.63504e-13,
+  "C1_check_rate_numeric_W0.5": 0.0234041,
+  "C1_check_rate_born_W0.5": 0.0240563,
+  "C1_check_xi_numeric_W0.5": 283.048,
+  "C1_check_xi_formula_W0.5": 288.0,
+  "C2_ratio_exact_kFlambda3": 17.4489,
+  "C2_ratio_smallangle_kFlambda3": 18.0,
+  "C3_tH_L1000": 1154.7,
+  "C3_tau_W1": 10.3923,
+  "C3_level_spacing": 0.0054414,
+  "D1_omega0": 15192700000000.0,
+  "D1_wmax": 1519270000.0,
+  "D1_w_tc_1ns": 200000.0,
+  "D1_w_tc_1fs": 46152800.0,
+  "D1_wt_1ps": {
+   "D1_wmax": 0.00151927,
+   "D1_w_tc_1ns": 2e-07,
+   "D1_w_tc_1fs": 4.61528e-05
+  },
+  "D1_wt_10us": {
+   "D1_wmax": 15192.7,
+   "D1_w_tc_1ns": 2.0,
+   "D1_w_tc_1fs": 461.528
+  },
+  "D2_meanshift_taylor": -0.09,
+  "D2_meanshift_mc": -0.0726229,
+  "D2_flank_rel_rms_taylor": 0.3,
+  "D2_flank_rel_rms_mc": 0.295422
+ },
+ "problem2": {
+  "A1_Omega_numeric": -1.28065,
+  "A1_Omega_formula": -1.28066,
+  "A1_int_f0_Omega": 0.031831,
+  "A1_formula_m_over_4pi_eF": 0.031831,
+  "B2_Dx_numeric_t0.02": -0.000803105,
+  "B2_Dx_formula_t0.02": -0.000802141,
+  "B_check_chi_in_paper_vs_ours": [
+   0.00292966,
+   0.00292966
+  ],
+  "C2_sj_over_cd_eF2m": -1.0,
+  "C2_isk_over_cd_eF2m": -1.31633,
+  "C2_sj_zero_at_eF_over_m": 5.0,
+  "C2_total_theoryI_range": [
+   -1.31689,
+   -0.833508
+  ],
+  "C2_total_theoryII_range": [
+   2.83351,
+   3.31689
+  ],
+  "C2_totals_at_eF2m": [
+   -1.31633,
+   3.31633
+  ],
+  "C3_C1": 0.4,
+  "C3_C2": 0.5,
+  "D1_V1cubed": {
+   "repulsive": 1.0,
+   "attractive": -1.0,
+   "mixed": 0.0
+  }
+ },
+ "problem3": {
+  "A2_logavg_W1": -0.0452287,
+  "A2_logavg_W2": -0.306853,
+  "A2_ln0.8": -0.223144,
+  "A2_edge_loc_length_W2": 11.9461,
+  "A2_Wc": 1.87275,
+  "A2_mc_logavg_W1": -0.0449432,
+  "A2_mc_logavg_W2": -0.310684,
+  "B1_dN_11_30": -0.01,
+  "B1_dN_31_50": -0.37,
+  "B1_dN_51_70": 0.39,
+  "C2_sum_d2_table": 0.9418,
+  "C2_rms_hz_over_W_table": 0.140074,
+  "C2_rms_hx_over_W_table": 0.00942956,
+  "C2_bias_to_mixing_ratio": 14.8548,
+  "C2_model_scan": [
+   {
+    "phi_over_pi": 0.0,
+    "centres": [
+     0.309142,
+     0.890858
+    ],
+    "rms_hz_over_W": 0.139879,
+    "rms_mix_over_W": 0.00938735
+   },
+   {
+    "phi_over_pi": 0.25,
+    "centres": [
+     0.301904,
+     0.770177
+    ],
+    "rms_hz_over_W": 0.135182,
+    "rms_mix_over_W": 0.0121576
+   },
+   {
+    "phi_over_pi": 0.5,
+    "centres": [
+     0.256147,
+     0.697894
+    ],
+    "rms_hz_over_W": 0.136966,
+    "rms_mix_over_W": 0.0148286
+   },
+   {
+    "phi_over_pi": 0.75,
+    "centres": [
+     0.123267,
+     0.698935
+    ],
+    "rms_hz_over_W": 0.139148,
+    "rms_mix_over_W": 0.00781357
+   },
+   {
+    "phi_over_pi": 1.0,
+    "centres": [
+     0.1,
+     0.6
+    ],
+    "rms_hz_over_W": 0.134544,
+    "rms_mix_over_W": 0.00772467
+   },
+   {
+    "phi_over_pi": 1.25,
+    "centres": [
+     0.0767332,
+     0.501065
+    ],
+    "rms_hz_over_W": 0.1388,
+    "rms_mix_over_W": 0.0159638
+   },
+   {
+    "phi_over_pi": 1.5,
+    "centres": [
+     0.502106,
+     0.943853
+    ],
+    "rms_hz_over_W": 0.136966,
+    "rms_mix_over_W": 0.0148286
+   },
+   {
+    "phi_over_pi": 1.75,
+    "centres": [
+     0.429823,
+     0.898096
+    ],
+    "rms_hz_over_W": 0.135182,
+    "rms_mix_over_W": 0.0121576
+   }
+  ],
+  "B2_single_period_displacements": [
+   -0.581716,
+   -0.418284
+  ],
+  "D1_ell_threshold": 20.0,
+  "D2_ell_for_p_Phi(-1)": 16.0,
+  "D2_p_ell4": 0.0227501,
+  "D2_count_disjoint_4cell_segments_N1e4": 56.8753,
+  "D2_W_for_sigma_h_0.05": 0.356888,
+  "D2_p_ell4_mc": 0.022935,
+  "D3_t1": 100.0,
+  "D3_teps": 1000.0,
+  "D2_note": "W = sigma_h / 0.140"
+ },
+ "toolbox": {
+  "all_toolbox_checks": "passed"
+ }
+}

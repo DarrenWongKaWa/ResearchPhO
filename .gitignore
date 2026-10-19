@@ -9,3 +9,4 @@ __pycache__/
 sheets/
 # build outputs of the example sources; the deliverables live in examples/*_RPhO/
 examples/mb1-fractional-pump/*.pdf
+examples/disorder-hall-pump/*.pdf

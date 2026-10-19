@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.2.1 (2026-10-20)
+
+A second worked example; the skill itself is unchanged.
+
+- **Worked example 2.** *How does disorder enter a model, a Hall current and a pump?* Deliverables in
+  `examples/DisorderInducedNonlinearHallEffect_RPhO/` (questions 18 pages, solutions 24 pages, checklist with 33
+  questions, 15 tools, 31 ideas, 4 O-calc and 5 O-theory links); sources in `examples/disorder-hall-pump/`. Built
+  from several papers at once (anomalous-Hall review, disorder-induced nonlinear Hall effect and its quantum
+  revision, average-symmetry topology, fractional pump with the Niu-Thouless invariant) around one research
+  question: how a microscopic disorder model is built and then used for responses and for pumping in large systems.
+  Modelling share 57%, 64%, 64%.
+- The example's README records what the cold read and the trial solve changed: an inconsistency between a
+  neglected overlap and the quantity asked for, symbol clashes, missing tools in one problem's "Useful information",
+  and four answer or wording corrections.
+
 ## 1.2.0 (2026-10-19)
 
 Three deliverables, one checklist, no answer sheets.
