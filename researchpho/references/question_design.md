@@ -94,8 +94,8 @@ The label says whether a method exists, not how much work remains: an O-calc lin
 an O-theory link can be one missing lemma. When several O-theory links fail on the same hypothesis, state that
 shared gap in one sentence. It is the research problem that the papers leave open, and the synthesis question should
 lead the reader to it.
-The open-link table also becomes the research checklist, a page on which links are ticked off as results close
-them (see [booklet layout](booklet_layout.md), checklist flowcharts).
+The open-link table also becomes the research segment of the checklist, where links are ticked off as results
+close them (see [booklet layout](booklet_layout.md), the checklist page).
 
 Worked example (labels of the public example):
 

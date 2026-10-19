@@ -5,7 +5,7 @@ Part C", "what does Figure 1.5 show?". The booklets stay as they are. The agent 
 then leads the reader through it.
 
 Inputs: the question paper, the solutions with Appendix A (language map, chain of objects, open links), the toolbox
-appendix, the study guide, and the trial-solve records (see [verification](verification.md), section 1c).
+appendix, the checklist, and the trial-solve records (see [verification](verification.md), section 1c).
 
 ## 1. The tutor card (prepare before the reader starts the question)
 
@@ -48,7 +48,7 @@ Keep the card private until it is needed. Show one field at a time, when the rea
    computation or counterexample that refutes it. Do not only restate the correct result.
 8. **Close each part with a two-sentence recap**: what was found, and what it means for the question the paper
    answers.
-9. **Prerequisites on request.** When the reader asks "what do I need to know for this?", show the study guide, or
+9. **Prerequisites on request.** When the reader asks "what do I need to know for this?", show the checklist, or
    the items of the current question from it.
 
 ## 3. Preparing the cards

@@ -7,3 +7,5 @@
 __pycache__/
 .DS_Store
 sheets/
+# build outputs of the example sources; the deliverables live in examples/*_RPhO/
+examples/mb1-fractional-pump/*.pdf

@@ -12,7 +12,7 @@ present, the modelling share of the tagged marks is reported per problem, with a
 
 Usage:
   python3 check_booklets.py questions.tex solutions.tex [--total 30] [--problem-total 10]
-                            [--answers answersheets.tex] [--guide study_guide.json] [--forbid PHRASE ...]
+                            [--checklist checklist.json] [--forbid PHRASE ...]
                             [--allow-frames]
 
 Exit code 1 if any ERROR is found. WARN lines need a human look.
@@ -168,60 +168,61 @@ def modelling_share(tagged: dict[str, dict[str, float]], numbered: bool) -> tupl
 
 
 def guide_checks(path: Path, q_points: dict[str, float]) -> tuple[str, list[str]]:
-    """The study guide (a checklist page or its JSON) lists every scored question once, with the same points."""
+    """The checklist (its page or its JSON) lists every scored question once, with the same points."""
     try:
         text = path.read_text(encoding="utf-8")
     except (OSError, UnicodeDecodeError) as exc:
-        return "", [f"ERROR study guide {path}: cannot read ({exc})"]
+        return "", [f"ERROR checklist {path}: cannot read ({exc})"]
     if path.suffix.lower() in (".html", ".htm"):
         block = GUIDE_BLOCK.search(text)
         if not block:
-            return "", [f"ERROR study guide {path.name}: no checklist-data block"]
+            return "", [f"ERROR checklist {path.name}: no checklist-data block"]
         text = block.group(1).replace("<\\/", "</")
     try:
         data = json.loads(text)
     except ValueError as exc:
-        return "", [f"ERROR study guide {path.name}: invalid JSON ({exc})"]
+        return "", [f"ERROR checklist {path.name}: invalid JSON ({exc})"]
     if not isinstance(data, dict):
-        return "", [f"ERROR study guide {path.name}: not a JSON object"]
+        return "", [f"ERROR checklist {path.name}: not a JSON object"]
     items = data.get("items") if isinstance(data.get("items"), dict) else {}
     groups = data.get("groups") if isinstance(data.get("groups"), list) else []
+    # only exam nodes are questions; a research segment (kind "research") carries the open links
     nodes = [node for group in groups if isinstance(group, dict) and isinstance(group.get("nodes"), list)
-             for node in group["nodes"]]
+             and group.get("kind", "exam") == "exam" for node in group["nodes"]]
     notes, g_points, used = [], {}, set()
     for node in nodes:
         label = node.get("label") if isinstance(node, dict) else None
         if not isinstance(label, str):
-            notes.append("ERROR study guide: a node without a text label")
+            notes.append("ERROR checklist: a node without a text label")
             continue
         if label in g_points:
-            notes.append(f"ERROR study guide: label {label} appears twice")
+            notes.append(f"ERROR checklist: label {label} appears twice")
         points = node.get("points")
         valid = isinstance(points, (int, float)) and not isinstance(points, bool) and math.isfinite(points)
         g_points[label] = points if valid else None
         needs = node.get("needs", [])
         if not isinstance(needs, list):
-            notes.append(f"ERROR study guide {label}: 'needs' is not a list")
+            notes.append(f"ERROR checklist {label}: 'needs' is not a list")
             continue
         for item_id in needs:
             if not isinstance(item_id, str) or not isinstance(items.get(item_id), dict):
-                notes.append(f"ERROR study guide {label}: unknown item {item_id!r}")
+                notes.append(f"ERROR checklist {label}: unknown item {item_id!r}")
             else:
                 used.add(item_id)
     for key in sorted(set(q_points) | set(g_points)):
         if key not in g_points:
-            notes.append(f"ERROR study guide: no entry for question {key}")
+            notes.append(f"ERROR checklist: no entry for question {key}")
         elif key not in q_points:
-            notes.append(f"ERROR study guide: {key} is not a question of the paper")
+            notes.append(f"ERROR checklist: {key} is not a question of the paper")
         elif g_points[key] is None or abs(g_points[key] - q_points[key]) > 1e-9:
-            notes.append(f"ERROR study guide {key}: points {node_points(g_points[key])}, question paper has "
+            notes.append(f"ERROR checklist {key}: points {node_points(g_points[key])}, question paper has "
                          f"{q_points[key]:g}")
     counts: dict[str, int] = {}
     for item_id in used:
         category = str(items[item_id].get("category"))
         counts[category] = counts.get(category, 0) + 1
     detail = ", ".join(f"{n} {c}" for c, n in sorted(counts.items()))
-    return f"study guide: {len(g_points)} questions; items: {detail or 'none'}", notes
+    return f"checklist: {len(g_points)} questions; items: {detail or 'none'}", notes
 
 
 def node_points(value: object) -> str:
@@ -276,8 +277,8 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("questions", type=Path)
     parser.add_argument("solutions", type=Path)
-    parser.add_argument("--answers", type=Path, help="answer-sheet booklet to cross-check labels")
-    parser.add_argument("--guide", type=Path, help="study guide JSON (or its HTML page) to cross-check labels and points")
+    parser.add_argument("--checklist", "--guide", dest="guide", type=Path,
+                        help="checklist JSON (or its HTML page) to cross-check question labels and points")
     parser.add_argument("--total", type=float, help="expected total points")
     parser.add_argument("--problem-total", type=float, help="expected points of every problem (IPhO/APhO: 10)")
     parser.add_argument("--forbid", action="append", default=[], help="extra phrase that must not appear in questions")
@@ -310,16 +311,6 @@ def main() -> int:
             notes.append(f"ERROR problem {number}: questions add to {got:g}, title says {declared:g}")
         if args.problem_total is not None and abs(declared - args.problem_total) > 1e-6:
             notes.append(f"ERROR problem {number}: {declared:g} points, expected {args.problem_total:g}")
-    if args.answers:
-        a_body = body_of(args.answers.read_text(encoding="utf-8"))
-        labels, current = set(), ""
-        for match in re.finditer(r"\\(sheetproblem|answerbox)\{([^}]*)\}", a_body):
-            if match.group(1) == "sheetproblem":
-                current = match.group(2).strip() + "."
-            else:
-                labels.add(current + match.group(2).split("(")[0].strip())
-        for key in sorted(set(q_points) ^ labels):
-            notes.append(f"ERROR {key}: question and answer sheet do not match")
 
     notes += problem_structure(q_body)
     sum_notes, tagged = marking_sums(s_body, s_items)

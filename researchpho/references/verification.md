@@ -5,21 +5,21 @@ A booklet is finished only when four kinds of check pass. Record their output ne
 ## 1. Document checker
 
 ```bash
-python3 scripts/check_booklets.py questions.tex solutions.tex --answers answersheets.tex \
-    --total 30 --problem-total 10 --guide study_guide.json --forbid "200T"
+python3 scripts/check_booklets.py questions.tex solutions.tex \
+    --total 30 --problem-total 10 --checklist checklist.json --forbid "200T"
 ```
 
 It reports:
 
-- **labels and points**: every scored label (problem.part.number) appears once in each booklet and on the answer
-  sheets with the same points; every problem adds up to its title and to `--problem-total`; the sum equals
+- **labels and points**: every scored label (problem.part.number) appears once in each booklet with the same
+  points; every problem adds up to its title and to `--problem-total`; the sum equals
   `--total` (errors);
 - **marking sums**: decimals outside math in each `\marking{}` add up to the question's points (warnings; a line
   such as "each link: 0.1" needs a manual look);
 - **modelling share** (standards S2, S3): when marking numbers carry tags, "0.45 (M)" or "0.3 (C)", the marks per
   problem by tag and the modelling share of the tagged marks; a warning when it is below one half, and a warning for
   a tag that does not directly follow a number. Untagged lines are valid and are reported as untagged;
-- **study guide** (`--guide study_guide.json`, or its HTML page): every scored question appears once in the guide
+- **checklist** (`--checklist checklist.json`, or its HTML page): every scored question appears once in the exam segment
   with the same points, and every item a question needs is defined (errors);
 - **answer leaks**: boxed answers from the solutions (`\boxed{...}`) that appear verbatim in the question
   booklet, and numbers with three or more significant digits from boxed answers (warnings: given data can look
@@ -42,7 +42,7 @@ hints, and (c) by rewriting the end of the introduction. Record the final cold-r
 
 The cold read finds what the reader cannot interpret; the trial solve finds where a reader at the target level
 gets stuck while solving, and what it misreads. Give the question paper (no solutions, no papers, no appendices) to
-a fresh agent, one problem at a time: "You are [the reader level of the study guide]. Solve each question as in the
+a fresh agent, one problem at a time: "You are [the reader level, by default an undergraduate who knows the four core physics courses]. Solve each question as in the
 exam. For every question record: (1) your answer; (2) every place where you got stuck, with the step and what was
 missing; (3) every sentence, symbol or figure you first understood differently from what you later concluded, and
 why; (4) the tools or ideas you needed that you did not have."
@@ -51,12 +51,12 @@ Compare the records with the solutions and use them:
 
 | Record | Use |
 | --- | --- |
-| stuck because a tool is missing | a line in "Useful information" and a toolbox entry; an item in the study guide |
+| stuck because a tool is missing | a line in "Useful information" and a toolbox entry; an item in the checklist |
 | stuck because a step is too large | split the question, or give the intermediate result as a target |
-| a misreading of the text or a figure | fix the text (define the symbol in the text, rename a letter used twice); add it to the misreading list of the tutor card |
-| a misreading of the physics | the misreading list of the tutor card, with the counterexample that refutes it |
+| a misreading of the text or a figure | fix the text (define the symbol in the text, rename a letter used twice); note it for readers who ask for help |
+| a misreading of the physics | a counterexample in the solutions, or a sharper question |
 | a wrong answer by a reasonable route | a candidate partial-credit marking line, tagged (C) or (M) |
-| (4) differs from the study guide | add or remove study-guide items |
+| (4) differs from the checklist | add or remove checklist items |
 
 Repeat the trial solve after large changes. Keep the records with the booklets; do not publish them with the exam.
 

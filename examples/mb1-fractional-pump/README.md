@@ -1,14 +1,14 @@
-# Worked example: How long can a two-cycle quantum conveyor operate?
+# Worked example (sources): How long can a two-cycle quantum conveyor operate?
 
-A ResearchPhO theory exam built from two arXiv papers with the `researchpho` skill, in strict IPhO/APhO format.
+A ResearchPhO theory exam built from two arXiv papers with the `researchpho` skill, in strict IPhO/APhO format, for an
+undergraduate who knows the four core physics courses. This folder holds the sources. The deliverables are in
+[`../MultiBandFractionalThoulessPumps_RPhO`](../MultiBandFractionalThoulessPumps_RPhO/):
 
-| File | Content |
+| Deliverable | Content |
 | --- | --- |
-| [questions.pdf](questions.pdf) | 14 pages: general instructions; three independent problems of 10 points (18 questions, 30 points); introductions, 13 figures, given data, "Useful information". No answers, no research notes. |
-| [answersheets.pdf](answersheets.pdf) | 7 pages: one box per subquestion and sub-part. |
-| [solutions.pdf](solutions.pdf) | 28 pages: answers, marking scheme with every piece tagged (M) modelling or (C) computation, 8 answer figures; Appendix A paper map (what each paper answers, research map with D, O-calc and O-theory links, language map, open-link table), Appendix B source/scope/open notes per question, Appendix C teacher notes, Appendix D toolbox (the smallest worked example of each tool the question paper states without proof). |
-| [study_guide.html](study_guide.html) | Study guide for an undergraduate who knows the four core physics courses: the 18 questions in order, with 11 computation tools (blue) and 18 modelling ideas (orange) beyond that level, one resource each. Open it in a browser; ticks are saved in that browser. Built from [study_guide.json](study_guide.json). |
-| [research_checklist.html](research_checklist.html) | Research checklist: the chain of objects from the model to the research target, with the 6 open links of Appendix A beside it (2 O-calc in amber, 4 O-theory in red), to tick off as results close them. Built from [research_checklist.json](research_checklist.json). |
+| [questions.pdf](../MultiBandFractionalThoulessPumps_RPhO/questions.pdf) | 14 pages: general instructions; three independent problems of 10 points (18 questions, 30 points); introductions, 13 figures, given data, "Useful information". No answers, no research notes. |
+| [solutions.pdf](../MultiBandFractionalThoulessPumps_RPhO/solutions.pdf) | 28 pages: answers, marking scheme with every number tagged (M) modelling or (C) computation, 8 answer figures; Appendix A paper map (what each paper answers, research map, language map, open-link table), Appendix B source/scope/open notes per question, Appendix C teacher notes, Appendix D toolbox. |
+| [checklist.html](../MultiBandFractionalThoulessPumps_RPhO/checklist.html) | One page: the 18 questions with 11 computation tools (blue) and 18 modelling ideas (orange) beyond the four core courses, each with a linked reference; then the research segment with 2 O-calc (amber) and 4 O-theory (red) open links. Built from [checklist.json](checklist.json). |
 
 ## Sources
 
@@ -35,13 +35,12 @@ rescaled to 10 per problem.
 python3 figures.py                 # recompute bands and Wannier centres; rewrites the data block in both .tex files
 pdflatex questions.tex && pdflatex questions.tex
 pdflatex solutions.tex && pdflatex solutions.tex
-python3 ../../researchpho/scripts/make_answer_sheets.py questions.tex answersheets.tex
-pdflatex answersheets.tex
-python3 ../../researchpho/scripts/make_checklist.py study_guide.json study_guide.html --profile study-guide
-python3 ../../researchpho/scripts/make_checklist.py research_checklist.json research_checklist.html --profile research
 python3 check_answers.py           # picture data, teaching algebra, toolbox examples -> check_answers.json
-python3 ../../researchpho/scripts/check_booklets.py questions.tex solutions.tex --answers answersheets.tex \
-    --total 30 --problem-total 10 --guide study_guide.json
+python3 ../../researchpho/scripts/check_booklets.py questions.tex solutions.tex \
+    --total 30 --problem-total 10 --checklist checklist.json
+D=../MultiBandFractionalThoulessPumps_RPhO
+cp questions.pdf solutions.pdf $D/
+python3 ../../researchpho/scripts/make_checklist.py checklist.json $D/checklist.html
 ```
 
 The checker reports the modelling share of the tagged marks: 56% in Problem 1, 53% in Problem 2 and 52% in

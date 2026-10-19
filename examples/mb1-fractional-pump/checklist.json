@@ -1,25 +1,39 @@
 {
-  "schema": "researchpho-checklist/1",
+  "schema": "researchpho-checklist/2",
   "lang": "en",
-  "eyebrow": "ResearchPhO study guide",
+  "eyebrow": "ResearchPhO · arXiv:2504.09338 · arXiv:2608.06777",
   "title": "How long can a two-cycle quantum conveyor operate?",
-  "intro": "Reader level: an undergraduate who knows the four core physics courses (classical mechanics, electromagnetism, quantum mechanics, thermal and statistical physics) and their mathematics (linear algebra, calculus, Fourier series, complex numbers). Each question lists only what it needs beyond this level.",
-  "storageKey": "researchpho-guide:mb1-fractional-pump",
-  "emptyNote": "Nothing beyond the stated level.",
+  "intro": "Questions, solutions and this checklist form one set. Work down the main line. Tick a blue tool when you can calculate with it, an orange idea when you can reason with it, and a research link when a result closes it.",
+  "storageKey": "mb1-fractional-pump",
+  "emptyNote": "—",
   "categories": [
     {
       "id": "tool",
       "name": "Computation tool",
       "plural": "Computation tools",
       "colour": "blue",
-      "refLabel": "Resource"
+      "side": "left"
     },
     {
       "id": "idea",
       "name": "Modelling idea",
       "plural": "Modelling ideas",
       "colour": "orange",
-      "refLabel": "Resource"
+      "side": "right"
+    },
+    {
+      "id": "O-calc",
+      "name": "Open link: calculation",
+      "plural": "O-calc links",
+      "colour": "amber",
+      "side": "left"
+    },
+    {
+      "id": "O-theory",
+      "name": "Open link: new theory",
+      "plural": "O-theory links",
+      "colour": "red",
+      "side": "right"
     }
   ],
   "items": {
@@ -27,13 +41,14 @@
       "category": "tool",
       "name": "Fermion creation and annihilation operators",
       "note": "Read c†, c and n = c†c, and rewrite a hopping Hamiltonian in new modes.",
-      "ref": "A. Altland and B. Simons, Condensed Matter Field Theory (2nd ed., Cambridge, 2010), Ch. 2 (second quantization)"
+      "ref": "A. Altland and B. Simons, Condensed Matter Field Theory (2nd ed., Cambridge, 2010), Ch. 2",
+      "url": "https://doi.org/10.1017/CBO9780511789984"
     },
     "bloch-matrix": {
       "category": "tool",
       "name": "Bloch matrix of a lattice with several sites per cell",
       "note": "Fourier-transform a chain cell by cell to get h(k), including the bond that crosses the cell boundary.",
-      "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (Springer, 2016), Sec. 1.2 (bulk Hamiltonian)",
+      "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (2016), Sec. 1.2",
       "url": "https://arxiv.org/abs/1509.02295"
     },
     "projector-calculus": {
@@ -47,26 +62,29 @@
       "category": "tool",
       "name": "Pauli matrices, spin rotations and the Bloch sphere",
       "note": "Exponentiate a combination of Pauli matrices, and picture a spin-1/2 state as a unit vector that turns.",
-      "ref": "M. A. Nielsen and I. L. Chuang, Quantum Computation and Quantum Information (Cambridge, 2010), Sec. 4.2 (single-qubit operations)"
+      "ref": "M. A. Nielsen and I. L. Chuang, Quantum Computation and Quantum Information (Cambridge, 2010), Sec. 4.2",
+      "url": "https://doi.org/10.1017/CBO9780511976667"
     },
     "frame-change": {
       "category": "tool",
       "name": "Time-dependent change of frame",
       "note": "Transform a state with a moving unitary and find the new generator, including the term from the motion of the frame.",
-      "ref": "C. P. Slichter, Principles of Magnetic Resonance (3rd ed., Springer, 1990), Ch. 2 (the rotating frame)"
+      "ref": "C. P. Slichter, Principles of Magnetic Resonance (3rd ed., Springer, 1990), Ch. 2",
+      "url": "https://doi.org/10.1007/978-3-662-09441-9"
     },
     "wilson-loop": {
       "category": "tool",
       "name": "Wilson loop and multiband Wannier centres",
       "note": "Multiply band-overlap matrices around the Brillouin zone and read orbital centres from the eigenphases.",
-      "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (Springer, 2016), Sec. 9.1 (non-abelian Berry phase, multiband Wannier states)",
+      "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (2016), Sec. 9.1",
       "url": "https://arxiv.org/abs/1509.02295"
     },
     "tensor-commutators": {
       "category": "tool",
       "name": "Operators on several spins",
       "note": "Commute products of Pauli operators that act on different spins and on shared spins.",
-      "ref": "M. A. Nielsen and I. L. Chuang, Quantum Computation and Quantum Information (Cambridge, 2010), Sec. 2.1.7 (tensor products)"
+      "ref": "M. A. Nielsen and I. L. Chuang, Quantum Computation and Quantum Information (Cambridge, 2010), Sec. 2.1.7",
+      "url": "https://doi.org/10.1017/CBO9780511976667"
     },
     "operator-exponentials": {
       "category": "tool",
@@ -79,33 +97,35 @@
       "category": "tool",
       "name": "Connections of a moving frame",
       "note": "Work with A = iU†∂U for two parameters (a twist and time) and the identity that relates their derivatives.",
-      "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (Springer, 2016), Sec. 2.2 (Berry connection and curvature)",
+      "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (2016), Sec. 2.2",
       "url": "https://arxiv.org/abs/1509.02295"
     },
     "partial-trace": {
       "category": "tool",
       "name": "Reduced density matrices and the partial trace",
       "note": "Trace out the rest of a chain and compute local expectation values from the reduced state.",
-      "ref": "M. A. Nielsen and I. L. Chuang, Quantum Computation and Quantum Information (Cambridge, 2010), Sec. 2.4.3 (the reduced density operator)"
+      "ref": "M. A. Nielsen and I. L. Chuang, Quantum Computation and Quantum Information (Cambridge, 2010), Sec. 2.4.3",
+      "url": "https://doi.org/10.1017/CBO9780511976667"
     },
     "trace-norm": {
       "category": "tool",
       "name": "Trace distance and operator norms",
       "note": "Bound a difference of expectation values by the trace distance between two states.",
-      "ref": "M. A. Nielsen and I. L. Chuang, Quantum Computation and Quantum Information (Cambridge, 2010), Ch. 9 (distance measures)"
+      "ref": "M. A. Nielsen and I. L. Chuang, Quantum Computation and Quantum Information (Cambridge, 2010), Ch. 9",
+      "url": "https://doi.org/10.1017/CBO9780511976667"
     },
     "thouless-pump": {
       "category": "idea",
       "name": "Adiabatic (Thouless) pumping",
       "note": "A slow periodic change of a lattice can carry particles along it, period after period.",
-      "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (Springer, 2016), Ch. 4 (adiabatic charge pumping, Rice-Mele model)",
+      "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (2016), Ch. 4",
       "url": "https://arxiv.org/abs/1509.02295"
     },
     "wannier-centres": {
       "category": "idea",
       "name": "Wannier orbitals and their centres",
       "note": "Localized orbitals built from a band; how the motion of their centres counts transported charge.",
-      "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (Springer, 2016), Sec. 4.3 (tracking the charges with Wannier states)",
+      "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (2016), Sec. 4.3",
       "url": "https://arxiv.org/abs/1509.02295"
     },
     "band-projector": {
@@ -126,26 +146,29 @@
       "category": "idea",
       "name": "Adiabatic following",
       "note": "When does a state follow an instantaneous eigenstate of a changing Hamiltonian? Compare the gap with the rate of change.",
-      "ref": "D. J. Griffiths, Introduction to Quantum Mechanics (2nd ed., Pearson, 2005), Ch. 10 (the adiabatic approximation)"
+      "ref": "D. J. Griffiths and D. F. Schroeter, Introduction to Quantum Mechanics (3rd ed., Cambridge, 2018), the adiabatic approximation",
+      "url": "https://doi.org/10.1017/9781316995433"
     },
     "gauge-freedom": {
       "category": "idea",
       "name": "Basis freedom inside a group of bands",
       "note": "Separate what changes under a unitary change of basis inside the group (coordinates) from what does not (physical objects).",
-      "ref": "N. Marzari, A. A. Mostofi, J. R. Yates, I. Souza, D. Vanderbilt, Maximally localized Wannier functions, Rev. Mod. Phys. 84, 1419 (2012), Sec. II",
+      "ref": "N. Marzari et al., Maximally localized Wannier functions, Rev. Mod. Phys. 84, 1419 (2012), Sec. II",
       "url": "https://arxiv.org/abs/1112.5411"
     },
     "domain-models": {
       "category": "idea",
       "name": "Ising chains and domains",
       "note": "Model two competing orders as two spin states; a domain is a run of the other state, and a transverse field lets spins flip.",
-      "ref": "S. Sachdev, Quantum Phase Transitions (2nd ed., Cambridge, 2011), chapter on the Ising chain in a transverse field"
+      "ref": "S. Sachdev, Quantum Phase Transitions (2nd ed., Cambridge, 2011), the Ising chain in a transverse field",
+      "url": "https://doi.org/10.1017/CBO9780511973765"
     },
     "energy-and-transitions": {
       "category": "idea",
       "name": "Energy differences and transitions",
       "note": "How a quantum system moves between states: couplings, energy conservation and transition rates.",
-      "ref": "D. J. Griffiths, Introduction to Quantum Mechanics (2nd ed., Pearson, 2005), Ch. 9 (time-dependent perturbation theory)"
+      "ref": "D. J. Griffiths and D. F. Schroeter, Introduction to Quantum Mechanics (3rd ed., Cambridge, 2018), time-dependent perturbation theory",
+      "url": "https://doi.org/10.1017/9781316995433"
     },
     "dressing": {
       "category": "idea",
@@ -158,7 +181,8 @@
       "category": "idea",
       "name": "Transition probabilities at short times",
       "note": "How a transition probability starts at small t, and when a decay rate can be defined at all (Fermi's golden rule).",
-      "ref": "D. J. Griffiths, Introduction to Quantum Mechanics (2nd ed., Pearson, 2005), Ch. 9 (Fermi's golden rule)"
+      "ref": "D. J. Griffiths and D. F. Schroeter, Introduction to Quantum Mechanics (3rd ed., Cambridge, 2018), Fermi's golden rule",
+      "url": "https://doi.org/10.1017/9781316995433"
     },
     "locality": {
       "category": "idea",
@@ -171,13 +195,14 @@
       "category": "idea",
       "name": "Effective models: the kept part and the remainder",
       "note": "Split an exact generator into a part you keep and a remainder, and ask what bounds the remainder.",
-      "ref": "S. Teufel, Adiabatic Perturbation Theory in Quantum Dynamics (Springer Lecture Notes in Mathematics 1821, 2003)"
+      "ref": "S. Teufel, Adiabatic Perturbation Theory in Quantum Dynamics (Springer LNM 1821, 2003)",
+      "url": "https://doi.org/10.1007/b13355"
     },
     "current-operator": {
       "category": "idea",
       "name": "The current operator on a lattice",
       "note": "The particle current through one bond as an operator, and its expectation value in a superposition.",
-      "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (Springer, 2016), Sec. 5.1 (particle current at a cross section)",
+      "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (2016), Sec. 5.1",
       "url": "https://arxiv.org/abs/1509.02295"
     },
     "twisted-boundary": {
@@ -198,13 +223,15 @@
       "category": "idea",
       "name": "Dynamics of a subsystem",
       "note": "Why the equation of motion for one region of a chain involves its couplings to the outside.",
-      "ref": "H.-P. Breuer and F. Petruccione, The Theory of Open Quantum Systems (Oxford, 2002), Ch. 3 (quantum master equations)"
+      "ref": "H.-P. Breuer and F. Petruccione, The Theory of Open Quantum Systems (Oxford, 2002), Ch. 3",
+      "url": "https://doi.org/10.1093/acprof:oso/9780199213900.001.0001"
     },
     "certified-bounds": {
       "category": "idea",
       "name": "Certified bounds and decisions with error bars",
       "note": "What a sufficient bound guarantees, and how to decide with an interval instead of a single number.",
-      "ref": "R. E. Moore, R. B. Kearfott, M. J. Cloud, Introduction to Interval Analysis (SIAM, 2009)"
+      "ref": "R. E. Moore, R. B. Kearfott, M. J. Cloud, Introduction to Interval Analysis (SIAM, 2009)",
+      "url": "https://doi.org/10.1137/1.9780898717716"
     },
     "prethermalization": {
       "category": "idea",
@@ -212,18 +239,76 @@
       "note": "Why a driven interacting system can keep its order for a long but finite time, and what controls that time.",
       "ref": "D. Abanin, W. De Roeck, W. W. Ho, F. Huveneers, A rigorous theory of many-body prethermalization for periodically driven and closed quantum systems, Commun. Math. Phys. 354, 809 (2017)",
       "url": "https://arxiv.org/abs/1509.05386"
+    },
+    "following-one-flavor": {
+      "category": "O-theory",
+      "name": "The particles keep following one flavor",
+      "meta": "questions 1.A.1, 1.D.1",
+      "note": "a gap above the two flavor configurations, uniform in system size and over the cycle; the composite gap protects only the plane, not the direction in it",
+      "ref": "many-body adiabatic theorem; many-body Chern number (Niu-Thouless-Wu)",
+      "url": "https://doi.org/10.1103/PhysRevB.31.3372"
+    },
+    "dressing-assembled": {
+      "category": "O-calc",
+      "name": "Local dressing assembled along the chain and the cycle",
+      "meta": "questions 2.B.1, 2.B.2",
+      "note": "build the corrections at every phase, join them smoothly, bound the overlap terms",
+      "ref": "Schrieffer-Wolff expansion; locality (cluster) estimates",
+      "url": "https://arxiv.org/abs/1105.0675"
+    },
+    "kept-dynamics": {
+      "category": "O-theory",
+      "name": "The kept dynamics K_ret",
+      "meta": "questions 2.C.1, 2.C.2",
+      "note": "a spectral gap uniform in system size",
+      "ref": "S. Bachmann, W. De Roeck, M. Fraas, The adiabatic theorem and linear response theory for extended quantum systems",
+      "url": "https://arxiv.org/abs/1705.02838"
+    },
+    "local-state-full-drive": {
+      "category": "O-theory",
+      "name": "The local state over the full drive",
+      "meta": "question 3.A.3",
+      "note": "the bounds grow with time; the boundary correlations do not close at the times of interest",
+      "ref": "Lieb-Robinson and local perturbation bounds",
+      "url": "https://arxiv.org/abs/1008.5137"
+    },
+    "certificate-inputs": {
+      "category": "O-calc",
+      "name": "The certificate inputs α, I₀, η, δ₀, t_max",
+      "meta": "question 3.B.1",
+      "note": "evaluate them in one frame for one initial state, once the local state is controlled",
+      "ref": "M. B. Hastings, Locality in Quantum Systems (trace-distance and locality bounds)",
+      "url": "https://arxiv.org/abs/1008.5137"
+    },
+    "first-failure": {
+      "category": "O-theory",
+      "name": "The first failed window",
+      "meta": "question 3.C.2",
+      "note": "a fast drive or a large gap; here the drive is slow",
+      "ref": "rigorous prethermalization (Abanin-De Roeck-Ho-Huveneers; Else-Bauer-Nayak)",
+      "url": "https://arxiv.org/abs/1509.05386"
     }
+  },
+  "start": {
+    "title": "Start: the four core physics courses",
+    "text": "Reader: an undergraduate who knows classical mechanics, electromagnetism, quantum mechanics and statistical physics. Each question lists only what it needs beyond that."
+  },
+  "end": {
+    "title": "Research target",
+    "text": "Predict when the interacting pump leaves a chosen charge tolerance, and identify the process that controls it."
   },
   "groups": [
     {
-      "title": "Problem 1: A two-cycle quantum conveyor: bands, projectors and flavors",
+      "kind": "exam",
+      "title": "A two-cycle quantum conveyor: bands, projectors and flavors",
       "short": "Problem 1",
+      "points": 10,
+      "note": "Can repulsion turn an integer pump into one that carries half a particle per period at one particle per cell? How can a moving group of bands be described without a basis inside it?",
       "nodes": [
         {
           "label": "1.A.1",
           "title": "Fractional transport",
           "points": 1.5,
-          "note": "Count the charge carried in two periods from the displacements of the occupied orbitals, and ask what fixes the single-period values.",
           "needs": [
             "thouless-pump",
             "wannier-centres"
@@ -233,7 +318,6 @@
           "label": "1.B.1",
           "title": "From the lattice to a projector",
           "points": 2.7,
-          "note": "Derive the 5×5 Bloch matrix, build the projector onto bands 1 and 2, and compare three ways of counting many-particle states.",
           "needs": [
             "second-quantization",
             "bloch-matrix",
@@ -245,7 +329,6 @@
           "label": "1.B.2",
           "title": "From the lattice to a projector",
           "points": 1.4,
-          "note": "Derive two identities of a moving projector and state what they say about the Hamiltonian.",
           "needs": [
             "projector-calculus",
             "kato-generator"
@@ -255,7 +338,6 @@
           "label": "1.C.1",
           "title": "Following a moving projector",
           "points": 2.3,
-          "note": "Solve one spin in a turning field exactly in a rotating frame, and find how well it follows the ground state.",
           "needs": [
             "pauli-rotations",
             "frame-change",
@@ -266,7 +348,6 @@
           "label": "1.D.1",
           "title": "A plane is not yet a flavor",
           "points": 2.1,
-          "note": "Separate basis changes inside a plane from physical changes of flavor, and ask what a Wilson loop or a determinant can decide.",
           "needs": [
             "wilson-loop",
             "gauge-freedom",
@@ -276,14 +357,16 @@
       ]
     },
     {
-      "title": "Problem 2: Correlations and the physical current",
+      "kind": "exam",
+      "title": "Correlations and the physical current",
       "short": "Problem 2",
+      "points": 10,
+      "note": "When a reference state is dressed and followed in a moving frame, which steps are exact, where does the first approximation enter, and how is the physical current obtained?",
       "nodes": [
         {
           "label": "2.A.1",
           "title": "Domains in a spin chain",
           "points": 1.3,
-          "note": "Find the energy of a domain in a spin chain, and ask whether a lower energy forces the domain to form.",
           "needs": [
             "domain-models",
             "energy-and-transitions"
@@ -293,7 +376,6 @@
           "label": "2.B.1",
           "title": "Dressing a reference state",
           "points": 1.8,
-          "note": "Solve a two-level cluster: its dressed ground state, and the exact dynamics that starts from the bare state.",
           "needs": [
             "dressing",
             "short-time-dynamics"
@@ -303,7 +385,6 @@
           "label": "2.B.2",
           "title": "Dressing a reference state",
           "points": 0.8,
-          "note": "Compute what appears when local corrections on neighbouring clusters overlap.",
           "needs": [
             "tensor-commutators",
             "locality"
@@ -313,7 +394,6 @@
           "label": "2.C.1",
           "title": "Exact frames and kept dynamics",
           "points": 1.8,
-          "note": "Derive the exact generator in a dressed moving frame, and find where the first approximation enters.",
           "needs": [
             "frame-change",
             "operator-exponentials",
@@ -325,7 +405,6 @@
           "label": "2.C.2",
           "title": "Exact frames and kept dynamics",
           "points": 1.3,
-          "note": "Find when the kept dynamics preserves a reference direction, and test it on the spin chain at short times.",
           "needs": [
             "domain-models",
             "short-time-dynamics",
@@ -336,7 +415,6 @@
           "label": "2.D.1",
           "title": "The physical current",
           "points": 0.9,
-          "note": "Compute the current in a superposition of two states, and ask what a probability alone can tell.",
           "needs": [
             "current-operator"
           ]
@@ -345,7 +423,6 @@
           "label": "2.D.2",
           "title": "The physical current",
           "points": 2.1,
-          "note": "Transform the current operator to a moving frame and integrate it over time.",
           "needs": [
             "twisted-boundary",
             "gauge-connection",
@@ -355,14 +432,16 @@
       ]
     },
     {
-      "title": "Problem 3: How long can the conveyor operate?",
+      "kind": "exam",
+      "title": "How long can the conveyor operate?",
       "short": "Problem 3",
+      "points": 10,
+      "note": "For how long can one guarantee that the transported charge stays within δ of −1/2, and what is needed to predict when it fails?",
       "nodes": [
         {
           "label": "3.A.1",
           "title": "Local accuracy in a large system",
           "points": 1.1,
-          "note": "Compare the fidelity of a whole product state with the fidelity of a small region of it.",
           "needs": [
             "many-body-fidelity",
             "partial-trace"
@@ -372,7 +451,6 @@
           "label": "3.A.2",
           "title": "Local accuracy in a large system",
           "points": 2.2,
-          "note": "Bound the error of a local current by the distance between two reduced states.",
           "needs": [
             "trace-norm",
             "partial-trace",
@@ -383,7 +461,6 @@
           "label": "3.A.3",
           "title": "Local accuracy in a large system",
           "points": 2.0,
-          "note": "Derive the equation of motion of a region's state, and identify what it needs from outside the region.",
           "needs": [
             "partial-trace",
             "open-subsystem"
@@ -393,7 +470,6 @@
           "label": "3.B.1",
           "title": "A conditional operating-time certificate",
           "points": 1.6,
-          "note": "Integrate supplied local bounds over a two-period window, and find the time up to which they certify the charge.",
           "needs": [
             "certified-bounds"
           ]
@@ -402,7 +478,6 @@
           "label": "3.C.1",
           "title": "Prediction, error and first failure",
           "points": 1.7,
-          "note": "Turn a prediction with an error bar into tests for single windows, and apply them to three sample windows.",
           "needs": [
             "certified-bounds"
           ]
@@ -411,7 +486,6 @@
           "label": "3.C.2",
           "title": "Prediction, error and first failure",
           "points": 1.4,
-          "note": "List what must be derived from the real pump before the tests apply, and ask what locating the first failure needs.",
           "needs": [
             "prethermalization",
             "effective-models",
@@ -419,10 +493,71 @@
           ]
         }
       ]
+    },
+    {
+      "kind": "research",
+      "title": "From the exam to the open problem",
+      "short": "Research",
+      "note": "The chain of objects behind the exam. Left: links a calculation would close. Right: links that need new theory.",
+      "nodes": [
+        {
+          "label": "h(k, φ)",
+          "meta": "D",
+          "title": "The 5×5 one-particle Bloch matrix",
+          "needs": []
+        },
+        {
+          "label": "p₁₂(k, φ)",
+          "meta": "D",
+          "title": "The projector onto bands 1 and 2: a moving plane",
+          "needs": []
+        },
+        {
+          "label": "flavor A/B, W(t)",
+          "meta": "D/O-theory",
+          "title": "One direction in the plane, and the frame that follows it",
+          "needs": [
+            "following-one-flavor"
+          ]
+        },
+        {
+          "label": "U = W e^S, K_ret",
+          "meta": "D/O-theory",
+          "title": "The dressed frame, and the part of its generator that is kept",
+          "needs": [
+            "dressing-assembled",
+            "kept-dynamics"
+          ]
+        },
+        {
+          "label": "σ′_X(t), I′(t)",
+          "meta": "D/O-theory",
+          "title": "The local state and the physical current",
+          "needs": [
+            "local-state-full-drive"
+          ]
+        },
+        {
+          "label": "Q̂(t) ± E(t)",
+          "meta": "D/O-calc",
+          "title": "The charge prediction with an error bar",
+          "needs": [
+            "certificate-inputs"
+          ]
+        },
+        {
+          "label": "first failed window",
+          "meta": "O-theory",
+          "title": "The first two-period window outside the tolerance",
+          "needs": [
+            "first-failure"
+          ]
+        }
+      ]
     }
   ],
   "footer": [
-    "Main line: the 18 questions in exam order. Left, blue: computation tools (mathematics you calculate with). Right, orange: modelling ideas (physics you reason with). Each item appears in full where it is first needed and as a dashed reminder later. Tick an item when you can use it without looking it up.",
-    "The toolbox appendix of the solutions (Appendix D) works the smallest example of each tool that the question paper states without proof."
+    "An item appears in full where it is first needed and as a dashed reminder later. Ticks stay in this browser.",
+    "Shared gap of the O-theory links: no existing theory controls a slowly driven, strongly correlated chain over long times when its order is not protected by a uniform gap. A first controlled result is a limit in which the failing hypothesis holds, for example a gap that protects the whole group of flavor configurations rather than one of them."
   ]
 }

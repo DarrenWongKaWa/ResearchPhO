@@ -1,5 +1,31 @@
 # Changelog
 
+## 1.2.0 (2026-10-19)
+
+Three deliverables, one checklist, no answer sheets.
+
+- **Deliverable folder.** The agent delivers exactly three files in `<PaperName>_RPhO/`: `questions.pdf`,
+  `solutions.pdf` and `checklist.html`. LaTeX sources, scripts, data and build files stay in a separate working folder.
+- **One checklist.** The study guide and the research checklist are merged into one page (schema
+  `researchpho-checklist/2`). The exam runs down the middle question by question, with points; computation tools
+  (blue) and modelling ideas (orange) sit beside each question, each with a title, a short note and a linked reference;
+  the line ends with a research segment of open links, O-calc (amber) and O-theory (red). New layout: serif display
+  type, sans body, mono labels, grid background; progress per category, per group and in total; filters; two-click
+  reset; light and dark; one column at phone width. `make_checklist.py` validates the four categories and their
+  sides, and allows only tools and ideas on exam nodes and only O-calc and O-theory links on research nodes
+  (profile `rpho`, the default; `author` and `generic` remain).
+- **No answer sheets.** The reader writes on plain sheets and labels each answer with its question.
+  `scripts/make_answer_sheets.py` is removed; the question template says so in its instructions.
+- **Reader.** The default reader is an undergraduate who knows the four core physics courses.
+- **Tutor mode** is kept as a short reference for a reader who asks for hints; the checklist covers what each question
+  needs.
+- `check_booklets.py`: `--checklist checklist.json` (alias `--guide`) checks the exam segment against the booklets;
+  research nodes are not counted as questions.
+- **Worked example.** Deliverables in `examples/MultiBandFractionalThoulessPumps_RPhO/` (questions 14 pages, solutions
+  28 pages, checklist with 18 questions, 11 tools, 18 ideas, 2 O-calc and 4 O-theory links); sources in
+  `examples/mb1-fractional-pump/` with one `checklist.json`. The answer sheets, study guide and research checklist
+  files are removed.
+
 ## 1.1.0 (2026-10-19)
 
 Support for the reader who solves the exam: tutor mode, a study guide, a toolbox appendix, a trial solve, and marking

@@ -1,29 +1,37 @@
 #!/usr/bin/env python3
-"""Build a self-contained ResearchPhO checklist flowchart (HTML) from a JSON file.
+"""Build the self-contained ResearchPhO checklist page (HTML) from a JSON file.
 
 Usage:
-  python3 make_checklist.py data.json page.html [--profile study-guide|research|author] [--template FILE]
+  python3 make_checklist.py checklist.json checklist.html [--profile rpho|author|generic] [--template FILE]
 
-One component, several uses. A main line of nodes runs down the middle (questions in exam order, the chain of
-objects of a paper, the steps of the workflow); two categories of items hang on its left and right sides, each in
-its own colour; every item has a checkbox. Progress is shown per category and per group of nodes.
+One page, one main line. The exam runs down the middle, problem by problem and question by question. Each question
+node carries the items it needs: computation tools in blue frames on the left, modelling ideas in orange frames on
+the right. A research segment continues the same line after the exam: the chain of objects of the papers, with the
+open links that a calculation would close (O-calc, amber, left) and those that need new theory (O-theory, red,
+right). Every item has a checkbox, a title, one short note and one reference, linked when a URL is given. Progress
+is shown per category, per group and overall.
 
-  {"schema": "researchpho-checklist/1", "lang": "en", "eyebrow": "...", "title": "...", "intro": "...",
+  {"schema": "researchpho-checklist/2", "lang": "en", "eyebrow": "...", "title": "...", "intro": "...",
    "storageKey": "...", "emptyNote": "...",
    "categories": [{"id": "tool", "name": "Computation tool", "plural": "Computation tools", "colour": "blue",
-                   "noteLabel": "...", "refLabel": "Resource"}, {... the right-hand category ...}],
-   "items": {"id": {"category": "tool", "name": "...", "meta": "...", "note": "...", "ref": "...", "url": "https://..."}},
+                   "side": "left"}, ...],
+   "items": {"id": {"category": "tool", "name": "...", "note": "...", "ref": "...", "url": "https://...",
+                    "meta": "..."}},
    "start": {"title": "...", "text": "..."}, "end": {"title": "...", "text": "..."},
-   "groups": [{"title": "...", "short": "...", "note": "...", "nodes": [
-       {"label": "1.A.1", "title": "...", "points": 1.5, "meta": "...", "note": "...", "needs": ["id", ...]}]}],
+   "groups": [{"kind": "exam", "title": "...", "short": "Problem 1", "points": 10, "note": "the question the
+               paper answers", "nodes": [{"label": "1.A.1", "title": "...", "points": 0.8, "note": "...",
+               "needs": ["id", ...]}]},
+              {"kind": "research", "title": "...", "short": "Research", "note": "...", "nodes": [
+               {"label": "p12(k, phi)", "meta": "D/O-theory", "title": "...", "note": "...", "needs": [...]}]}],
    "footer": ["paragraph", ...]}
 
-Colours: blue, orange, amber, red, green, purple. Profiles add the rules of one use:
-  study-guide  categories tool (blue) and idea (orange); every item has a note and a resource (ref);
-               every node has a title, points and a note (what the question asks, never its answer)
-  research     categories O-calc (amber) and O-theory (red); every item has a note and a closest theory (ref)
-  author       categories standard and check
-Exit code 1 on any error. check_booklets.py --guide cross-checks a study guide against the question paper.
+Colours: blue, orange, amber, red, green, purple. Profiles:
+  rpho     categories tool (blue, left) and idea (orange, right), optionally O-calc (amber, left) and O-theory
+           (red, right) for a research segment; every item has a note and a reference; every exam node has a
+           title and points; every research node has a title and a label tag (meta)
+  author   categories standard and check (the author checklist of the skill)
+  generic  only the schema
+Exit code 1 on any error. check_booklets.py --checklist cross-checks the exam nodes against the question paper.
 """
 from __future__ import annotations
 
@@ -34,16 +42,20 @@ import re
 import sys
 from pathlib import Path
 
-SCHEMA = "researchpho-checklist/1"
+SCHEMA = "researchpho-checklist/2"
 COLOURS = ("blue", "orange", "amber", "red", "green", "purple")
+SIDES = ("left", "right")
 ITEM_ID = re.compile(r"^[A-Za-z0-9_-]+$")
 DATA_BLOCK = re.compile(r'(<script type="application/json" id="checklist-data">)(.*?)(</script>)', re.S)
 DEFAULT_TEMPLATE = Path(__file__).resolve().parent.parent / "assets" / "checklist_template.html"
+RPHO_CATEGORIES = {"tool": ("blue", "left"), "idea": ("orange", "right"),
+                   "O-calc": ("amber", "left"), "O-theory": ("red", "right")}
 PROFILES = {
-    "generic": {"categories": None, "item": (), "node": ()},
-    "study-guide": {"categories": ("tool", "idea"), "item": ("note", "ref"), "node": ("title", "points", "note")},
-    "research": {"categories": ("O-calc", "O-theory"), "item": ("note", "ref"), "node": ("title",)},
-    "author": {"categories": ("standard", "check"), "item": (), "node": ("title",)},
+    "generic": {"categories": None, "required": (), "item": (), "exam": (), "research": ()},
+    "rpho": {"categories": RPHO_CATEGORIES, "required": ("tool", "idea"), "item": ("note", "ref"),
+             "exam": ("title", "points"), "research": ("title", "meta")},
+    "author": {"categories": {"standard": (None, "left"), "check": (None, "right")}, "required": ("standard", "check"),
+               "item": (), "exam": ("title",), "research": ("title",)},
 }
 
 
@@ -60,12 +72,12 @@ def check_text(obj: dict, key: str, where: str, errors: list[str], required: boo
         errors.append(f"{where}: '{key}' must be a non-empty string")
 
 
-def check_categories(data: dict, profile: dict, errors: list[str]) -> set[str]:
+def check_categories(data: dict, profile: dict, errors: list[str]) -> dict[str, dict]:
     cats = data.get("categories")
-    if not isinstance(cats, list) or len(cats) != 2:
-        errors.append("'categories' must list exactly two categories: the left one, then the right one")
-        return set()
-    ids = []
+    if not isinstance(cats, list) or not 2 <= len(cats) <= 4:
+        errors.append("'categories' must list two to four categories")
+        return {}
+    found: dict[str, dict] = {}
     for index, cat in enumerate(cats, 1):
         where = f"category {index}"
         if not isinstance(cat, dict):
@@ -73,20 +85,34 @@ def check_categories(data: dict, profile: dict, errors: list[str]) -> set[str]:
             continue
         for key in ("id", "name"):
             check_text(cat, key, where, errors, required=True)
-        for key in ("plural", "noteLabel", "refLabel"):
-            check_text(cat, key, where, errors, required=False)
+        check_text(cat, "plural", where, errors, required=False)
         if cat.get("colour") not in COLOURS:
             errors.append(f"{where}: 'colour' must be one of {', '.join(COLOURS)}")
-        ids.append(cat.get("id") if is_text(cat.get("id")) else None)
-    if None not in ids and len(set(ids)) != len(ids):
-        errors.append("the two categories need different ids")
-    expected = profile["categories"]
-    if expected and tuple(ids) != expected:
-        errors.append(f"this profile needs the categories {expected[0]!r} (left) and {expected[1]!r} (right)")
-    return {i for i in ids if isinstance(i, str)}
+        if cat.get("side") not in SIDES:
+            errors.append(f"{where}: 'side' must be 'left' or 'right'")
+        cid = cat.get("id")
+        if is_text(cid):
+            if cid in found:
+                errors.append(f"{where}: duplicate id {cid!r}")
+            found[cid] = cat
+    rules = profile["categories"]
+    if rules:
+        for cid, cat in found.items():
+            if cid not in rules:
+                errors.append(f"category {cid!r} is not part of this profile ({', '.join(rules)})")
+                continue
+            colour, side = rules[cid]
+            if colour and cat.get("colour") != colour:
+                errors.append(f"category {cid!r} must be {colour}")
+            if cat.get("side") != side:
+                errors.append(f"category {cid!r} must hang on the {side}")
+        for cid in profile["required"]:
+            if cid not in found:
+                errors.append(f"this profile needs the category {cid!r}")
+    return found
 
 
-def check_items(data: dict, cat_ids: set[str], profile: dict, errors: list[str]) -> dict:
+def check_items(data: dict, cats: dict, profile: dict, errors: list[str]) -> dict:
     items = data.get("items")
     if not isinstance(items, dict) or not items:
         errors.append("'items' must be a non-empty object")
@@ -98,8 +124,8 @@ def check_items(data: dict, cat_ids: set[str], profile: dict, errors: list[str])
         if not isinstance(item, dict):
             errors.append(f"{where}: must be an object")
             continue
-        if item.get("category") not in cat_ids:
-            errors.append(f"{where}: 'category' must be one of {sorted(cat_ids)}")
+        if item.get("category") not in cats:
+            errors.append(f"{where}: 'category' must be one of {sorted(cats)}")
         check_text(item, "name", where, errors, required=True)
         for key in ("meta", "note", "ref"):
             check_text(item, key, where, errors, required=key in profile["item"])
@@ -109,7 +135,7 @@ def check_items(data: dict, cat_ids: set[str], profile: dict, errors: list[str])
     return items
 
 
-def check_node(node: object, items: dict, labels: set[str], profile: dict, errors: list[str]) -> list[str]:
+def check_node(node: object, kind: str, items: dict, labels: set[str], profile: dict, errors: list[str]) -> list[str]:
     if not isinstance(node, dict):
         errors.append("every node must be an object")
         return []
@@ -121,11 +147,12 @@ def check_node(node: object, items: dict, labels: set[str], profile: dict, error
     if label in labels:
         errors.append(f"{where}: duplicate label")
     labels.add(label)
+    required = profile[kind]
     for key in ("title", "meta", "note"):
-        check_text(node, key, where, errors, required=key in profile["node"])
+        check_text(node, key, where, errors, required=key in required)
     points = node.get("points")
     if points is None:
-        if "points" in profile["node"]:
+        if "points" in required:
             errors.append(f"{where}: 'points' is required")
     elif isinstance(points, bool) or not isinstance(points, (int, float)) or not math.isfinite(points) or points <= 0:
         errors.append(f"{where}: 'points' must be a positive number")
@@ -157,8 +184,8 @@ def validate(data: object, profile_name: str = "generic") -> list[str]:
     footer = data.get("footer", [])
     if not (isinstance(footer, list) and all(is_text(p) for p in footer)):
         errors.append("'footer' must be a list of paragraphs")
-    cat_ids = check_categories(data, profile, errors)
-    items = check_items(data, cat_ids, profile, errors)
+    cats = check_categories(data, profile, errors)
+    items = check_items(data, cats, profile, errors)
     groups = data.get("groups")
     if not isinstance(groups, list) or not groups:
         errors.append("'groups' must be a non-empty list")
@@ -169,11 +196,21 @@ def validate(data: object, profile_name: str = "generic") -> list[str]:
         if not isinstance(group, dict) or not isinstance(group.get("nodes"), list) or not group["nodes"]:
             errors.append(f"group {index}: needs a non-empty list 'nodes'")
             continue
+        kind = group.get("kind", "exam")
+        if kind not in ("exam", "research"):
+            errors.append(f"group {index}: 'kind' must be 'exam' or 'research'")
+            kind = "exam"
         check_text(group, "title", f"group {index}", errors, required=True)
         for key in ("short", "note"):
             check_text(group, key, f"group {index}", errors, required=False)
         for node in group["nodes"]:
-            used.update(check_node(node, items, labels, profile, errors))
+            needs = check_node(node, kind, items, labels, profile, errors)
+            used.update(needs)
+            if profile_name == "rpho":
+                allowed = ("tool", "idea") if kind == "exam" else ("O-calc", "O-theory")
+                for item_id in needs:
+                    if item_id in items and items[item_id].get("category") not in allowed:
+                        errors.append(f"node {node.get('label')}: a {kind} node takes only {' and '.join(allowed)} items")
     for item_id in sorted(set(items) - used):
         errors.append(f"item '{item_id}' is not attached to any node; remove it or list it under 'needs'")
     return errors
@@ -185,29 +222,32 @@ def build(data: dict, template: str) -> str:
     # no '<' inside the script element: '</script>' or '<!--' in a string would end or stall the data block
     payload = json.dumps(data, ensure_ascii=False, indent=1, allow_nan=False).replace("<", "\\u003c")
     html = DATA_BLOCK.sub(lambda m: m.group(1) + "\n" + payload + "\n" + m.group(3), template, count=1)
-    title = (data["eyebrow"] + ": " if data.get("eyebrow") else "") + data["title"]
-    escaped = title.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-    return re.sub(r"<title>.*?</title>", lambda m: f"<title>{escaped}</title>", html, count=1, flags=re.S)
+    escaped = data["title"].replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    html = re.sub(r"<title>.*?</title>", lambda m: f"<title>{escaped}</title>", html, count=1, flags=re.S)
+    lang = data.get("lang", "en")
+    return re.sub(r'<html lang="[^"]*">', f'<html lang="{lang}">', html, count=1)
 
 
 def summary(data: dict) -> str:
     seen: dict[str, None] = {}
-    nodes = 0
+    nodes = {"exam": 0, "research": 0}
     for group in data["groups"]:
+        nodes[group.get("kind", "exam")] += len(group["nodes"])
         for node in group["nodes"]:
-            nodes += 1
             for item_id in node.get("needs", []):
                 seen.setdefault(item_id)
-    counts = [sum(1 for i in seen if data["items"][i]["category"] == cat["id"]) for cat in data["categories"]]
-    names = [cat.get("plural", cat["name"]) for cat in data["categories"]]
-    return f"checklist: {nodes} nodes, {counts[0]} {names[0]} (left), {counts[1]} {names[1]} (right)"
+    parts = []
+    for cat in data["categories"]:
+        n = sum(1 for i in seen if data["items"][i]["category"] == cat["id"])
+        parts.append(f"{n} {cat.get('plural', cat['name'])}")
+    return f"checklist: {nodes['exam']} exam nodes, {nodes['research']} research nodes; " + ", ".join(parts)
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("data", type=Path, help="checklist JSON file")
     parser.add_argument("output", type=Path, help="HTML file to write")
-    parser.add_argument("--profile", choices=sorted(PROFILES), default="generic")
+    parser.add_argument("--profile", choices=sorted(PROFILES), default="rpho")
     parser.add_argument("--template", type=Path, default=DEFAULT_TEMPLATE)
     args = parser.parse_args()
     try:

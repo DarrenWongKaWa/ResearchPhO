@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How long can a two-cycle quantum conveyor operate?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Noto+Sans:wght@400;500;700&family=Noto+Serif:wght@600;700&display=swap">
+<style>
+/* Layout: the exam is one vertical trunk (problem by problem, question by question). Items of a left-side category hang on the
+   left in their colour frame, items of a right-side category on the right. A research segment continues the trunk after the exam. */
+:root {
+  --bg: #F4F6F9;
+  --grid: #E6EAF0;
+  --card: #FFFFFF;
+  --fg: #1A1F26;
+  --muted: #5B6573;
+  --trunk: #2A3340;
+  --rule: #C9D0DA;
+  --link: #1F5FB4;
+  --c-blue: #1F5FB4;   --w-blue: #EAF1FB;   --s-blue: #D4E3F7;
+  --c-orange: #C25A06; --w-orange: #FDF0E3; --s-orange: #F9DDBF;
+  --c-amber: #9A6A00;  --w-amber: #FBF4DD;  --s-amber: #F3E3AE;
+  --c-red: #B0302C;    --w-red: #FCEDEC;    --s-red: #F6D3D1;
+  --c-green: #2F7D4F;  --w-green: #E8F5ED;  --s-green: #CBE8D6;
+  --c-purple: #6A44A8; --w-purple: #F1ECFA; --s-purple: #DED2F3;
+  --done: #2F7D4F;
+  --f-display: "Noto Serif", "Noto Serif SC", Georgia, "Times New Roman", serif;
+  --f-body: "Noto Sans", "Noto Sans SC", "PingFang SC", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101419; --grid: #18202A; --card: #171D25; --fg: #E5E9EE; --muted: #9AA4B1;
+    --trunk: #C7D0DB; --rule: #34404E; --link: #8DB8F2;
+    --c-blue: #74A9EE;   --w-blue: #142235;   --s-blue: #1D3352;
+    --c-orange: #F2A256; --w-orange: #2E1F10; --s-orange: #4A2F14;
+    --c-amber: #E6C15A;  --w-amber: #2B2410;  --s-amber: #463A14;
+    --c-red: #F08A84;    --w-red: #301514;    --s-red: #4D1F1D;
+    --c-green: #6CC08F;  --w-green: #12261A;  --s-green: #1C3B28;
+    --c-purple: #B79BEA; --w-purple: #211A33; --s-purple: #34284F;
+    --done: #6CC08F; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101419; --grid: #18202A; --card: #171D25; --fg: #E5E9EE; --muted: #9AA4B1;
+  --trunk: #C7D0DB; --rule: #34404E; --link: #8DB8F2;
+  --c-blue: #74A9EE;   --w-blue: #142235;   --s-blue: #1D3352;
+  --c-orange: #F2A256; --w-orange: #2E1F10; --s-orange: #4A2F14;
+  --c-amber: #E6C15A;  --w-amber: #2B2410;  --s-amber: #463A14;
+  --c-red: #F08A84;    --w-red: #301514;    --s-red: #4D1F1D;
+  --c-green: #6CC08F;  --w-green: #12261A;  --s-green: #1C3B28;
+  --c-purple: #B79BEA; --w-purple: #211A33; --s-purple: #34284F;
+  --done: #6CC08F; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { color-scheme: light; }
+body {
+  margin: 0;
+  background-color: var(--bg);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: var(--fg); font-family: var(--f-body); font-size: 15px; line-height: 1.55;
+}
+[hidden] { display: none !important; }
+a { color: var(--link); }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 20px; padding-block: 28px 64px; }
+header.top { display: grid; gap: 16px; margin-bottom: 26px; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; }
+h1 { font-family: var(--f-display); font-weight: 700; font-size: clamp(26px, 4vw, 38px); line-height: 1.2; margin: 0; text-wrap: balance; }
+.lede { margin: 0; max-width: 68ch; color: var(--muted); }
+.panel { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px; display: grid; gap: 14px; }
+.meters { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; }
+.meter { display: grid; gap: 6px; min-width: 0; }
+.meter .row1 { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.meter .lbl { font-weight: 700; font-size: 14px; }
+.meter .num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: 13px; color: var(--muted); }
+.bar { height: 8px; border-radius: 4px; background: var(--grid); overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; border-radius: 4px; background: var(--done); transition: width .25s ease; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.swatch { width: 18px; height: 12px; border-radius: 3px; border: 2px solid; display: inline-block; }
+.btns { display: flex; flex-wrap: wrap; gap: 6px; }
+button { font: 500 13px/1 var(--f-body); color: var(--fg); background: var(--card); border: 1px solid var(--rule); border-radius: 999px; padding: 7px 12px; cursor: pointer; }
+button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+button.warn { color: var(--c-red); border-color: var(--c-red); }
+button:focus-visible, .item input:focus-visible, a:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+
+.track { position: relative; }
+.track::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; transform: translateX(-50%); background: var(--trunk); border-radius: 2px; z-index: 0; }
+.terminal, .phead { position: relative; z-index: 2; margin-inline: auto; background: var(--card); border: 2px solid var(--trunk); }
+.terminal { max-width: 560px; border-radius: 14px; padding: 14px 18px; display: grid; gap: 6px; }
+.terminal h2 { margin: 0; font-family: var(--f-display); font-size: 19px; }
+.terminal p { margin: 0; color: var(--muted); font-size: 14px; }
+.terminal.end { margin-top: 44px; }
+.phead { max-width: 660px; border-radius: 10px; padding: 12px 18px; margin-block: 44px 22px; display: grid; gap: 4px; }
+.phead.research { border-style: dashed; }
+.phead .code { font-family: var(--f-mono); font-size: 12px; letter-spacing: .06em; color: var(--muted); display: flex; justify-content: space-between; gap: 10px; }
+.phead h2 { margin: 0; font-family: var(--f-display); font-size: 21px; line-height: 1.3; text-wrap: balance; }
+.phead .q { margin: 0; font-size: 14px; color: var(--muted); }
+.phead .bar { margin-top: 6px; }
+
+.row { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 250px minmax(0, 1fr); gap: 30px; align-items: center; margin-block: 18px; }
+.row::before { content: ""; position: absolute; left: 6%; right: 6%; top: 50%; border-top: 2px dashed var(--rule); z-index: 0; }
+.col { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.node { position: relative; z-index: 2; background: var(--card); border: 2px solid var(--trunk); border-radius: 10px; padding: 10px 12px; display: grid; gap: 5px; }
+.node .code { font-family: var(--f-mono); font-weight: 600; font-size: 13px; display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.node .pts { color: var(--muted); font-weight: 500; white-space: nowrap; }
+.node .tag { font-family: var(--f-mono); font-size: 11.5px; font-weight: 600; border: 1px solid currentColor; border-radius: 4px; padding: 0 5px; white-space: nowrap; }
+.node h3 { margin: 0; font-size: 15.5px; line-height: 1.35; text-wrap: balance; }
+.node .nnote { margin: 0; font-size: 12.5px; color: var(--muted); line-height: 1.45; }
+.node .state { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.node.complete { border-color: var(--done); }
+.node.complete .state { color: var(--done); font-weight: 700; }
+
+.item { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px; align-items: start; border: 2px solid; border-radius: 8px; padding: 8px 10px; cursor: pointer; transition: background-color .15s ease; }
+.item input { margin: 3px 0 0; width: 16px; height: 16px; cursor: pointer; }
+.item .t { display: block; font-weight: 700; font-size: 14px; line-height: 1.4; }
+.item .n { display: block; font-size: 12.5px; color: var(--muted); line-height: 1.45; }
+.item .r { display: block; font-size: 12px; line-height: 1.45; margin-top: 2px; overflow-wrap: anywhere; }
+.item .r .meta { color: var(--muted); font-family: var(--f-mono); font-size: 11.5px; }
+.item.done .t::after { content: " \2713"; color: var(--done); }
+.remind { display: inline-flex; align-items: center; gap: 6px; border: 1.5px dashed; border-radius: 999px; padding: 3px 10px; font-size: 12.5px; color: var(--muted); align-self: flex-start; background: var(--card); }
+.col.left .remind { align-self: flex-end; }
+.remind.done::after { content: "\2713"; color: var(--done); font-weight: 700; }
+.empty { font-size: 12.5px; color: var(--muted); font-style: italic; }
+.col.left .empty { text-align: right; }
+
+footer { margin-top: 36px; font-size: 13px; color: var(--muted); display: grid; gap: 6px; max-width: 76ch; }
+footer p { margin: 0; }
+
+@media (max-width: 880px) {
+  .track::before { left: 13px; transform: none; }
+  .terminal, .phead { margin-left: 34px; margin-right: 0; }
+  .row { grid-template-columns: minmax(0, 1fr); gap: 8px; padding-left: 34px; }
+  .row::before { display: none; }
+  .row .node { order: -1; }
+  .col.left .remind { align-self: flex-start; }
+  .empty { display: none; }
+  .node::before { content: ""; position: absolute; left: -28px; top: 16px; width: 12px; height: 12px; border-radius: 50%; background: var(--card); border: 3px solid var(--trunk); }
+  .node.complete::before { border-color: var(--done); background: var(--done); }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow" id="eyebrow"></div>
+    <h1 id="title"></h1>
+    <p class="lede" id="intro"></p>
+    <div class="panel">
+      <div class="meters" id="meters"></div>
+      <div class="controls">
+        <div class="legend" id="legend"></div>
+        <div class="btns" role="group" aria-label="Filter" id="filters"></div>
+      </div>
+    </div>
+  </header>
+  <main class="track" id="track"></main>
+  <footer id="footer"></footer>
+</div>
+
+<script type="application/json" id="checklist-data">
+{
+ "schema": "researchpho-checklist/2",
+ "lang": "en",
+ "eyebrow": "ResearchPhO · arXiv:2504.09338 · arXiv:2608.06777",
+ "title": "How long can a two-cycle quantum conveyor operate?",
+ "intro": "Questions, solutions and this checklist form one set. Work down the main line. Tick a blue tool when you can calculate with it, an orange idea when you can reason with it, and a research link when a result closes it.",
+ "storageKey": "mb1-fractional-pump",
+ "emptyNote": "—",
+ "categories": [
+  {
+   "id": "tool",
+   "name": "Computation tool",
+   "plural": "Computation tools",
+   "colour": "blue",
+   "side": "left"
+  },
+  {
+   "id": "idea",
+   "name": "Modelling idea",
+   "plural": "Modelling ideas",
+   "colour": "orange",
+   "side": "right"
+  },
+  {
+   "id": "O-calc",
+   "name": "Open link: calculation",
+   "plural": "O-calc links",
+   "colour": "amber",
+   "side": "left"
+  },
+  {
+   "id": "O-theory",
+   "name": "Open link: new theory",
+   "plural": "O-theory links",
+   "colour": "red",
+   "side": "right"
+  }
+ ],
+ "items": {
+  "second-quantization": {
+   "category": "tool",
+   "name": "Fermion creation and annihilation operators",
+   "note": "Read c†, c and n = c†c, and rewrite a hopping Hamiltonian in new modes.",
+   "ref": "A. Altland and B. Simons, Condensed Matter Field Theory (2nd ed., Cambridge, 2010), Ch. 2",
+   "url": "https://doi.org/10.1017/CBO9780511789984"
+  },
+  "bloch-matrix": {
+   "category": "tool",
+   "name": "Bloch matrix of a lattice with several sites per cell",
+   "note": "Fourier-transform a chain cell by cell to get h(k), including the bond that crosses the cell boundary.",
+   "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (2016), Sec. 1.2",
+   "url": "https://arxiv.org/abs/1509.02295"
+  },
+  "projector-calculus": {
+   "category": "tool",
+   "name": "Projectors onto a subspace",
+   "note": "Build p = YY† from orthonormal columns, read its rank from Tr p, and differentiate p² = p.",
+   "ref": "S.-M. Huang, Quantum-State Projectors on Grassmannian: Geometry, Holonomy, and Topology, arXiv:2608.06777",
+   "url": "https://arxiv.org/abs/2608.06777"
+  },
+  "pauli-rotations": {
+   "category": "tool",
+   "name": "Pauli matrices, spin rotations and the Bloch sphere",
+   "note": "Exponentiate a combination of Pauli matrices, and picture a spin-1/2 state as a unit vector that turns.",
+   "ref": "M. A. Nielsen and I. L. Chuang, Quantum Computation and Quantum Information (Cambridge, 2010), Sec. 4.2",
+   "url": "https://doi.org/10.1017/CBO9780511976667"
+  },
+  "frame-change": {
+   "category": "tool",
+   "name": "Time-dependent change of frame",
+   "note": "Transform a state with a moving unitary and find the new generator, including the term from the motion of the frame.",
+   "ref": "C. P. Slichter, Principles of Magnetic Resonance (3rd ed., Springer, 1990), Ch. 2",
+   "url": "https://doi.org/10.1007/978-3-662-09441-9"
+  },
+  "wilson-loop": {
+   "category": "tool",
+   "name": "Wilson loop and multiband Wannier centres",
+   "note": "Multiply band-overlap matrices around the Brillouin zone and read orbital centres from the eigenphases.",
+   "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (2016), Sec. 9.1",
+   "url": "https://arxiv.org/abs/1509.02295"
+  },
+  "tensor-commutators": {
+   "category": "tool",
+   "name": "Operators on several spins",
+   "note": "Commute products of Pauli operators that act on different spins and on shared spins.",
+   "ref": "M. A. Nielsen and I. L. Chuang, Quantum Computation and Quantum Information (Cambridge, 2010), Sec. 2.1.7",
+   "url": "https://doi.org/10.1017/CBO9780511976667"
+  },
+  "operator-exponentials": {
+   "category": "tool",
+   "name": "Exponentials of operators",
+   "note": "Expand e^(−S) K e^(S) in nested commutators, and differentiate e^(S(t)) when S changes in time.",
+   "ref": "R. M. Wilcox, Exponential operators and parameter differentiation in quantum physics, J. Math. Phys. 8, 962 (1967)",
+   "url": "https://doi.org/10.1063/1.1705306"
+  },
+  "gauge-connection": {
+   "category": "tool",
+   "name": "Connections of a moving frame",
+   "note": "Work with A = iU†∂U for two parameters (a twist and time) and the identity that relates their derivatives.",
+   "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (2016), Sec. 2.2",
+   "url": "https://arxiv.org/abs/1509.02295"
+  },
+  "partial-trace": {
+   "category": "tool",
+   "name": "Reduced density matrices and the partial trace",
+   "note": "Trace out the rest of a chain and compute local expectation values from the reduced state.",
+   "ref": "M. A. Nielsen and I. L. Chuang, Quantum Computation and Quantum Information (Cambridge, 2010), Sec. 2.4.3",
+   "url": "https://doi.org/10.1017/CBO9780511976667"
+  },
+  "trace-norm": {
+   "category": "tool",
+   "name": "Trace distance and operator norms",
+   "note": "Bound a difference of expectation values by the trace distance between two states.",
+   "ref": "M. A. Nielsen and I. L. Chuang, Quantum Computation and Quantum Information (Cambridge, 2010), Ch. 9",
+   "url": "https://doi.org/10.1017/CBO9780511976667"
+  },
+  "thouless-pump": {
+   "category": "idea",
+   "name": "Adiabatic (Thouless) pumping",
+   "note": "A slow periodic change of a lattice can carry particles along it, period after period.",
+   "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (2016), Ch. 4",
+   "url": "https://arxiv.org/abs/1509.02295"
+  },
+  "wannier-centres": {
+   "category": "idea",
+   "name": "Wannier orbitals and their centres",
+   "note": "Localized orbitals built from a band; how the motion of their centres counts transported charge.",
+   "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (2016), Sec. 4.3",
+   "url": "https://arxiv.org/abs/1509.02295"
+  },
+  "band-projector": {
+   "category": "idea",
+   "name": "A group of bands as one subspace",
+   "note": "Describe bands 1 and 2 together by the plane they span at each (k, φ), without choosing a basis inside it.",
+   "ref": "S.-M. Huang, Quantum-State Projectors on Grassmannian: Geometry, Holonomy, and Topology, arXiv:2608.06777",
+   "url": "https://arxiv.org/abs/2608.06777"
+  },
+  "kato-generator": {
+   "category": "idea",
+   "name": "The generator of a moving subspace",
+   "note": "The rotation that carries a subspace along its path, and how it compares with the actual Hamiltonian.",
+   "ref": "T. Kato, On the adiabatic theorem of quantum mechanics, J. Phys. Soc. Jpn. 5, 435 (1950)",
+   "url": "https://doi.org/10.1143/JPSJ.5.435"
+  },
+  "adiabatic-following": {
+   "category": "idea",
+   "name": "Adiabatic following",
+   "note": "When does a state follow an instantaneous eigenstate of a changing Hamiltonian? Compare the gap with the rate of change.",
+   "ref": "D. J. Griffiths and D. F. Schroeter, Introduction to Quantum Mechanics (3rd ed., Cambridge, 2018), the adiabatic approximation",
+   "url": "https://doi.org/10.1017/9781316995433"
+  },
+  "gauge-freedom": {
+   "category": "idea",
+   "name": "Basis freedom inside a group of bands",
+   "note": "Separate what changes under a unitary change of basis inside the group (coordinates) from what does not (physical objects).",
+   "ref": "N. Marzari et al., Maximally localized Wannier functions, Rev. Mod. Phys. 84, 1419 (2012), Sec. II",
+   "url": "https://arxiv.org/abs/1112.5411"
+  },
+  "domain-models": {
+   "category": "idea",
+   "name": "Ising chains and domains",
+   "note": "Model two competing orders as two spin states; a domain is a run of the other state, and a transverse field lets spins flip.",
+   "ref": "S. Sachdev, Quantum Phase Transitions (2nd ed., Cambridge, 2011), the Ising chain in a transverse field",
+   "url": "https://doi.org/10.1017/CBO9780511973765"
+  },
+  "energy-and-transitions": {
+   "category": "idea",
+   "name": "Energy differences and transitions",
+   "note": "How a quantum system moves between states: couplings, energy conservation and transition rates.",
+   "ref": "D. J. Griffiths and D. F. Schroeter, Introduction to Quantum Mechanics (3rd ed., Cambridge, 2018), time-dependent perturbation theory",
+   "url": "https://doi.org/10.1017/9781316995433"
+  },
+  "dressing": {
+   "category": "idea",
+   "name": "Dressing a state by a unitary (Schrieffer-Wolff)",
+   "note": "Build the leading correlations into a reference state by a change of basis e^S, and expand in a small coupling.",
+   "ref": "S. Bravyi, D. P. DiVincenzo, D. Loss, Schrieffer-Wolff transformation for quantum many-body systems, Ann. Phys. 326, 2793 (2011)",
+   "url": "https://arxiv.org/abs/1105.0675"
+  },
+  "short-time-dynamics": {
+   "category": "idea",
+   "name": "Transition probabilities at short times",
+   "note": "How a transition probability starts at small t, and when a decay rate can be defined at all (Fermi's golden rule).",
+   "ref": "D. J. Griffiths and D. F. Schroeter, Introduction to Quantum Mechanics (3rd ed., Cambridge, 2018), Fermi's golden rule",
+   "url": "https://doi.org/10.1017/9781316995433"
+  },
+  "locality": {
+   "category": "idea",
+   "name": "Locality in quantum many-body systems",
+   "note": "Local operators, overlapping local corrections, and quasi-local operators approximated in a region.",
+   "ref": "M. B. Hastings, Locality in Quantum Systems, arXiv:1008.5137",
+   "url": "https://arxiv.org/abs/1008.5137"
+  },
+  "effective-models": {
+   "category": "idea",
+   "name": "Effective models: the kept part and the remainder",
+   "note": "Split an exact generator into a part you keep and a remainder, and ask what bounds the remainder.",
+   "ref": "S. Teufel, Adiabatic Perturbation Theory in Quantum Dynamics (Springer LNM 1821, 2003)",
+   "url": "https://doi.org/10.1007/b13355"
+  },
+  "current-operator": {
+   "category": "idea",
+   "name": "The current operator on a lattice",
+   "note": "The particle current through one bond as an operator, and its expectation value in a superposition.",
+   "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (2016), Sec. 5.1",
+   "url": "https://arxiv.org/abs/1509.02295"
+  },
+  "twisted-boundary": {
+   "category": "idea",
+   "name": "Current from a twist (Peierls phase)",
+   "note": "Put a phase e^(iθ) on one bond and obtain the current through it as −∂H/∂θ.",
+   "ref": "Q. Niu, D. J. Thouless, Y.-S. Wu, Quantized Hall conductance as a topological invariant, Phys. Rev. B 31, 3372 (1985)",
+   "url": "https://doi.org/10.1103/PhysRevB.31.3372"
+  },
+  "many-body-fidelity": {
+   "category": "idea",
+   "name": "Fidelity of a many-particle state and of its parts",
+   "note": "Compare the overlap of a whole N-particle state with the overlap of a small region of it.",
+   "ref": "W. Kohn, Nobel Lecture: Electronic structure of matter - wave functions and density functionals, Rev. Mod. Phys. 71, 1253 (1999)",
+   "url": "https://doi.org/10.1103/RevModPhys.71.1253"
+  },
+  "open-subsystem": {
+   "category": "idea",
+   "name": "Dynamics of a subsystem",
+   "note": "Why the equation of motion for one region of a chain involves its couplings to the outside.",
+   "ref": "H.-P. Breuer and F. Petruccione, The Theory of Open Quantum Systems (Oxford, 2002), Ch. 3",
+   "url": "https://doi.org/10.1093/acprof:oso/9780199213900.001.0001"
+  },
+  "certified-bounds": {
+   "category": "idea",
+   "name": "Certified bounds and decisions with error bars",
+   "note": "What a sufficient bound guarantees, and how to decide with an interval instead of a single number.",
+   "ref": "R. E. Moore, R. B. Kearfott, M. J. Cloud, Introduction to Interval Analysis (SIAM, 2009)",
+   "url": "https://doi.org/10.1137/1.9780898717716"
+  },
+  "prethermalization": {
+   "category": "idea",
+   "name": "Prethermalization in driven many-body systems",
+   "note": "Why a driven interacting system can keep its order for a long but finite time, and what controls that time.",
+   "ref": "D. Abanin, W. De Roeck, W. W. Ho, F. Huveneers, A rigorous theory of many-body prethermalization for periodically driven and closed quantum systems, Commun. Math. Phys. 354, 809 (2017)",
+   "url": "https://arxiv.org/abs/1509.05386"
+  },
+  "following-one-flavor": {
+   "category": "O-theory",
+   "name": "The particles keep following one flavor",
+   "meta": "questions 1.A.1, 1.D.1",
+   "note": "a gap above the two flavor configurations, uniform in system size and over the cycle; the composite gap protects only the plane, not the direction in it",
+   "ref": "many-body adiabatic theorem; many-body Chern number (Niu-Thouless-Wu)",
+   "url": "https://doi.org/10.1103/PhysRevB.31.3372"
+  },
+  "dressing-assembled": {
+   "category": "O-calc",
+   "name": "Local dressing assembled along the chain and the cycle",
+   "meta": "questions 2.B.1, 2.B.2",
+   "note": "build the corrections at every phase, join them smoothly, bound the overlap terms",
+   "ref": "Schrieffer-Wolff expansion; locality (cluster) estimates",
+   "url": "https://arxiv.org/abs/1105.0675"
+  },
+  "kept-dynamics": {
+   "category": "O-theory",
+   "name": "The kept dynamics K_ret",
+   "meta": "questions 2.C.1, 2.C.2",
+   "note": "a spectral gap uniform in system size",
+   "ref": "S. Bachmann, W. De Roeck, M. Fraas, The adiabatic theorem and linear response theory for extended quantum systems",
+   "url": "https://arxiv.org/abs/1705.02838"
+  },
+  "local-state-full-drive": {
+   "category": "O-theory",
+   "name": "The local state over the full drive",
+   "meta": "question 3.A.3",
+   "note": "the bounds grow with time; the boundary correlations do not close at the times of interest",
+   "ref": "Lieb-Robinson and local perturbation bounds",
+   "url": "https://arxiv.org/abs/1008.5137"
+  },
+  "certificate-inputs": {
+   "category": "O-calc",
+   "name": "The certificate inputs α, I₀, η, δ₀, t_max",
+   "meta": "question 3.B.1",
+   "note": "evaluate them in one frame for one initial state, once the local state is controlled",
+   "ref": "M. B. Hastings, Locality in Quantum Systems (trace-distance and locality bounds)",
+   "url": "https://arxiv.org/abs/1008.5137"
+  },
+  "first-failure": {
+   "category": "O-theory",
+   "name": "The first failed window",
+   "meta": "question 3.C.2",
+   "note": "a fast drive or a large gap; here the drive is slow",
+   "ref": "rigorous prethermalization (Abanin-De Roeck-Ho-Huveneers; Else-Bauer-Nayak)",
+   "url": "https://arxiv.org/abs/1509.05386"
+  }
+ },
+ "start": {
+  "title": "Start: the four core physics courses",
+  "text": "Reader: an undergraduate who knows classical mechanics, electromagnetism, quantum mechanics and statistical physics. Each question lists only what it needs beyond that."
+ },
+ "end": {
+  "title": "Research target",
+  "text": "Predict when the interacting pump leaves a chosen charge tolerance, and identify the process that controls it."
+ },
+ "groups": [
+  {
+   "kind": "exam",
+   "title": "A two-cycle quantum conveyor: bands, projectors and flavors",
+   "short": "Problem 1",
+   "points": 10,
+   "note": "Can repulsion turn an integer pump into one that carries half a particle per period at one particle per cell? How can a moving group of bands be described without a basis inside it?",
+   "nodes": [
+    {
+     "label": "1.A.1",
+     "title": "Fractional transport",
+     "points": 1.5,
+     "needs": [
+      "thouless-pump",
+      "wannier-centres"
+     ]
+    },
+    {
+     "label": "1.B.1",
+     "title": "From the lattice to a projector",
+     "points": 2.7,
+     "needs": [
+      "second-quantization",
+      "bloch-matrix",
+      "projector-calculus",
+      "band-projector"
+     ]
+    },
+    {
+     "label": "1.B.2",
+     "title": "From the lattice to a projector",
+     "points": 1.4,
+     "needs": [
+      "projector-calculus",
+      "kato-generator"
+     ]
+    },
+    {
+     "label": "1.C.1",
+     "title": "Following a moving projector",
+     "points": 2.3,
+     "needs": [
+      "pauli-rotations",
+      "frame-change",
+      "adiabatic-following"
+     ]
+    },
+    {
+     "label": "1.D.1",
+     "title": "A plane is not yet a flavor",
+     "points": 2.1,
+     "needs": [
+      "wilson-loop",
+      "gauge-freedom",
+      "wannier-centres"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "exam",
+   "title": "Correlations and the physical current",
+   "short": "Problem 2",
+   "points": 10,
+   "note": "When a reference state is dressed and followed in a moving frame, which steps are exact, where does the first approximation enter, and how is the physical current obtained?",
+   "nodes": [
+    {
+     "label": "2.A.1",
+     "title": "Domains in a spin chain",
+     "points": 1.3,
+     "needs": [
+      "domain-models",
+      "energy-and-transitions"
+     ]
+    },
+    {
+     "label": "2.B.1",
+     "title": "Dressing a reference state",
+     "points": 1.8,
+     "needs": [
+      "dressing",
+      "short-time-dynamics"
+     ]
+    },
+    {
+     "label": "2.B.2",
+     "title": "Dressing a reference state",
+     "points": 0.8,
+     "needs": [
+      "tensor-commutators",
+      "locality"
+     ]
+    },
+    {
+     "label": "2.C.1",
+     "title": "Exact frames and kept dynamics",
+     "points": 1.8,
+     "needs": [
+      "frame-change",
+      "operator-exponentials",
+      "second-quantization",
+      "effective-models"
+     ]
+    },
+    {
+     "label": "2.C.2",
+     "title": "Exact frames and kept dynamics",
+     "points": 1.3,
+     "needs": [
+      "domain-models",
+      "short-time-dynamics",
+      "effective-models"
+     ]
+    },
+    {
+     "label": "2.D.1",
+     "title": "The physical current",
+     "points": 0.9,
+     "needs": [
+      "current-operator"
+     ]
+    },
+    {
+     "label": "2.D.2",
+     "title": "The physical current",
+     "points": 2.1,
+     "needs": [
+      "twisted-boundary",
+      "gauge-connection",
+      "frame-change"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "exam",
+   "title": "How long can the conveyor operate?",
+   "short": "Problem 3",
+   "points": 10,
+   "note": "For how long can one guarantee that the transported charge stays within δ of −1/2, and what is needed to predict when it fails?",
+   "nodes": [
+    {
+     "label": "3.A.1",
+     "title": "Local accuracy in a large system",
+     "points": 1.1,
+     "needs": [
+      "many-body-fidelity",
+      "partial-trace"
+     ]
+    },
+    {
+     "label": "3.A.2",
+     "title": "Local accuracy in a large system",
+     "points": 2.2,
+     "needs": [
+      "trace-norm",
+      "partial-trace",
+      "locality"
+     ]
+    },
+    {
+     "label": "3.A.3",
+     "title": "Local accuracy in a large system",
+     "points": 2.0,
+     "needs": [
+      "partial-trace",
+      "open-subsystem"
+     ]
+    },
+    {
+     "label": "3.B.1",
+     "title": "A conditional operating-time certificate",
+     "points": 1.6,
+     "needs": [
+      "certified-bounds"
+     ]
+    },
+    {
+     "label": "3.C.1",
+     "title": "Prediction, error and first failure",
+     "points": 1.7,
+     "needs": [
+      "certified-bounds"
+     ]
+    },
+    {
+     "label": "3.C.2",
+     "title": "Prediction, error and first failure",
+     "points": 1.4,
+     "needs": [
+      "prethermalization",
+      "effective-models",
+      "open-subsystem"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "research",
+   "title": "From the exam to the open problem",
+   "short": "Research",
+   "note": "The chain of objects behind the exam. Left: links a calculation would close. Right: links that need new theory.",
+   "nodes": [
+    {
+     "label": "h(k, φ)",
+     "meta": "D",
+     "title": "The 5×5 one-particle Bloch matrix",
+     "needs": []
+    },
+    {
+     "label": "p₁₂(k, φ)",
+     "meta": "D",
+     "title": "The projector onto bands 1 and 2: a moving plane",
+     "needs": []
+    },
+    {
+     "label": "flavor A/B, W(t)",
+     "meta": "D/O-theory",
+     "title": "One direction in the plane, and the frame that follows it",
+     "needs": [
+      "following-one-flavor"
+     ]
+    },
+    {
+     "label": "U = W e^S, K_ret",
+     "meta": "D/O-theory",
+     "title": "The dressed frame, and the part of its generator that is kept",
+     "needs": [
+      "dressing-assembled",
+      "kept-dynamics"
+     ]
+    },
+    {
+     "label": "σ′_X(t), I′(t)",
+     "meta": "D/O-theory",
+     "title": "The local state and the physical current",
+     "needs": [
+      "local-state-full-drive"
+     ]
+    },
+    {
+     "label": "Q̂(t) ± E(t)",
+     "meta": "D/O-calc",
+     "title": "The charge prediction with an error bar",
+     "needs": [
+      "certificate-inputs"
+     ]
+    },
+    {
+     "label": "first failed window",
+     "meta": "O-theory",
+     "title": "The first two-period window outside the tolerance",
+     "needs": [
+      "first-failure"
+     ]
+    }
+   ]
+  }
+ ],
+ "footer": [
+  "An item appears in full where it is first needed and as a dashed reminder later. Ticks stay in this browser.",
+  "Shared gap of the O-theory links: no existing theory controls a slowly driven, strongly correlated chain over long times when its order is not protected by a uniform gap. A first controlled result is a limit in which the failing hypothesis holds, for example a gap that protects the whole group of flavor configurations rather than one of them."
+ ]
+}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById("checklist-data").textContent);
+  if (data.lang) { document.documentElement.setAttribute("lang", data.lang); }
+  var cats = data.categories || [];
+  var catById = {};
+  cats.forEach(function (c) { catById[c.id] = c; });
+  var KEY = "researchpho-checklist:" + (data.storageKey || data.title);
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) { n.className = cls; }
+    if (text != null) { n.textContent = text; }
+    return n;
+  }
+  function frame(n, colour) {
+    n.style.borderColor = "var(--c-" + colour + ")";
+    n.style.background = "var(--w-" + colour + ")";
+  }
+
+  document.getElementById("eyebrow").textContent = data.eyebrow || "";
+  document.getElementById("title").textContent = data.title || "";
+  document.getElementById("intro").textContent = data.intro || "";
+
+  var meters = document.getElementById("meters");
+  var meterEls = {};
+  cats.concat([{ id: "*", plural: "All items", colour: "green" }]).forEach(function (c) {
+    var m = el("div", "meter");
+    var r1 = el("div", "row1");
+    var lbl = el("span", "lbl", c.plural || c.name);
+    lbl.style.color = c.id === "*" ? "var(--fg)" : "var(--c-" + c.colour + ")";
+    var num = el("span", "num", "0 / 0");
+    r1.appendChild(lbl); r1.appendChild(num); m.appendChild(r1);
+    var bar = el("div", "bar"); var bi = document.createElement("i");
+    bi.style.background = c.id === "*" ? "var(--done)" : "var(--c-" + c.colour + ")";
+    bar.appendChild(bi); m.appendChild(bar); meters.appendChild(m);
+    meterEls[c.id] = { num: num, bar: bi };
+  });
+
+  var legend = document.getElementById("legend");
+  cats.forEach(function (c) {
+    var s = el("span");
+    var sw = el("i", "swatch"); frame(sw, c.colour);
+    s.appendChild(sw); s.appendChild(document.createTextNode(c.name + (c.side === "left" ? " (left)" : " (right)")));
+    legend.appendChild(s);
+  });
+
+  var filters = document.getElementById("filters");
+  var filterBtns = [];
+  function setFilter(id) {
+    document.querySelectorAll(".item, .remind").forEach(function (n) {
+      n.hidden = !(id === "*" || n.getAttribute("data-cat") === id);
+    });
+    filterBtns.forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-id") === id)); });
+  }
+  [{ id: "*" }].concat(cats).forEach(function (c) {
+    var p = c.plural || c.name || "";
+    var shown = /^[A-Z][a-z]/.test(p) ? p.charAt(0).toLowerCase() + p.slice(1) : p;
+    var b = el("button", "", c.id === "*" ? "All" : "Only " + shown);
+    b.type = "button"; b.setAttribute("data-id", c.id); b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", function () { setFilter(c.id); });
+    filters.appendChild(b); filterBtns.push(b);
+  });
+  var reset = el("button", "", "Clear ticks"); reset.type = "button"; filters.appendChild(reset);
+
+  var track = document.getElementById("track");
+  var seen = {}, boxes = {}, reminders = {}, nodeMeta = [], groupMeta = [];
+
+  function makeItem(id) {
+    var it = data.items[id]; var c = catById[it.category];
+    if (seen[id]) {
+      var rem = el("span", "remind", it.name); rem.setAttribute("data-cat", it.category);
+      rem.style.borderColor = "var(--c-" + c.colour + ")";
+      rem.title = "Introduced at an earlier question";
+      (reminders[id] = reminders[id] || []).push(rem);
+      return rem;
+    }
+    seen[id] = true;
+    var label = el("label", "item"); label.setAttribute("data-cat", it.category); frame(label, c.colour);
+    var cb = document.createElement("input"); cb.type = "checkbox"; cb.id = "cb-" + id; cb.checked = !!state[id];
+    cb.style.accentColor = "var(--c-" + c.colour + ")";
+    var txt = el("span", "txt");
+    txt.appendChild(el("span", "t", it.name));
+    if (it.note) { txt.appendChild(el("span", "n", it.note)); }
+    if (it.ref || it.meta) {
+      var ref = el("span", "r");
+      if (it.meta) { ref.appendChild(el("span", "meta", it.meta + (it.ref ? " · " : ""))); }
+      if (it.ref) {
+        if (it.url) {
+          var a = el("a", "", it.ref); a.href = it.url; a.target = "_blank"; a.rel = "noopener";
+          a.addEventListener("click", function (e) { e.stopPropagation(); });
+          ref.appendChild(a);
+        } else { ref.appendChild(document.createTextNode(it.ref)); }
+      }
+      txt.appendChild(ref);
+    }
+    label.appendChild(cb); label.appendChild(txt);
+    cb.addEventListener("change", function () {
+      if (cb.checked) { state[id] = 1; } else { delete state[id]; }
+      save(); refresh();
+    });
+    boxes[id] = { cb: cb, label: label, cat: it.category };
+    return label;
+  }
+
+  function addTerminal(t, cls) {
+    if (!t) { return; }
+    var n = el("div", "terminal" + (cls ? " " + cls : ""));
+    n.appendChild(el("h2", "", t.title));
+    if (t.text) { n.appendChild(el("p", "", t.text)); }
+    track.appendChild(n);
+  }
+
+  addTerminal(data.start);
+  (data.groups || []).forEach(function (g) {
+    var research = g.kind === "research";
+    var head = el("div", "phead" + (research ? " research" : ""));
+    var code = el("div", "code");
+    code.appendChild(el("span", "", (g.short || "") + (g.points ? " · " + g.points + " points" : "")));
+    var pnum = el("span", "", ""); code.appendChild(pnum); head.appendChild(code);
+    head.appendChild(el("h2", "", g.title));
+    if (g.note) { head.appendChild(el("p", "q", g.note)); }
+    var pb = el("div", "bar"); var pbi = document.createElement("i"); pb.appendChild(pbi); head.appendChild(pb);
+    track.appendChild(head);
+    var ids = [];
+    g.nodes.forEach(function (nd) {
+      var row = el("section", "row");
+      var left = el("div", "col left"), right = el("div", "col right");
+      (nd.needs || []).forEach(function (id) {
+        var c = catById[data.items[id].category];
+        (c.side === "left" ? left : right).appendChild(makeItem(id));
+        if (ids.indexOf(id) < 0) { ids.push(id); }
+      });
+      if (!left.childNodes.length && data.emptyNote) { left.appendChild(el("span", "empty", data.emptyNote)); }
+      if (!right.childNodes.length && data.emptyNote) { right.appendChild(el("span", "empty", data.emptyNote)); }
+      var node = el("div", "node");
+      var nc = el("div", "code"); nc.appendChild(el("span", "", nd.label));
+      if (nd.points != null) { nc.appendChild(el("span", "pts", Number(nd.points).toFixed(1) + " pt")); }
+      else if (nd.meta) {
+        var tag = el("span", "tag", nd.meta);
+        tag.style.color = /theory/.test(nd.meta) ? "var(--c-red)" : /calc/.test(nd.meta) ? "var(--c-amber)" : "var(--muted)";
+        nc.appendChild(tag);
+      }
+      node.appendChild(nc);
+      if (nd.title) { node.appendChild(el("h3", "", nd.title)); }
+      if (nd.note) { node.appendChild(el("p", "nnote", nd.note)); }
+      var st = el("div", "state", ""); node.appendChild(st);
+      row.appendChild(left); row.appendChild(node); row.appendChild(right);
+      track.appendChild(row);
+      nodeMeta.push({ node: node, st: st, ids: (nd.needs || []).slice() });
+    });
+    groupMeta.push({ ids: ids, num: pnum, bar: pbi });
+  });
+  addTerminal(data.end, "end");
+
+  var footer = document.getElementById("footer");
+  (data.footer || []).forEach(function (p) { footer.appendChild(el("p", "", p)); });
+
+  function count(ids) { return ids.filter(function (id) { return !!state[id]; }).length; }
+  function refresh() {
+    Object.keys(boxes).forEach(function (id) {
+      var b = boxes[id];
+      b.cb.checked = !!state[id];
+      b.label.classList.toggle("done", !!state[id]);
+      b.label.style.background = "var(--" + (state[id] ? "s-" : "w-") + catById[b.cat].colour + ")";
+      (reminders[id] || []).forEach(function (r) { r.classList.toggle("done", !!state[id]); });
+    });
+    var all = Object.keys(boxes);
+    cats.concat([{ id: "*" }]).forEach(function (c) {
+      var ids = c.id === "*" ? all : all.filter(function (id) { return boxes[id].cat === c.id; });
+      var k = count(ids), n = ids.length;
+      meterEls[c.id].num.textContent = k + " / " + n;
+      meterEls[c.id].bar.style.width = (n ? 100 * k / n : 0) + "%";
+    });
+    nodeMeta.forEach(function (m) {
+      var k = count(m.ids), n = m.ids.length;
+      m.st.textContent = n === 0 ? "" : (k === n ? "Done " : "Progress ") + k + " / " + n;
+      m.node.classList.toggle("complete", n > 0 && k === n);
+    });
+    groupMeta.forEach(function (g) {
+      var k = count(g.ids), n = g.ids.length;
+      g.num.textContent = k + " / " + n;
+      g.bar.style.width = (n ? 100 * k / n : 0) + "%";
+    });
+  }
+
+  var armed = null;
+  reset.addEventListener("click", function () {
+    if (!armed) {
+      reset.textContent = "Click again to clear"; reset.classList.add("warn");
+      armed = setTimeout(function () { armed = null; reset.textContent = "Clear ticks"; reset.classList.remove("warn"); }, 3000);
+      return;
+    }
+    clearTimeout(armed); armed = null; state = {}; save();
+    reset.textContent = "Cleared"; reset.classList.remove("warn");
+    setTimeout(function () { reset.textContent = "Clear ticks"; }, 1500);
+    refresh();
+  });
+
+  setFilter("*");
+  refresh();
+})();
+</script>
+</body>
+</html>

@@ -54,7 +54,7 @@ Researched October 2026. Rules change; check the current official documents befo
 | Problem = introduction, figures, given data, parts A, B, ..., boxed subquestions A.1, A.2, ... with points | IPhO/APhO booklets | the only content of the question booklet |
 | Out-of-syllabus concepts explained in syllabus terms | IPhO syllabus | introductions and "useful information" inside each problem |
 | Small share of marks for algebra; partial credit for approximations | IPhO syllabus | marking schemes |
-| Separate answer sheets with one box per subquestion | IPhO/APhO | answer-sheet booklet |
+| Separate answer sheets with one box per subquestion | IPhO/APhO | not copied: the reader writes on plain sheets and labels each answer with its question |
 | Frontier research as problem topic | PanPhO comprehensive test, IPhO | research papers as the problem source |
 | English master text, translated by leaders | APhO | write once; keep symbols identical in translations |
 

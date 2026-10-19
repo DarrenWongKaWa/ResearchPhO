@@ -23,6 +23,7 @@ two papers and from teaching models.
 | 4 | everything scored (20 points); Background, Toolkit, Glossary; 16 set-up pictures; notation unified; answer leaks removed; teacher notes | a reader who had not read the papers could not start revision 3; a cold read finds this at once |
 | 5 (ResearchPhO) | strict IPhO/APhO format: three independent problems of 10 points, boxed subquestions, answer sheets; every coloured frame, scope note and research-plan item moved to solution Appendices A-D; background and toolkit moved into each problem's introduction and "Useful information" | status frames are not olympiad style and distract the solver; the research context belongs at the end of the solutions |
 | 6 (ResearchPhO 1.1.0) | marking lines tagged (M)/(C); toolbox appendix; study guide; the field direction of 1.C.1 defined in the text and the Bloch vector introduced before Figure 1.5 | the tags measure S2 instead of asserting it: the first tagging gave 45%, 34% and 40% modelling; rebalancing within each question, totals unchanged, gave 56%, 53% and 52% |
+| 7 (ResearchPhO 1.2.0) | three deliverables in one folder `<PaperName>_RPhO/`: questions, solutions, checklist; study guide and research checklist merged into one checklist page with linked references; no answer-sheet booklet; reader fixed as an undergraduate who knows the four core physics courses | a reader needs the questions, the solutions and one map; intermediate files in the same folder hide the three files that matter |
 
 ## Reader feedback that drove revisions 4 and 5
 
@@ -50,7 +51,7 @@ A reader worked through the exam with the agent as a tutor. The same needs came 
   toolbox appendix.
 - Misreadings: "t^2 growth at short times means a divergence"; "a lower energy means it will happen"; "in the
   rotating frame the field is along z" -> the misreading list of the tutor cards, seeded from the trial solve.
-- "What do I need to know first?" -> the study guide, drawn as a checklist flowchart.
+- "What do I need to know first?" -> the checklist: per question, the tools and ideas beyond the four core courses, with linked references, followed by the open research links.
 
 ## Audit findings on revision 3 (before the rewrite)
 
