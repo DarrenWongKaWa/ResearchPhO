@@ -6,6 +6,7 @@ Requires numpy and scipy. Document checks: ../../researchpho/scripts/check_bookl
 """
 from __future__ import annotations
 
+import itertools
 import json
 import math
 from pathlib import Path
@@ -169,6 +170,76 @@ for value, error in [(-0.497, 0.001), (-0.494, 0.0015), (-0.494, 0.0005)]:
     choices.append("inside" if d + error <= delta else "outside" if d - error > delta else "undetermined")
 assert choices == ["inside", "undetermined", "outside"]
 results["F3_added_data_classification"] = choices
+# ---------------- Appendix D: toolbox examples ----------------
+sy = np.array([[0, -1j], [1j, 0]])
+sz2 = np.diag([1.0, -1.0]).astype(complex)
+id2 = np.eye(2)
+mx = 0.0
+for _ in range(10):  # 3-site ring with a seam: det h(k) = -2 t0 t1 t2 cos k
+    t0, t1, t2, kval = rng.uniform(-2, 2, size=4)
+    hk = -np.array([[0, t0, t2 * np.exp(-1j * kval)], [t0, 0, t1], [t2 * np.exp(1j * kval), t1, 0]])
+    mx = max(mx, abs(np.linalg.det(hk) - (-2 * t0 * t1 * t2 * np.cos(kval))))
+check("toolbox_three_site_seam_determinant", mx)
+mx = 0.0
+for n_cells in (4, 9):  # dimer ring: eigenvalues of P exp(2 pi i x/N) P
+    pos = np.array([r + s_ / 2 for r in range(n_cells) for s_ in (0, 1)])
+    hop = np.zeros((2 * n_cells, 2 * n_cells))
+    for r in range(n_cells):
+        hop[2 * r, 2 * r + 1] = hop[2 * r + 1, 2 * r] = -1.0
+    vals, vecs = np.linalg.eigh(hop)
+    low = vecs[:, vals < 0]
+    proj = low.conj().T @ np.diag(np.exp(2j * np.pi * pos / n_cells)) @ low
+    lam = np.sort_complex(np.linalg.eigvals(proj))
+    want = np.sort_complex(np.cos(np.pi / (2 * n_cells)) * np.exp(2j * np.pi * (np.arange(n_cells) + 0.25) / n_cells))
+    mx = max(mx, np.max(abs(lam - want)))
+check("toolbox_projected_position_dimer", mx)
+mx = 0.0
+for _ in range(10):  # Pauli exponential and the rotation sense of exp(-i theta d.sigma/2)
+    d = rng.normal(size=3)
+    d /= np.linalg.norm(d)
+    xval = rng.uniform(-3, 3)
+    ds = d[0] * sx + d[1] * sy + d[2] * sz2
+    mx = max(mx, np.max(abs(expm(1j * xval * ds) - (id2 * np.cos(xval) + 1j * ds * np.sin(xval)))))
+theta = 0.7
+plus_x = np.array([1, 1]) / np.sqrt(2)
+turned = expm(-1j * theta * sz2 / 2) @ plus_x
+bloch = [np.vdot(turned, op @ turned).real for op in (sx, sy, sz2)]
+mx = max(mx, abs(bloch[0] - np.cos(theta)), abs(bloch[1] - np.sin(theta)), abs(bloch[2]))
+mx = max(mx, np.max(abs(expm(1j * np.pi / 2 * sx) - 1j * sx)))
+check("toolbox_pauli_exponential", mx)
+w, w2, tval = 1.3, 0.4, 0.9  # frame turning about z: K = (w - w2)/2 sigma_z
+U = expm(-1j * w2 * tval * sz2 / 2)
+dU = -1j * w2 / 2 * sz2 @ U
+check("toolbox_frame_change", np.max(abs(U.conj().T @ (w / 2 * sz2) @ U - 1j * U.conj().T @ dU - (w - w2) / 2 * sz2)))
+pairs = [frozenset(c) for c in itertools.combinations(range(1, 5), 2)]
+ref = frozenset({1, 2})
+classes = [len(ref - c) for c in pairs]
+assert (classes.count(0), classes.count(1), classes.count(2)) == (1, 4, 1)
+results["toolbox_two_fermions_four_orbitals"] = {"reference": 1, "single": 4, "double": 1}
+check("toolbox_two_spin_commutator", np.max(abs(comm(np.kron(sx, sx), np.kron(sz2, id2)) + 2j * np.kron(sy, sx))))
+theta = 0.83
+S = -1j * theta / 2 * sx
+check("toolbox_commutator_series", np.max(abs(expm(-S) @ sz2 @ expm(S) - (sz2 * np.cos(theta) + sy * np.sin(theta)))))
+mx = 0.0
+for theta in np.linspace(0, np.pi / 2, 7):  # trace norm of rho - |0><0| for a pure qubit state
+    psi = np.array([np.cos(theta), np.sin(theta)])
+    diff = np.outer(psi, psi) - np.diag([1.0, 0.0])
+    mx = max(mx, abs(np.sum(abs(np.linalg.eigvalsh(diff))) - 2 * np.sin(theta)),
+             abs(np.trace(diff @ sz2).real + 2 * np.sin(theta) ** 2))
+mx = max(mx, abs(np.sum(abs(np.linalg.eigvalsh(id2 / 2 - np.diag([1.0, 0.0])))) - 1))
+check("toolbox_trace_norm", mx)
+bell = np.array([1, 0, 0, 1]) / np.sqrt(2)
+prod = np.kron([1, 0], [1, 1]) / np.sqrt(2)
+mx = 0.0
+for vec, rho1, expect in ((bell, id2 / 2, 0.0), (prod, np.diag([1.0, 0.0]), 1.0)):
+    rho = np.outer(vec, vec.conj())
+    red = np.trace(rho.reshape(2, 2, 2, 2), axis1=1, axis2=3)
+    mx = max(mx, np.max(abs(red - rho1)), abs(np.trace(rho @ np.kron(sz2, id2)).real - expect))
+check("toolbox_partial_trace", mx)
+q1, q2 = np.kron(np.diag([0.0, 1.0]), id2), np.kron(id2, np.diag([0.0, 1.0]))
+left = np.eye(4) - (np.eye(4) - q1) @ (np.eye(4) - q2)
+check("toolbox_commuting_projectors", np.max(abs(np.diag(left) - [0, 1, 1, 1])) + np.max(abs(np.diag(q1 + q2) - [0, 1, 1, 2])))
+
 results["scope"] = ("Single-particle picture data and finite-matrix teaching algebra. "
                     "Not a pump simulation or a physical lifetime.")
 (ROOT / "check_answers.json").write_text(json.dumps(results, indent=2))

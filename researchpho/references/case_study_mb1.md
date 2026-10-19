@@ -22,6 +22,7 @@ two papers and from teaching models.
 | 3 | six "modelling bridges" between objects (M.1, B.4, C.3, C.4, E.3, F.3) | the bridges carried most of the learning: why the next object is needed |
 | 4 | everything scored (20 points); Background, Toolkit, Glossary; 16 set-up pictures; notation unified; answer leaks removed; teacher notes | a reader who had not read the papers could not start revision 3; a cold read finds this at once |
 | 5 (ResearchPhO) | strict IPhO/APhO format: three independent problems of 10 points, boxed subquestions, answer sheets; every coloured frame, scope note and research-plan item moved to solution Appendices A-D; background and toolkit moved into each problem's introduction and "Useful information" | status frames are not olympiad style and distract the solver; the research context belongs at the end of the solutions |
+| 6 (ResearchPhO 1.1.0) | marking lines tagged (M)/(C); toolbox appendix; study guide; the field direction of 1.C.1 defined in the text and the Bloch vector introduced before Figure 1.5 | the tags measure S2 instead of asserting it: 45%, 34% and 40% modelling, below the one-half target |
 
 ## Reader feedback that drove revisions 4 and 5
 
@@ -34,6 +35,22 @@ two papers and from teaching models.
 - "These frames do not exist in APhO and are not for solving; they are research-plan information." -> strict
   format; three problems of 10 points; all research context in the solution appendices.
 - "Call it ResearchPhO."
+
+## Tutoring sessions that drove version 1.1.0
+
+A reader worked through the exam with the agent as a tutor. The same needs came back in every session:
+
+- "What is this part doing, and why?" -> the purpose sentence of each tutor card.
+- "How do I read this figure?" (the Bloch-sphere cut of 1.C.1) -> the figure-reading table; every symbol of a figure
+  also defined in the text.
+- Lab frame versus rotating frame -> a two-column table for every change of frame.
+- One letter for two fields, and a direction defined only in a caption -> one letter per object; symbols named
+  before use.
+- Unfamiliar mathematics (a determinant expansion, a product identity) -> the smallest worked example first; the
+  toolbox appendix.
+- Misreadings: "t^2 growth at short times means a divergence"; "a lower energy means it will happen"; "in the
+  rotating frame the field is along z" -> the misreading list of the tutor cards, seeded from the trial solve.
+- "What do I need to know first?" -> the study guide, drawn as a checklist flowchart.
 
 ## Audit findings on revision 3 (before the rewrite)
 

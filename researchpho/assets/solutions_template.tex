@@ -48,7 +48,8 @@
 \newcommand{\parttitle}[3]{\par\Needspace{8\baselineskip}\vspace{6pt}{\large\bfseries\color{ink}Part #1. #2\hfill\normalsize(#3 points)}\par\vspace{2pt}}
 \newcommand{\pagetitle}[1]{{\large\bfseries\color{ink}#1}\par\vspace{4pt}}
 \newcommand{\smallheading}[1]{\par\Needspace{6\baselineskip}\medskip\textbf{#1}\par}
-% \soltitle{label}{points}{title}; \marking{...}: decimals outside math must add up to the points
+% \soltitle{label}{points}{title}; \marking{...}: decimals outside math must add up to the points;
+% tag each decimal (C) computation or (M) modelling, e.g. "Setup: 2.0 (M)." (untagged lines stay valid)
 \newcommand{\soltitle}[3]{\par\Needspace{4\baselineskip}{\bfseries\color{ink}#1\quad #3}\hfill{\small\bfseries #2 pt}\par}
 \newcommand{\marking}[1]{\par{\footnotesize\textit{Marking: #1}}\par}
 \newenvironment{figpanel}[1]{\refstepcounter{figc}\gdef\figtitle{#1}\par\medskip\noindent\begin{minipage}{\linewidth}\centering}{\end{minipage}\par\medskip}
@@ -62,6 +63,9 @@
 
 {\LARGE\bfseries\color{ink}TITLE OF THE EXAM}\par
 {\large ResearchPhO --- Solutions and marking scheme \hfill \textbf{30 points}}
+
+\smallheading{How to use this booklet}
+Each answer is followed by its marking scheme; the numbers in a marking line add up to the points of the question. (M) marks a modelling step: setting up the model, choosing the physics, interpreting a result, judging its scope. (C) marks a computation step: algebra, solving, evaluating. Most of each problem's marks go to (M). Appendices A--D contain the research context; Appendix E, the toolbox, gives the smallest worked example of each tool from ``Useful information''.
 
 \smallheading{Mark allocation}
 {\small\begin{tabularx}{\textwidth}{@{}p{18mm}Y r@{}}\toprule
@@ -79,10 +83,10 @@ Derivation \dots
 \[
 \boxed{Q=-1.}
 \]
-\marking{Result: 0.8. Average: 0.4. Interpretation: 0.3.}
+\marking{Result: 0.8 (C). Average: 0.4 (C). Interpretation: 0.3 (M).}
 \soltitle{A.2}{2.5}{Short title}
 \textbf{(a)} \dots\quad \textbf{(b)} \dots
-\marking{(a) 1.5. (b) 1.0.}
+\marking{(a) Model set-up: 1.5 (M). (b) Evaluation: 1.0 (C).}
 \parttitle{B}{SECOND PART}{6.0}
 \soltitle{B.1}{6.0}{Short title}
 \begin{figpanel}{An answer picture}
@@ -93,21 +97,21 @@ Derivation \dots
 \end{tikzpicture}
 \figtext{Answer pictures belong in the solutions only; state the illustrative parameters.}
 \end{figpanel}
-\marking{Setup: 2.0. Calculation: 3.0. Interpretation: 1.0.}
+\marking{Setup: 2.5 (M). Calculation: 2.5 (C). Interpretation: 1.0 (M).}
 
 \problemsol{2}{SECOND PROBLEM}{10.0}
 \parttitle{A}{FIRST PART}{10.0}
 \soltitle{A.1}{10.0}{Short title}
-\marking{Everything: 10.0.}
+\marking{Model: 6.0 (M). Calculation: 4.0 (C).}
 
 \problemsol{3}{THIRD PROBLEM}{10.0}
 \parttitle{A}{FIRST PART}{10.0}
 \soltitle{A.1}{10.0}{Short title}
-\marking{Everything: 10.0.}
+\marking{Model: 6.0 (M). Calculation: 4.0 (C).}
 
 \appendixstart
 {\LARGE\bfseries\color{ink}Appendices: research context}\par\medskip
-Not needed to solve or mark the exam. Labels have the form problem.part.number.
+Appendices A--D are not needed to solve or mark the exam. Appendix E is for the reader. Labels have the form problem.part.number.
 
 \pagetitle{Appendix A. Paper map}
 \smallheading{What each paper answers}
@@ -141,6 +145,15 @@ A table: item --- available now --- still missing --- kind (O-calc or O-theory).
 
 \pagetitle{Appendix D. Teacher notes}
 Provenance of every number; interpretations to confirm; label maps between revisions; independent checks.
+
+\clearpage
+\pagetitle{Appendix E. Toolbox: the smallest worked examples}
+One entry for every tool stated under ``Useful information'' (or in a hint or a given identity) that is above the reader's level. Each entry takes the smallest case in which the tool does something: a 3-site ring before the 5-site one; the $N=2$ case of a product identity before general $N$. The example teaches the tool, not an exam step.
+
+\smallheading{TOOL NAME (Problem 1, Useful information)}
+\textbf{Statement.} The line as it appears in the question paper.\par
+\textbf{Smallest example.} The smallest case, computed in full, with its result checked a second way.\par
+\textbf{Used in} 1.A.2.
 \vfill
 \begin{center}\textbf{End of solution booklet}\end{center}
 \end{document}

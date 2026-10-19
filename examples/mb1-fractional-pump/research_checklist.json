@@ -1,0 +1,101 @@
+{
+  "schema": "researchpho-checklist/1",
+  "lang": "en",
+  "eyebrow": "ResearchPhO research checklist",
+  "title": "How long can a two-cycle quantum conveyor operate?",
+  "intro": "Main line: the chain of objects from the model to the measured quantity (Appendix A of the solutions). Left, amber: open links that a calculation with existing theory would close (O-calc). Right, red: open links where the closest existing theory needs a hypothesis that fails here (O-theory). Tick a link when a result closes it.",
+  "storageKey": "researchpho-research:mb1-fractional-pump",
+  "emptyNote": "No open link at this step.",
+  "categories": [
+    {"id": "O-calc", "name": "Open link: calculation (O-calc)", "plural": "O-calc links", "colour": "amber",
+     "noteLabel": "Calculation that closes it", "refLabel": "Existing method"},
+    {"id": "O-theory", "name": "Open link: theory (O-theory)", "plural": "O-theory links", "colour": "red",
+     "noteLabel": "Hypothesis that fails", "refLabel": "Closest existing theory"}
+  ],
+  "start": {"title": "The model", "text": "H_MFP(t), the interacting driven chain of paper [1] (S: stated in a source)."},
+  "end": {"title": "Research target", "text": "Predict when the original interacting pump leaves a chosen charge tolerance, and identify the process that controls that change."},
+  "items": {
+    "following-one-flavor": {
+      "category": "O-theory",
+      "name": "The particles keep following one flavor",
+      "meta": "questions 1.A.1, 1.D.1",
+      "note": "a gap above the two flavor configurations, uniform in system size and over the cycle; the composite gap protects only the plane, not the direction in it",
+      "ref": "many-body adiabatic theorem; many-body Chern number (Niu-Thouless-Wu)",
+      "url": "https://doi.org/10.1103/PhysRevB.31.3372"
+    },
+    "dressing-assembled": {
+      "category": "O-calc",
+      "name": "Local dressing assembled along the chain and the cycle",
+      "meta": "questions 2.B.1, 2.B.2",
+      "note": "build the corrections at every phase, join them smoothly, bound the overlap terms",
+      "ref": "Schrieffer-Wolff expansion; locality (cluster) estimates",
+      "url": "https://arxiv.org/abs/1105.0675"
+    },
+    "kept-dynamics": {
+      "category": "O-theory",
+      "name": "The kept dynamics K_ret",
+      "meta": "questions 2.C.1, 2.C.2",
+      "note": "a spectral gap uniform in system size",
+      "ref": "quasi-adiabatic continuation (Hastings); adiabatic theorems for extended systems (Bachmann-De Roeck-Fraas; Monaco-Teufel)",
+      "url": "https://arxiv.org/abs/1008.5137"
+    },
+    "local-state-full-drive": {
+      "category": "O-theory",
+      "name": "The local state over the full drive",
+      "meta": "question 3.A.3",
+      "note": "the bounds grow with time; the boundary correlations do not close at the times of interest",
+      "ref": "Lieb-Robinson and local perturbation bounds",
+      "url": "https://arxiv.org/abs/1008.5137"
+    },
+    "certificate-inputs": {
+      "category": "O-calc",
+      "name": "The certificate inputs α, I₀, η, δ₀, t_max",
+      "meta": "question 3.B.1",
+      "note": "evaluate them in one frame for one initial state, once the local state is controlled",
+      "ref": "trace-distance and locality bounds"
+    },
+    "first-failure": {
+      "category": "O-theory",
+      "name": "The first failed window",
+      "meta": "question 3.C.2",
+      "note": "a fast drive or a large gap; here the drive is slow",
+      "ref": "rigorous prethermalization (Abanin-De Roeck-Ho-Huveneers; Else-Bauer-Nayak)",
+      "url": "https://arxiv.org/abs/1509.05386"
+    }
+  },
+  "groups": [
+    {
+      "title": "Single-particle geometry",
+      "short": "Geometry",
+      "note": "Problem 1",
+      "nodes": [
+        {"label": "h(k, φ)", "meta": "D", "title": "The 5×5 one-particle Bloch matrix", "note": "question 1.B.1", "needs": []},
+        {"label": "p₁₂(k, φ)", "meta": "D", "title": "The projector onto bands 1 and 2: a moving plane", "note": "questions 1.B.2, 1.C.1", "needs": []},
+        {"label": "flavor A/B, W(t)", "meta": "D/O-theory", "title": "One direction in the plane, and the frame that follows it", "note": "question 1.D.1", "needs": ["following-one-flavor"]}
+      ]
+    },
+    {
+      "title": "Correlated dynamics and the current",
+      "short": "Dynamics",
+      "note": "Problem 2 and Part 3.A",
+      "nodes": [
+        {"label": "U = W e^S, K_ret", "meta": "D/O-theory", "title": "The dressed frame, and the part of its generator that is kept", "note": "questions 2.B.1 to 2.C.2", "needs": ["dressing-assembled", "kept-dynamics"]},
+        {"label": "σ′_X(t), I′(t)", "meta": "D/O-theory", "title": "The local state and the physical current", "note": "questions 2.D.1, 2.D.2, 3.A.1 to 3.A.3", "needs": ["local-state-full-drive"]}
+      ]
+    },
+    {
+      "title": "Prediction and lifetime",
+      "short": "Prediction",
+      "note": "Parts 3.B and 3.C",
+      "nodes": [
+        {"label": "Q̂(t) ± E(t)", "meta": "D/O-calc", "title": "The charge prediction with an error bar", "note": "questions 3.B.1, 3.C.1", "needs": ["certificate-inputs"]},
+        {"label": "first failed window", "meta": "O-theory", "title": "The first two-period window outside the tolerance", "note": "question 3.C.2", "needs": ["first-failure"]}
+      ]
+    }
+  ],
+  "footer": [
+    "Shared gap of the O-theory links: no existing theory controls a slowly driven, strongly correlated chain over long times when its order is not protected by a uniform gap. A first controlled result is a limit in which the failing hypothesis holds, for example a gap that protects the whole group of flavor configurations rather than one of them.",
+    "Labels on the main line: S stated in a source; D derived in the booklet; D/O-calc and D/O-theory: the identity is derived, and its inputs for the real system are open, of that kind. The label says whether a method exists, not how much work remains.",
+    "Built from the open-link table of Appendix A of the solutions. Tick a link when a calculation or a new result closes it."
+  ]
+}

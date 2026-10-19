@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ResearchPhO research checklist: How long can a two-cycle quantum conveyor operate?</title>
+<!--
+  ResearchPhO checklist flowchart: one self-contained, data-driven page.
+  A main line of nodes (for example the questions of an exam, or the chain of objects of a paper) runs down the
+  middle; two categories of items hang on its two sides, each with its own colour; every item has a checkbox.
+  Uses: study guide (computation tools | modelling ideas), research checklist (O-calc | O-theory open links),
+  author checklist (olympiad standards | verification checks).
+  Edit a JSON file and run
+      python3 scripts/make_checklist.py data.json page.html
+  which validates the data and writes it into the JSON block near the end of this file.
+  No external files, fonts or scripts. Ticks are stored in this browser only (localStorage).
+-->
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f5f6f8; --surface: #ffffff; --surface-2: #eef1f5; --ink: #172a3a; --muted: #56616c;
+  --line: #d4dae2; --spine: #8d99a6; --focus: #6b4fd8; --done: #2f7d4f;
+  --head-bg: #172a3a; --head-ink: #ffffff; --error: #a42b32; --error-wash: #fff4f4;
+  --blue: #2a66a8; --blue-wash: #eaf2fb; --blue-ink: #1b4c80;
+  --orange: #b8620f; --orange-wash: #fcf0e2; --orange-ink: #81440a;
+  --amber: #a06d00; --amber-wash: #fbf3dc; --amber-ink: #6d4b00;
+  --red: #b0313a; --red-wash: #fcecee; --red-ink: #84222a;
+  --green: #2f7d4f; --green-wash: #e8f5ee; --green-ink: #1f5a38;
+  --purple: #6a4bb8; --purple-wash: #f1edfb; --purple-ink: #4d3590;
+  --radius: 10px; --node-w: 290px; --gap: 34px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0f151b; --surface: #17202a; --surface-2: #1f2a36; --ink: #e6edf3; --muted: #9ba8b5;
+    --line: #2d3b49; --spine: #5a6a7a; --focus: #a995ff; --done: #6cc08f;
+    --head-bg: #2a3a4a; --head-ink: #e6edf3; --error: #ff8a8f; --error-wash: #2c1517;
+    --blue: #6ea9ea; --blue-wash: #142638; --blue-ink: #b0d1f6;
+    --orange: #f0a04b; --orange-wash: #30210f; --orange-ink: #f8c992;
+    --amber: #e3b341; --amber-wash: #2d240c; --amber-ink: #f2d58c;
+    --red: #ff8a8f; --red-wash: #331618; --red-ink: #ffc2c5;
+    --green: #6cc08f; --green-wash: #13281c; --green-ink: #b4e3c6;
+    --purple: #b39dff; --purple-wash: #221b38; --purple-ink: #d9ccff;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0f151b; --surface: #17202a; --surface-2: #1f2a36; --ink: #e6edf3; --muted: #9ba8b5;
+  --line: #2d3b49; --spine: #5a6a7a; --focus: #a995ff; --done: #6cc08f;
+  --head-bg: #2a3a4a; --head-ink: #e6edf3; --error: #ff8a8f; --error-wash: #2c1517;
+  --blue: #6ea9ea; --blue-wash: #142638; --blue-ink: #b0d1f6;
+  --orange: #f0a04b; --orange-wash: #30210f; --orange-ink: #f8c992;
+  --amber: #e3b341; --amber-wash: #2d240c; --amber-ink: #f2d58c;
+  --red: #ff8a8f; --red-wash: #331618; --red-ink: #ffc2c5;
+  --green: #6cc08f; --green-wash: #13281c; --green-ink: #b4e3c6;
+  --purple: #b39dff; --purple-wash: #221b38; --purple-ink: #d9ccff;
+}
+.c-blue { --c: var(--blue); --c-wash: var(--blue-wash); --c-ink: var(--blue-ink); }
+.c-orange { --c: var(--orange); --c-wash: var(--orange-wash); --c-ink: var(--orange-ink); }
+.c-amber { --c: var(--amber); --c-wash: var(--amber-wash); --c-ink: var(--amber-ink); }
+.c-red { --c: var(--red); --c-wash: var(--red-wash); --c-ink: var(--red-ink); }
+.c-green { --c: var(--green); --c-wash: var(--green-wash); --c-ink: var(--green-ink); }
+.c-purple { --c: var(--purple); --c-wash: var(--purple-wash); --c-ink: var(--purple-ink); }
+.c-all { --c: var(--done); --c-wash: var(--surface-2); --c-ink: var(--ink); }
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+        "PingFang SC", "Noto Sans CJK SC", "Noto Sans", sans-serif;
+}
+a { color: inherit; text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+/* ---------- header ---------- */
+.top { padding: 28px 0 8px; }
+.eyebrow { margin: 0; font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+h1 { margin: 4px 0 6px; font-size: 26px; line-height: 1.25; }
+.intro { margin: 0 0 14px; color: var(--muted); max-width: 75ch; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; }
+.meters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 24px; }
+.meter .row1 { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; font-size: 14px; }
+.meter .lbl { font-weight: 700; color: var(--c-ink); }
+.num { font-variant-numeric: tabular-nums; color: var(--muted); font-size: 13px; }
+.bar { height: 8px; border-radius: 99px; background: var(--surface-2); overflow: hidden; margin-top: 5px; }
+.bar > span { display: block; height: 100%; width: 0; border-radius: 99px; background: var(--c); transition: width .2s ease; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between; margin-top: 14px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.swatch { width: 16px; height: 12px; border-radius: 3px; border: 2px solid var(--c); background: var(--c-wash); }
+.btns { display: flex; flex-wrap: wrap; gap: 6px; }
+button {
+  font: inherit; font-size: 13px; color: var(--ink); background: var(--surface);
+  border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; cursor: pointer;
+}
+button:hover { background: var(--surface-2); }
+button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+button.armed { color: var(--error); border-color: var(--error); }
+.groups-nav { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px; margin-top: 14px; }
+.gn { display: block; text-decoration: none; border: 1px solid var(--line); border-radius: 8px; padding: 6px 9px; font-size: 13px; }
+.gn:hover { background: var(--surface-2); }
+.gn b { display: block; font-size: 13px; line-height: 1.3; }
+.gn .mini { display: grid; grid-template-columns: minmax(0, 1fr) 3.2em; align-items: center; gap: 6px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.gn .bar { height: 5px; margin-top: 3px; }
+
+/* ---------- main line ---------- */
+.track { position: relative; margin: 22px 0 6px; }
+.track > :first-child { margin-top: 0; }
+.track > :last-child { margin-bottom: 0; }
+.track::before {
+  content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; transform: translateX(-1px);
+  background: var(--spine);
+}
+.terminal, .g-head {
+  position: relative; z-index: 1; margin: 0 auto 14px; max-width: 560px; border-radius: var(--radius); padding: 10px 16px;
+}
+.terminal { background: var(--surface); border: 2px solid var(--ink); text-align: center; }
+.terminal h2 { margin: 0; font-size: 16px; }
+.terminal p { margin: 3px 0 0; color: var(--muted); font-size: 14px; }
+.g-head { background: var(--head-bg); color: var(--head-ink); text-align: center; margin-top: 26px; }
+.g-head h2 { margin: 0; font-size: 17px; line-height: 1.3; }
+.g-head p { margin: 2px 0 0; font-size: 13px; opacity: .85; }
+.g-head .g-count { font-size: 12.5px; opacity: .9; font-variant-numeric: tabular-nums; }
+.g-head .bar { background: rgba(255, 255, 255, .22); max-width: 260px; margin: 5px auto 0; }
+.g-head .bar > span { background: var(--head-ink); }
+.row {
+  position: relative; display: grid; grid-template-columns: minmax(0, 1fr) var(--node-w) minmax(0, 1fr);
+  column-gap: var(--gap); align-items: start; padding: 10px 0;
+}
+.side { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.node {
+  position: relative; z-index: 1; background: var(--surface); border: 2px solid var(--ink);
+  border-radius: var(--radius); padding: 9px 12px;
+}
+.node.complete { border-color: var(--done); }
+.n-top { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.n-label { font-weight: 700; font-variant-numeric: tabular-nums; }
+.n-meta { font-size: 12.5px; color: var(--muted); text-align: right; }
+.n-title { font-weight: 600; margin-top: 1px; }
+.n-note { font-size: 13.5px; color: var(--muted); margin-top: 3px; }
+.n-state { font-size: 12.5px; color: var(--muted); margin-top: 5px; font-variant-numeric: tabular-nums; }
+.node.complete .n-state { color: var(--done); font-weight: 700; }
+
+.item {
+  position: relative; display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 2px 8px;
+  border: 2px solid var(--c); border-radius: 9px; padding: 8px 10px; background: var(--surface);
+}
+.item.done { background: var(--c-wash); }
+/* each item is joined to the main line; the node is drawn on top of the joins */
+.side.left .item::after, .side.right .item::before {
+  content: ""; position: absolute; top: 19px; width: calc(var(--gap) + var(--node-w) / 2);
+  border-top: 2px solid var(--c);
+}
+.side.left .item::after { right: calc(-2px - var(--gap) - var(--node-w) / 2); }
+.side.right .item::before { left: calc(-2px - var(--gap) - var(--node-w) / 2); }
+.item input { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--c); cursor: pointer; }
+.i-kind { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--c-ink); }
+.i-name { font-weight: 600; cursor: pointer; display: block; line-height: 1.35; }
+.i-meta { font-size: 12.5px; color: var(--muted); }
+.i-note { font-size: 13.5px; color: var(--muted); margin-top: 2px; }
+.i-ref { font-size: 13px; margin-top: 4px; overflow-wrap: anywhere; }
+.i-lab { color: var(--muted); }
+.item.reuse { padding: 5px 10px; border-style: dashed; }
+.item.reuse .i-name { font-weight: 500; }
+.item.done .i-name { text-decoration: line-through; text-decoration-thickness: 1px; }
+body[data-show="left"] .side.right .item, body[data-show="right"] .side.left .item { display: none; }
+
+.error {
+  margin: 24px 0; padding: 14px 16px; border: 2px solid var(--error); border-radius: var(--radius);
+  background: var(--error-wash);
+}
+.error h2 { margin: 0 0 6px; font-size: 16px; color: var(--error); }
+footer { color: var(--muted); font-size: 13px; padding: 26px 0 40px; }
+footer p { margin: 4px 0; max-width: 80ch; }
+.note-warn { color: var(--error); }
+
+/* ---------- narrow screens and phones ---------- */
+@media (max-width: 960px) { :root { --node-w: 250px; --gap: 26px; } }
+@media (max-width: 760px) {
+  .wrap { padding: 0 16px; }
+  h1 { font-size: 22px; }
+  .meters { grid-template-columns: minmax(0, 1fr); }
+  .track::before { left: 13px; }
+  .terminal, .g-head { margin-left: 34px; text-align: left; }
+  .g-head .bar { margin-left: 0; }
+  .row { grid-template-columns: minmax(0, 1fr); row-gap: 8px; padding: 8px 0 8px 34px; }
+  .row .node { order: -1; }
+  .node::before {
+    content: ""; position: absolute; left: -28px; top: 13px; width: 10px; height: 10px; border-radius: 50%;
+    background: var(--surface); border: 2px solid var(--ink);
+  }
+  .node.complete::before { border-color: var(--done); background: var(--done); }
+  .side.left .item::after, .side.right .item::before { display: none; }
+}
+@media print { .controls .btns { display: none; } body { background: #fff; } }
+@media (prefers-reduced-motion: reduce) { .bar > span { transition: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <p class="eyebrow" id="eyebrow">ResearchPhO checklist</p>
+    <h1 id="title">Checklist</h1>
+    <p class="intro" id="intro"></p>
+    <section class="panel" aria-label="Progress">
+      <div class="meters" id="meters"></div>
+      <div class="controls">
+        <div class="legend" id="legend"></div>
+        <div class="btns" role="group" aria-label="Show and reset">
+          <button type="button" id="show-all" aria-pressed="true">Show all</button>
+          <button type="button" id="show-left" aria-pressed="false">Left only</button>
+          <button type="button" id="show-right" aria-pressed="false">Right only</button>
+          <button type="button" id="theme-button">Theme: auto</button>
+          <button type="button" id="reset-button">Clear ticks</button>
+        </div>
+      </div>
+      <nav class="groups-nav" id="groups-nav" aria-label="Groups"></nav>
+    </section>
+  </header>
+  <main class="track" id="track"></main>
+  <footer id="footer">
+    <p id="storage-note">Ticks are saved in this browser only.</p>
+  </footer>
+</div>
+
+<script type="application/json" id="checklist-data">
+{
+ "schema": "researchpho-checklist/1",
+ "lang": "en",
+ "eyebrow": "ResearchPhO research checklist",
+ "title": "How long can a two-cycle quantum conveyor operate?",
+ "intro": "Main line: the chain of objects from the model to the measured quantity (Appendix A of the solutions). Left, amber: open links that a calculation with existing theory would close (O-calc). Right, red: open links where the closest existing theory needs a hypothesis that fails here (O-theory). Tick a link when a result closes it.",
+ "storageKey": "researchpho-research:mb1-fractional-pump",
+ "emptyNote": "No open link at this step.",
+ "categories": [
+  {
+   "id": "O-calc",
+   "name": "Open link: calculation (O-calc)",
+   "plural": "O-calc links",
+   "colour": "amber",
+   "noteLabel": "Calculation that closes it",
+   "refLabel": "Existing method"
+  },
+  {
+   "id": "O-theory",
+   "name": "Open link: theory (O-theory)",
+   "plural": "O-theory links",
+   "colour": "red",
+   "noteLabel": "Hypothesis that fails",
+   "refLabel": "Closest existing theory"
+  }
+ ],
+ "start": {
+  "title": "The model",
+  "text": "H_MFP(t), the interacting driven chain of paper [1] (S: stated in a source)."
+ },
+ "end": {
+  "title": "Research target",
+  "text": "Predict when the original interacting pump leaves a chosen charge tolerance, and identify the process that controls that change."
+ },
+ "items": {
+  "following-one-flavor": {
+   "category": "O-theory",
+   "name": "The particles keep following one flavor",
+   "meta": "questions 1.A.1, 1.D.1",
+   "note": "a gap above the two flavor configurations, uniform in system size and over the cycle; the composite gap protects only the plane, not the direction in it",
+   "ref": "many-body adiabatic theorem; many-body Chern number (Niu-Thouless-Wu)",
+   "url": "https://doi.org/10.1103/PhysRevB.31.3372"
+  },
+  "dressing-assembled": {
+   "category": "O-calc",
+   "name": "Local dressing assembled along the chain and the cycle",
+   "meta": "questions 2.B.1, 2.B.2",
+   "note": "build the corrections at every phase, join them smoothly, bound the overlap terms",
+   "ref": "Schrieffer-Wolff expansion; locality (cluster) estimates",
+   "url": "https://arxiv.org/abs/1105.0675"
+  },
+  "kept-dynamics": {
+   "category": "O-theory",
+   "name": "The kept dynamics K_ret",
+   "meta": "questions 2.C.1, 2.C.2",
+   "note": "a spectral gap uniform in system size",
+   "ref": "quasi-adiabatic continuation (Hastings); adiabatic theorems for extended systems (Bachmann-De Roeck-Fraas; Monaco-Teufel)",
+   "url": "https://arxiv.org/abs/1008.5137"
+  },
+  "local-state-full-drive": {
+   "category": "O-theory",
+   "name": "The local state over the full drive",
+   "meta": "question 3.A.3",
+   "note": "the bounds grow with time; the boundary correlations do not close at the times of interest",
+   "ref": "Lieb-Robinson and local perturbation bounds",
+   "url": "https://arxiv.org/abs/1008.5137"
+  },
+  "certificate-inputs": {
+   "category": "O-calc",
+   "name": "The certificate inputs α, I₀, η, δ₀, t_max",
+   "meta": "question 3.B.1",
+   "note": "evaluate them in one frame for one initial state, once the local state is controlled",
+   "ref": "trace-distance and locality bounds"
+  },
+  "first-failure": {
+   "category": "O-theory",
+   "name": "The first failed window",
+   "meta": "question 3.C.2",
+   "note": "a fast drive or a large gap; here the drive is slow",
+   "ref": "rigorous prethermalization (Abanin-De Roeck-Ho-Huveneers; Else-Bauer-Nayak)",
+   "url": "https://arxiv.org/abs/1509.05386"
+  }
+ },
+ "groups": [
+  {
+   "title": "Single-particle geometry",
+   "short": "Geometry",
+   "note": "Problem 1",
+   "nodes": [
+    {
+     "label": "h(k, φ)",
+     "meta": "D",
+     "title": "The 5×5 one-particle Bloch matrix",
+     "note": "question 1.B.1",
+     "needs": []
+    },
+    {
+     "label": "p₁₂(k, φ)",
+     "meta": "D",
+     "title": "The projector onto bands 1 and 2: a moving plane",
+     "note": "questions 1.B.2, 1.C.1",
+     "needs": []
+    },
+    {
+     "label": "flavor A/B, W(t)",
+     "meta": "D/O-theory",
+     "title": "One direction in the plane, and the frame that follows it",
+     "note": "question 1.D.1",
+     "needs": [
+      "following-one-flavor"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Correlated dynamics and the current",
+   "short": "Dynamics",
+   "note": "Problem 2 and Part 3.A",
+   "nodes": [
+    {
+     "label": "U = W e^S, K_ret",
+     "meta": "D/O-theory",
+     "title": "The dressed frame, and the part of its generator that is kept",
+     "note": "questions 2.B.1 to 2.C.2",
+     "needs": [
+      "dressing-assembled",
+      "kept-dynamics"
+     ]
+    },
+    {
+     "label": "σ′_X(t), I′(t)",
+     "meta": "D/O-theory",
+     "title": "The local state and the physical current",
+     "note": "questions 2.D.1, 2.D.2, 3.A.1 to 3.A.3",
+     "needs": [
+      "local-state-full-drive"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Prediction and lifetime",
+   "short": "Prediction",
+   "note": "Parts 3.B and 3.C",
+   "nodes": [
+    {
+     "label": "Q̂(t) ± E(t)",
+     "meta": "D/O-calc",
+     "title": "The charge prediction with an error bar",
+     "note": "questions 3.B.1, 3.C.1",
+     "needs": [
+      "certificate-inputs"
+     ]
+    },
+    {
+     "label": "first failed window",
+     "meta": "O-theory",
+     "title": "The first two-period window outside the tolerance",
+     "note": "question 3.C.2",
+     "needs": [
+      "first-failure"
+     ]
+    }
+   ]
+  }
+ ],
+ "footer": [
+  "Shared gap of the O-theory links: no existing theory controls a slowly driven, strongly correlated chain over long times when its order is not protected by a uniform gap. A first controlled result is a limit in which the failing hypothesis holds, for example a gap that protects the whole group of flavor configurations rather than one of them.",
+  "Labels on the main line: S stated in a source; D derived in the booklet; D/O-calc and D/O-theory: the identity is derived, and its inputs for the real system are open, of that kind. The label says whether a method exists, not how much work remains.",
+  "Built from the open-link table of Appendix A of the solutions. Tick a link when a calculation or a new result closes it."
+ ]
+}
+</script>
+<script>
+(function () {
+  "use strict";
+  var THEME_KEY = "researchpho-theme";
+  var THEMES = ["auto", "light", "dark"];
+  var COLOURS = ["blue", "orange", "amber", "red", "green", "purple"];
+  var SIDES = ["left", "right"];
+
+  function storageGet(key) {
+    try { return window.localStorage.getItem(key); } catch (e) { return null; }
+  }
+  function storageSet(key, value) {
+    try { window.localStorage.setItem(key, value); return true; } catch (e) { return false; }
+  }
+  function storageRemove(key) {
+    try { window.localStorage.removeItem(key); return true; } catch (e) { return false; }
+  }
+  function el(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined && text !== null) node.textContent = String(text);
+    return node;
+  }
+  function isObject(value) { return value !== null && typeof value === "object" && !Array.isArray(value); }
+  function safeUrl(url) { return typeof url === "string" && /^https?:\/\//i.test(url) ? url : null; }
+  function slug(text) { return String(text).replace(/[^A-Za-z0-9_-]+/g, "-"); }
+
+  function validate(data) {
+    var errors = [];
+    if (!isObject(data)) return ["The data block is not a JSON object."];
+    var cats = Array.isArray(data.categories) ? data.categories : [];
+    if (cats.length !== 2) errors.push("'categories' must list exactly two categories (left, then right).");
+    var catIds = Object.create(null);
+    cats.forEach(function (cat, index) {
+      if (!isObject(cat) || !cat.id || !cat.name) { errors.push("Category " + (index + 1) + " needs an id and a name."); return; }
+      if (COLOURS.indexOf(cat.colour) < 0) errors.push("Category '" + cat.id + "': colour must be one of " + COLOURS.join(", ") + ".");
+      catIds[cat.id] = true;
+    });
+    var items = isObject(data.items) ? data.items : {};
+    Object.keys(items).forEach(function (id) {
+      var item = items[id];
+      if (!isObject(item)) { errors.push("Item '" + id + "' is not an object."); return; }
+      if (!catIds[item.category]) errors.push("Item '" + id + "': unknown category '" + item.category + "'.");
+      if (!item.name) errors.push("Item '" + id + "': no name.");
+    });
+    var groups = Array.isArray(data.groups) ? data.groups : [];
+    if (!groups.length) errors.push("'groups' must be a non-empty list.");
+    groups.forEach(function (group, gi) {
+      var nodes = isObject(group) && Array.isArray(group.nodes) ? group.nodes : null;
+      if (!nodes || !nodes.length) { errors.push("Group " + (gi + 1) + " has no nodes."); return; }
+      nodes.forEach(function (node) {
+        if (!isObject(node) || !node.label) { errors.push("Group " + (gi + 1) + ": every node needs a label."); return; }
+        if (node.needs !== undefined && !Array.isArray(node.needs)) { errors.push("Node " + node.label + ": 'needs' must be a list."); return; }
+        (node.needs || []).forEach(function (id) {
+          if (!isObject(items[id])) errors.push("Node " + node.label + ": unknown item '" + id + "'.");
+        });
+      });
+    });
+    return errors;
+  }
+
+  function showErrors(errors) {
+    var box = el("section", "error");
+    box.setAttribute("role", "alert");
+    box.appendChild(el("h2", null, "The checklist data has errors"));
+    var list = el("ul");
+    errors.forEach(function (message) { list.appendChild(el("li", null, message)); });
+    box.appendChild(list);
+    document.getElementById("track").appendChild(box);
+  }
+  function makeBar(colour, label) {
+    var bar = el("div", "bar c-" + colour);
+    bar.setAttribute("role", "progressbar");
+    bar.setAttribute("aria-valuemin", "0");
+    bar.setAttribute("aria-label", label);
+    bar.appendChild(el("span"));
+    return bar;
+  }
+  function setBar(bar, done, total) {
+    bar.firstChild.style.width = (total ? Math.round(100 * done / total) : 0) + "%";
+    bar.setAttribute("aria-valuemax", String(total));
+    bar.setAttribute("aria-valuenow", String(done));
+  }
+  function applyTheme(theme) {
+    if (theme === "light" || theme === "dark") document.documentElement.setAttribute("data-theme", theme);
+    else document.documentElement.removeAttribute("data-theme");
+    document.getElementById("theme-button").textContent = "Theme: " + theme;
+  }
+
+  function main() {
+    var theme = storageGet(THEME_KEY);
+    applyTheme(THEMES.indexOf(theme) >= 0 ? theme : "auto");
+    document.getElementById("theme-button").addEventListener("click", function () {
+      var current = document.documentElement.getAttribute("data-theme") || "auto";
+      var next = THEMES[(THEMES.indexOf(current) + 1) % THEMES.length];
+      applyTheme(next);
+      storageSet(THEME_KEY, next);
+    });
+
+    var data;
+    try {
+      data = JSON.parse(document.getElementById("checklist-data").textContent);
+    } catch (e) {
+      showErrors(["The data block is not valid JSON: " + e.message]);
+      return;
+    }
+    var errors = validate(data);
+    if (errors.length) { showErrors(errors); return; }
+
+    if (data.lang) document.documentElement.setAttribute("lang", data.lang);
+    document.title = (data.eyebrow ? data.eyebrow + ": " : "") + (data.title || "Checklist");
+    if (data.eyebrow) document.getElementById("eyebrow").textContent = data.eyebrow;
+    document.getElementById("title").textContent = data.title || "Checklist";
+    document.getElementById("intro").textContent = data.intro || "";
+
+    var cats = Object.create(null);
+    data.categories.forEach(function (cat, index) { cats[cat.id] = { cat: cat, side: SIDES[index] }; });
+    var items = data.items;
+    var storageKey = data.storageKey || "researchpho-checklist:" + slug(data.title || "untitled");
+    var done = Object.create(null);
+    var saved = storageGet(storageKey);
+    if (saved) {
+      var parsed = null;
+      try { parsed = JSON.parse(saved); } catch (e) { parsed = null; }
+      if (isObject(parsed)) Object.keys(parsed).forEach(function (id) { if (parsed[id] === true) done[id] = true; });
+    }
+    if (!storageSet(storageKey, JSON.stringify(done))) {
+      var note = document.getElementById("storage-note");
+      note.textContent = "This browser does not allow storage here: ticks will be lost when the page closes.";
+      note.className = "note-warn";
+    }
+    var footer = document.getElementById("footer");
+    (Array.isArray(data.footer) ? data.footer : []).forEach(function (text) {
+      footer.insertBefore(el("p", null, text), footer.lastElementChild);
+    });
+
+    // first node that needs each item; the item is drawn in full there and as a reminder later
+    var firstAt = Object.create(null);
+    var groupIds = [];
+    data.groups.forEach(function (group) {
+      var ids = Object.create(null);
+      group.nodes.forEach(function (node) {
+        (node.needs || []).forEach(function (id) {
+          ids[id] = true;
+          if (!firstAt[id]) firstAt[id] = node.label;
+        });
+      });
+      groupIds.push(Object.keys(ids));
+    });
+    var allIds = Object.keys(firstAt);
+
+    var legend = document.getElementById("legend");
+    data.categories.forEach(function (cat, index) {
+      var span = el("span", "c-" + cat.colour);
+      span.appendChild(el("i", "swatch"));
+      span.appendChild(document.createTextNode(cat.name));
+      legend.appendChild(span);
+    });
+    document.getElementById("show-left").textContent = (data.categories[0].plural || data.categories[0].name) + " only";
+    document.getElementById("show-right").textContent = (data.categories[1].plural || data.categories[1].name) + " only";
+
+    var inputs = [];
+    function onToggle(event) {
+      var id = event.target.getAttribute("data-item");
+      if (event.target.checked) done[id] = true; else delete done[id];
+      storageSet(storageKey, JSON.stringify(done));
+      refresh();
+    }
+
+    function itemCard(id, node, nodeIndex) {
+      var item = items[id];
+      var info = cats[item.category];
+      var reuse = firstAt[id] !== node.label;
+      var card = el("div", "item c-" + info.cat.colour + (reuse ? " reuse" : ""));
+      var box = document.createElement("input");
+      box.type = "checkbox";
+      box.id = "cb-" + nodeIndex + "-" + slug(id);
+      box.setAttribute("data-item", id);
+      box.addEventListener("change", onToggle);
+      inputs.push(box);
+      var body = el("div");
+      if (!reuse) body.appendChild(el("span", "i-kind", info.cat.name));
+      var name = el("label", "i-name", (reuse ? "Again: " : "") + item.name);
+      name.htmlFor = box.id;
+      body.appendChild(name);
+      if (reuse) {
+        body.appendChild(el("span", "i-meta", "first at " + firstAt[id]));
+      } else {
+        if (item.meta) body.appendChild(el("div", "i-meta", item.meta));
+        if (item.note) {
+          var noteLine = el("div", "i-note");
+          if (info.cat.noteLabel) noteLine.appendChild(el("span", "i-lab", info.cat.noteLabel + ": "));
+          noteLine.appendChild(document.createTextNode(item.note));
+          body.appendChild(noteLine);
+        }
+        if (item.ref) {
+          var ref = el("div", "i-ref");
+          ref.appendChild(el("span", "i-lab", (info.cat.refLabel || "Reference") + ": "));
+          var url = safeUrl(item.url);
+          if (url) {
+            var link = el("a", null, item.ref);
+            link.href = url;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            ref.appendChild(link);
+          } else {
+            ref.appendChild(el("span", null, item.ref));
+          }
+          body.appendChild(ref);
+        }
+      }
+      card.appendChild(box);
+      card.appendChild(body);
+      return card;
+    }
+
+    function terminal(spec) {
+      var box = el("div", "terminal");
+      box.appendChild(el("h2", null, spec.title || ""));
+      if (spec.text) box.appendChild(el("p", null, spec.text));
+      return box;
+    }
+
+    var track = document.getElementById("track");
+    if (isObject(data.start)) track.appendChild(terminal(data.start));
+    var nodeMeta = [];
+    var nodeIndex = 0;
+    var groupMeta = [];
+    data.groups.forEach(function (group, gi) {
+      var head = el("div", "g-head");
+      head.id = "group-" + (gi + 1);
+      head.appendChild(el("h2", null, group.title || "Group " + (gi + 1)));
+      if (group.note) head.appendChild(el("p", null, group.note));
+      var gCount = el("div", "g-count");
+      head.appendChild(gCount);
+      var gBar = makeBar("all", (group.title || "Group") + " progress");
+      head.appendChild(gBar);
+      track.appendChild(head);
+      group.nodes.forEach(function (node) {
+        nodeIndex += 1;
+        var row = el("div", "row");
+        row.id = "node-" + nodeIndex;
+        var left = el("div", "side left");
+        var right = el("div", "side right");
+        (node.needs || []).forEach(function (id) {
+          (cats[items[id].category].side === "left" ? left : right).appendChild(itemCard(id, node, nodeIndex));
+        });
+        var box = el("div", "node");
+        var top = el("div", "n-top");
+        top.appendChild(el("span", "n-label", node.label));
+        var meta = typeof node.points === "number" ?
+          (Number.isInteger(node.points) ? node.points.toFixed(1) : String(node.points)) + " pt" : node.meta;
+        if (meta) top.appendChild(el("span", "n-meta", meta));
+        box.appendChild(top);
+        if (node.title) box.appendChild(el("div", "n-title", node.title));
+        if (node.note) box.appendChild(el("div", "n-note", node.note));
+        var state = el("div", "n-state", (node.needs || []).length ? "" : (data.emptyNote || "No items."));
+        box.appendChild(state);
+        row.appendChild(left);
+        row.appendChild(box);
+        row.appendChild(right);
+        track.appendChild(row);
+        nodeMeta.push({ node: box, state: state, ids: node.needs || [] });
+      });
+      groupMeta.push({ count: gCount, bar: gBar, ids: groupIds[gi] });
+    });
+    if (isObject(data.end)) track.appendChild(terminal(data.end));
+
+    var meters = document.getElementById("meters");
+    var meterRefs = [];
+    data.categories.concat([{ id: "*", name: "All items", colour: "all" }]).forEach(function (cat) {
+      var meter = el("div", "meter c-" + cat.colour);
+      var row1 = el("div", "row1");
+      row1.appendChild(el("span", "lbl", cat.plural || cat.name));
+      var num = el("span", "num");
+      row1.appendChild(num);
+      meter.appendChild(row1);
+      var bar = makeBar(cat.colour, (cat.plural || cat.name) + " progress");
+      meter.appendChild(bar);
+      meters.appendChild(meter);
+      var ids = cat.id === "*" ? allIds : allIds.filter(function (id) { return items[id].category === cat.id; });
+      meterRefs.push({ num: num, bar: bar, ids: ids });
+    });
+
+    var nav = document.getElementById("groups-nav");
+    var navRefs = [];
+    data.groups.forEach(function (group, gi) {
+      var link = el("a", "gn");
+      link.href = "#group-" + (gi + 1);
+      link.appendChild(el("b", null, group.short || group.title || "Group " + (gi + 1)));
+      var line = el("span", "mini");
+      var bar = makeBar("all", (group.title || "Group") + " progress");
+      var num = el("span");
+      line.appendChild(bar);
+      line.appendChild(num);
+      link.appendChild(line);
+      nav.appendChild(link);
+      navRefs.push({ num: num, bar: bar, ids: groupIds[gi] });
+    });
+
+    function count(ids) { return ids.filter(function (id) { return done[id]; }).length; }
+
+    function refresh() {
+      inputs.forEach(function (box) {
+        var ticked = !!done[box.getAttribute("data-item")];
+        box.checked = ticked;
+        box.parentNode.classList.toggle("done", ticked);
+      });
+      meterRefs.forEach(function (ref) {
+        var c = count(ref.ids);
+        setBar(ref.bar, c, ref.ids.length);
+        ref.num.textContent = c + " / " + ref.ids.length;
+      });
+      navRefs.forEach(function (ref) {
+        var c = count(ref.ids);
+        setBar(ref.bar, c, ref.ids.length);
+        ref.num.textContent = c + "/" + ref.ids.length;
+      });
+      groupMeta.forEach(function (ref) {
+        var c = count(ref.ids);
+        setBar(ref.bar, c, ref.ids.length);
+        var parts = data.categories.map(function (cat) {
+          var ids = ref.ids.filter(function (id) { return items[id].category === cat.id; });
+          return (cat.plural || cat.name) + " " + count(ids) + "/" + ids.length;
+        });
+        ref.count.textContent = parts.join(" · ");
+      });
+      nodeMeta.forEach(function (ref) {
+        if (!ref.ids.length) return;
+        var c = count(ref.ids);
+        ref.state.textContent = c + " of " + ref.ids.length + " ticked";
+        ref.node.classList.toggle("complete", c === ref.ids.length);
+      });
+    }
+
+    function setShow(mode) {
+      document.body.setAttribute("data-show", mode);
+      ["all", "left", "right"].forEach(function (m) {
+        document.getElementById("show-" + m).setAttribute("aria-pressed", String(m === mode));
+      });
+    }
+    ["all", "left", "right"].forEach(function (m) {
+      document.getElementById("show-" + m).addEventListener("click", function () { setShow(m); });
+    });
+
+    // clearing needs two clicks within three seconds
+    var resetButton = document.getElementById("reset-button");
+    var armed = null;
+    resetButton.addEventListener("click", function () {
+      if (!armed) {
+        resetButton.textContent = "Click again to clear";
+        resetButton.classList.add("armed");
+        armed = window.setTimeout(function () {
+          armed = null;
+          resetButton.textContent = "Clear ticks";
+          resetButton.classList.remove("armed");
+        }, 3000);
+        return;
+      }
+      window.clearTimeout(armed);
+      armed = null;
+      done = Object.create(null);
+      storageRemove(storageKey);
+      resetButton.textContent = "Clear ticks";
+      resetButton.classList.remove("armed");
+      refresh();
+    });
+    refresh();
+  }
+
+  try {
+    main();
+  } catch (e) {
+    showErrors(["The checklist could not be drawn: " + (e && e.message ? e.message : e)]);
+  }
+})();
+</script>
+</body>
+</html>

@@ -66,5 +66,55 @@
     "undetermined",
     "outside"
   ],
+  "toolbox_three_site_seam_determinant": {
+    "max_abs_error": 9.043411083480825e-16,
+    "tolerance": 1e-10,
+    "passed": true
+  },
+  "toolbox_projected_position_dimer": {
+    "max_abs_error": 5.117875266520904e-16,
+    "tolerance": 1e-10,
+    "passed": true
+  },
+  "toolbox_pauli_exponential": {
+    "max_abs_error": 4.577566798522237e-16,
+    "tolerance": 1e-10,
+    "passed": true
+  },
+  "toolbox_frame_change": {
+    "max_abs_error": 1.1188630228279524e-16,
+    "tolerance": 1e-10,
+    "passed": true
+  },
+  "toolbox_two_fermions_four_orbitals": {
+    "reference": 1,
+    "single": 4,
+    "double": 1
+  },
+  "toolbox_two_spin_commutator": {
+    "max_abs_error": 0.0,
+    "tolerance": 1e-10,
+    "passed": true
+  },
+  "toolbox_commutator_series": {
+    "max_abs_error": 0.0,
+    "tolerance": 1e-10,
+    "passed": true
+  },
+  "toolbox_trace_norm": {
+    "max_abs_error": 2.220446049250313e-16,
+    "tolerance": 1e-10,
+    "passed": true
+  },
+  "toolbox_partial_trace": {
+    "max_abs_error": 2.220446049250313e-16,
+    "tolerance": 1e-10,
+    "passed": true
+  },
+  "toolbox_commuting_projectors": {
+    "max_abs_error": 0.0,
+    "tolerance": 1e-10,
+    "passed": true
+  },
   "scope": "Single-particle picture data and finite-matrix teaching algebra. Not a pump simulation or a physical lifetime."
 }

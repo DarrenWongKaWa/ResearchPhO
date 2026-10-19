@@ -94,6 +94,8 @@ The label says whether a method exists, not how much work remains: an O-calc lin
 an O-theory link can be one missing lemma. When several O-theory links fail on the same hypothesis, state that
 shared gap in one sentence. It is the research problem that the papers leave open, and the synthesis question should
 lead the reader to it.
+The open-link table also becomes the research checklist, a page on which links are ticked off as results close
+them (see [booklet layout](booklet_layout.md), checklist flowcharts).
 
 Worked example (labels of the public example):
 
@@ -188,7 +190,8 @@ The cold read reports every step "blocked by mathematics that is not provided"; 
 
 - A full exam: three problems of 10 points (30 points, 5 hours). Within a problem, parts of 1-4 points and
   questions of 0.2-2.5 points.
-- Marking lines use 0.05 or 0.1 units and sum exactly to the question's points.
+- Marking lines use 0.05 or 0.1 units and sum exactly to the question's points. Tag each number (M) modelling or
+  (C) computation; more than half of each problem's marks should be (M). The checker reports the share.
 - When questions are regrouped, rescale points within each problem to 10 (largest-remainder rounding in 0.1),
   rescale every marking line in 0.05 steps, relabel cross-references with a map, and run the checker.
 

@@ -250,7 +250,7 @@ The papers behind this problem ask two questions. Can repulsion turn this intege
 \begin{itemize}[leftmargin=6mm,itemsep=2pt,topsep=2pt]
 \item An orthogonal projector obeys $p^2=p=p^\dagger$; its rank is $\Tr p$.
 \item On a ring of length $L$, let $P$ project onto the occupied one-particle states of a group of bands. For a long ring, the eigenvalues of $Pe^{2\pi ix/L}P$ on the range of $P$ are close to $e^{2\pi ix_\alpha/L}$, where $x_\alpha$ are the centres of the maximally localized orbitals of the group. In momentum space this operator is the \emph{Wilson loop}: the ordered product of the overlaps of the band eigenvectors around the Brillouin zone at fixed $\phi$.
-\item For a unit vector $\bm n$ and real $x$: $e^{ix\bm n\cdot\bm\sigma}=\id\cos x+i(\bm n\cdot\bm\sigma)\sin x$, where $\id$ is the identity.
+\item For a real unit vector $\bm d$ and real $x$: $e^{ix\bm d\cdot\bm\sigma}=\id\cos x+i(\bm d\cdot\bm\sigma)\sin x$, where $\id$ is the identity.
 \end{itemize}
 
 \parttitle{A}{Fractional transport}{1.5}
@@ -315,10 +315,11 @@ A projector represents a subspace without choosing a basis inside it. Let $p(t)$
 Consider one spin in the Hamiltonian
 \[
 H(t)=-\frac{\Delta}{2}
-\big[\sin(\nu t)\sigma_x+\cos(\nu t)\sigma_z\big],
-\qquad \Delta,\nu>0.
+\big[\sin(\nu t)\sigma_x+\cos(\nu t)\sigma_z\big]
+=-\frac{\Delta}{2}\,\bm n(t)\cdot\bm\sigma,
+\qquad \Delta,\nu>0,
 \]
-Its instantaneous ground-state projector and a rotating frame are
+where $\bm n(t)=(\sin\nu t,0,\cos\nu t)$ is the direction of the field. A pure state $\ket\psi$ of the spin is pictured by its Bloch vector $\bra\psi\bm\sigma\ket\psi$, a unit vector (Fig.~\ref{fig:bloch}); the ground state of $H(t)$ has Bloch vector $\bm n(t)$. The instantaneous ground-state projector of $H(t)$ and a rotating frame are
 \[
 p(t)=\tfrac12\big[\id+\sin(\nu t)\sigma_x+\cos(\nu t)\sigma_z\big],\qquad
 W(t)=e^{-i\nu t\sigma_y/2},\qquad

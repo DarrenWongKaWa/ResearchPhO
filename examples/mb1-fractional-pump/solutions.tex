@@ -145,7 +145,7 @@
 {\LARGE\bfseries\color{ink}How long can a two-cycle quantum conveyor operate?}\par
 {\large ResearchPhO --- Solutions and marking scheme \hfill \textbf{30 points}}
 \smallheading{How to use this booklet}
-Each answer is followed by its marking scheme; the numbers in a marking line add up to the points of the question. Award method marks for a consistent derivation, partial credit for correct approximate reasoning, and no credit for a claimed pump lifetime when only a toy-model oscillation, a source norm or a short-time coefficient has been obtained. Appendices A--C at the end contain the research context that does not belong in the question paper: the research map, the source and scope notes of every question, and teacher notes.
+Each answer is followed by its marking scheme; the numbers in a marking line add up to the points of the question. Award method marks for a consistent derivation, partial credit for correct approximate reasoning, and no credit for a claimed pump lifetime when only a toy-model oscillation, a source norm or a short-time coefficient has been obtained. In a marking line, (M) marks a modelling step (setting up the model, choosing the physics, interpreting a result, judging its scope) and (C) a computation step (algebra, solving, evaluating). Appendices A--C at the end contain the research context that does not belong in the question paper: the research map, the source and scope notes of every question, and teacher notes. Appendix D, the toolbox, works the smallest example of each tool that the question paper states without proof.
 \smallheading{Mark allocation}
 {\small \begin{tabularx}{\textwidth}{@{}p{18mm}Y r@{}}\toprule
 Problem&Questions&Points\\\midrule
@@ -168,7 +168,7 @@ Only the sum of the two single-period charges is fixed. For example,
 Q_1=q,\qquad Q_2=-1-q
 \]
 is consistent for any allowed $q$. The result is an expectation-value transport statement. It does not require a fractional particle in a single measurement.
-\marking{Two-period charge: 0.75. Average: 0.45. Unequal single-period values and interpretation: 0.3.}
+\marking{Two-period charge: 0.75 (C). Average: 0.45 (C). Unequal single-period values and interpretation: 0.3 (M).}
 \begin{figpanel}{A.1 --- only the two-period sum is fixed}
 \begin{tikzpicture}
 \begin{axis}[mbaxis,width=9.5cm,height=6cm,xmin=0,xmax=2,ymin=-2.45,ymax=1.65,clip=false,
@@ -222,7 +222,7 @@ Two flavor orbitals per cell; exactly one occupied in every cell&$2^4=16$\\\bott
 \end{center}
 Translation-sector restrictions can reduce a dimension further; they are not included in this table. The single-particle Fourier transform leaves the physical interaction as a many-body operator. It does not make the full dynamics a $5\times5$ problem.
 
-\marking{(a) Matrix with both seam entries and Hermiticity: 1.05. (b) Rank two in $\mathbb C^5$ and physical motivation: 0.75. (c) Three counts with their restrictions: 0.6; Fourier transformation leaves the interaction many-body: 0.3.}
+\marking{(a) Matrix from the lattice, with both seam entries and Hermiticity: 1.05 (M). (b) Rank two in $\mathbb C^5$: 0.35 (C); physical motivation: 0.4 (M). (c) The three restrictions: 0.35 (M); the three counts at $N=4$: 0.25 (C); Fourier transformation leaves the interaction many-body: 0.3 (M).}
 
 
 \soltitle{B.2}{1.4}{The projector generator}
@@ -247,7 +247,7 @@ Therefore $g_t=i[\dot p,p]$ obeys
 \boxed{[g_t,p]=i\dot p.}
 \]
 Since $[\dot p,p]$ is anti-Hermitian, $g_t$ is Hermitian. It is one generator of the prescribed subspace motion. It does not assert that the physical Hamiltonian produces the same tracking or internal occupation.
-\marking{Differentiate and obtain $p\dot p\,p=0$: 0.6. Generator identity and interpretation: 0.8.}
+\marking{Differentiate and obtain $p\dot p\,p=0$: 0.6 (C). Generator identity: 0.5 (C). What it determines and what it does not determine about the Hamiltonian: 0.3 (M).}
 
 
 \parttitle{C}{Following a moving projector}{2.3}
@@ -273,7 +273,7 @@ The instantaneous excited state is $W(t)\ket\downarrow$, so
 \sin^2\!\left(\frac{\sqrt{\Delta^2+\nu^2}\,t}{2}\right).}
 \]
 The path $p(t)$ has no $\Delta$ dependence, but the probability does. For $\Delta\gg\nu$ its maximum is small. The frame transformation has not removed the dynamics; it has made that dynamics explicit.
-\marking{Moving-frame Hamiltonian: 0.85. Exact probability: 1.05. Same path, different tracking: 0.4.}
+\marking{Moving-frame Hamiltonian: 0.85 (C). Exact probability: 1.05 (C). Same path, different tracking: 0.4 (M).}
 \begin{figpanel}{C.1 --- same projector path, different following}
 \begin{tikzpicture}
 \begin{axis}[mbaxis,width=10cm,height=5.4cm,xmin=0,xmax=12.566,ymin=0,ymax=0.55,xlabel={$\nu t$},ylabel={$P_{\rm ex}(t)$},
@@ -310,7 +310,7 @@ A Wilson loop around $k$ at fixed $\phi$ organizes Wannier centers. A geometric 
 \]
 But $\id_2$ keeps $A$ fixed, whereas $i\sigma_x\ket A=i\ket B$. Their determinant phases do not distinguish this action. Neither map includes a spatial displacement, so neither calculation alone proves a nonzero transported charge. A.1 required a separate center winding and actual following.
 
-\marking{(a) Both invariances and the effect of an uncompensated choice: 0.75. (b) Required data; Wilson loop at fixed $\phi$ versus evolution in time: 0.75. (c) Equal determinants, different action, no displacement: 0.6.}
+\marking{(a) Both invariances: 0.45 (C); effect of an uncompensated choice: 0.3 (M). (b) Required data; Wilson loop at fixed $\phi$ versus evolution in time: 0.75 (M). (c) Equal determinants: 0.2 (C); different action, no displacement: 0.4 (M).}
 
 
 
@@ -331,7 +331,7 @@ At $g=0$, the Hamiltonian is diagonal in the $\sigma^z$ basis. The all-$A$ state
 \[
 \boxed{\text{Energy preference is not a transition amplitude or a rate.}}
 \]
-\marking{Energy change: 0.45. Integer threshold and fit condition: 0.3. Stationary eigenstate and distinction from a rate: 0.55.}
+\marking{Energy change of the domain: 0.45 (M). Integer threshold and fit condition: 0.3 (C). Stationary eigenstate and distinction from a rate: 0.55 (M).}
 \begin{figpanel}{A.1 --- domain energy (illustrative $J_z=1$, $h=0.45$)}
 \begin{tikzpicture}
 \begin{axis}[mbaxis,width=9.5cm,height=5.4cm,xmin=0.5,xmax=10.5,ymin=-5.5,ymax=3.6,xlabel={segment length $\ell$},ylabel={$\Delta E(\ell)/J_z$},xtick={1,...,10}]
@@ -382,7 +382,7 @@ Therefore
 P_d(t)=v^2t^2+O(t^4).
 \]
 The exact probability oscillates and can return to zero. The initial curvature $v^2$ is not an irreversible decay rate.
-\marking{Eigenvalue and state: 0.65. Weak-mixing forms: 0.35. Exact probability: 0.6. Rate distinction: 0.2.}
+\marking{Eigenvalue and state: 0.65 (C). Weak-mixing forms: 0.35 (C). Exact probability: 0.6 (C). Rate distinction: 0.2 (M).}
 \begin{figpanel}{B.1 --- oscillation, not decay (illustrative $v/\Delta=0.3$)}
 \begin{tikzpicture}
 \begin{axis}[mbaxis,width=10cm,height=5.4cm,xmin=0,xmax=14,ymin=0,ymax=0.34,xlabel={$\Delta\, t$},ylabel={$P_d(t)$},legend pos=north east,legend style={fill=white,fill opacity=0.8,text opacity=1}]
@@ -407,7 +407,7 @@ For the overlap diagnostic, commute only the operators on spin 2:
 This term acts on three sites. It was not present in the isolated 12-pair calculation. In fact, for real $\gamma,\epsilon$ its operator norm is $2|\gamma\epsilon|$.
 
 A chain transformation combines overlapping corrections. Its transformed Hamiltonian contains cross commutators as well as the residual of each isolated cluster. It may also retain terms that change the reference configuration. Neither contribution can be discarded because the single-cluster residual decreased.
-\marking{Commutator: 0.55. Why single-cluster success does not certify the chain: 0.25.}
+\marking{Commutator: 0.55 (C). Why single-cluster success does not certify the chain: 0.25 (M).}
 
 
 \parttitle{C}{Exact frames and kept dynamics}{3.1}
@@ -441,7 +441,7 @@ Choosing a projected or simpler reference state instead adds an initial-state er
 
 \textbf{(d)} A one-particle rotation replaces each $c_j$ by a linear combination of modes. A quartic interaction remains a sum of quartic terms, generally with more orbital indices. No high band has been removed by this operation. The displayed $e^S$ specifies the form of a possible many-body dressing, not its values or its spatial decay.
 
-\marking{(a) Exact generator: 0.6. (b) First-order terms and the role of $\dot S$: 0.5. (c) Where the approximation enters, transformed initial state, need for a bound: 0.4. (d) Interaction stays two-body; $e^S$ unspecified: 0.3.}
+\marking{(a) Exact generator: 0.6 (C). (b) First-order terms: 0.3 (C); the role of $\dot S$: 0.2 (M). (c) Where the approximation enters, transformed initial state, need for a bound: 0.4 (M). (d) Interaction stays two-body; $e^S$ unspecified: 0.3 (M).}
 
 
 \soltitle{C.2}{1.3}{The retained dynamics can change the state}
@@ -467,7 +467,7 @@ The global source norm grows with $N$, while this local initial coefficient does
 
 \textbf{(c)} By construction, $\mathcal K_{\rm ret}$ is the exact Hamiltonian of this teaching example and $\mathcal R=0$. There is no truncation error, yet the retained dynamics changes the reference direction. Model accuracy and reference-pump stability are different questions. No physical MFP current has been specified or evaluated here, so there is no MFP lifetime result.
 
-\marking{(a) Invariance condition: 0.3. (b) Source vector 0.3, norm $Ng^2$ 0.15, $\langle q_j\rangle=g^2t^2$ 0.3. (c) The three distinctions: 0.25.}
+\marking{(a) Invariance condition: 0.3 (M). (b) Source vector 0.3 (C), norm $Ng^2$ 0.15 (C), $\langle q_j\rangle=g^2t^2$ 0.3 (C). (c) The three distinctions: 0.25 (M).}
 
 
 \parttitle{D}{The physical current}{3.0}
@@ -488,7 +488,7 @@ Thus the three requested phases give
 \end{array}
 \]
 For small $p$ and a fixed nonzero $\sin\beta$, the leading magnitude is proportional to $\sqrt p$. A probability contains no information about the relative phase $\beta$ and does not determine the current.
-\marking{Expectation value: 0.55. Phase comparison and scaling: 0.2. Probability alone is insufficient: 0.15.}
+\marking{Expectation value: 0.55 (C). Phase comparison and scaling: 0.2 (C). Probability alone is insufficient: 0.15 (M).}
 \begin{figpanel}{D.1 --- the current follows the phase}
 \begin{tikzpicture}
 \begin{axis}[mbaxis,width=10cm,height=5.2cm,xmin=-1,xmax=1,ymin=-1.15,ymax=1.15,xlabel={$\beta/\pi$},ylabel={$\langle I\rangle\big/\big(2\lambda\sqrt{p(1-p)}\big)$},xtick={-1,-0.5,0,0.5,1}]
@@ -538,7 +538,7 @@ Q(t_1,t_2)
 All expectation values here use the same transformed physical state. If more than one gauge patch is used, patch seams must be included consistently.
 
 A closed projector path fixes a subspace, not a unique frame or its holonomy. It does not imply that the endpoint term vanishes. The two terms are frame-dependent; their sum is the physical charge. In particular, the endpoint term alone is not automatically a Chern charge.
-\marking{Differentiate $H'$ and obtain the operator identity: 1.2. Integrate using the equation of motion: 0.6. Endpoint and gauge interpretation: 0.3.}
+\marking{Differentiate $H'$ and obtain the operator identity: 1.2 (C). Integrate using the equation of motion: 0.6 (C). Endpoint and gauge interpretation: 0.3 (M).}
 
 
 
@@ -555,7 +555,7 @@ The reduced state of $m$ cells is still the prescribed product state:
 \boxed{\mathcal F_m=(1-p)^m.}
 \]
 For fixed $p>0$, $\mathcal F_N\to0$ as $N\to\infty$, but $\mathcal F_m$ is independent of the rest of the chain. Poor global overlap alone cannot diagnose a large error in a fixed local observable. It also does not prove local transport stability.
-\marking{Global fidelity: 0.45. Local fidelity: 0.4. Correct interpretation: 0.25.}
+\marking{Global fidelity: 0.45 (C). Local fidelity: 0.4 (C). Correct interpretation: 0.25 (M).}
 \begin{figpanel}{A.1 --- global versus local fidelity (illustrative $p=0.05$, $m=3$)}
 \begin{tikzpicture}
 \begin{axis}[mbaxis,width=10cm,height=5.4cm,ymode=log,xmin=1,xmax=200,ymin=1e-5,ymax=2,xlabel={number of cells $N$},ylabel={fidelity},legend pos=south west,legend style={fill=white,fill opacity=0.8,text opacity=1}]
@@ -591,7 +591,7 @@ Hence
 \boxed{|\Delta I|\leq2\norm{I_X}\min(1,\sqrt{D_X})+2\eta_X.}
 \]
 For a general correlated reference, use the first trace-distance bound. Do not impose the product-reference expression for $D_X$ without a justified frame and factorization.
-\marking{General current bound: 1.1. Product-reference bound: 0.85. Scope and interpretation: 0.25.}
+\marking{General current bound: 1.1 (C). Product-reference bound: 0.85 (C). Scope and interpretation: 0.25 (M).}
 
 
 \soltitle{A.3}{2.0}{The boundary correlations carry dynamical information}
@@ -622,7 +622,7 @@ Its initial value is
 \]
 The first term propagates existing differences. The second contains the effect of omitted dynamics on the actual state. The identity is exact, but $\rho'$ is not thereby known. Taking a partial trace does not remove the need for correlation information or a controlled estimate of this term.
 
-\marking{(a) Local equation, with the exterior term vanishing: 0.75. (b) Boundary correlations needed; the band gap does not supply them: 0.55. (c) Difference equation, initial value, not yet a bound: 0.7.}
+\marking{(a) Local equation, with the exterior term vanishing: 0.75 (C). (b) Boundary correlations needed; the band gap does not supply them: 0.55 (M). (c) Difference equation and initial value: 0.45 (C); not yet a bound: 0.25 (M).}
 
 
 \parttitle{B}{A conditional operating-time certificate}{1.6}
@@ -660,7 +660,7 @@ For the numerical exercise, express time in $\tau_0=T$. Then
 =\boxed{200}.
 \]
 The assumptions were stipulated to hold until $201T$. Thus all stated windows ending from $2T$ through $200T$ are certified. The next period need not fail: the bound has merely stopped certifying it.
-\marking{Integrated bound: 0.55. Endpoint and conditions: 0.45. Numerical value: 0.35. Lower-bound interpretation: 0.25.}
+\marking{Integrated bound: 0.55 (C). Endpoint and conditions: 0.45 (C). Numerical value: 0.35 (C). Lower-bound interpretation: 0.25 (M).}
 \begin{figpanel}{B.1 --- where the certificate ends}
 \begin{tikzpicture}
 \begin{axis}[mbaxis,width=10.5cm,height=5.6cm,xmin=0,xmax=215,ymin=0,ymax=6,xlabel={window end $t/T$},ylabel={bound on $|\Qbar-Q_*|$ ($10^{-3}$)},clip=false]
@@ -725,7 +725,7 @@ The first failed window among these three samples may be 2 or 3. The data do not
 \figtext{Each bar is $\widehat Q\pm E$. Window 1 lies wholly inside the band, window 3 wholly outside, and window 2 straddles the edge, so it is undetermined. Whether window 2 or 3 is the first failure cannot be decided from these data.}
 \end{figpanel}
 
-\marking{(a) $E(t)$ and where the initial mismatch enters: 0.65. (b) Both tests and the undetermined case: 0.6. (c) Classification and undetermined first failure: 0.45.}
+\marking{(a) $E(t)$: 0.4 (C); where the initial mismatch enters: 0.25 (M). (b) Both tests and the undetermined case: 0.6 (M). (c) Classification: 0.25 (C); undetermined first failure: 0.2 (M).}
 
 
 \soltitle{C.2}{1.4}{The missing inputs are the research}
@@ -758,13 +758,13 @@ then the triangle inequality and reverse triangle inequality give
 \]
 Neither implication, by itself, locates the first failure. Earlier windows, any persistence rule, and gaps between sampled start times need control.
 
-\marking{Reference with controlled seams: 0.25. Kept dynamics and omitted effects: 0.25. Physical-current prediction: 0.25. Useful local error over full cycles: 0.2. First failure needs earlier windows, any persistence rule and gaps between starts: 0.45.}
+\marking{Reference with controlled seams: 0.25 (M). Kept dynamics and omitted effects: 0.25 (M). Physical-current prediction: 0.25 (M). Useful local error over full cycles: 0.2 (M). First failure needs earlier windows, any persistence rule and gaps between starts: 0.45 (M).}
 
 
 
 \appendixstart
 {\LARGE\bfseries\color{ink}Appendices: research context}\par\medskip
-These appendices are for teachers and for readers who want the research picture behind the exam; they are not needed to solve or mark any question. Labels have the form problem.part.number.
+Appendices A--C are for teachers and for readers who want the research picture behind the exam; they are not needed to solve or mark any question. Appendix D, the toolbox, is for the reader. Labels have the form problem.part.number.
 
 \pagetitle{Appendix A. Paper map}
 \smallheading{What each paper answers}
@@ -1074,6 +1074,91 @@ A public excerpt of a 26-question ResearchPhO paper. Questions that used unpubli
 
 \smallheading{Sources}
 \sourceentries
+
+\clearpage
+\pagetitle{Appendix D. Toolbox: the smallest worked examples}
+One entry for each tool that the question paper states in ``Useful information'', in a hint or as a given identity, and that lies above an undergraduate who knows the four core physics courses. Each entry works the smallest case in which the tool does something. The examples teach the tools; none of them is an exam step. \texttt{check\_answers.py} recomputes every result below.
+
+\smallheading{A Bloch matrix with a seam (Problem 1, hint to B.1)}
+\textbf{Statement.} Insert $c_{R,s}=N^{-1/2}\sum_ke^{ikR}c_{k,s}$ into each term and use $\frac1N\sum_Re^{i(k'-k)R}=\delta_{kk'}$.\par
+\textbf{Smallest example.} Take three sites per cell, the bonds $t_0$ ($0\to1$) and $t_1$ ($1\to2$) inside the cell, and the seam bond $t_2$ from orbital 2 of cell $R$ to orbital 0 of cell $R+1$:
+\[
+H=-\sum_R\big[t_0c_{R,1}^\dagger c_{R,0}+t_1c_{R,2}^\dagger c_{R,1}+t_2c_{R+1,0}^\dagger c_{R,2}+\hc\big].
+\]
+Only the seam term changes the cell: $\sum_Rc_{R+1,0}^\dagger c_{R,2}=\sum_ke^{-ik}c_{k,0}^\dagger c_{k,2}$. Hence
+\[
+h(k)=-\begin{pmatrix}0&t_0&t_2e^{-ik}\\t_0&0&t_1\\t_2e^{ik}&t_1&0\end{pmatrix},
+\qquad
+\det h(k)=-2t_0t_1t_2\cos k .
+\]
+The momentum enters only through the product of the hoppings once around the cell. Three sites is the smallest case with a separate seam entry: with two sites per cell the seam bond and the inner bond join the same two orbitals, and their terms add in one entry, $-(t_0+t_1e^{-ik})$.\par
+\textbf{Used in} 1.B.1(a).
+
+\smallheading{Centres from the projected position operator (Problem 1, Useful information)}
+\textbf{Statement.} For a long ring of length $L$, the eigenvalues of $Pe^{2\pi ix/L}P$ on the range of $P$ are close to $e^{2\pi ix_\alpha/L}$, where $x_\alpha$ are the centres of the localized orbitals.\par
+\textbf{Smallest example.} A ring of $N$ cells of length $a=1$ ($L=N$), two sites per cell at $x=R$ and $x=R+\tfrac12$, joined by a hopping inside each cell only. The lower band consists of the bonding orbitals $\ket{w_R}=(\ket{R,0}+\ket{R,1})/\sqrt2$, with centre $\bra{w_R}x\ket{w_R}=R+\tfrac14$. The operator $e^{2\pi ix/N}$ acts inside each cell, so $Pe^{2\pi ix/N}P=\sum_R\lambda_R\ket{w_R}\bra{w_R}$ with
+\[
+\lambda_R=\tfrac12\big(e^{2\pi iR/N}+e^{2\pi i(R+1/2)/N}\big)=\cos\frac{\pi}{2N}\;e^{2\pi i(R+1/4)/N}.
+\]
+The phase gives the centre $R+\tfrac14$ exactly. The modulus $\cos(\pi/2N)<1$ tends to 1 as $N$ grows ($0.924$ at $N=4$); this is the meaning of ``close to''.\par
+\textbf{Used in} 1.D.1(b); Figure 1.3.
+
+\smallheading{The Pauli exponential (Problem 1, Useful information)}
+\textbf{Statement.} For a real unit vector $\bm d$ and real $x$: $e^{ix\bm d\cdot\bm\sigma}=\id\cos x+i(\bm d\cdot\bm\sigma)\sin x$.\par
+\textbf{Why.} $(\bm d\cdot\bm\sigma)^2=\id$, so the even powers of the exponential series add up to $\id\cos x$ and the odd powers to $i(\bm d\cdot\bm\sigma)\sin x$.\par
+\textbf{Smallest example.} For $\bm d=\hat z$ the matrix is diagonal: $e^{ix\sigma_z}=\operatorname{diag}(e^{ix},e^{-ix})=\id\cos x+i\sigma_z\sin x$, which is Euler's formula twice. For $\bm d=\hat x$ and $x=\pi/2$: $e^{i\pi\sigma_x/2}=i\sigma_x$, which exchanges $\ket\uparrow$ and $\ket\downarrow$ up to the factor $i$. With $x=-\theta/2$, the operator $e^{-i\theta\,\bm d\cdot\bm\sigma/2}$ turns every Bloch vector by the angle $\theta$ about $\bm d$.\par
+\textbf{Used in} 1.C.1, 1.D.1(c).
+
+\smallheading{A change of frame (Problem 2, Useful information; also 1.C.1)}
+\textbf{Statement.} If $i\partial_t\ket\psi=H\ket\psi$ and $\ket\xi=U^\dagger\ket\psi$, then $i\partial_t\ket\xi=(U^\dagger HU-iU^\dagger\dot U)\ket\xi$.\par
+\textbf{Smallest example.} One spin with $H=\frac\omega2\sigma_z$, and a frame $U(t)=e^{-i\omega' t\sigma_z/2}$ that turns about $z$ at the rate $\omega'$. Here $U$ commutes with $H$, so $U^\dagger HU=\frac\omega2\sigma_z$, and $-iU^\dagger\dot U=-\frac{\omega'}2\sigma_z$. The frame generator is
+\[
+\mathcal K=\frac{\omega-\omega'}{2}\,\sigma_z .
+\]
+For $\omega'=\omega$, $\mathcal K=0$: a frame that turns with the precession sees the spin at rest. The term $-iU^\dagger\dot U$ is the price of a moving frame, a fictitious field along the rotation axis of the frame.\par
+\textbf{Used in} 1.C.1, 2.C.1, 2.D.2.
+
+\smallheading{Slater determinants and excitations (Problem 2, Useful information)}
+\textbf{Statement.} A Slater determinant is a state of independent fermions in chosen orbitals; a single (double) excitation replaces one (two) of its occupied orbitals.\par
+\textbf{Smallest example.} Two fermions in four orbitals $1,\dots,4$, with reference $\ket{1\,2}$ (orbitals 1 and 2 occupied). Single excitations: $\ket{3\,2}$, $\ket{4\,2}$, $\ket{1\,3}$, $\ket{1\,4}$ (four). Double excitation: $\ket{3\,4}$ (one). Together with the reference, $1+4+1=6=\binom42$: every two-fermion state belongs to one of the three classes. A one-body operator $d_a^\dagger d_b$ moves one fermion, so it connects $\ket{1\,2}$ to single excitations only, never to $\ket{3\,4}$.\par
+\textbf{Used in} 2.B.1, 2.C.1.
+
+\smallheading{Operators on different spins (Problem 2, Useful information)}
+\textbf{Statement.} $\sigma_a\sigma_b=\delta_{ab}\id+i\epsilon_{abc}\sigma_c$; operators on different spins commute.\par
+\textbf{Smallest example.} Two spins. In $[\sigma_1^x\sigma_2^x,\sigma_1^z]$ the factor $\sigma_2^x$ commutes with $\sigma_1^z$ and can be taken out:
+\[
+[\sigma_1^x\sigma_2^x,\sigma_1^z]=[\sigma_1^x,\sigma_1^z]\,\sigma_2^x=-2i\,\sigma_1^y\sigma_2^x .
+\]
+Only the spin that both operators act on produces a commutator; the result acts on the union of their spins.\par
+\textbf{Used in} 2.B.2.
+
+\smallheading{Exponentials of operators (Problem 2, Part C and the hint to C.1)}
+\textbf{Statement.} $e^{-S}\partial_te^S=\int_0^1e^{-uS}\dot Se^{uS}\,\dd u$, and $e^{-S}\mathcal Ke^{S}=\mathcal K+[\mathcal K,S]+\tfrac12[[\mathcal K,S],S]+\cdots$.\par
+\textbf{Smallest examples.} (i) If $S(t)=s(t)A$ with a fixed operator $A$, then $S$ and $\dot S$ commute, the integrand equals $\dot S$ for every $u$, and the identity is the chain rule $e^{-S}\partial_te^S=\dot S$. The integral matters only when $S$ and $\dot S$ do not commute. (ii) One spin, $\mathcal K=\sigma_z$ and $S=-i\frac\theta2\sigma_x$. Then $[\mathcal K,S]=\theta\sigma_y$, $[[\mathcal K,S],S]=-\theta^2\sigma_z$, $[[[\mathcal K,S],S],S]=-\theta^3\sigma_y$, and the series sums to
+\[
+e^{-S}\sigma_ze^{S}=\sigma_z\cos\theta+\sigma_y\sin\theta ,
+\]
+that is, $\sigma_z$ turned towards $\sigma_y$ by the angle $\theta$.\par
+\textbf{Used in} 2.C.1.
+
+\smallheading{The trace norm and two inequalities (Problem 3, Useful information)}
+\textbf{Statement.} $|\Tr(AB)|\leq\norm A_1\norm B$ and $\norm{\rho-\ket a\bra a}_1\leq2\sqrt{1-\bra a\rho\ket a}$.\par
+\textbf{Smallest example.} One qubit, $\ket a=\ket0$, and $\rho=\ket\psi\bra\psi$ with $\ket\psi=\cos\theta\ket0+\sin\theta\ket1$, $0\leq\theta\leq\pi/2$. The matrix
+\[
+\rho-\ket0\bra0=\begin{pmatrix}-\sin^2\theta&\sin\theta\cos\theta\\\sin\theta\cos\theta&\sin^2\theta\end{pmatrix}
+\]
+has eigenvalues $\pm\sin\theta$, so $\norm{\rho-\ket0\bra0}_1=2\sin\theta=2\sqrt{1-\cos^2\theta}$: for a pure $\rho$ the second inequality is an equality. With $B=\sigma_z$ ($\norm{\sigma_z}=1$), $\Tr[(\rho-\ket0\bra0)\sigma_z]=-2\sin^2\theta$, and indeed $2\sin^2\theta\leq2\sin\theta$. For the mixed state $\rho=\id/2$, $\norm{\rho-\ket0\bra0}_1=1<2\sqrt{1/2}\approx1.41$: the inequality is strict.\par
+\textbf{Used in} 3.A.2.
+
+\smallheading{The partial trace (Problem 3, Useful information)}
+\textbf{Statement.} $\rho_X=\Tr_{\bar X}\rho$; if $O_X$ acts only on $X$, then $\Tr(\rho O_X)=\Tr_X(\rho_XO_X)$.\par
+\textbf{Smallest example.} Two qubits, $X$ = qubit 1. In components, $(\rho_X)_{aa'}=\sum_b\rho_{ab,a'b}$. For the product state $\ket0\otimes\ket+$, $\rho_X=\ket0\bra0$ is pure. For $(\ket{00}+\ket{11})/\sqrt2$, $\rho_X=\id/2$ is mixed, although the whole state is pure. With $O_X=\sigma_z\otimes\id$: $\Tr(\rho O_X)=\Tr_X(\rho_X\sigma_z)$ equals $1$ for the product state and $0$ for the entangled one.\par
+\textbf{Used in} 3.A.1, 3.A.2, 3.A.3.
+
+\smallheading{Commuting projectors (Problem 3, Useful information)}
+\textbf{Statement.} For commuting projectors, $1-\prod_{x\in X}(1-q_x)\leq\sum_{x\in X}q_x$.\par
+\textbf{Smallest example.} Two qubits, $q_x=\ket1\bra1$ on qubit $x$. The left side is $q_1+q_2-q_1q_2$, the projector onto ``at least one qubit is in $\ket1$''. On $\ket{00},\ket{01},\ket{10},\ket{11}$ both sides are diagonal, with values $0,1,1,1$ on the left and $0,1,1,2$ on the right. They differ only on the doubly flipped state, which the sum counts twice.\par
+\textbf{Used in} 3.A.2.
 \vfill
 \begin{center}\textbf{End of solution booklet}\end{center}
 \end{document}

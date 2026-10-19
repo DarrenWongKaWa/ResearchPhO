@@ -1,0 +1,428 @@
+{
+  "schema": "researchpho-checklist/1",
+  "lang": "en",
+  "eyebrow": "ResearchPhO study guide",
+  "title": "How long can a two-cycle quantum conveyor operate?",
+  "intro": "Reader level: an undergraduate who knows the four core physics courses (classical mechanics, electromagnetism, quantum mechanics, thermal and statistical physics) and their mathematics (linear algebra, calculus, Fourier series, complex numbers). Each question lists only what it needs beyond this level.",
+  "storageKey": "researchpho-guide:mb1-fractional-pump",
+  "emptyNote": "Nothing beyond the stated level.",
+  "categories": [
+    {
+      "id": "tool",
+      "name": "Computation tool",
+      "plural": "Computation tools",
+      "colour": "blue",
+      "refLabel": "Resource"
+    },
+    {
+      "id": "idea",
+      "name": "Modelling idea",
+      "plural": "Modelling ideas",
+      "colour": "orange",
+      "refLabel": "Resource"
+    }
+  ],
+  "items": {
+    "second-quantization": {
+      "category": "tool",
+      "name": "Fermion creation and annihilation operators",
+      "note": "Read c†, c and n = c†c, and rewrite a hopping Hamiltonian in new modes.",
+      "ref": "A. Altland and B. Simons, Condensed Matter Field Theory (2nd ed., Cambridge, 2010), Ch. 2 (second quantization)"
+    },
+    "bloch-matrix": {
+      "category": "tool",
+      "name": "Bloch matrix of a lattice with several sites per cell",
+      "note": "Fourier-transform a chain cell by cell to get h(k), including the bond that crosses the cell boundary.",
+      "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (Springer, 2016), Sec. 1.2 (bulk Hamiltonian)",
+      "url": "https://arxiv.org/abs/1509.02295"
+    },
+    "projector-calculus": {
+      "category": "tool",
+      "name": "Projectors onto a subspace",
+      "note": "Build p = YY† from orthonormal columns, read its rank from Tr p, and differentiate p² = p.",
+      "ref": "S.-M. Huang, Quantum-State Projectors on Grassmannian: Geometry, Holonomy, and Topology, arXiv:2608.06777",
+      "url": "https://arxiv.org/abs/2608.06777"
+    },
+    "pauli-rotations": {
+      "category": "tool",
+      "name": "Pauli matrices, spin rotations and the Bloch sphere",
+      "note": "Exponentiate a combination of Pauli matrices, and picture a spin-1/2 state as a unit vector that turns.",
+      "ref": "M. A. Nielsen and I. L. Chuang, Quantum Computation and Quantum Information (Cambridge, 2010), Sec. 4.2 (single-qubit operations)"
+    },
+    "frame-change": {
+      "category": "tool",
+      "name": "Time-dependent change of frame",
+      "note": "Transform a state with a moving unitary and find the new generator, including the term from the motion of the frame.",
+      "ref": "C. P. Slichter, Principles of Magnetic Resonance (3rd ed., Springer, 1990), Ch. 2 (the rotating frame)"
+    },
+    "wilson-loop": {
+      "category": "tool",
+      "name": "Wilson loop and multiband Wannier centres",
+      "note": "Multiply band-overlap matrices around the Brillouin zone and read orbital centres from the eigenphases.",
+      "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (Springer, 2016), Sec. 9.1 (non-abelian Berry phase, multiband Wannier states)",
+      "url": "https://arxiv.org/abs/1509.02295"
+    },
+    "tensor-commutators": {
+      "category": "tool",
+      "name": "Operators on several spins",
+      "note": "Commute products of Pauli operators that act on different spins and on shared spins.",
+      "ref": "M. A. Nielsen and I. L. Chuang, Quantum Computation and Quantum Information (Cambridge, 2010), Sec. 2.1.7 (tensor products)"
+    },
+    "operator-exponentials": {
+      "category": "tool",
+      "name": "Exponentials of operators",
+      "note": "Expand e^(−S) K e^(S) in nested commutators, and differentiate e^(S(t)) when S changes in time.",
+      "ref": "R. M. Wilcox, Exponential operators and parameter differentiation in quantum physics, J. Math. Phys. 8, 962 (1967)",
+      "url": "https://doi.org/10.1063/1.1705306"
+    },
+    "gauge-connection": {
+      "category": "tool",
+      "name": "Connections of a moving frame",
+      "note": "Work with A = iU†∂U for two parameters (a twist and time) and the identity that relates their derivatives.",
+      "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (Springer, 2016), Sec. 2.2 (Berry connection and curvature)",
+      "url": "https://arxiv.org/abs/1509.02295"
+    },
+    "partial-trace": {
+      "category": "tool",
+      "name": "Reduced density matrices and the partial trace",
+      "note": "Trace out the rest of a chain and compute local expectation values from the reduced state.",
+      "ref": "M. A. Nielsen and I. L. Chuang, Quantum Computation and Quantum Information (Cambridge, 2010), Sec. 2.4.3 (the reduced density operator)"
+    },
+    "trace-norm": {
+      "category": "tool",
+      "name": "Trace distance and operator norms",
+      "note": "Bound a difference of expectation values by the trace distance between two states.",
+      "ref": "M. A. Nielsen and I. L. Chuang, Quantum Computation and Quantum Information (Cambridge, 2010), Ch. 9 (distance measures)"
+    },
+    "thouless-pump": {
+      "category": "idea",
+      "name": "Adiabatic (Thouless) pumping",
+      "note": "A slow periodic change of a lattice can carry particles along it, period after period.",
+      "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (Springer, 2016), Ch. 4 (adiabatic charge pumping, Rice-Mele model)",
+      "url": "https://arxiv.org/abs/1509.02295"
+    },
+    "wannier-centres": {
+      "category": "idea",
+      "name": "Wannier orbitals and their centres",
+      "note": "Localized orbitals built from a band; how the motion of their centres counts transported charge.",
+      "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (Springer, 2016), Sec. 4.3 (tracking the charges with Wannier states)",
+      "url": "https://arxiv.org/abs/1509.02295"
+    },
+    "band-projector": {
+      "category": "idea",
+      "name": "A group of bands as one subspace",
+      "note": "Describe bands 1 and 2 together by the plane they span at each (k, φ), without choosing a basis inside it.",
+      "ref": "S.-M. Huang, Quantum-State Projectors on Grassmannian: Geometry, Holonomy, and Topology, arXiv:2608.06777",
+      "url": "https://arxiv.org/abs/2608.06777"
+    },
+    "kato-generator": {
+      "category": "idea",
+      "name": "The generator of a moving subspace",
+      "note": "The rotation that carries a subspace along its path, and how it compares with the actual Hamiltonian.",
+      "ref": "T. Kato, On the adiabatic theorem of quantum mechanics, J. Phys. Soc. Jpn. 5, 435 (1950)",
+      "url": "https://doi.org/10.1143/JPSJ.5.435"
+    },
+    "adiabatic-following": {
+      "category": "idea",
+      "name": "Adiabatic following",
+      "note": "When does a state follow an instantaneous eigenstate of a changing Hamiltonian? Compare the gap with the rate of change.",
+      "ref": "D. J. Griffiths, Introduction to Quantum Mechanics (2nd ed., Pearson, 2005), Ch. 10 (the adiabatic approximation)"
+    },
+    "gauge-freedom": {
+      "category": "idea",
+      "name": "Basis freedom inside a group of bands",
+      "note": "Separate what changes under a unitary change of basis inside the group (coordinates) from what does not (physical objects).",
+      "ref": "N. Marzari, A. A. Mostofi, J. R. Yates, I. Souza, D. Vanderbilt, Maximally localized Wannier functions, Rev. Mod. Phys. 84, 1419 (2012), Sec. II",
+      "url": "https://arxiv.org/abs/1112.5411"
+    },
+    "domain-models": {
+      "category": "idea",
+      "name": "Ising chains and domains",
+      "note": "Model two competing orders as two spin states; a domain is a run of the other state, and a transverse field lets spins flip.",
+      "ref": "S. Sachdev, Quantum Phase Transitions (2nd ed., Cambridge, 2011), chapter on the Ising chain in a transverse field"
+    },
+    "energy-and-transitions": {
+      "category": "idea",
+      "name": "Energy differences and transitions",
+      "note": "How a quantum system moves between states: couplings, energy conservation and transition rates.",
+      "ref": "D. J. Griffiths, Introduction to Quantum Mechanics (2nd ed., Pearson, 2005), Ch. 9 (time-dependent perturbation theory)"
+    },
+    "dressing": {
+      "category": "idea",
+      "name": "Dressing a state by a unitary (Schrieffer-Wolff)",
+      "note": "Build the leading correlations into a reference state by a change of basis e^S, and expand in a small coupling.",
+      "ref": "S. Bravyi, D. P. DiVincenzo, D. Loss, Schrieffer-Wolff transformation for quantum many-body systems, Ann. Phys. 326, 2793 (2011)",
+      "url": "https://arxiv.org/abs/1105.0675"
+    },
+    "short-time-dynamics": {
+      "category": "idea",
+      "name": "Transition probabilities at short times",
+      "note": "How a transition probability starts at small t, and when a decay rate can be defined at all (Fermi's golden rule).",
+      "ref": "D. J. Griffiths, Introduction to Quantum Mechanics (2nd ed., Pearson, 2005), Ch. 9 (Fermi's golden rule)"
+    },
+    "locality": {
+      "category": "idea",
+      "name": "Locality in quantum many-body systems",
+      "note": "Local operators, overlapping local corrections, and quasi-local operators approximated in a region.",
+      "ref": "M. B. Hastings, Locality in Quantum Systems, arXiv:1008.5137",
+      "url": "https://arxiv.org/abs/1008.5137"
+    },
+    "effective-models": {
+      "category": "idea",
+      "name": "Effective models: the kept part and the remainder",
+      "note": "Split an exact generator into a part you keep and a remainder, and ask what bounds the remainder.",
+      "ref": "S. Teufel, Adiabatic Perturbation Theory in Quantum Dynamics (Springer Lecture Notes in Mathematics 1821, 2003)"
+    },
+    "current-operator": {
+      "category": "idea",
+      "name": "The current operator on a lattice",
+      "note": "The particle current through one bond as an operator, and its expectation value in a superposition.",
+      "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (Springer, 2016), Sec. 5.1 (particle current at a cross section)",
+      "url": "https://arxiv.org/abs/1509.02295"
+    },
+    "twisted-boundary": {
+      "category": "idea",
+      "name": "Current from a twist (Peierls phase)",
+      "note": "Put a phase e^(iθ) on one bond and obtain the current through it as −∂H/∂θ.",
+      "ref": "Q. Niu, D. J. Thouless, Y.-S. Wu, Quantized Hall conductance as a topological invariant, Phys. Rev. B 31, 3372 (1985)",
+      "url": "https://doi.org/10.1103/PhysRevB.31.3372"
+    },
+    "many-body-fidelity": {
+      "category": "idea",
+      "name": "Fidelity of a many-particle state and of its parts",
+      "note": "Compare the overlap of a whole N-particle state with the overlap of a small region of it.",
+      "ref": "W. Kohn, Nobel Lecture: Electronic structure of matter - wave functions and density functionals, Rev. Mod. Phys. 71, 1253 (1999)",
+      "url": "https://doi.org/10.1103/RevModPhys.71.1253"
+    },
+    "open-subsystem": {
+      "category": "idea",
+      "name": "Dynamics of a subsystem",
+      "note": "Why the equation of motion for one region of a chain involves its couplings to the outside.",
+      "ref": "H.-P. Breuer and F. Petruccione, The Theory of Open Quantum Systems (Oxford, 2002), Ch. 3 (quantum master equations)"
+    },
+    "certified-bounds": {
+      "category": "idea",
+      "name": "Certified bounds and decisions with error bars",
+      "note": "What a sufficient bound guarantees, and how to decide with an interval instead of a single number.",
+      "ref": "R. E. Moore, R. B. Kearfott, M. J. Cloud, Introduction to Interval Analysis (SIAM, 2009)"
+    },
+    "prethermalization": {
+      "category": "idea",
+      "name": "Prethermalization in driven many-body systems",
+      "note": "Why a driven interacting system can keep its order for a long but finite time, and what controls that time.",
+      "ref": "D. Abanin, W. De Roeck, W. W. Ho, F. Huveneers, A rigorous theory of many-body prethermalization for periodically driven and closed quantum systems, Commun. Math. Phys. 354, 809 (2017)",
+      "url": "https://arxiv.org/abs/1509.05386"
+    }
+  },
+  "groups": [
+    {
+      "title": "Problem 1: A two-cycle quantum conveyor: bands, projectors and flavors",
+      "short": "Problem 1",
+      "nodes": [
+        {
+          "label": "1.A.1",
+          "title": "Fractional transport",
+          "points": 1.5,
+          "note": "Count the charge carried in two periods from the displacements of the occupied orbitals, and ask what fixes the single-period values.",
+          "needs": [
+            "thouless-pump",
+            "wannier-centres"
+          ]
+        },
+        {
+          "label": "1.B.1",
+          "title": "From the lattice to a projector",
+          "points": 2.7,
+          "note": "Derive the 5×5 Bloch matrix, build the projector onto bands 1 and 2, and compare three ways of counting many-particle states.",
+          "needs": [
+            "second-quantization",
+            "bloch-matrix",
+            "projector-calculus",
+            "band-projector"
+          ]
+        },
+        {
+          "label": "1.B.2",
+          "title": "From the lattice to a projector",
+          "points": 1.4,
+          "note": "Derive two identities of a moving projector and state what they say about the Hamiltonian.",
+          "needs": [
+            "projector-calculus",
+            "kato-generator"
+          ]
+        },
+        {
+          "label": "1.C.1",
+          "title": "Following a moving projector",
+          "points": 2.3,
+          "note": "Solve one spin in a turning field exactly in a rotating frame, and find how well it follows the ground state.",
+          "needs": [
+            "pauli-rotations",
+            "frame-change",
+            "adiabatic-following"
+          ]
+        },
+        {
+          "label": "1.D.1",
+          "title": "A plane is not yet a flavor",
+          "points": 2.1,
+          "note": "Separate basis changes inside a plane from physical changes of flavor, and ask what a Wilson loop or a determinant can decide.",
+          "needs": [
+            "wilson-loop",
+            "gauge-freedom",
+            "wannier-centres"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Problem 2: Correlations and the physical current",
+      "short": "Problem 2",
+      "nodes": [
+        {
+          "label": "2.A.1",
+          "title": "Domains in a spin chain",
+          "points": 1.3,
+          "note": "Find the energy of a domain in a spin chain, and ask whether a lower energy forces the domain to form.",
+          "needs": [
+            "domain-models",
+            "energy-and-transitions"
+          ]
+        },
+        {
+          "label": "2.B.1",
+          "title": "Dressing a reference state",
+          "points": 1.8,
+          "note": "Solve a two-level cluster: its dressed ground state, and the exact dynamics that starts from the bare state.",
+          "needs": [
+            "dressing",
+            "short-time-dynamics"
+          ]
+        },
+        {
+          "label": "2.B.2",
+          "title": "Dressing a reference state",
+          "points": 0.8,
+          "note": "Compute what appears when local corrections on neighbouring clusters overlap.",
+          "needs": [
+            "tensor-commutators",
+            "locality"
+          ]
+        },
+        {
+          "label": "2.C.1",
+          "title": "Exact frames and kept dynamics",
+          "points": 1.8,
+          "note": "Derive the exact generator in a dressed moving frame, and find where the first approximation enters.",
+          "needs": [
+            "frame-change",
+            "operator-exponentials",
+            "second-quantization",
+            "effective-models"
+          ]
+        },
+        {
+          "label": "2.C.2",
+          "title": "Exact frames and kept dynamics",
+          "points": 1.3,
+          "note": "Find when the kept dynamics preserves a reference direction, and test it on the spin chain at short times.",
+          "needs": [
+            "domain-models",
+            "short-time-dynamics",
+            "effective-models"
+          ]
+        },
+        {
+          "label": "2.D.1",
+          "title": "The physical current",
+          "points": 0.9,
+          "note": "Compute the current in a superposition of two states, and ask what a probability alone can tell.",
+          "needs": [
+            "current-operator"
+          ]
+        },
+        {
+          "label": "2.D.2",
+          "title": "The physical current",
+          "points": 2.1,
+          "note": "Transform the current operator to a moving frame and integrate it over time.",
+          "needs": [
+            "twisted-boundary",
+            "gauge-connection",
+            "frame-change"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Problem 3: How long can the conveyor operate?",
+      "short": "Problem 3",
+      "nodes": [
+        {
+          "label": "3.A.1",
+          "title": "Local accuracy in a large system",
+          "points": 1.1,
+          "note": "Compare the fidelity of a whole product state with the fidelity of a small region of it.",
+          "needs": [
+            "many-body-fidelity",
+            "partial-trace"
+          ]
+        },
+        {
+          "label": "3.A.2",
+          "title": "Local accuracy in a large system",
+          "points": 2.2,
+          "note": "Bound the error of a local current by the distance between two reduced states.",
+          "needs": [
+            "trace-norm",
+            "partial-trace",
+            "locality"
+          ]
+        },
+        {
+          "label": "3.A.3",
+          "title": "Local accuracy in a large system",
+          "points": 2.0,
+          "note": "Derive the equation of motion of a region's state, and identify what it needs from outside the region.",
+          "needs": [
+            "partial-trace",
+            "open-subsystem"
+          ]
+        },
+        {
+          "label": "3.B.1",
+          "title": "A conditional operating-time certificate",
+          "points": 1.6,
+          "note": "Integrate supplied local bounds over a two-period window, and find the time up to which they certify the charge.",
+          "needs": [
+            "certified-bounds"
+          ]
+        },
+        {
+          "label": "3.C.1",
+          "title": "Prediction, error and first failure",
+          "points": 1.7,
+          "note": "Turn a prediction with an error bar into tests for single windows, and apply them to three sample windows.",
+          "needs": [
+            "certified-bounds"
+          ]
+        },
+        {
+          "label": "3.C.2",
+          "title": "Prediction, error and first failure",
+          "points": 1.4,
+          "note": "List what must be derived from the real pump before the tests apply, and ask what locating the first failure needs.",
+          "needs": [
+            "prethermalization",
+            "effective-models",
+            "open-subsystem"
+          ]
+        }
+      ]
+    }
+  ],
+  "footer": [
+    "Main line: the 18 questions in exam order. Left, blue: computation tools (mathematics you calculate with). Right, orange: modelling ideas (physics you reason with). Each item appears in full where it is first needed and as a dashed reminder later. Tick an item when you can use it without looking it up.",
+    "The toolbox appendix of the solutions (Appendix D) works the smallest example of each tool that the question paper states without proof."
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "researchpho-checklist/1",
+  "lang": "en",
+  "eyebrow": "ResearchPhO author checklist",
+  "title": "TITLE OF THE EXAM",
+  "intro": "Main line: the eleven workflow steps of SKILL.md. Left, purple: the olympiad standard each step serves (S1-S8). Right, green: the check that shows the step is done. Copy this file for each exam, set the title and storageKey, and build it with make_checklist.py --profile author.",
+  "storageKey": "researchpho-author:title-of-the-exam",
+  "emptyNote": "No separate check.",
+  "categories": [
+    {"id": "standard", "name": "Olympiad standard", "plural": "Standards", "colour": "purple", "refLabel": "Source"},
+    {"id": "check", "name": "Check", "plural": "Checks", "colour": "green", "refLabel": "How"}
+  ],
+  "items": {
+    "S1": {"category": "standard", "name": "S1 Three problems, 30 marks, 5 hours", "note": "three independent problems of 10 points, 3-5 parts each; a quick version has one", "ref": "IPhO and APhO statutes"},
+    "S2": {"category": "standard", "name": "S2 Physics, not mathematical virtuosity", "note": "every problem has modelling questions; most marks go to (M) steps", "ref": "IPhO syllabus"},
+    "S3": {"category": "standard", "name": "S3 Standard mathematics", "note": "only mathematics the reader has; any other tool in one line of Useful information and in the toolbox", "ref": "IPhO statutes and syllabus"},
+    "S4": {"category": "standard", "name": "S4 Concepts explained in syllabus terms", "note": "the paper's language translated: standard word first, the paper's term in parentheses", "ref": "IPhO syllabus"},
+    "S5": {"category": "standard", "name": "S5 Olympiad layout and marking", "note": "context before each question, boxed subquestions with points, answer sheets, itemized marking", "ref": "IPhO and APhO booklets"},
+    "S6": {"category": "standard", "name": "S6 Research topics", "note": "the papers are the problem source, at IPhO-like difficulty for the reader", "ref": "PanPhO comprehensive test; IPhO 2016"},
+    "S7": {"category": "standard", "name": "S7 Independent problems, one master text", "note": "each problem restates its model; symbols and labels identical in translations", "ref": "APhO statutes"},
+    "S8": {"category": "standard", "name": "S8 Moderation", "note": "scripts, cold read, trial solve, recomputation, sign checks; an expert review when the exam matters", "ref": "IPhO and APhO practice"},
+    "c-question": {"category": "check", "name": "One sentence for the question and one for the answer, per paper", "ref": "Appendix A"},
+    "c-language": {"category": "check", "name": "Every term a cold reader flags is in the language map", "ref": "references/question_design.md, section 0"},
+    "c-open": {"category": "check", "name": "Every open link is O-calc or O-theory; the shared gap is one sentence", "ref": "references/question_design.md, section 1a"},
+    "c-independent": {"category": "check", "name": "Each problem can be solved without the others", "ref": "cold read per problem"},
+    "c-questions": {"category": "check", "name": "One verb, a checkable answer, 0.2-2.5 points per question", "ref": "references/question_design.md, section 2"},
+    "c-cold": {"category": "check", "name": "Cold read: no uninterpretable term, no blocked step, the paper's question recognized", "ref": "references/verification.md, section 1b"},
+    "c-figures": {"category": "check", "name": "Figures show the set-up only; every symbol of a figure is defined in the text", "ref": "leak review by hand"},
+    "c-tags": {"category": "check", "name": "Marking lines add up and every number is tagged (C) or (M)", "ref": "check_booklets.py: marking sums and modelling share"},
+    "c-toolbox": {"category": "check", "name": "A toolbox entry for every tool above the reader's level", "ref": "references/booklet_layout.md, toolbox appendix"},
+    "c-sheets": {"category": "check", "name": "Answer sheets generated after the last change to the questions", "ref": "make_answer_sheets.py"},
+    "c-guide": {"category": "check", "name": "Study guide built and cross-checked with the question paper", "ref": "make_checklist.py --profile study-guide; check_booklets.py --guide"},
+    "c-checker": {"category": "check", "name": "check_booklets.py: zero errors, every warning read", "ref": "references/verification.md, section 1"},
+    "c-scripts": {"category": "check", "name": "A script recomputes every derivable answer and every toolbox result", "ref": "references/verification.md, section 2"},
+    "c-signs": {"category": "check", "name": "Every sign and convention checked a second way", "ref": "references/verification.md, section 3"},
+    "c-trial": {"category": "check", "name": "Trial solve recorded and used", "ref": "references/verification.md, section 1c"},
+    "c-render": {"category": "check", "name": "Two compiles, zero overfull boxes, every page looked at", "ref": "render_sheets.py"},
+    "c-leaks": {"category": "check", "name": "Leak review by hand: no sentence answers a question", "ref": "references/verification.md, section 5"},
+    "c-public": {"category": "check", "name": "No unpublished data, internal paths or file names in public versions", "ref": "check_booklets.py --forbid"}
+  },
+  "groups": [
+    {"title": "Design the exam", "short": "Design", "note": "steps 1-5", "nodes": [
+      {"label": "Step 1", "title": "State what each paper answers", "needs": ["S6", "c-question"]},
+      {"label": "Step 2", "title": "Make the language map", "needs": ["S4", "c-language"]},
+      {"label": "Step 3", "title": "Map the chain of objects; classify the open links", "needs": ["c-open"]},
+      {"label": "Step 4", "title": "Split the chain into three independent problems", "needs": ["S1", "S7", "c-independent"]},
+      {"label": "Step 5", "title": "Write the questions", "needs": ["S2", "c-questions"]}
+    ]},
+    {"title": "Write the booklets", "short": "Write", "note": "steps 6-9", "nodes": [
+      {"label": "Step 6", "title": "Write the introductions and Useful information", "needs": ["S3", "S4", "c-cold"]},
+      {"label": "Step 7", "title": "Draw the set-up figures", "needs": ["c-figures"]},
+      {"label": "Step 8", "title": "Write solutions, tagged marking, appendices and toolbox", "needs": ["S2", "S3", "S5", "c-tags", "c-toolbox"]},
+      {"label": "Step 9", "title": "Make the answer sheets and the study guide", "needs": ["S5", "c-sheets", "c-guide"]}
+    ]},
+    {"title": "Verify and publish", "short": "Verify", "note": "steps 10-11", "nodes": [
+      {"label": "Step 10", "title": "Verify", "needs": ["S8", "c-checker", "c-scripts", "c-signs", "c-trial", "c-render"]},
+      {"label": "Step 11", "title": "Publish cleanly", "needs": ["c-leaks", "c-public"]}
+    ]}
+  ],
+  "footer": [
+    "Tick a standard when the exam meets it, and a check when it has been run and its result read. A reminder (dashed) repeats a standard at a later step; ticking it ticks the first one too."
+  ]
+}

@@ -1,7 +1,48 @@
 # Changelog
 
-## Unreleased
+## 1.1.0 (2026-10-19)
 
+Support for the reader who solves the exam: tutor mode, a study guide, a toolbox appendix, a trial solve, and marking
+tags that measure the modelling share.
+
+- **Tutor mode** (`references/tutor_mode.md`, a section in `SKILL.md`). For each question the agent prepares a card:
+  the purpose of the part, a figure-reading table, the language-map entries used, the steps with one hint each,
+  sanity checks (a limit, units, a small case), likely misreadings with corrections, and the research step. Rules:
+  lead with questions, let the reader compute each step first, show no boxed answer before the reader asks; name
+  every symbol before use and give each object one letter; introduce a picture (such as the Bloch vector) before
+  using it; write every change of frame or representation as a table "quantity, description 1, description 2,
+  relation"; give a tiny worked example before a new mathematical tool. Includes a seed list of misreadings and a
+  worked card for 1.C.1 of the example.
+- **Checklist flowcharts**, a new data-driven component (`assets/checklist_template.html`, schema
+  `researchpho-checklist/1`). A main line of grouped nodes, two categories of items on its sides in their own colours
+  and frames, a checkbox and a one-line note per item, progress per category, overall and per group; ticks in
+  `localStorage` behind try/catch; filters per category; two-click reset; light and dark themes; one column at phone
+  width. New script `scripts/make_checklist.py` validates the JSON (profiles `study-guide`, `research`, `author`)
+  and writes the page. Three uses:
+  - **Study guide**, a fourth output: for a stated reader level (default: an undergraduate who knows the four core
+    physics courses), what each question needs beyond that level, as computation tools (blue) and modelling ideas
+    (orange), one resource each.
+  - **Research checklist**: the chain of objects of Appendix A as the main line, its open links as O-calc (amber) and
+    O-theory (red), ticked off as results close them.
+  - **Author checklist** (`assets/author_checklist.json`): the eleven workflow steps, standards S1-S8 and the
+    verification checks.
+- **Marking tags.** Each number of a `\marking` line may carry (C) computation or (M) modelling. `check_booklets.py`
+  reports the modelling share of the tagged marks per problem and warns below one half (standards S2, S3); untagged
+  lines stay valid, and a tag that does not follow a number is flagged. New option `--guide` checks that the study
+  guide lists every scored question once with the same points.
+- **Toolbox appendix** (Appendix E of the solutions template): the smallest worked example of every tool from
+  "Useful information", a hint or a given identity that is above the reader's level. Layout rules in
+  `references/booklet_layout.md`.
+- **Trial solve** (`references/verification.md`, section 1c): after the cold read, a fresh agent at the target level
+  solves each question and records where it gets stuck and what it misreads; the records feed the tutor-card
+  misreading lists, the toolbox, the study guide and candidate partial-credit lines.
+- **Worked example.** New study guide (`study_guide.json`, `study_guide.html`: 18 questions, 11 computation tools,
+  18 modelling ideas) and research checklist (`research_checklist.json`, `research_checklist.html`: 7 objects,
+  2 O-calc and 4 O-theory links, from the open-link table of Appendix A). All 18 marking lines are tagged; pieces that mixed both kinds were split, keeping every
+  question's points. The checker reports modelling shares of 45%, 34% and 40% and warns for each problem. New
+  Appendix D toolbox (solutions now 28 pages), recomputed in `check_answers.py`. In 1.C.1 the field direction
+  n(t) is now defined in the text, not only in the caption of Figure 1.5, the Bloch vector is introduced before the
+  figure, and "Useful information" uses d for a generic unit vector.
 - **Two kinds of open link.** The open label O is split into **O-calc** (existing theory is enough; a calculation
   is missing) and **O-theory** (the closest existing theory needs a hypothesis that fails here). A new section 1a
   of the question-design reference gives the classification test, and asks for each O-theory link the limit in which
@@ -11,7 +52,7 @@
   fails or closing calculation, shared gap). Appendices B and C record the kind of each open item. The same applies to
   the proposal-review summary.
 - Worked example: the chain figure marks each step as D, O-calc or O-theory, and Appendix A has the open-link table;
-  solutions now 25 pages.
+  the solutions grew by one page.
 - `check_booklets.py` reports "O-calc" and "O-theory" in the question paper as research notes.
 - Worked example, Appendix B fixes: four notes that sat under the following question now stand under their own
   question (1.B.1, 1.D.1, 2.C.2, 3.C.1); 2.B.1 has its own scope notes; the "three separate statements" list is
