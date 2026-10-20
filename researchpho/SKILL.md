@@ -5,7 +5,7 @@ description: ResearchPhO - learn research papers from outside your field by turn
 
 # ResearchPhO: learn papers from outside your field by solving them
 
-Version 1.2.0.
+Version 1.2.1.
 
 Papers from another field are hard to read mostly because of their language, not their physics. A term such as
 "flavor", "horizontal generator" or "prethermal" often names something the reader already knows under another name.

@@ -1,0 +1,1210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How does disorder enter a model, a Hall current and a pump?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Noto+Sans:wght@400;500;700&family=Noto+Serif:wght@600;700&display=swap">
+<style>
+/* Layout: the exam is one vertical trunk (problem by problem, question by question). Items of a left-side category hang on the
+   left in their colour frame, items of a right-side category on the right. A research segment continues the trunk after the exam. */
+:root {
+  --bg: #F4F6F9;
+  --grid: #E6EAF0;
+  --card: #FFFFFF;
+  --fg: #1A1F26;
+  --muted: #5B6573;
+  --trunk: #2A3340;
+  --rule: #C9D0DA;
+  --link: #1F5FB4;
+  --c-blue: #1F5FB4;   --w-blue: #EAF1FB;   --s-blue: #D4E3F7;
+  --c-orange: #C25A06; --w-orange: #FDF0E3; --s-orange: #F9DDBF;
+  --c-amber: #9A6A00;  --w-amber: #FBF4DD;  --s-amber: #F3E3AE;
+  --c-red: #B0302C;    --w-red: #FCEDEC;    --s-red: #F6D3D1;
+  --c-green: #2F7D4F;  --w-green: #E8F5ED;  --s-green: #CBE8D6;
+  --c-purple: #6A44A8; --w-purple: #F1ECFA; --s-purple: #DED2F3;
+  --done: #2F7D4F;
+  --f-display: "Noto Serif", "Noto Serif SC", Georgia, "Times New Roman", serif;
+  --f-body: "Noto Sans", "Noto Sans SC", "PingFang SC", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101419; --grid: #18202A; --card: #171D25; --fg: #E5E9EE; --muted: #9AA4B1;
+    --trunk: #C7D0DB; --rule: #34404E; --link: #8DB8F2;
+    --c-blue: #74A9EE;   --w-blue: #142235;   --s-blue: #1D3352;
+    --c-orange: #F2A256; --w-orange: #2E1F10; --s-orange: #4A2F14;
+    --c-amber: #E6C15A;  --w-amber: #2B2410;  --s-amber: #463A14;
+    --c-red: #F08A84;    --w-red: #301514;    --s-red: #4D1F1D;
+    --c-green: #6CC08F;  --w-green: #12261A;  --s-green: #1C3B28;
+    --c-purple: #B79BEA; --w-purple: #211A33; --s-purple: #34284F;
+    --done: #6CC08F; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101419; --grid: #18202A; --card: #171D25; --fg: #E5E9EE; --muted: #9AA4B1;
+  --trunk: #C7D0DB; --rule: #34404E; --link: #8DB8F2;
+  --c-blue: #74A9EE;   --w-blue: #142235;   --s-blue: #1D3352;
+  --c-orange: #F2A256; --w-orange: #2E1F10; --s-orange: #4A2F14;
+  --c-amber: #E6C15A;  --w-amber: #2B2410;  --s-amber: #463A14;
+  --c-red: #F08A84;    --w-red: #301514;    --s-red: #4D1F1D;
+  --c-green: #6CC08F;  --w-green: #12261A;  --s-green: #1C3B28;
+  --c-purple: #B79BEA; --w-purple: #211A33; --s-purple: #34284F;
+  --done: #6CC08F; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { color-scheme: light; }
+body {
+  margin: 0;
+  background-color: var(--bg);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: var(--fg); font-family: var(--f-body); font-size: 15px; line-height: 1.55;
+}
+[hidden] { display: none !important; }
+a { color: var(--link); }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 20px; padding-block: 28px 64px; }
+header.top { display: grid; gap: 16px; margin-bottom: 26px; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; }
+h1 { font-family: var(--f-display); font-weight: 700; font-size: clamp(26px, 4vw, 38px); line-height: 1.2; margin: 0; text-wrap: balance; }
+.lede { margin: 0; max-width: 68ch; color: var(--muted); }
+.panel { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px; display: grid; gap: 14px; }
+.meters { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; }
+.meter { display: grid; gap: 6px; min-width: 0; }
+.meter .row1 { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.meter .lbl { font-weight: 700; font-size: 14px; }
+.meter .num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: 13px; color: var(--muted); }
+.bar { height: 8px; border-radius: 4px; background: var(--grid); overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; border-radius: 4px; background: var(--done); transition: width .25s ease; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.swatch { width: 18px; height: 12px; border-radius: 3px; border: 2px solid; display: inline-block; }
+.btns { display: flex; flex-wrap: wrap; gap: 6px; }
+button { font: 500 13px/1 var(--f-body); color: var(--fg); background: var(--card); border: 1px solid var(--rule); border-radius: 999px; padding: 7px 12px; cursor: pointer; }
+button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+button.warn { color: var(--c-red); border-color: var(--c-red); }
+button:focus-visible, .item input:focus-visible, a:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+
+.track { position: relative; }
+.track::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; transform: translateX(-50%); background: var(--trunk); border-radius: 2px; z-index: 0; }
+.terminal, .phead { position: relative; z-index: 2; margin-inline: auto; background: var(--card); border: 2px solid var(--trunk); }
+.terminal { max-width: 560px; border-radius: 14px; padding: 14px 18px; display: grid; gap: 6px; }
+.terminal h2 { margin: 0; font-family: var(--f-display); font-size: 19px; }
+.terminal p { margin: 0; color: var(--muted); font-size: 14px; }
+.terminal.end { margin-top: 44px; }
+.phead { max-width: 660px; border-radius: 10px; padding: 12px 18px; margin-block: 44px 22px; display: grid; gap: 4px; }
+.phead.research { border-style: dashed; }
+.phead .code { font-family: var(--f-mono); font-size: 12px; letter-spacing: .06em; color: var(--muted); display: flex; justify-content: space-between; gap: 10px; }
+.phead h2 { margin: 0; font-family: var(--f-display); font-size: 21px; line-height: 1.3; text-wrap: balance; }
+.phead .q { margin: 0; font-size: 14px; color: var(--muted); }
+.phead .bar { margin-top: 6px; }
+
+.row { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 250px minmax(0, 1fr); gap: 30px; align-items: center; margin-block: 18px; }
+.row::before { content: ""; position: absolute; left: 6%; right: 6%; top: 50%; border-top: 2px dashed var(--rule); z-index: 0; }
+.col { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.node { position: relative; z-index: 2; background: var(--card); border: 2px solid var(--trunk); border-radius: 10px; padding: 10px 12px; display: grid; gap: 5px; }
+.node .code { font-family: var(--f-mono); font-weight: 600; font-size: 13px; display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.node .pts { color: var(--muted); font-weight: 500; white-space: nowrap; }
+.node .tag { font-family: var(--f-mono); font-size: 11.5px; font-weight: 600; border: 1px solid currentColor; border-radius: 4px; padding: 0 5px; white-space: nowrap; }
+.node h3 { margin: 0; font-size: 15.5px; line-height: 1.35; text-wrap: balance; }
+.node .nnote { margin: 0; font-size: 12.5px; color: var(--muted); line-height: 1.45; }
+.node .state { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.node.complete { border-color: var(--done); }
+.node.complete .state { color: var(--done); font-weight: 700; }
+
+.item { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px; align-items: start; border: 2px solid; border-radius: 8px; padding: 8px 10px; cursor: pointer; transition: background-color .15s ease; }
+.item input { margin: 3px 0 0; width: 16px; height: 16px; cursor: pointer; }
+.item .t { display: block; font-weight: 700; font-size: 14px; line-height: 1.4; }
+.item .n { display: block; font-size: 12.5px; color: var(--muted); line-height: 1.45; }
+.item .r { display: block; font-size: 12px; line-height: 1.45; margin-top: 2px; overflow-wrap: anywhere; }
+.item .r .meta { color: var(--muted); font-family: var(--f-mono); font-size: 11.5px; }
+.item.done .t::after { content: " \2713"; color: var(--done); }
+.remind { display: inline-flex; align-items: center; gap: 6px; border: 1.5px dashed; border-radius: 999px; padding: 3px 10px; font-size: 12.5px; color: var(--muted); align-self: flex-start; background: var(--card); }
+.col.left .remind { align-self: flex-end; }
+.remind.done::after { content: "\2713"; color: var(--done); font-weight: 700; }
+.empty { font-size: 12.5px; color: var(--muted); font-style: italic; }
+.col.left .empty { text-align: right; }
+
+footer { margin-top: 36px; font-size: 13px; color: var(--muted); display: grid; gap: 6px; max-width: 76ch; }
+footer p { margin: 0; }
+
+@media (max-width: 880px) {
+  .track::before { left: 13px; transform: none; }
+  .terminal, .phead { margin-left: 34px; margin-right: 0; }
+  .row { grid-template-columns: minmax(0, 1fr); gap: 8px; padding-left: 34px; }
+  .row::before { display: none; }
+  .row .node { order: -1; }
+  .col.left .remind { align-self: flex-start; }
+  .empty { display: none; }
+  .node::before { content: ""; position: absolute; left: -28px; top: 16px; width: 12px; height: 12px; border-radius: 50%; background: var(--card); border: 3px solid var(--trunk); }
+  .node.complete::before { border-color: var(--done); background: var(--done); }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow" id="eyebrow"></div>
+    <h1 id="title"></h1>
+    <p class="lede" id="intro"></p>
+    <div class="panel">
+      <div class="meters" id="meters"></div>
+      <div class="controls">
+        <div class="legend" id="legend"></div>
+        <div class="btns" role="group" aria-label="Filter" id="filters"></div>
+      </div>
+    </div>
+  </header>
+  <main class="track" id="track"></main>
+  <footer id="footer"></footer>
+</div>
+
+<script type="application/json" id="checklist-data">
+{
+ "schema": "researchpho-checklist/2",
+ "lang": "en",
+ "eyebrow": "ResearchPhO · Nat. Commun. 10, 3047 · Rev. Mod. Phys. 82, 1539 · Nat. Phys. 22, 1534 · arXiv:2504.09338",
+ "title": "How does disorder enter a model, a Hall current and a pump?",
+ "intro": "Questions, solutions and this checklist form one set. Work down the main line. Tick a blue tool when you can calculate with it, an orange idea when you can reason with it, and a research link when a result closes it.",
+ "storageKey": "disorder-model-hall-pump",
+ "emptyNote": "—",
+ "categories": [
+  {
+   "id": "tool",
+   "name": "Computation tool",
+   "plural": "Computation tools",
+   "colour": "blue",
+   "side": "left"
+  },
+  {
+   "id": "idea",
+   "name": "Modelling idea",
+   "plural": "Modelling ideas",
+   "colour": "orange",
+   "side": "right"
+  },
+  {
+   "id": "O-calc",
+   "name": "Open link: calculation",
+   "plural": "O-calc links",
+   "colour": "amber",
+   "side": "left"
+  },
+  {
+   "id": "O-theory",
+   "name": "Open link: new theory",
+   "plural": "O-theory links",
+   "colour": "red",
+   "side": "right"
+  }
+ ],
+ "items": {
+  "cumulants": {
+   "category": "tool",
+   "name": "Covariances and cumulants",
+   "note": "Describe a random variable beyond its variance, and two variables by their covariance.",
+   "ref": "N. G. van Kampen, Stochastic Processes in Physics and Chemistry (3rd ed., 2007), Ch. I",
+   "url": "https://en.wikipedia.org/wiki/Cumulant"
+  },
+  "golden-rule": {
+   "category": "tool",
+   "name": "Fermi's golden rule",
+   "note": "Turn a weak perturbation and a density of final states into a transition rate.",
+   "ref": "J. J. Sakurai, J. Napolitano, Modern Quantum Mechanics (3rd ed., Cambridge, 2020), Ch. 5",
+   "url": "https://doi.org/10.1017/9781108587280"
+  },
+  "disorder-average": {
+   "category": "tool",
+   "name": "Averaging matrix elements over disorder",
+   "note": "Average products of random matrix elements in a plane-wave basis; only coinciding sites survive.",
+   "ref": "P. A. Lee, T. V. Ramakrishnan, Disordered electronic systems, Rev. Mod. Phys. 57, 287 (1985)",
+   "url": "https://doi.org/10.1103/RevModPhys.57.287"
+  },
+  "gaussian-integrals": {
+   "category": "tool",
+   "name": "Gaussian integrals and small-angle expansions",
+   "note": "Evaluate integrals of e^(−αx²/2) and x² e^(−αx²/2), and expand a periodic integrand near its peak.",
+   "ref": "Gaussian integral (reference page)",
+   "url": "https://en.wikipedia.org/wiki/Gaussian_integral"
+  },
+  "noise-spectrum": {
+   "category": "tool",
+   "name": "Noise spectra and transition rates",
+   "note": "Fourier transform a correlation function and read the rate from the spectrum at the transition frequency.",
+   "ref": "A. A. Clerk et al., Introduction to quantum noise, measurement, and amplification, Rev. Mod. Phys. 82, 1155 (2010), Sec. II",
+   "url": "https://doi.org/10.1103/RevModPhys.82.1155"
+  },
+  "averages-of-functions": {
+   "category": "tool",
+   "name": "Averages of a function of a random variable",
+   "note": "Estimate the mean shift and the spread of F(x) to leading order in the variance of x.",
+   "ref": "Taylor expansions for the moments of functions of random variables (reference page)",
+   "url": "https://en.wikipedia.org/wiki/Taylor_expansions_for_the_moments_of_functions_of_random_variables"
+  },
+  "berry-curvature": {
+   "category": "tool",
+   "name": "Berry curvature of a two-band Hamiltonian",
+   "note": "Compute Ω from the vector d(k) of H = ε₀ + d·σ, and integrate it over occupied states.",
+   "ref": "D. Xiao, M.-C. Chang, Q. Niu, Berry phase effects on electronic properties, Rev. Mod. Phys. 82, 1959 (2010), Sec. II",
+   "url": "https://doi.org/10.1103/RevModPhys.82.1959"
+  },
+  "wavepacket-boltzmann": {
+   "category": "tool",
+   "name": "Wave-packet dynamics and the relaxation-time Boltzmann equation",
+   "note": "Use ħk̇ = −eE, the anomalous velocity and f − f₀ = (eτ/ħ)E·∂f to build currents order by order.",
+   "ref": "N. W. Ashcroft, N. D. Mermin, Solid State Physics (1976), Chs. 12–13; Xiao, Chang, Niu (2010), Sec. III",
+   "url": "https://doi.org/10.1103/RevModPhys.82.1959"
+  },
+  "fermi-surface-integrals": {
+   "category": "tool",
+   "name": "Integrals over the Fermi sea and Fermi surface",
+   "note": "Expand f₀ in a small parameter, turn ∂f₀ into a delta function on the Fermi circle and integrate in polar coordinates.",
+   "ref": "Dirac delta function: composition with a function (reference page)",
+   "url": "https://en.wikipedia.org/wiki/Dirac_delta_function"
+  },
+  "complex-amplitudes": {
+   "category": "tool",
+   "name": "Complex amplitudes at second order",
+   "note": "Multiply two oscillating quantities and separate the 2ω and zero-frequency parts.",
+   "ref": "R. W. Boyd, Nonlinear Optics (3rd ed., Academic Press, 2008), Ch. 1",
+   "url": "https://doi.org/10.1016/B978-0-12-369470-6.X0001-0"
+  },
+  "second-quantization": {
+   "category": "tool",
+   "name": "Fermion creation and annihilation operators",
+   "note": "Read c†, c and n = c†c, and commute hopping terms with densities.",
+   "ref": "A. Altland, B. Simons, Condensed Matter Field Theory (2nd ed., Cambridge, 2010), Ch. 2",
+   "url": "https://doi.org/10.1017/CBO9780511789984"
+  },
+  "products-of-random-numbers": {
+   "category": "tool",
+   "name": "Products of random numbers",
+   "note": "Take logarithms: a long product of random factors grows or decays with the mean of the logarithm.",
+   "ref": "Law of large numbers (reference page)",
+   "url": "https://en.wikipedia.org/wiki/Law_of_large_numbers"
+  },
+  "pauli-decomposition": {
+   "category": "tool",
+   "name": "Pauli decomposition of a 2×2 matrix",
+   "note": "Write a Hermitian 2×2 matrix as h₀ + h·σ and read bias and mixing from its entries.",
+   "ref": "M. A. Nielsen, I. L. Chuang, Quantum Computation and Quantum Information (Cambridge, 2010), Sec. 2.1",
+   "url": "https://doi.org/10.1017/CBO9780511976667"
+  },
+  "gaussian-tails": {
+   "category": "tool",
+   "name": "Gaussian sums and tail probabilities",
+   "note": "Add independent Gaussian variables and read tail probabilities from Φ(z).",
+   "ref": "Normal distribution (reference page)",
+   "url": "https://en.wikipedia.org/wiki/Normal_distribution"
+  },
+  "poisson-events": {
+   "category": "tool",
+   "name": "Independent rare events",
+   "note": "Probability of the first event among many independent sources; rates of independent sources add.",
+   "ref": "Poisson point process (reference page)",
+   "url": "https://en.wikipedia.org/wiki/Poisson_point_process"
+  },
+  "disorder-model": {
+   "category": "idea",
+   "name": "A disorder model: H for each configuration and its probability",
+   "note": "Compute in one configuration first, then average; the averaged Hamiltonian is not enough.",
+   "ref": "P. W. Anderson, Absence of diffusion in certain random lattices, Phys. Rev. 109, 1492 (1958)",
+   "url": "https://doi.org/10.1103/PhysRev.109.1492"
+  },
+  "projection-to-orbitals": {
+   "category": "idea",
+   "name": "From a defect potential to lattice parameters",
+   "note": "Matrix elements of the defect potential between localized orbitals give on-site and bond terms together.",
+   "ref": "N. W. Ashcroft, N. D. Mermin, Solid State Physics (1976), Ch. 10 (tight-binding method)"
+  },
+  "correlated-disorder": {
+   "category": "idea",
+   "name": "Correlated disorder from one microscopic source",
+   "note": "Sample positions or impurities, then compute every parameter from them; channels and neighbours are correlated.",
+   "ref": "A. Browaeys, T. Lahaye, Many-body physics with individually controlled Rydberg atoms, Nat. Phys. 16, 132 (2020)",
+   "url": "https://doi.org/10.1038/s41567-019-0733-z"
+  },
+  "quantum-vs-transport-lifetime": {
+   "category": "idea",
+   "name": "Quantum lifetime versus transport lifetime",
+   "note": "A level width and a current relaxation time weight scattering angles differently.",
+   "ref": "S. Das Sarma, F. Stern, Single-particle relaxation time versus scattering time in an impure electron gas, Phys. Rev. B 32, 8442 (1985)",
+   "url": "https://doi.org/10.1103/PhysRevB.32.8442"
+  },
+  "localization": {
+   "category": "idea",
+   "name": "Localization, mean free path and dephasing",
+   "note": "Interference localizes waves after a few mean free paths in one dimension unless phase memory is lost first.",
+   "ref": "B. Kramer, A. MacKinnon, Localization: theory and experiment, Rep. Prog. Phys. 56, 1469 (1993)",
+   "url": "https://doi.org/10.1088/0034-4885/56/12/001"
+  },
+  "rate-validity": {
+   "category": "idea",
+   "name": "When does a decay rate exist?",
+   "note": "A static Hamiltonian gives oscillations; a rate needs many final levels within the width and times below the Heisenberg time.",
+   "ref": "J. J. Sakurai, J. Napolitano, Modern Quantum Mechanics (3rd ed., Cambridge, 2020), Ch. 5",
+   "url": "https://doi.org/10.1017/9781108587280"
+  },
+  "static-vs-dynamic": {
+   "category": "idea",
+   "name": "Static versus fluctuating disorder",
+   "note": "Spectral weight at the transition frequency and the observation time decide; static terms belong in H.",
+   "ref": "A. A. Clerk et al., Rev. Mod. Phys. 82, 1155 (2010)",
+   "url": "https://doi.org/10.1103/RevModPhys.82.1155"
+  },
+  "self-averaging": {
+   "category": "idea",
+   "name": "Mean shift versus self-averaging spread",
+   "note": "A bias of every region survives the sample average; region-to-region spread falls as 1/√N.",
+   "ref": "J. Martin et al., Observation of electron–hole puddles in graphene, Nat. Phys. 4, 144 (2008)",
+   "url": "https://doi.org/10.1038/nphys781"
+  },
+  "ahe-mechanisms": {
+   "category": "idea",
+   "name": "Intrinsic, side-jump and skew-scattering Hall currents",
+   "note": "Three microscopic sources of a Hall current and how they scale with the impurity density.",
+   "ref": "N. Nagaosa, J. Sinova, S. Onoda, A. H. MacDonald, N. P. Ong, Anomalous Hall effect, Rev. Mod. Phys. 82, 1539 (2010)",
+   "url": "https://doi.org/10.1103/RevModPhys.82.1539"
+  },
+  "time-reversal-geometry": {
+   "category": "idea",
+   "name": "Time reversal and the Berry curvature",
+   "note": "Ω is odd under time reversal: linear Hall currents cancel between partners, curvature dipoles add.",
+   "ref": "D. Xiao, M.-C. Chang, Q. Niu, Rev. Mod. Phys. 82, 1959 (2010)",
+   "url": "https://doi.org/10.1103/RevModPhys.82.1959"
+  },
+  "power-counting": {
+   "category": "idea",
+   "name": "Counting powers of τ",
+   "note": "Each impurity factor is 1/τ, each order in E brings τ: compare mechanisms by their disorder dependence.",
+   "ref": "N. A. Sinitsyn, Semiclassical theories of the anomalous Hall effect, J. Phys.: Condens. Matter 20, 023201 (2008)",
+   "url": "https://arxiv.org/abs/0712.0183"
+  },
+  "curvature-dipole": {
+   "category": "idea",
+   "name": "The Berry curvature dipole",
+   "note": "A second-order Hall current from the first moment of Ω over the Fermi sea; needs broken inversion.",
+   "ref": "I. Sodemann, L. Fu, Quantum nonlinear Hall effect induced by Berry curvature dipole, Phys. Rev. Lett. 115, 216806 (2015)",
+   "url": "https://doi.org/10.1103/PhysRevLett.115.216806"
+  },
+  "frequency-regimes": {
+   "category": "idea",
+   "name": "Low versus high frequency (ωτ)",
+   "note": "At ωτ ≫ 1 a relaxation-time response stops depending on τ; scaling tests change meaning.",
+   "ref": "I. Sodemann, L. Fu, Phys. Rev. Lett. 115, 216806 (2015)",
+   "url": "https://doi.org/10.1103/PhysRevLett.115.216806"
+  },
+  "disorder-nlhe": {
+   "category": "idea",
+   "name": "Disorder-induced nonlinear Hall currents",
+   "note": "Side jump and skew scattering at second order, computed for a tilted Dirac cone.",
+   "ref": "Z. Z. Du, C. M. Wang, S. Li, H.-Z. Lu, X. C. Xie, Nat. Commun. 10, 3047 (2019)",
+   "url": "https://doi.org/10.1038/s41467-019-10941-3"
+  },
+  "theory-level": {
+   "category": "idea",
+   "name": "The level of theory can change a sign",
+   "note": "A diagrammatic calculation keeps the scaling but reverses the collision terms of the Boltzmann result.",
+   "ref": "Z. Z. Du, C. M. Wang, H.-P. Sun, H.-Z. Lu, X. C. Xie, Nat. Commun. 12, 5038 (2021)",
+   "url": "https://doi.org/10.1038/s41467-021-25273-4"
+  },
+  "scaling-law": {
+   "category": "idea",
+   "name": "Scaling with the longitudinal conductivity",
+   "note": "Plot E_y/E_x² against σ to separate mechanisms by their powers of τ; several sources mix.",
+   "ref": "Z. Z. Du et al., Nat. Commun. 10, 3047 (2019)",
+   "url": "https://doi.org/10.1038/s41467-019-10941-3"
+  },
+  "moments-not-width": {
+   "category": "idea",
+   "name": "One broadening, different disorder",
+   "note": "Γ fixes the second moment only; the sign of the third moment changes a response.",
+   "ref": "N. Nagaosa et al., Rev. Mod. Phys. 82, 1539 (2010), Sec. IV",
+   "url": "https://doi.org/10.1103/RevModPhys.82.1539"
+  },
+  "average-symmetry": {
+   "category": "idea",
+   "name": "Symmetry on average",
+   "note": "An ensemble can be symmetric when no sample is; averaged quantities obey the symmetry.",
+   "ref": "R. Ma, C. Wang, Average symmetry-protected topological phases, Phys. Rev. X 13, 031016 (2023)",
+   "url": "https://doi.org/10.1103/PhysRevX.13.031016"
+  },
+  "statistical-degeneracy": {
+   "category": "idea",
+   "name": "Statistically degenerate edges",
+   "note": "Two edges differ in every sample but have the same distribution over the ensemble.",
+   "ref": "Z. Yue et al., Average topological phase in a disordered Rydberg atom array, arXiv:2505.06286",
+   "url": "https://arxiv.org/abs/2505.06286"
+  },
+  "chiral-chain": {
+   "category": "idea",
+   "name": "Edge states of a dimer chain",
+   "note": "Zero-energy edge states of a two-site-per-cell chain and when they exist.",
+   "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (2016), Ch. 1",
+   "url": "https://arxiv.org/abs/1509.02295"
+  },
+  "topology-from-disorder": {
+   "category": "idea",
+   "name": "Topology from disorder",
+   "note": "The logarithmic mean of the hoppings decides the phase of a random chiral chain.",
+   "ref": "I. Mondragon-Shem, T. L. Hughes, J. Song, E. Prodan, Phys. Rev. Lett. 113, 046802 (2014)",
+   "url": "https://doi.org/10.1103/PhysRevLett.113.046802"
+  },
+  "thouless-pump": {
+   "category": "idea",
+   "name": "Adiabatic (Thouless) pumping",
+   "note": "A slow periodic change of a lattice carries an integer number of particles per period.",
+   "ref": "D. J. Thouless, Quantization of particle transport, Phys. Rev. B 27, 6083 (1983)",
+   "url": "https://doi.org/10.1103/PhysRevB.27.6083"
+  },
+  "local-charge-bookkeeping": {
+   "category": "idea",
+   "name": "Counting charge with bond currents",
+   "note": "Continuity on a lattice: differences of bond charges count accumulation in a region.",
+   "ref": "J. K. Asbóth, L. Oroszlány, A. Pályi, A Short Course on Topological Insulators (2016), Ch. 4",
+   "url": "https://arxiv.org/abs/1509.02295"
+  },
+  "twist-chern": {
+   "category": "idea",
+   "name": "A Chern number without momentum",
+   "note": "Replace k by a flux through the ring and average the pumped charge over it.",
+   "ref": "Q. Niu, D. J. Thouless, J. Phys. A 17, 2453 (1984); Q. Niu, D. J. Thouless, Y.-S. Wu, Phys. Rev. B 31, 3372 (1985)",
+   "url": "https://doi.org/10.1088/0305-4470/17/12/016"
+  },
+  "fractional-pump": {
+   "category": "idea",
+   "name": "Two-cycle fractional pumping",
+   "note": "Particles follow one of two localized orbitals per cell that exchange every period.",
+   "ref": "M. Jürgensen, J. Steiner, G. Refael, M. C. Rechtsman, Multi-band fractional Thouless pumps, arXiv:2504.09338",
+   "url": "https://arxiv.org/abs/2504.09338"
+  },
+  "bias-vs-mixing": {
+   "category": "idea",
+   "name": "A random potential as a bias or a mixing",
+   "note": "Projected onto two orbitals, the same potential acts along z or x depending on the orbital shapes.",
+   "ref": "M. Jürgensen et al., arXiv:2504.09338 (flavor orbitals)",
+   "url": "https://arxiv.org/abs/2504.09338"
+  },
+  "periodic-sign-reversal": {
+   "category": "idea",
+   "name": "A static potential seen by a moving orbital",
+   "note": "When the followed orbital exchanges flavor each period, a static bias reverses its sign.",
+   "ref": "M. Jürgensen et al., arXiv:2504.09338",
+   "url": "https://arxiv.org/abs/2504.09338"
+  },
+  "domain-energetics": {
+   "category": "idea",
+   "name": "Domains and domain walls",
+   "note": "A reversed block costs wall energy and gains bulk energy; energy alone is not a rate.",
+   "ref": "M. Jürgensen et al., arXiv:2504.09338 (domain excitations)",
+   "url": "https://arxiv.org/abs/2504.09338"
+  },
+  "imry-ma": {
+   "category": "idea",
+   "name": "The random-field (Imry–Ma) argument",
+   "note": "Random energy grows as √ℓ, a wall costs a fixed amount: some block always wins in a long chain.",
+   "ref": "Y. Imry, S.-k. Ma, Random-field instability of the ordered state of continuous symmetry, Phys. Rev. Lett. 35, 1399 (1975)",
+   "url": "https://doi.org/10.1103/PhysRevLett.35.1399"
+  },
+  "rare-regions": {
+   "category": "idea",
+   "name": "Rare regions",
+   "note": "Atypical local disorder dominates when the system is large enough to contain it.",
+   "ref": "T. Vojta, Rare region effects at classical, quantum and nonequilibrium phase transitions, J. Phys. A 39, R143 (2006)",
+   "url": "https://doi.org/10.1088/0305-4470/39/22/R01"
+  },
+  "lifetime-definitions": {
+   "category": "idea",
+   "name": "First event versus macroscopic failure",
+   "note": "The first defect comes earlier in a larger system; the transport lifetime need not.",
+   "ref": "D. Abanin, W. De Roeck, W. W. Ho, F. Huveneers, Commun. Math. Phys. 354, 809 (2017)",
+   "url": "https://doi.org/10.1007/s00220-017-2930-x"
+  },
+  "real-sample-model": {
+   "category": "O-calc",
+   "name": "Disorder model of a real sample",
+   "note": "Defect potentials projected on Wannier orbitals and defect statistics give κₙ and K(q).",
+   "ref": "Appendix A, open links, row 1"
+  },
+  "collision-coefficients": {
+   "category": "O-calc",
+   "name": "τ¹ collision coefficients for that disorder",
+   "note": "Diagrammatic Kubo theory (non-crossing) for the real bands and defect T-matrices.",
+   "ref": "Du et al., Nat. Commun. 12, 5038 (2021)",
+   "url": "https://doi.org/10.1038/s41467-021-25273-4"
+  },
+  "finite-frequency-collisions": {
+   "category": "O-calc",
+   "name": "Collision terms at finite frequency",
+   "note": "Side jump and skew scattering as functions of ωτ.",
+   "ref": "Appendix A, open links, row 4"
+  },
+  "dressed-flavor-fields": {
+   "category": "O-calc",
+   "name": "Random fields of the correlated flavors",
+   "note": "Project on-site and bond disorder onto the dressed many-body flavors over the whole cycle.",
+   "ref": "Appendix A, open links, row 5"
+  },
+  "semiclassics-consistent": {
+   "category": "O-theory",
+   "name": "A consistent semiclassical theory at second order",
+   "note": "Boltzmann side jump misses terms found diagrammatically; near the band edge ħ/(ε_Fτ) is not small.",
+   "ref": "Du et al., Nat. Commun. 12, 5038 (2021)",
+   "url": "https://doi.org/10.1038/s41467-021-25273-4"
+  },
+  "rare-region-nucleation": {
+   "category": "O-theory",
+   "name": "Nucleation of domains in rare regions",
+   "note": "Prethermalization theorems need a fast drive or a uniform gap; here the drive is slow and gaps close locally.",
+   "ref": "Abanin, De Roeck, Ho, Huveneers (2017)",
+   "url": "https://doi.org/10.1007/s00220-017-2930-x"
+  },
+  "wall-motion": {
+   "category": "O-theory",
+   "name": "Domain-wall motion in an alternating random field",
+   "note": "Equilibrium creep theory assumes thermal activation; these walls are quantum and driven.",
+   "ref": "Appendix A, open links, row 7"
+  },
+  "two-state-chern": {
+   "category": "O-theory",
+   "name": "Chern number of a two-state manifold without a uniform gap",
+   "note": "The Niu–Thouless argument needs a gap uniform in N, which rare regions remove.",
+   "ref": "Niu, Thouless, Wu, Phys. Rev. B 31, 3372 (1985)",
+   "url": "https://doi.org/10.1103/PhysRevB.31.3372"
+  },
+  "average-spt-transport": {
+   "category": "O-theory",
+   "name": "Transport protected by an average symmetry",
+   "note": "Classifications concern ensembles of states, not their driven response.",
+   "ref": "L. Hertkorn, Y. Oreg, Topology from disorder, Nat. Phys. 22, 1534 (2026)",
+   "url": "https://www.nature.com/articles/s41567-026-03459-1"
+  }
+ },
+ "start": {
+  "title": "Start: the four core physics courses",
+  "text": "Reader: an undergraduate who knows classical mechanics, electromagnetism, quantum mechanics and statistical physics. Each question lists only what it needs beyond that."
+ },
+ "end": {
+  "title": "Research target",
+  "text": "Predict, for a specified disorder, how large the second-order Hall response is and how long a fractional pump keeps its transport in a large system."
+ },
+ "groups": [
+  {
+   "kind": "exam",
+   "title": "From a dirty crystal to a random Hamiltonian",
+   "short": "Problem 1",
+   "points": 10,
+   "note": "Which random terms must a model of a real material contain first, and how do they become the scattering rate and the broadening of response theories?",
+   "nodes": [
+    {
+     "label": "1.A.1",
+     "title": "One impurity changes several matrix elements",
+     "points": 1.2,
+     "needs": [
+      "projection-to-orbitals",
+      "disorder-model",
+      "correlated-disorder"
+     ]
+    },
+    {
+     "label": "1.A.2",
+     "title": "Equal variances, different disorder",
+     "points": 1.2,
+     "needs": [
+      "cumulants"
+     ]
+    },
+    {
+     "label": "1.B.1",
+     "title": "Position disorder gives correlated bonds",
+     "points": 1.2,
+     "needs": [
+      "correlated-disorder",
+      "cumulants"
+     ]
+    },
+    {
+     "label": "1.B.2",
+     "title": "Hopping and interaction move together",
+     "points": 1.0,
+     "needs": [
+      "averages-of-functions",
+      "correlated-disorder"
+     ]
+    },
+    {
+     "label": "1.C.1",
+     "title": "Golden-rule rate, broadening, localization",
+     "points": 1.3,
+     "needs": [
+      "golden-rule",
+      "disorder-average",
+      "localization"
+     ]
+    },
+    {
+     "label": "1.C.2",
+     "title": "Same broadening, different mobility",
+     "points": 1.1,
+     "needs": [
+      "gaussian-integrals",
+      "quantum-vs-transport-lifetime"
+     ]
+    },
+    {
+     "label": "1.C.3",
+     "title": "Static disorder alone is not a decay",
+     "points": 0.8,
+     "needs": [
+      "rate-validity"
+     ]
+    },
+    {
+     "label": "1.D.1",
+     "title": "Spectrum and observation time",
+     "points": 1.0,
+     "needs": [
+      "noise-spectrum",
+      "static-vs-dynamic"
+     ]
+    },
+    {
+     "label": "1.D.2",
+     "title": "Charge puddles: shift and spread",
+     "points": 0.8,
+     "needs": [
+      "averages-of-functions",
+      "self-averaging"
+     ]
+    },
+    {
+     "label": "1.D.3",
+     "title": "Three tests for a random term",
+     "points": 0.4,
+     "needs": []
+    }
+   ]
+  },
+  {
+   "kind": "exam",
+   "title": "Impurities and the second-order Hall current",
+   "short": "Problem 2",
+   "points": 10,
+   "note": "Can collisions with impurities produce a second-order Hall current as large as the band-geometric one, and can varying the disorder tell them apart?",
+   "nodes": [
+    {
+     "label": "2.A.1",
+     "title": "Intrinsic Hall conductivity of one cone",
+     "points": 0.9,
+     "needs": [
+      "berry-curvature",
+      "wavepacket-boltzmann",
+      "ahe-mechanisms"
+     ]
+    },
+    {
+     "label": "2.A.2",
+     "title": "Time reversal cancels the linear Hall current",
+     "points": 0.5,
+     "needs": [
+      "time-reversal-geometry"
+     ]
+    },
+    {
+     "label": "2.A.3",
+     "title": "Three of four linear mechanisms scale alike",
+     "points": 0.8,
+     "needs": [
+      "power-counting",
+      "ahe-mechanisms"
+     ]
+    },
+    {
+     "label": "2.B.1",
+     "title": "The curvature-dipole current",
+     "points": 0.9,
+     "needs": [
+      "wavepacket-boltzmann",
+      "curvature-dipole",
+      "time-reversal-geometry"
+     ]
+    },
+    {
+     "label": "2.B.2",
+     "title": "Dipole of the tilted cone",
+     "points": 1.2,
+     "needs": [
+      "fermi-surface-integrals"
+     ]
+    },
+    {
+     "label": "2.B.3",
+     "title": "At high frequency the dipole current forgets τ",
+     "points": 0.7,
+     "needs": [
+      "complex-amplitudes",
+      "frequency-regimes"
+     ]
+    },
+    {
+     "label": "2.C.1",
+     "title": "Collisions at the same order",
+     "points": 0.9,
+     "needs": [
+      "power-counting",
+      "disorder-nlhe"
+     ]
+    },
+    {
+     "label": "2.C.2",
+     "title": "Comparable size, theory-dependent sign",
+     "points": 0.8,
+     "needs": [
+      "theory-level"
+     ]
+    },
+    {
+     "label": "2.C.3",
+     "title": "The scaling law and its intercept",
+     "points": 1.1,
+     "needs": [
+      "scaling-law"
+     ]
+    },
+    {
+     "label": "2.D.1",
+     "title": "One Γ, three responses",
+     "points": 0.8,
+     "needs": [
+      "moments-not-width"
+     ]
+    },
+    {
+     "label": "2.D.2",
+     "title": "Average inversion: edges and bulk response",
+     "points": 0.9,
+     "needs": [
+      "average-symmetry",
+      "statistical-degeneracy",
+      "self-averaging"
+     ]
+    },
+    {
+     "label": "2.D.3",
+     "title": "What the scaling data can tell",
+     "points": 0.5,
+     "needs": []
+    }
+   ]
+  },
+  {
+   "kind": "exam",
+   "title": "Disorder in a two-cycle quantum pump",
+   "short": "Problem 3",
+   "points": 10,
+   "note": "In a long chain with a static random potential, which quantity still defines the pumped charge, and how does disorder change the protection of the fractional pump?",
+   "nodes": [
+    {
+     "label": "3.A.1",
+     "title": "The edge state is a product of random ratios",
+     "points": 0.8,
+     "needs": [
+      "chiral-chain",
+      "products-of-random-numbers"
+     ]
+    },
+    {
+     "label": "3.A.2",
+     "title": "Disorder makes the chain topological",
+     "points": 0.8,
+     "needs": [
+      "topology-from-disorder"
+     ]
+    },
+    {
+     "label": "3.B.1",
+     "title": "The current operator and local bookkeeping",
+     "points": 1.0,
+     "needs": [
+      "second-quantization",
+      "local-charge-bookkeeping",
+      "thouless-pump"
+     ]
+    },
+    {
+     "label": "3.B.2",
+     "title": "A Chern number without momentum",
+     "points": 1.0,
+     "needs": [
+      "twist-chern",
+      "fractional-pump"
+     ]
+    },
+    {
+     "label": "3.C.1",
+     "title": "Bias and mixing from one random potential",
+     "points": 1.2,
+     "needs": [
+      "pauli-decomposition",
+      "bias-vs-mixing"
+     ]
+    },
+    {
+     "label": "3.C.2",
+     "title": "For the pump's flavors: almost pure bias",
+     "points": 0.8,
+     "needs": [
+      "fractional-pump"
+     ]
+    },
+    {
+     "label": "3.C.3",
+     "title": "An alternating field for the followed flavor",
+     "points": 0.6,
+     "needs": [
+      "periodic-sign-reversal"
+     ]
+    },
+    {
+     "label": "3.D.1",
+     "title": "The clean threshold",
+     "points": 0.6,
+     "needs": [
+      "domain-energetics"
+     ]
+    },
+    {
+     "label": "3.D.2",
+     "title": "Rare favourable blocks at any disorder",
+     "points": 1.2,
+     "needs": [
+      "gaussian-tails",
+      "imry-ma",
+      "rare-regions"
+     ]
+    },
+    {
+     "label": "3.D.3",
+     "title": "First defect versus macroscopic failure",
+     "points": 1.0,
+     "needs": [
+      "poisson-events",
+      "lifetime-definitions"
+     ]
+    },
+    {
+     "label": "3.D.4",
+     "title": "The missing inputs",
+     "points": 1.0,
+     "needs": []
+    }
+   ]
+  },
+  {
+   "kind": "research",
+   "title": "From the exam to the open problems",
+   "short": "Research",
+   "note": "The chain of objects behind the exam. Left: links a calculation would close. Right: links that need new theory.",
+   "nodes": [
+    {
+     "label": "H_C, P[C]",
+     "meta": "D/O-calc",
+     "title": "Disorder model of a real sample: projected, correlated parameters",
+     "needs": [
+      "real-sample-model"
+     ]
+    },
+    {
+     "label": "κₙ, K(q), S(ω)",
+     "meta": "D",
+     "title": "Moments and spectra of the disorder",
+     "needs": []
+    },
+    {
+     "label": "τ_q, τ_tr, Γ, ξ",
+     "meta": "D",
+     "title": "Rates, broadening and localization",
+     "needs": []
+    },
+    {
+     "label": "χ^sj, χ^isk, χ^esk",
+     "meta": "O-theory",
+     "title": "Second-order collision coefficients",
+     "needs": [
+      "collision-coefficients",
+      "semiclassics-consistent",
+      "finite-frequency-collisions"
+     ]
+    },
+    {
+     "label": "C₁, C₂",
+     "meta": "D/O-calc",
+     "title": "Scaling law; splitting the intercept",
+     "needs": []
+    },
+    {
+     "label": "avg χ = 0",
+     "meta": "D/O-theory",
+     "title": "Average symmetry: selection rule and protected transport",
+     "needs": [
+      "average-spt-transport"
+     ]
+    },
+    {
+     "label": "h_R(t)",
+     "meta": "D/O-calc",
+     "title": "Random flavor fields of the pump",
+     "needs": [
+      "dressed-flavor-fields"
+     ]
+    },
+    {
+     "label": "rare domains",
+     "meta": "D",
+     "title": "No gap uniform in N",
+     "needs": []
+    },
+    {
+     "label": "Chern of the pair",
+     "meta": "D/O-theory",
+     "title": "Twist-angle invariant of a two-state manifold",
+     "needs": [
+      "two-state-chern"
+     ]
+    },
+    {
+     "label": "nucleation, walls",
+     "meta": "O-theory",
+     "title": "Rates of domain creation and wall motion",
+     "needs": [
+      "rare-region-nucleation",
+      "wall-motion"
+     ]
+    },
+    {
+     "label": "t_κ(N, W)",
+     "meta": "O-theory",
+     "title": "Lifetime of the disordered fractional pump",
+     "needs": []
+    }
+   ]
+  }
+ ],
+ "footer": [
+  "An item appears in full where it is first needed and as a dashed reminder later. Ticks stay in this browser.",
+  "Shared gap of the O-theory links: the useful quantity is a rare-region rate or an ensemble-symmetry constraint, not an averaged energy or a single broadening, and no gap or small parameter is uniform in the system size."
+ ]
+}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById("checklist-data").textContent);
+  if (data.lang) { document.documentElement.setAttribute("lang", data.lang); }
+  var cats = data.categories || [];
+  var catById = {};
+  cats.forEach(function (c) { catById[c.id] = c; });
+  var KEY = "researchpho-checklist:" + (data.storageKey || data.title);
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) { n.className = cls; }
+    if (text != null) { n.textContent = text; }
+    return n;
+  }
+  function frame(n, colour) {
+    n.style.borderColor = "var(--c-" + colour + ")";
+    n.style.background = "var(--w-" + colour + ")";
+  }
+
+  document.getElementById("eyebrow").textContent = data.eyebrow || "";
+  document.getElementById("title").textContent = data.title || "";
+  document.getElementById("intro").textContent = data.intro || "";
+
+  var meters = document.getElementById("meters");
+  var meterEls = {};
+  cats.concat([{ id: "*", plural: "All items", colour: "green" }]).forEach(function (c) {
+    var m = el("div", "meter");
+    var r1 = el("div", "row1");
+    var lbl = el("span", "lbl", c.plural || c.name);
+    lbl.style.color = c.id === "*" ? "var(--fg)" : "var(--c-" + c.colour + ")";
+    var num = el("span", "num", "0 / 0");
+    r1.appendChild(lbl); r1.appendChild(num); m.appendChild(r1);
+    var bar = el("div", "bar"); var bi = document.createElement("i");
+    bi.style.background = c.id === "*" ? "var(--done)" : "var(--c-" + c.colour + ")";
+    bar.appendChild(bi); m.appendChild(bar); meters.appendChild(m);
+    meterEls[c.id] = { num: num, bar: bi };
+  });
+
+  var legend = document.getElementById("legend");
+  cats.forEach(function (c) {
+    var s = el("span");
+    var sw = el("i", "swatch"); frame(sw, c.colour);
+    s.appendChild(sw); s.appendChild(document.createTextNode(c.name + (c.side === "left" ? " (left)" : " (right)")));
+    legend.appendChild(s);
+  });
+
+  var filters = document.getElementById("filters");
+  var filterBtns = [];
+  function setFilter(id) {
+    document.querySelectorAll(".item, .remind").forEach(function (n) {
+      n.hidden = !(id === "*" || n.getAttribute("data-cat") === id);
+    });
+    filterBtns.forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-id") === id)); });
+  }
+  [{ id: "*" }].concat(cats).forEach(function (c) {
+    var p = c.plural || c.name || "";
+    var shown = /^[A-Z][a-z]/.test(p) ? p.charAt(0).toLowerCase() + p.slice(1) : p;
+    var b = el("button", "", c.id === "*" ? "All" : "Only " + shown);
+    b.type = "button"; b.setAttribute("data-id", c.id); b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", function () { setFilter(c.id); });
+    filters.appendChild(b); filterBtns.push(b);
+  });
+  var reset = el("button", "", "Clear ticks"); reset.type = "button"; filters.appendChild(reset);
+
+  var track = document.getElementById("track");
+  var seen = {}, boxes = {}, reminders = {}, nodeMeta = [], groupMeta = [];
+
+  function makeItem(id) {
+    var it = data.items[id]; var c = catById[it.category];
+    if (seen[id]) {
+      var rem = el("span", "remind", it.name); rem.setAttribute("data-cat", it.category);
+      rem.style.borderColor = "var(--c-" + c.colour + ")";
+      rem.title = "Introduced at an earlier question";
+      (reminders[id] = reminders[id] || []).push(rem);
+      return rem;
+    }
+    seen[id] = true;
+    var label = el("label", "item"); label.setAttribute("data-cat", it.category); frame(label, c.colour);
+    var cb = document.createElement("input"); cb.type = "checkbox"; cb.id = "cb-" + id; cb.checked = !!state[id];
+    cb.style.accentColor = "var(--c-" + c.colour + ")";
+    var txt = el("span", "txt");
+    txt.appendChild(el("span", "t", it.name));
+    if (it.note) { txt.appendChild(el("span", "n", it.note)); }
+    if (it.ref || it.meta) {
+      var ref = el("span", "r");
+      if (it.meta) { ref.appendChild(el("span", "meta", it.meta + (it.ref ? " · " : ""))); }
+      if (it.ref) {
+        if (it.url) {
+          var a = el("a", "", it.ref); a.href = it.url; a.target = "_blank"; a.rel = "noopener";
+          a.addEventListener("click", function (e) { e.stopPropagation(); });
+          ref.appendChild(a);
+        } else { ref.appendChild(document.createTextNode(it.ref)); }
+      }
+      txt.appendChild(ref);
+    }
+    label.appendChild(cb); label.appendChild(txt);
+    cb.addEventListener("change", function () {
+      if (cb.checked) { state[id] = 1; } else { delete state[id]; }
+      save(); refresh();
+    });
+    boxes[id] = { cb: cb, label: label, cat: it.category };
+    return label;
+  }
+
+  function addTerminal(t, cls) {
+    if (!t) { return; }
+    var n = el("div", "terminal" + (cls ? " " + cls : ""));
+    n.appendChild(el("h2", "", t.title));
+    if (t.text) { n.appendChild(el("p", "", t.text)); }
+    track.appendChild(n);
+  }
+
+  addTerminal(data.start);
+  (data.groups || []).forEach(function (g) {
+    var research = g.kind === "research";
+    var head = el("div", "phead" + (research ? " research" : ""));
+    var code = el("div", "code");
+    code.appendChild(el("span", "", (g.short || "") + (g.points ? " · " + g.points + " points" : "")));
+    var pnum = el("span", "", ""); code.appendChild(pnum); head.appendChild(code);
+    head.appendChild(el("h2", "", g.title));
+    if (g.note) { head.appendChild(el("p", "q", g.note)); }
+    var pb = el("div", "bar"); var pbi = document.createElement("i"); pb.appendChild(pbi); head.appendChild(pb);
+    track.appendChild(head);
+    var ids = [];
+    g.nodes.forEach(function (nd) {
+      var row = el("section", "row");
+      var left = el("div", "col left"), right = el("div", "col right");
+      (nd.needs || []).forEach(function (id) {
+        var c = catById[data.items[id].category];
+        (c.side === "left" ? left : right).appendChild(makeItem(id));
+        if (ids.indexOf(id) < 0) { ids.push(id); }
+      });
+      if (!left.childNodes.length && data.emptyNote) { left.appendChild(el("span", "empty", data.emptyNote)); }
+      if (!right.childNodes.length && data.emptyNote) { right.appendChild(el("span", "empty", data.emptyNote)); }
+      var node = el("div", "node");
+      var nc = el("div", "code"); nc.appendChild(el("span", "", nd.label));
+      if (nd.points != null) { nc.appendChild(el("span", "pts", Number(nd.points).toFixed(1) + " pt")); }
+      else if (nd.meta) {
+        var tag = el("span", "tag", nd.meta);
+        tag.style.color = /theory/.test(nd.meta) ? "var(--c-red)" : /calc/.test(nd.meta) ? "var(--c-amber)" : "var(--muted)";
+        nc.appendChild(tag);
+      }
+      node.appendChild(nc);
+      if (nd.title) { node.appendChild(el("h3", "", nd.title)); }
+      if (nd.note) { node.appendChild(el("p", "nnote", nd.note)); }
+      var st = el("div", "state", ""); node.appendChild(st);
+      row.appendChild(left); row.appendChild(node); row.appendChild(right);
+      track.appendChild(row);
+      nodeMeta.push({ node: node, st: st, ids: (nd.needs || []).slice() });
+    });
+    groupMeta.push({ ids: ids, num: pnum, bar: pbi });
+  });
+  addTerminal(data.end, "end");
+
+  var footer = document.getElementById("footer");
+  (data.footer || []).forEach(function (p) { footer.appendChild(el("p", "", p)); });
+
+  function count(ids) { return ids.filter(function (id) { return !!state[id]; }).length; }
+  function refresh() {
+    Object.keys(boxes).forEach(function (id) {
+      var b = boxes[id];
+      b.cb.checked = !!state[id];
+      b.label.classList.toggle("done", !!state[id]);
+      b.label.style.background = "var(--" + (state[id] ? "s-" : "w-") + catById[b.cat].colour + ")";
+      (reminders[id] || []).forEach(function (r) { r.classList.toggle("done", !!state[id]); });
+    });
+    var all = Object.keys(boxes);
+    cats.concat([{ id: "*" }]).forEach(function (c) {
+      var ids = c.id === "*" ? all : all.filter(function (id) { return boxes[id].cat === c.id; });
+      var k = count(ids), n = ids.length;
+      meterEls[c.id].num.textContent = k + " / " + n;
+      meterEls[c.id].bar.style.width = (n ? 100 * k / n : 0) + "%";
+    });
+    nodeMeta.forEach(function (m) {
+      var k = count(m.ids), n = m.ids.length;
+      m.st.textContent = n === 0 ? "" : (k === n ? "Done " : "Progress ") + k + " / " + n;
+      m.node.classList.toggle("complete", n > 0 && k === n);
+    });
+    groupMeta.forEach(function (g) {
+      var k = count(g.ids), n = g.ids.length;
+      g.num.textContent = k + " / " + n;
+      g.bar.style.width = (n ? 100 * k / n : 0) + "%";
+    });
+  }
+
+  var armed = null;
+  reset.addEventListener("click", function () {
+    if (!armed) {
+      reset.textContent = "Click again to clear"; reset.classList.add("warn");
+      armed = setTimeout(function () { armed = null; reset.textContent = "Clear ticks"; reset.classList.remove("warn"); }, 3000);
+      return;
+    }
+    clearTimeout(armed); armed = null; state = {}; save();
+    reset.textContent = "Cleared"; reset.classList.remove("warn");
+    setTimeout(function () { reset.textContent = "Clear ticks"; }, 1500);
+    refresh();
+  });
+
+  setFilter("*");
+  refresh();
+})();
+</script>
+</body>
+</html>
