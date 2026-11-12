@@ -1,5 +1,31 @@
 # Changelog
 
+## 1.2.2 (2026-11-11)
+
+The frontmatter of `SKILL.md` is valid again, and a check keeps it valid. Nothing else in the skill changes: the
+body of `SKILL.md` (apart from its version line), the references, templates, scripts and examples are as in 1.2.1.
+
+- **What was wrong.** The `description` in the frontmatter of `researchpho/SKILL.md` was not valid YAML. The value
+  was not quoted and contained a colon followed by a space: `Output: three ...` at first, and
+  `<PaperName>_RPhO: the question paper ...` from 1.2.0. A strict YAML parser stops there. The skill-creator
+  validator (`quick_validate.py`) reported `mapping values are not allowed here`. Claude Code's documentation says
+  that a skill whose frontmatter does not parse still loads, but with no field set. The uses and the trigger
+  phrases in the description then do not reach the model that selects skills.
+- **Since when.** Every commit from `9bb0780` (2026-10-17) on, thus releases 1.0.0, 1.1.0, 1.2.0 and 1.2.1. The two
+  commits before it were valid. The description also broke two more rules of the validator. It was longer than
+  1,024 characters from 1.1.0 (1,358 characters, then 1,260 from 1.2.0). It contained angle brackets from 1.2.0
+  (`<PaperName>`).
+- **New description.** 1,022 characters, valid as an unquoted YAML value, no angle brackets. It keeps the purpose,
+  the uses and every trigger phrase. It no longer lists the details of the three deliverables (the number of
+  problems and their points, the marking tags, the appendices, the linked references). The "Deliverables" section
+  of `SKILL.md` has them. The description writes the folder name as `PaperName_RPhO`. The body keeps
+  `<PaperName>_RPhO/`.
+- **Check on every push and pull request.** `.github/workflows/check-frontmatter.yml` runs
+  `.github/scripts/check_frontmatter.py` on `researchpho/`. The script does a strict YAML parse of the frontmatter
+  (one mapping, no key twice). It then checks the name format, the absence of angle brackets in the description
+  and its length (at most 1,024 characters). The script is part of this repository and needs only PyYAML. Before a
+  commit that changes the frontmatter, run `python3 .github/scripts/check_frontmatter.py researchpho`.
+
 ## 1.2.1 (2026-10-20)
 
 A second worked example; the skill itself is unchanged.

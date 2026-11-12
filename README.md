@@ -1,6 +1,6 @@
 # ResearchPhO: learn papers from outside your field by solving them
 
-**Version 1.2.1** (20 October 2026). See the [changelog](CHANGELOG.md).
+**Version 1.2.2** (11 November 2026). See the [changelog](CHANGELOG.md).
 
 A [Claude Code](https://claude.com/claude-code) skill. Give it a few papers from a field that is not yours. It turns
 the papers themselves into a physics-olympiad theory exam written to the standards of the International Physics

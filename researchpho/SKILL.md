@@ -1,11 +1,11 @@
 ---
 name: researchpho
-description: ResearchPhO - learn research papers from outside your field by turning them into a physics-olympiad theory exam written to IPhO/APhO/PanPhO standards, for an undergraduate who knows the four core physics courses. The exam makes the reader model and solve each paper's key steps without being blocked by unfamiliar mathematics or by underspecified text; it translates the field's language into standard physics and shows what question each paper answers. Output, in one folder named <PaperName>_RPhO: the question paper (three independent 10-point problems with boxed subquestions), the solutions (marking scheme tagged computation/modelling, research appendices, a toolbox appendix) and one checklist page (HTML) that maps every question to the computation tools and modelling ideas it needs, with linked references, and ends with the open research problems. Use when someone wants to understand papers outside their field, enter a new field quickly, write olympiad-style (IPhO, APhO, PanPhO) problems from papers, turn a proposal into an exam with an available/missing register, or audit such an exam. Triggers include ResearchPhO, RPhO, learn this paper by solving problems, papers outside my field, olympiad-style problems from papers, 用论文出题, 奥赛风格, 快速入门新领域.
+description: ResearchPhO - learn research papers from outside your field by turning them into a physics-olympiad theory exam written to IPhO/APhO/PanPhO standards. The reader, an undergraduate who knows the four core physics courses, models and solves each paper's key steps. Unfamiliar mathematics or underspecified text does not block the reader. The exam translates the field's language into standard physics and shows what question each paper answers. Output, in one folder named PaperName_RPhO, is a question paper, solutions with a marking scheme, and one HTML checklist of the tools and ideas each question needs and of the open research problems. Use when someone wants to understand papers outside their field, enter a new field quickly, write olympiad-style problems from papers, turn a proposal into an exam with an available/missing register, or audit such an exam. Triggers include ResearchPhO, RPhO, learn this paper by solving problems, papers outside my field, olympiad-style problems from papers, 用论文出题, 奥赛风格, 快速入门新领域.
 ---
 
 # ResearchPhO: learn papers from outside your field by solving them
 
-Version 1.2.1.
+Version 1.2.2.
 
 Papers from another field are hard to read mostly because of their language, not their physics. A term such as
 "flavor", "horizontal generator" or "prethermal" often names something the reader already knows under another name.
